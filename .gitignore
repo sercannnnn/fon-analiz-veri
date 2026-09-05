@@ -1,3 +1,16 @@
+# Depoya yalnizca ham TEFAS verisi girer. Asagidakiler hicbir kosulda gonderilmez.
+pozisyonlar.csv
+pozisyon_analiz.csv
+metrikler.csv
+rapor/
+z. Portföy/
+*.xlsx
+*.png
+*.PNG
+0*_*.md
+CLAUDE.md
+.env
 __pycache__/
 *.pyc
 .DS_Store
+.venv/

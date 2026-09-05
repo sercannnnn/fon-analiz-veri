@@ -6,6 +6,7 @@ TEFAS günlük fon verisi. GCP sanal makinesi her hafta içi günü 05.15 UTC (0
 |---|---|
 | `veri/tefas_gunluk_<yyyymmdd>.csv` | tarih, fon kodu, pay fiyatı, kişi sayısı, portföy büyüklüğü, tedavüldeki pay |
 | `veri/tefas_dagilim_<yyyymmdd>.csv` | tarih, fon kodu ve 56 varlık sınıfı ağırlığı, yüzde puanı |
+| `veri/son_gunluk.csv`, `veri/son_dagilim.csv` | En son çekimin sabit adlı kopyaları; günlük okuma bu ikisinden yapılır |
 | `son_cekim.txt` | Son çekimin zamanı, satır sayısı ve son veri tarihi |
 | `betik/tefas_cek.py` | Çekici; yalnızca `requests` ister |
 | `betik/gunluk_cron.sh` | Makinedeki cron sarmalayıcısı |

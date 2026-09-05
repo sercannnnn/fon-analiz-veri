@@ -12,6 +12,9 @@ python3 betik/tefas_cek.py --cikti veri
 # (her dosya 10 gunluk pencere tasir; 45 gun yeterli ortusme birakir)
 find veri -name 'tefas_gunluk_*.csv' -mtime +45 -delete
 find veri -name 'tefas_dagilim_*.csv' -mtime +45 -delete
+# Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
+cp "$(ls -t veri/tefas_gunluk_*.csv | head -1)" veri/son_gunluk.csv
+cp "$(ls -t veri/tefas_dagilim_*.csv | head -1)" veri/son_dagilim.csv
 {
   echo "son_cekim_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   for f in $(ls -t veri/tefas_gunluk_*.csv | head -1) $(ls -t veri/tefas_dagilim_*.csv | head -1); do
