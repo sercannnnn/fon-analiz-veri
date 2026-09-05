@@ -12,6 +12,8 @@ python3 betik/tefas_cek.py --cikti veri
 # (her dosya 10 gunluk pencere tasir; 45 gun yeterli ortusme birakir)
 find veri -name 'tefas_gunluk_*.csv' -mtime +45 -delete
 find veri -name 'tefas_dagilim_*.csv' -mtime +45 -delete
+# Aylik arsiv: yeni gunluk dosyanin dokundugu aylar yeniden yazilir, digerleri degismez
+python3 betik/arsiv_guncelle.py --arsiv arsiv "$(ls -t veri/tefas_gunluk_*.csv | head -1)"
 # Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
 cp "$(ls -t veri/tefas_gunluk_*.csv | head -1)" veri/son_gunluk.csv
 cp "$(ls -t veri/tefas_dagilim_*.csv | head -1)" veri/son_dagilim.csv
@@ -21,7 +23,7 @@ cp "$(ls -t veri/tefas_dagilim_*.csv | head -1)" veri/son_dagilim.csv
     echo "$(basename "$f")=$(($(wc -l < "$f") - 1)) satir, son tarih $(tail -n +2 "$f" | cut -d, -f1 | sort | tail -1)"
   done
 } > son_cekim.txt
-git add -A veri son_cekim.txt
+git add -A veri arsiv son_cekim.txt
 if git diff --cached --quiet; then
   echo "degisiklik yok"
 else
