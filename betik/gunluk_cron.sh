@@ -2,8 +2,9 @@
 # Sanal makinede cron ile calisir: TEFAS'tan son 10 gunu ceker, GitHub deposuna gonderir.
 # Depo klonu ~/fon-analiz altindadir. Cron satiri (05.15 UTC = 08.15 Istanbul, hafta ici):
 #   15 5 * * 1-5 ~/fon-analiz/betik/gunluk_cron.sh >> ~/fon-analiz-cron.log 2>&1
-#   45 6 * * 1-5 ~/fon-analiz/betik/gunluk_cron.sh >> ~/fon-analiz-cron.log 2>&1   (yedek deneme)
+#   50 5 * * 1-5 ~/fon-analiz/betik/gunluk_cron.sh >> ~/fon-analiz-cron.log 2>&1   (yedek, 08.50 Istanbul; Cowork 09.05'ten once)
 set -euo pipefail
+exec 9>"$HOME/.gunluk_cron.lock"; flock -n 9 || { echo "onceki calisma suruyor, atlandi"; exit 0; }
 DEPO="$HOME/fon-analiz"
 cd "$DEPO"
 echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) baslangic ==="

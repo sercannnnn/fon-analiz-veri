@@ -54,12 +54,12 @@ def govde(bas, bit):
     }
 
 
-BEKLEME = (60, 180, 300, 600)   # denemeler arasi saniye; TEFAS gecici 500 verebiliyor
+BEKLEME = (30, 60, 120, 240)    # denemeler arasi saniye; en kotu durumda uc basina ~8 dk
 
 
 def cek(uc, bas, bit, deneme=5):
     """Tek aralik icin satirlari dondurur. Hata olursa artan araliklarla bes kez dener
-    (toplam bekleme yaklasik 19 dakika)."""
+    (toplam bekleme yaklasik 8 dakika)."""
     for i in range(deneme):
         try:
             r = requests.post(KOK_UC + uc, json=govde(bas, bit), headers=BASLIK, timeout=180)
