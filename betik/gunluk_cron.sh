@@ -15,7 +15,7 @@ find veri -name 'tefas_dagilim_*.csv' -mtime +45 -delete
 {
   echo "son_cekim_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   for f in $(ls -t veri/tefas_gunluk_*.csv | head -1) $(ls -t veri/tefas_dagilim_*.csv | head -1); do
-    echo "$(basename "$f")=$(($(wc -l < "$f") - 1)) satir, son tarih $(tail -1 "$f" | cut -d, -f1)"
+    echo "$(basename "$f")=$(($(wc -l < "$f") - 1)) satir, son tarih $(tail -n +2 "$f" | cut -d, -f1 | sort | tail -1)"
   done
 } > son_cekim.txt
 git add -A veri son_cekim.txt
