@@ -54,8 +54,12 @@ def govde(bas, bit):
     }
 
 
-def cek(uc, bas, bit, deneme=3):
-    """Tek aralik icin satirlari dondurur. Hata olursa uc kez dener."""
+BEKLEME = (60, 180, 300, 600)   # denemeler arasi saniye; TEFAS gecici 500 verebiliyor
+
+
+def cek(uc, bas, bit, deneme=5):
+    """Tek aralik icin satirlari dondurur. Hata olursa artan araliklarla bes kez dener
+    (toplam bekleme yaklasik 19 dakika)."""
     for i in range(deneme):
         try:
             r = requests.post(KOK_UC + uc, json=govde(bas, bit), headers=BASLIK, timeout=180)
@@ -66,7 +70,8 @@ def cek(uc, bas, bit, deneme=3):
             return j.get("resultList") or []
         except Exception as e:
             print(f"  deneme {i+1}/{deneme} basarisiz ({uc} {bas}-{bit}): {e}", file=sys.stderr)
-            time.sleep(5 * (i + 1))
+            if i < deneme - 1:
+                time.sleep(BEKLEME[min(i, len(BEKLEME) - 1)])
     raise SystemExit(f"cekim basarisiz: {uc} {bas}-{bit}")
 
 
