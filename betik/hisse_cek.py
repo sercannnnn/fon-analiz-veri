@@ -3,7 +3,7 @@
 """BIST gunluk hisse veri hatti. Kaynak: Is Yatirim HisseTekil ucu. Yalnizca 'requests' ister.
 
 Kullanim:
-  hisse_cek.py                      ilk calistirmada son 3 yil, sonra son arsiv tarihinden bugune
+  hisse_cek.py                      ilk calistirmada son 3 yil, sonra arsivdeki son tarihin 7 gun oncesinden bugune
   hisse_cek.py --bas 01-01-2026     baslangici elle ver (GG-AA-YYYY)
   hisse_cek.py --liste veri/bist100.txt --cikti veri --arsiv arsiv
 
@@ -28,6 +28,7 @@ KAYNAK = {"kapanisDuzeltilmis": "HG_KAPANIS", "kapanisHam": "HGDG_KAPANIS", "hac
           "xu100": "END_DEGER", "usdTry": "DD_DEGER"}
 EK_KODLAR = ["TSKB", "ANHYT", "BTCIM"]
 ARA_SANIYE = 1.0               # istekler arasi en az bekleme
+GERI_GUN = 7                   # artimli cekimde arsivdeki son tarihten kac gun geriye gidilir
 BEKLEME = (2, 4, 8)            # 429 / 5xx / baglanti hatasinda ustel geri cekilme
 
 
@@ -123,7 +124,10 @@ def main():
         bas = a.bas
     else:
         son = arsiv_son_tarih(a.arsiv)
-        bas = (datetime.strptime(son, "%Y-%m-%d").strftime("%d-%m-%Y") if son
+        # Son tarihten GERI_GUN geriye: Is Yatirim gunun satirini aksam hisse hisse yayimlar,
+        # tek gunluk aralik cogu hissede bos doner ve sahte hata uretir. Geriye gitmek ayrica
+        # son gunlerin duzeltilmis kapanislarini tazeler; arsiv tekillestirdigi icin zarar yok.
+        bas = ((datetime.strptime(son, "%Y-%m-%d") - timedelta(days=GERI_GUN)).strftime("%d-%m-%Y") if son
                else (bugun - timedelta(days=3 * 365)).strftime("%d-%m-%Y"))
     kodlar = liste_oku(a.liste)
     print(f"{len(kodlar)} hisse, {bas} .. {bit}", file=sys.stderr)
