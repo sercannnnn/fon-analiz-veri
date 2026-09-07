@@ -26,7 +26,9 @@ BASLIK = {
 }
 
 # Fiyat ucu
-FIYAT_ALAN = ["tarih", "fonKodu", "fiyat", "kisiSayisi", "portfoyBuyukluk", "tedPaySayisi"]
+# fonUnvan eklendi 07.09.2026 (M9): ayni yanit zaten unvani donuyordu, kaydedilmiyordu.
+# Unvani olmayan fon emsal grubuna atanamiyor ve taramaya hic girmiyordu.
+FIYAT_ALAN = ["tarih", "fonKodu", "fonUnvan", "fiyat", "kisiSayisi", "portfoyBuyukluk", "tedPaySayisi"]
 
 # Dagilim ucu: TEFAS'in 56 varlik sinifi kodu. Sira sabittir, CSV basligi budur.
 # Onemli olanlar: hs hisse senedi, tr ters repo, r repo (eksi = borclanma),

@@ -9,6 +9,10 @@ DEPO="$HOME/fon-analiz"
 cd "$DEPO"
 echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) baslangic ==="
 git pull -q --ff-only origin main || echo "uyari: pull basarisiz, yerel kopya ile devam"
+# Yedek calisma: bugunku cekim zaten yapildiysa (son_cekim.txt bugunun tarihini tasiyorsa) atla.
+# --zorla ile bu kontrol devre disi kalir (elle calistirma icin).
+bugun_bitti=$(grep -o "son_cekim_utc=$(date -u +%Y-%m-%d)" son_cekim.txt 2>/dev/null || true)
+if [ -n "$bugun_bitti" ] && [ "${1:-}" != "--zorla" ]; then echo "bugunku cekim zaten var, atlandi"; exit 0; fi
 python3 betik/tefas_cek.py --cikti veri
 # Eski gunluk dosyalari temizle: 45 gunden eski tefas_gunluk_/tefas_dagilim_ dosyalari
 # (her dosya 10 gunluk pencere tasir; 45 gun yeterli ortusme birakir)
