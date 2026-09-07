@@ -22,7 +22,7 @@ Kullanim:
   fon_icerik_cek.py --asama kuyruk --kurucu-filtre "İŞ PORTFÖY YÖNETİMİ A.Ş."
   fon_icerik_cek.py --pdf ek_TLY.pdf ...               yerel PDF'lerde ayristirici sinamasi
 """
-import argparse, csv, glob, gzip, io, json, os, re, sys, time, unicodedata
+import argparse, csv, gc, glob, gzip, io, json, os, re, sys, time, unicodedata
 from collections import defaultdict
 from datetime import date, datetime, timedelta
 import requests
@@ -397,6 +397,7 @@ def standart_kiymetler(pdf_bayt):
     with pdfplumber.open(io.BytesIO(pdf_bayt)) as pdf:
         for pi, pg in enumerate(pdf.pages, start=1):
             R = _satirlar(pg)
+            pg.flush_cache()
             kal = _kalibre(R) or kal
             if not kal:
                 continue
@@ -599,6 +600,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
     gecen = {k for k, v in kd.items() if v.get("gecti")}
     yazilan, ozet, hata, kapsam_disi, ertelendi, beklemede = [], [], [], [], [], []
     islenen = 0
+    kd_yol = os.path.join(veri, "kosu_durumu.json")
+    kdur = json_oku(kd_yol, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol, kdur)
 
     # kuyruk: hedef ayin raporu alinmamis fonlar
     fonlar = []
@@ -662,6 +665,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
             except Exception as e:
                 ok, sebep, sp, kayit, gun, ray = False, f"ayrıştırma hatası: {e}", None, [], None, hedef
             toplam = round(sum(k["agirlik"] for k in kayit), 2) if kayit else ""
+            pdf = None; gruplar = None; gc.collect()      # bir seferde tek rapor bellekte; her fondan sonra serbest birak
             if ok:
                 for k in kayit:
                     yazilan.append([f, ray, k["ad"], k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], k["agirlik"], d])
@@ -693,10 +697,10 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
         os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
     json_yaz(ky_yol, ky)
     kalan = sum(1 for f in fonlar if ky.get(f, {}).get("son") != hedef and ky.get(f, {}).get("durum") not in ("kapsamDisi", "hata"))
-    durum = dict(tarih=bugun.isoformat(), hedefAy=hedef, kuyruk=len(fonlar), islenen=islenen, yayimlanan=len({s[0] for s in yazilan}),
+    durum = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="tamamlandi", kuyruk=len(fonlar), islenen=islenen, yayimlanan=len({s[0] for s in yazilan}),
                  satir=len(yazilan), hata=len(hata), kapsamDisi=len(kapsam_disi), ertelendi=len(ertelendi), beklemede=len(beklemede),
                  istek=ISTEK.sayi, h429=ISTEK.h429, kuyrukKalan=kalan)
-    kd_yol = os.path.join(veri, "kosu_durumu.json"); kdur = json_oku(kd_yol, {}); kdur["icerik"] = durum; json_yaz(kd_yol, kdur)
+    kdur = json_oku(kd_yol, {}); kdur["icerik"] = durum; json_yaz(kd_yol, kdur)
     return durum, ozet
 
 

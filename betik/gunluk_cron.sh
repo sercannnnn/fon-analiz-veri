@@ -24,9 +24,31 @@ python3 betik/hisse_cek.py || echo "uyari: hisse cekimi basarisiz"
 if [ -z "$(find veri -name fon_kunye_kap.csv -mtime -7 2>/dev/null)" ]; then
   python3 betik/kap_kunye.py || echo "uyari: KAP kunye cekimi basarisiz"
 fi
-# KAP portfoy icerigi: kalici kuyruk, gunluk tur; pdfplumber icin ~/fon-analiz/.venv. Basarisizsa akis durmaz.
+# KAP portfoy icerigi: kalici kuyruk, gunluk tur; pdfplumber icin ~/fon-analiz/.venv.
+# SART: bu is makineyi donduramaz. Bellek siniri 400 MB (takas yok), dusuk oncelik (nice 15, ionice bosta).
+# Sinir asilirsa yalnizca bu surec olur (cikis 137) ve kosu_durumu.json'a basarisiz yazilir; akis durmaz.
 if [ -x "$DEPO/.venv/bin/python" ]; then
-  "$DEPO/.venv/bin/python" betik/fon_icerik_cek.py --asama kuyruk || echo "uyari: KAP icerik kuyrugu basarisiz"
+  export XDG_RUNTIME_DIR="/run/user/$(id -u)" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
+  if systemd-run --user --scope -q -p MemoryMax=400M -p MemorySwapMax=0 true 2>/dev/null; then
+    systemd-run --user --scope -q -p MemoryMax=400M -p MemorySwapMax=0 \
+      nice -n 15 ionice -c 3 "$DEPO/.venv/bin/python" betik/fon_icerik_cek.py --asama kuyruk; ic_kod=$?
+  else
+    echo "uyari: systemd-run kullanilamadi, ulimit ile sinirlaniyor"
+    ( ulimit -v 900000; nice -n 15 ionice -c 3 "$DEPO/.venv/bin/python" betik/fon_icerik_cek.py --asama kuyruk ); ic_kod=$?
+  fi
+  if [ "$ic_kod" -ne 0 ]; then
+    echo "uyari: KAP icerik kuyrugu basarisiz, cikis kodu $ic_kod"
+    python3 - "$ic_kod" <<'PY'
+import json, sys, os, datetime
+yol = "veri/kosu_durumu.json"
+try: d = json.load(open(yol, encoding="utf-8"))
+except Exception: d = {}
+kod = int(sys.argv[1]); d.setdefault("icerik", {})
+d["icerik"].update(durum="basarisiz", cikisKodu=kod, sebep="bellek siniri (400 MB) asildi, surec olduruldu" if kod == 137 else "betik hatayla bitti",
+                   tarih=datetime.date.today().isoformat())
+json.dump(d, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1, sort_keys=True)
+PY
+  fi
 else
   echo "uyari: .venv yok, KAP icerik kuyrugu atlandi"
 fi
