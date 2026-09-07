@@ -20,6 +20,10 @@ find veri -name 'tefas_gunluk_*.csv' -mtime +45 -delete
 find veri -name 'tefas_dagilim_*.csv' -mtime +45 -delete
 # BIST hisse hatti (Is Yatirim). Basarisizsa TEFAS akisini durdurmaz; hata veri/hisse_hata.txt'de.
 python3 betik/hisse_cek.py || echo "uyari: hisse cekimi basarisiz"
+# KAP fon kunyesi: haftada bir (dosya yoksa ya da 7 gunden eskiyse). Basarisizsa akis durmaz.
+if [ -z "$(find veri -name fon_kunye_kap.csv -mtime -7 2>/dev/null)" ]; then
+  python3 betik/kap_kunye.py || echo "uyari: KAP kunye cekimi basarisiz"
+fi
 # Aylik arsiv: yeni gunluk dosyanin dokundugu aylar yeniden yazilir, digerleri degismez
 python3 betik/arsiv_guncelle.py --arsiv arsiv "$(ls -t veri/tefas_gunluk_*.csv | head -1)"
 # Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
