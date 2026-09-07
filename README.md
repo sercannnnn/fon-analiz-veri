@@ -8,11 +8,18 @@ TEFAS günlük fon verisi. GCP sanal makinesi her hafta içi günü 05.15 UTC (0
 | `veri/tefas_dagilim_<yyyymmdd>.csv` | tarih, fon kodu ve 56 varlık sınıfı ağırlığı, yüzde puanı |
 | `arsiv/tefas_YYYY-MM.csv.gz` | Fiyat serisinin tam geçmişi, aylık gzip; 3 Şubat 2025'ten bugüne. Yalnızca içinde bulunulan ay her gün yeniden yazılır |
 | `veri/son_gunluk.csv`, `veri/son_dagilim.csv` | En son çekimin sabit adlı kopyaları; günlük okuma bu ikisinden yapılır |
+| `veri/hisse_son_gunluk.csv` | BIST 100 + TSKB, ANHYT, BTCIM günlük kapanışları, İş Yatırım kaynaklı; şema `tarih,hisse,kapanisDuzeltilmis,kapanisHam,hacim,xu100,usdTry` |
+| `veri/hisse_hata.txt` | Çekilemeyen hisse kodları; boş dosya hata yok demektir |
+| `veri/bist100.txt` | BIST 100 bileşen listesi; dönem değişiminde elle yenilenir |
+| `arsiv/hisse_YYYY-MM.csv.gz` | Hisse serisinin aylık arşivi, son 3 yıl |
 | `son_cekim.txt` | Son çekimin zamanı, satır sayısı ve son veri tarihi |
 | `betik/tefas_cek.py` | Çekici; yalnızca `requests` ister |
 | `betik/gunluk_cron.sh` | Makinedeki cron sarmalayıcısı |
+| `betik/hisse_cek.py` | BIST hisse çekici; İş Yatırım `HisseTekil` ucu |
 | `betik/arsiv_guncelle.py` | Günlük dosyaları aylık arşive işler; standart kütüphane |
 
 Her dosya 10 günlük pencere taşır; aynı tarih-fon çifti birden çok dosyada bulunabilir, analiz betiği ayıklar. 45 günden eski günlük dosyalar makine tarafından silinir; tam geçmiş `arsiv/` altındadır. Bilinen boşluklar: 27 Şubat 2025 ile 1 Eylül 2025 arası, 27 ile 29 Mayıs 2026 arası.
+
+Depoya yalnızca TEFAS ve İş Yatırım'ın kendi yayımladığı veri girer; portföy, pozisyon, emir ve kişisel bilgi girmez.
 
 Kaynak ve yöntem: `Fon Analiz/CLAUDE.md` ve `00_Yontem.md`.

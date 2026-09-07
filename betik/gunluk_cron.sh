@@ -18,6 +18,8 @@ python3 betik/tefas_cek.py --cikti veri
 # (her dosya 10 gunluk pencere tasir; 45 gun yeterli ortusme birakir)
 find veri -name 'tefas_gunluk_*.csv' -mtime +45 -delete
 find veri -name 'tefas_dagilim_*.csv' -mtime +45 -delete
+# BIST hisse hatti (Is Yatirim). Basarisizsa TEFAS akisini durdurmaz; hata veri/hisse_hata.txt'de.
+python3 betik/hisse_cek.py || echo "uyari: hisse cekimi basarisiz"
 # Aylik arsiv: yeni gunluk dosyanin dokundugu aylar yeniden yazilir, digerleri degismez
 python3 betik/arsiv_guncelle.py --arsiv arsiv "$(ls -t veri/tefas_gunluk_*.csv | head -1)"
 # Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
@@ -25,11 +27,12 @@ cp "$(ls -t veri/tefas_gunluk_*.csv | head -1)" veri/son_gunluk.csv
 cp "$(ls -t veri/tefas_dagilim_*.csv | head -1)" veri/son_dagilim.csv
 {
   echo "son_cekim_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  for f in $(ls -t veri/tefas_gunluk_*.csv | head -1) $(ls -t veri/tefas_dagilim_*.csv | head -1); do
-    echo "$(basename "$f")=$(($(wc -l < "$f") - 1)) satir, son tarih $(tail -n +2 "$f" | cut -d, -f1 | sort | tail -1)"
+  for f in $(ls -t veri/tefas_gunluk_*.csv | head -1) $(ls -t veri/tefas_dagilim_*.csv | head -1) veri/hisse_son_gunluk.csv; do
+    [ -f "$f" ] && echo "$(basename "$f")=$(($(wc -l < "$f") - 1)) satir, son tarih $(tail -n +2 "$f" | cut -d, -f1 | sort | tail -1)"
   done
+  [ -s veri/hisse_hata.txt ] && echo "hisse_hata=$(tr '\n' ' ' < veri/hisse_hata.txt)"
 } > son_cekim.txt
-git add -A veri arsiv son_cekim.txt
+git add -A veri arsiv son_cekim.txt   # veri/hisse_son_gunluk.csv, veri/hisse_hata.txt, arsiv/hisse_*.csv.gz dahil
 if git diff --cached --quiet; then
   echo "degisiklik yok"
 else
