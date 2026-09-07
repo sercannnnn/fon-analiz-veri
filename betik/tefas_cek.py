@@ -78,11 +78,12 @@ def cek(uc, bas, bit, deneme=5):
 
 
 def aylik_parcalar(bas, bit):
-    """TEFAS tek istekte azami bir ay verir; araligi aylik parcalara boler."""
+    """TEFAS tek istekte azami bir ay verir ("Tarih araligi 1 ayi asamaz"); ay sonundan
+    baslayan 30 gunluk parca bu siniri asiyordu. Parcalar 27 gun tutulur."""
     b = datetime.strptime(bas, "%Y%m%d").date()
     s = datetime.strptime(bit, "%Y%m%d").date()
     while b <= s:
-        e = min(b + timedelta(days=30), s)
+        e = min(b + timedelta(days=27), s)
         yield b.strftime("%Y%m%d"), e.strftime("%Y%m%d")
         b = e + timedelta(days=1)
 
