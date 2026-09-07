@@ -1,0 +1,6 @@
+{
+ "dagilimGecikmeGun": 1,
+ "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
+ "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
+ "tarih": "2026-09-07"
+}

@@ -1,0 +1,121 @@
+{
+ "AK PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.34,
+  "fonlar": {
+   "ONK": -0.34,
+   "PAL": -0.33
+  },
+  "gecen": 2,
+  "gecti": true,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 2,
+  "tarih": "2026-09-07"
+ },
+ "DENİZ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.54,
+  "fonlar": {
+   "DAS": 0.22,
+   "DCB": -0.54,
+   "DLY": -0.34
+  },
+  "gecen": 3,
+  "gecti": true,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 3,
+  "tarih": "2026-09-07"
+ },
+ "GARANTİ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "garanti",
+  "enBuyukSapma": 15.0,
+  "fonlar": {
+   "EUZ": -13.65,
+   "GRO": -15.0,
+   "GTL": 9.21
+  },
+  "gecen": 0,
+  "gecti": false,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 3,
+  "tarih": "2026-09-07"
+ },
+ "KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.44,
+  "fonlar": {
+   "KLU": -0.11,
+   "KZL": -0.44
+  },
+  "gecen": 2,
+  "gecti": true,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 2,
+  "tarih": "2026-09-07"
+ },
+ "QNB PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 6.18,
+  "fonlar": {
+   "FKE": 1.31,
+   "FPZ": -6.18
+  },
+  "gecen": 0,
+  "gecti": false,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 2,
+  "tarih": "2026-09-07"
+ },
+ "TEB PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.29,
+  "fonlar": {
+   "TKM": 0.29
+  },
+  "gecen": 1,
+  "gecti": true,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 1,
+  "tarih": "2026-09-07"
+ },
+ "TERA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 1.0,
+  "fonlar": {
+   "THF": 0.2,
+   "TLY": 0.12,
+   "TP2": -1.0
+  },
+  "gecen": 3,
+  "gecti": true,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 3,
+  "tarih": "2026-09-07"
+ },
+ "YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "yapikredi",
+  "enBuyukSapma": 3.56,
+  "fonlar": {
+   "YP4": -0.16,
+   "YTY": -3.56
+  },
+  "gecen": 1,
+  "gecti": false,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 2,
+  "tarih": "2026-09-07"
+ },
+ "İŞ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.61,
+  "fonlar": {
+   "ONS": -0.45,
+   "TI1": 0.61
+  },
+  "gecen": 2,
+  "gecti": true,
+  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 2,
+  "tarih": "2026-09-07"
+ }
+}

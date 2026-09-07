@@ -24,6 +24,12 @@ python3 betik/hisse_cek.py || echo "uyari: hisse cekimi basarisiz"
 if [ -z "$(find veri -name fon_kunye_kap.csv -mtime -7 2>/dev/null)" ]; then
   python3 betik/kap_kunye.py || echo "uyari: KAP kunye cekimi basarisiz"
 fi
+# KAP portfoy icerigi: kalici kuyruk, gunluk tur; pdfplumber icin ~/fon-analiz/.venv. Basarisizsa akis durmaz.
+if [ -x "$DEPO/.venv/bin/python" ]; then
+  "$DEPO/.venv/bin/python" betik/fon_icerik_cek.py --asama kuyruk || echo "uyari: KAP icerik kuyrugu basarisiz"
+else
+  echo "uyari: .venv yok, KAP icerik kuyrugu atlandi"
+fi
 # Aylik arsiv: yeni gunluk dosyanin dokundugu aylar yeniden yazilir, digerleri degismez
 python3 betik/arsiv_guncelle.py --arsiv arsiv "$(ls -t veri/tefas_gunluk_*.csv | head -1)"
 # Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
