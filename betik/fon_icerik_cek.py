@@ -39,8 +39,12 @@ DAGILIM_GECIKME_GUN = 1   # TEFAS dagilimi T tarihinde T-1 kapanisini gosterir (
 
 AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6, "TEMMUZ": 7,
          "AGUSTOS": 8, "EYLUL": 9, "EKIM": 10, "KASIM": 11, "ARALIK": 12}
-ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni"]
-OZET_ALAN = ["fonKodu", "raporTarihi", "kurucu", "kurucuDuzeni", "satir", "agirlikToplam", "tefasGun", "tefasSapma", "durum", "sebep"]
+AYRISTIRICI_SURUM = 2     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
+# Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
+# kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
+ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni"]
+OZET_ALAN = ["fonKodu", "raporTarihi", "kurucu", "kurucuDuzeni", "satir", "agirlikToplam", "tefasGun", "tefasSapma", "hisseSatir", "bistKoduBos", "adTemiz", "durum", "sebep", "not"]
+OZET_NOT = "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz"
 
 
 def norm(s):
@@ -163,13 +167,15 @@ def ek_pdf(idx):
 
 # TEFAS dagilim kodlari -> aile (gunluk_analiz.py ile ayni kod sozlugu)
 AILE = {
-    "hisse": ["hs"], "yabanci_hisse": ["yhs"], "dt": ["dt", "kibd"], "hb": ["hb"], "ost": ["ost", "vdm"],
+    # kmkba (kiymetli maden cinsinden kamu borclanma araci) TEFAS'ta maden ailesinde durur; KAP standart duzeni
+    # bunu 'Devlet Tahvili' bolumunde verir (TTA: 4,19 puan birebir, 08.09.2026). Ayni enstruman, o yuzden dt ailesinde.
+    "hisse": ["hs"], "yabanci_hisse": ["yhs"], "dt": ["dt", "kibd", "kmkba"], "hb": ["hb"], "ost": ["ost", "vdm"],
     "dis_borc": ["eut", "kba", "osdb", "yba", "ybkb", "ybosb"], "fb": ["fb", "bb"],
     "kira": ["kks", "kkstl", "kksd", "kksyd", "osks", "oksyd", "kmkks"],
-    "tpp": ["tpp", "t", "bpp"], "maden": ["km", "kmbyf", "kmkba"],
+    "tpp": ["tpp", "t", "bpp"], "maden": ["km"],
     "mevduat": ["vm", "vmtl", "vmd", "vmau"], "katilim": ["kh", "khtl", "khd", "khau"],
     "diger": ["d", "dot", "fkb", "gas", "gyy", "gsyy", "ymk", "db"], "teminat": ["vint"],
-    "yf": ["yyf", "gykb", "gsykb"], "byf": ["byf", "ybyf"], "repo": ["tr", "r"], "taahhut": ["btaa", "btas"],
+    "yf": ["yyf", "gykb", "gsykb"], "byf": ["byf", "kmbyf"], "ybyf": ["ybyf"], "repo": ["tr", "r"], "taahhut": ["btaa", "btas"],
 }
 
 # KAP sinif / bolum adi -> aile. Sira onemli, ilk eslesen kazanir.
@@ -178,8 +184,8 @@ KURAL = [
     (r"HAZINE BONO", "hb"), (r"DIS BORCLANMA|EUROBOND", "dis_borc"),
     (r"DEVLET TAHVIL|KAMU.*TAHVIL|KAMU BORCLANMA", "dt"), (r"OZEL SEKTOR TAHVIL|OZEL.*BORCLANMA", "ost"),
     (r"FINANSMAN BONO|FINANSMAN BONUSU|\bBONO\b", "fb"), (r"KIRA SERTIFIKA", "kira"),
-    (r"TAKASBANK|TPP|\bBPP\b|BORSA PARA", "tpp"), (r"DEGERLI MADEN|KIYMETLI MADEN|ALTIN|GUMUS", "maden"),
-    (r"BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU", "byf"), (r"YATIRIM FONU|Y\.FONU|YATIRIM FON|FON SEPETI", "yf"),
+    (r"TAKASBANK|TPP|\bBPP\b|BORSA PARA", "tpp"), (r"DEGERLI MADEN|KIYMETLI MADEN|D\.MADEN|\bMADEN\b|ALTIN|GUMUS", "maden"),
+    (r"(BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU).*(YABANCI|YP)", "ybyf"), (r"BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU", "byf"), (r"YATIRIM FONU|Y\.FONU|YATIRIM FON|FON SEPETI", "yf"),
     (r"KATILIM HESABI|KATILMA HESABI", "katilim"), (r"MEVDUAT", "mevduat"), (r"TEMINAT", "teminat"),
     (r"TAAHHUT", "taahhut"), (r"VDMK|VARLIGA DAYALI", "ost"), (r"DIGER", "diger"),
     (r"^OZEL SEKTOR$|BORSA DISI|BORCLANMA", "ost"), (r"^HAZINE|^DEVLET|^KAMU", "dt"),
@@ -201,6 +207,8 @@ ESLEME_TABLOSU = [
     ("repo",     "para_piyasasi", "Garanti duzeni 'TERS REPO' satirinda Takasbank islemlerini de verir (GZE, 07.09.2026)"),
     ("yabanci_hisse", "hisse_toplam", "Standart duzen 'Hisse Yabanci' bolumunu TEFAS yhs koduna, 'Hisse Turk' hs koduna yazar; ikisi de hisse (IED, 07.09.2026)"),
     ("hisse",    "hisse_toplam", "ayni kanit"),
+    ("byf",      "maden_byf", "Altin ve gumus BYF'leri (GMSTR TRYFNBK00030, ISGLK TRYISPO01397, ZGOLD TRYZIPO00162, GLDTR) KAP'ta 'Borsa Y.Fonu Turk' bolumunde, TEFAS'ta kmbyf (kiymetli maden BYF) kodunda; GUF 18,30 ve TTA 22,67 puan birebir (08.09.2026)"),
+    ("maden",    "maden_byf", "ayni kanit; kmbyf TEFAS'ta kiymetli maden ailesindedir"),
 ]
 UST_GRUP = {a: g for a, g, _ in ESLEME_TABLOSU}
 
@@ -348,7 +356,7 @@ def _kalibre(R):
     """Sayfadaki tablo basligindan sutun sag kenarlarini bulur. Standart ve genis varyant ayni
     basliklari tasir: (%) grup yuzdesi, (FPD ve (FTD toplam yuzdeleri, 'TOPLAM DEGER' toplam deger,
     'NOMINAL DEGER' nominal, 'ISIN' kodu. Bulunamazsa None."""
-    k = {}
+    k, yuzdeler = {}, []
     for t, r in R:
         for i, w in enumerate(r):
             x = w["text"]
@@ -356,14 +364,23 @@ def _kalibre(R):
                 k["fpd"] = w["x1"]
             elif x == "(FTD":
                 k["ftd"] = w["x1"]
-            elif x == "(%)" and w["x0"] > 0.7 * r[-1]["x1"]:
-                k["grup"] = w["x1"]
+            elif x == "(%)":
+                yuzdeler.append(w["x1"])
             elif x == "DEĞER" and i > 0 and r[i - 1]["text"] == "TOPLAM":
                 k["toplam"] = w["x1"]
             elif x == "DEĞER" and i > 0 and r[i - 1]["text"] == "NOMİNAL":
                 k["nominal"] = w["x1"]
             elif x == "ISIN":
                 k["isin_x0"] = w["x0"]
+            elif x == "İHRAÇCI":
+                k["ihracci_x0"] = w["x0"]
+            elif x == "VADE" and "ihracci_x0" in k and "vade_x0" not in k:
+                k["vade_x0"] = w["x0"]
+    if "fpd" in k:
+        # grup yuzdesi sutunu: FPD basliginin hemen solundaki "(%)"; baslikta baska (%) sutunlari da var
+        sol = [x for x in yuzdeler if x < k["fpd"]]
+        if sol:
+            k["grup"] = max(sol)
     return k if {"fpd", "grup", "toplam"} <= set(k) else None
 
 
@@ -394,6 +411,7 @@ def standart_kiymetler(pdf_bayt):
     Donus: (kayitlar, gruplar). agirlik = TOPLAM DEGER (FPD'ye gore) yuzdesi."""
     kayit, gruplar = [], []
     etiket, bekleyen, adaylar, kal = None, True, [], None
+    son_ana_grup = False          # bir onceki ana satir GRUP TOPLAMI miydi (sayfa sinirini asar)
     with pdfplumber.open(io.BytesIO(pdf_bayt)) as pdf:
         for pi, pg in enumerate(pdf.pages, start=1):
             R = _satirlar(pg)
@@ -429,32 +447,48 @@ def standart_kiymetler(pdf_bayt):
                     continue
                 if bekleyen and r[0]["x0"] < 60 and not re.search(r"\d", metin) and len(metin) < 60:
                     adaylar.append(metin)
+            # sarilan ihracci satirlari ve ISIN: en yakin ana satira; tolerans satir araligina gore
+            # (uzun ihracci adinda ISIN 6-8 satir uzaga dusebilir; BHL, 08.09.2026)
+            tops = [t for t, r in R]
+            farklar = sorted(b - a for a, b in zip(tops, tops[1:]) if b - a > 0)
+            pitch = farklar[len(farklar) // 2] if farklar else 10
+            tol = max(40, 8 * pitch)
             atama = defaultdict(list)
             for i, (t, r) in enumerate(R):
                 if i in anal or i in baslik:
                     continue
                 j = min(anal, key=lambda a: abs(R[a][0] - t))
-                if abs(R[j][0] - t) <= 40:
+                if abs(R[j][0] - t) <= tol:
                     atama[j].append((t, r))
             ad_sinir = kal.get("isin_x0", 230) - 5
             for i in anal:
                 t, r = R[i]
                 fpd_l = _kolon(r, kal["fpd"], -5, 40); top_l = _kolon(r, kal["toplam"], -45, 12)
                 if _grup_satiri(r):
-                    onceki = anal[anal.index(i) - 1] if anal.index(i) > 0 else None
-                    yaprak = not (onceki is not None and _grup_satiri(R[onceki][1]))
+                    yaprak = not son_ana_grup
+                    son_ana_grup = True
                     gruplar.append(dict(sayfa=pi, tur=etiket_i[i], rayic=sayi(top_l[0]["text"]) if top_l else None,
                                         agirlik=sayi(fpd_l[0]["text"]) if fpd_l else None, yaprak=yaprak))
                     continue
+                son_ana_grup = False
                 fpd, top = fpd_l[0], top_l[0]
                 nom = _kolon(r, kal["nominal"], -50, 12) if "nominal" in kal else []
                 ad_par = [(t, [w for w in r if w["x0"] < ad_sinir and w["text"] not in PARA])]
                 ad_par += [(tt, [w for w in rr if w["x0"] < ad_sinir and w["text"] not in PARA]) for tt, rr in atama[i]]
                 ad = " ".join(w["text"] for _, ws in sorted(ad_par) for w in ws)
                 isinler = {w["text"] for w in r if ISIN_RE.match(w["text"])} | {w["text"] for _, rr in atama[i] for w in rr if ISIN_RE.match(w["text"])}
+                # kod sutunu: ana satirin ilk kelimesi (hisse kodu, ISIN ya da kurum adi parcasi)
+                kod = r[0]["text"] if r[0]["x0"] < kal.get("ihracci_x0", 110) - 5 else ""
+                # ihracci sutunu: baslik İHRAÇCI..VADE araligindaki kelimeler, dikey sirayla; kac satirdan geldigi sayilir
+                ih0, ih1 = kal.get("ihracci_x0", 110) - 12, kal.get("vade_x0", kal.get("isin_x0", 230)) - 4
+                ih_par = [(t, [w["text"] for w in r if ih0 <= w["x0"] < ih1 and w["text"] not in PARA])]
+                ih_par += [(tt, [w["text"] for w in rr if ih0 <= w["x0"] < ih1 and w["text"] not in PARA]) for tt, rr in atama[i]]
+                ih_satir = [ws for _, ws in sorted(ih_par) if ws]
+                ihracci_ham = " ".join(w for ws in ih_satir for w in ws)
                 kayit.append(dict(sayfa=pi, ad=re.sub(r"\s+", " ", ad).strip(), isin=sorted(isinler)[0] if isinler else "",
                                   isinSayi=len(isinler), nominal=sayi(nom[-1]["text"]) if nom else None,
-                                  rayic=sayi(top["text"]), agirlik=sayi(fpd["text"]), tur=etiket_i[i]))
+                                  rayic=sayi(top["text"]), agirlik=sayi(fpd["text"]), tur=etiket_i[i],
+                                  kod=kod, ihracciHam=ihracci_ham, ihracciSatir=len(ih_satir)))
     return kayit, gruplar
 
 
@@ -463,6 +497,33 @@ def satir_aileleri(kayit):
     for k in kayit:
         sat[aileye(k["tur"] or "") or "diger"] += k["agirlik"]
     return sat
+
+
+def bist_evren_yukle(veri):
+    yol = os.path.join(veri, "bist_evren.txt")
+    return {l.strip().upper() for l in open(yol, encoding="utf-8") if l.strip() and not l.startswith("#")} if os.path.exists(yol) else set()
+
+
+HISSE_TUR = re.compile(r"HISSE|ODUNC", re.I)
+KISA_STOP = {"VE", "A.S.", "A.Ş.", "T.A.S.", "T.A.Ş.", "LTD", "STI", "ŞTİ", "SAN", "TIC", "TİC", "GYO", "BK", "KR", "AG", "SA", "NV", "PLC", "INC", "CO", "LLC", "AŞ", "AS"}
+
+
+def kimlik_ve_ad(k, evren):
+    """bistKodu: hisse satirinda kod sutunu evrende varsa; degilse addaki adaylardan tek olan.
+    ihracci: ihracci sutunu tek satirdan geldiyse temiz, yoksa bos. kiymetAdi: tek satir ise dolu, yoksa bos (ham ayrica)."""
+    hisse = bool(k["tur"] and HISSE_TUR.search(norm(k["tur"])))
+    bist = ""
+    if hisse and evren:
+        if k["kod"].upper() in evren:
+            bist = k["kod"].upper()
+        else:
+            aday = [t for t in re.findall(r"\b[A-Z0-9]{4,6}\b", k["ad"]) if t in evren]
+            bist = aday[0] if len(set(aday)) == 1 else ""
+    temiz_ad = k["ihracciHam"] if k["ihracciSatir"] == 1 else ""
+    if hisse and bist and not temiz_ad and k["ihracciSatir"] == 0:
+        temiz_ad = ""
+    ihracci = temiz_ad if not hisse else ""
+    return bist, ihracci, temiz_ad
 
 
 def kapi(kayit, gruplar, tefas_son):
@@ -572,10 +633,16 @@ def gz_yaz(yol, satirlar):
 
 
 def gz_oku(yol):
+    """Arsiv satirlari; surum 1 (9 sutun) satirlari surum 2 semasina tasir (ham ad korunur, kimlik alanlari bos)."""
     if not os.path.exists(yol):
         return []
     with gzip.open(yol, "rt", encoding="utf-8", newline="") as f:
-        r = csv.reader(f); next(r, None); return [s for s in r]
+        r = csv.reader(f); next(r, None); out = []
+        for s in r:
+            if len(s) == 9:
+                s = [s[0], s[1], "", s[2], "", "", s[3], s[4], s[5], s[6], s[7], s[8]]
+            out.append(s)
+        return out
 
 
 def arsive_isle(arsiv, yazilan):
@@ -588,15 +655,16 @@ def arsive_isle(arsiv, yazilan):
         yol = os.path.join(arsiv, f"fon_icerik_{ay}.csv.gz")
         yeni = {s[0] for s in L}
         birlesik = [s for s in gz_oku(yol) if s[0] not in yeni] + L
-        birlesik.sort(key=lambda s: (s[0], s[4], s[3], s[2]))
+        birlesik.sort(key=lambda s: (s[0], s[7], s[6], s[3]))
         gz_yaz(yol, birlesik)
 
 
-def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
+def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     bugun = date.today(); hedef = hedef_ay(bugun)
     kd = json_oku(os.path.join(veri, "kurucu_duzen.json"), {})
     ky_yol = os.path.join(veri, "icerik_kuyruk.json"); ky = json_oku(ky_yol, {})
     rows = tefas_dagilim_yukle(veri)
+    evren = bist_evren_yukle(veri)
     gecen = {k for k, v in kd.items() if v.get("gecti")}
     yazilan, ozet, hata, kapsam_disi, ertelendi, beklemede = [], [], [], [], [], []
     islenen = 0
@@ -608,8 +676,10 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
     for f, s in sorted(kunye.items()):
         if kurucu_filtre and s["kurucu"] != kurucu_filtre:
             continue
+        if fon_filtre and f not in fon_filtre:
+            continue
         d = ky.get(f, {})
-        if d.get("son") == hedef:
+        if d.get("son") == hedef and d.get("surum", 1) >= AYRISTIRICI_SURUM:
             continue
         if d.get("durum") == "kapsamDisi" and (d.get("kalici") or d.get("ay") == hedef):
             continue
@@ -667,16 +737,21 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
             toplam = round(sum(k["agirlik"] for k in kayit), 2) if kayit else ""
             pdf = None; gruplar = None; gc.collect()      # bir seferde tek rapor bellekte; her fondan sonra serbest birak
             if ok:
+                hisse_n = bist_bos = ad_temiz = 0
                 for k in kayit:
-                    yazilan.append([f, ray, k["ad"], k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], k["agirlik"], d])
-                ky[f] = dict(son=ray, durum="yayimlandi", sapma=sp, tefasGun=gun, satir=len(kayit), tarih=bugun.isoformat())
-                ozet.append([f, ray, kur, d, len(kayit), toplam, gun or "", sp, "yayimlandi", ""])
+                    bist, ihr, temiz = kimlik_ve_ad(k, evren)
+                    if k["tur"] and HISSE_TUR.search(norm(k["tur"])):
+                        hisse_n += 1; bist_bos += 0 if bist else 1
+                    ad_temiz += 1 if temiz else 0
+                    yazilan.append([f, ray, temiz, k["ad"], bist, ihr, k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], k["agirlik"], d])
+                ky[f] = dict(son=ray, durum="yayimlandi", sapma=sp, tefasGun=gun, satir=len(kayit), surum=AYRISTIRICI_SURUM, tarih=bugun.isoformat())
+                ozet.append([f, ray, kur, d, len(kayit), toplam, gun or "", sp, hisse_n, bist_bos, ad_temiz, "yayimlandi", "", OZET_NOT])
             elif sebep.startswith("şart 3: TEFAS"):
                 ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="beklemede", sebep=sebep, tarih=bugun.isoformat())
-                beklemede.append(f); ozet.append([f, ray, kur, d, len(kayit), toplam, "", "", "beklemede", sebep])
+                beklemede.append(f); ozet.append([f, ray, kur, d, len(kayit), toplam, "", "", "", "", "", "beklemede", sebep, OZET_NOT])
             else:
                 ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="hata", sebep=sebep, ay=hedef, tarih=bugun.isoformat())
-                hata.append((f, ray, sebep)); ozet.append([f, ray, kur, d, len(kayit), toplam, gun or "", sp if sp is not None else "", "hata", sebep])
+                hata.append((f, ray, sebep)); ozet.append([f, ray, kur, d, len(kayit), toplam, gun or "", sp if sp is not None else "", "", "", "", "hata", sebep, OZET_NOT])
     except ButceBitti:
         print(f"günlük istek bütçesi ({BUTCE}) bitti; kuyruk yarın devam eder", file=sys.stderr)
     except Ertelendi as e:
@@ -697,9 +772,13 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None):
         os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
     json_yaz(ky_yol, ky)
     kalan = sum(1 for f in fonlar if ky.get(f, {}).get("son") != hedef and ky.get(f, {}).get("durum") not in ("kapsamDisi", "hata"))
+    kova = defaultdict(int)
+    for _, sebep in kapsam_disi:
+        kova["ozelFon" if sebep.startswith("özel fon") else "kurucuDuzeni" if sebep.startswith("kurucu düzeni") else
+             "duzenTaninmadi" if sebep.startswith("düzen") else "raporYayimlamiyor" if sebep.startswith("dağılım raporu") else "diger"] += 1
     durum = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="tamamlandi", kuyruk=len(fonlar), islenen=islenen, yayimlanan=len({s[0] for s in yazilan}),
-                 satir=len(yazilan), hata=len(hata), kapsamDisi=len(kapsam_disi), ertelendi=len(ertelendi), beklemede=len(beklemede),
-                 istek=ISTEK.sayi, h429=ISTEK.h429, kuyrukKalan=kalan)
+                 satir=len(yazilan), hata=len(hata), kapsamDisi=len(kapsam_disi), kapsamDisiKova=dict(kova), ertelendi=len(ertelendi), beklemede=len(beklemede),
+                 istek=ISTEK.sayi, h429=ISTEK.h429, kuyrukKalan=kalan, ayristiriciSurum=AYRISTIRICI_SURUM, **{"not": OZET_NOT})
     kdur = json_oku(kd_yol, {}); kdur["icerik"] = durum; json_yaz(kd_yol, kdur)
     return durum, ozet
 
@@ -712,31 +791,40 @@ def main():
     ap.add_argument("--pdf", nargs="*", help="yerel PDF'lerde ayristiriciyi sina (ad: ek_<FON>*.pdf)")
     ap.add_argument("--veri", default=os.path.join(KOK, "veri"))
     ap.add_argument("--arsiv", default=os.path.join(KOK, "arsiv"))
-    ap.add_argument("--fon", help="B: virgulle fon kodlari")
+    ap.add_argument("--fon", help="B ve kuyruk: virgulle fon kodlari (kuyrukta yalniz bu fonlar islenir)")
     ap.add_argument("--kurucu", type=int, default=0, help="B: TEFAS buyuklugune gore en buyuk N kurucu")
     ap.add_argument("--fon-basina", type=int, default=3)
     ap.add_argument("--kurucu-filtre", help="kuyruk: yalnizca bu kurucu")
     ap.add_argument("--butce", type=int, default=BUTCE)
+    ap.add_argument("--ay", help="--pdf: rapor ayi (YYYY-MM), TEFAS karsilastirmasi icin")
+    ap.add_argument("--goster", type=int, default=0, help="--pdf: en buyuk N hisse satirini bistKodu ile goster")
     a = ap.parse_args()
     ISTEK.butce = a.butce
 
     if a.pdf:
-        rows = tefas_dagilim_yukle(a.veri)
+        rows = tefas_dagilim_yukle(a.veri); evren = bist_evren_yukle(a.veri)
         for yol in a.pdf:
             fon = re.sub(r"^ek_|[_.].*$", "", os.path.basename(yol)); pdf = open(yol, "rb").read()
             with pdfplumber.open(io.BytesIO(pdf)) as p:
                 t1 = p.pages[0].extract_text() or ""
-            d = duzen(t1); ray = rapor_ayi(t1) or "?"
+            d = duzen(t1); ray = a.ay or rapor_ayi(t1) or "?"
             kayit, gruplar = standart_kiymetler(pdf) if d == "standart" else ([], [])
             gun, son = tefas_ertesi_gun(rows, fon, ray) if ray != "?" else (None, None)
             ok, sebep, sp = kapi(kayit, gruplar, son)
             print(f"=== {fon} {d} {ray}: satır {len(kayit)}, yaprak grup {sum(1 for g in gruplar if g['yaprak'])}, ISIN'siz {sum(1 for k in kayit if not k['isin'])}, toplam "
                   f"{sum(k['agirlik'] for k in kayit):.2f}, TEFAS {gun} sapma {sp} | {'GEÇTİ' if ok else 'KALDI: ' + sebep}")
+            if a.goster:
+                hisse = sorted([k for k in kayit if k["tur"] and HISSE_TUR.search(norm(k["tur"]))], key=lambda k: -k["agirlik"])
+                bos = sum(1 for k in hisse if not kimlik_ve_ad(k, evren)[0])
+                print(f"    hisse satırı {len(hisse)}, bistKodu boş {bos}")
+                for k in hisse[:a.goster]:
+                    bist, ihr, temiz = kimlik_ve_ad(k, evren)
+                    print(f"    {k['agirlik']:6.2f}  bistKodu={bist:6s} isin={k['isin']:13s} kod={k['kod']:8s} temiz={temiz[:30]!r} ham={k['ad'][:55]!r}")
         return
 
     kunye = kunye_yukle(a.veri)
     if a.asama == "kuyruk":
-        durum, ozet = kuyruk_turu(kunye, a.veri, a.arsiv, a.kurucu_filtre)
+        durum, ozet = kuyruk_turu(kunye, a.veri, a.arsiv, a.kurucu_filtre, set(f.strip().upper() for f in a.fon.split(",")) if a.fon else None)
         print(json.dumps(durum, ensure_ascii=False))
         return
 
