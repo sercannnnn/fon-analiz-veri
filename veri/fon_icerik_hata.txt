@@ -1,51 +1,59 @@
+AAV	2026-08	şart 2: 1 satırda ISIN okunamadı (A) HİSSE: ANADOLU EFES)
 AC2	2026-08	ek PDF yok
 AC3	2026-08	ek PDF yok
 AC7	2026-08	ek PDF yok
 AC8	2026-08	ek PDF yok
+AED	2026-08	şart 2: 2 satırda ISIN okunamadı (A) HİSSE SENETLERİ: MEDYA HOLDING)
 AP6	2026-08	ek PDF yok
-BAI	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIĞI A.Ş. INTET İ)
-BDC	2026-08	şart 1: ağırlık toplamı 93.25
+AP7	2026-08	satır içi: 83/85 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+ASJ	2026-08	ek PDF yok
+BDC	2026-08	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BDI	2026-08	ek PDF yok
 BHH	2026-08	ek PDF yok
-BIY	2026-08	şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. CGCAM ÇAĞDAŞ CAM SANAYİ V)
-BSD	2026-08	şart 1: ağırlık toplamı 94.24
+BHI	2026-08	satır içi: 1/90 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BIS	2026-08	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BSD	2026-08	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BSE	2026-08	ek PDF yok
 BSM	2026-08	şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000)
-BTE	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: MÜHENDIS LIK SANAYI VE TICARET)
-BTK	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TEKNOLOJI LERI A.Ş. INTET İNTE)
-BV1	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIGI A.Ş. INTET İ)
-BVD	2026-08	şart 1: ağırlık toplamı 97.82
-BVV	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: RI SANAYI VE TICARET A.Ş. INTE)
+BVD	2026-08	satır içi: 1/33 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 CPU	2026-08	şart 2: 1 satıra birden çok ISIN atandı (US7475251036 M INC SNPS US8716)
 CSH	2026-08	ek PDF yok
 DBP	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT)
-DEH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ A.Ş. FRMPL FORMÜL PLAST)
 DHI	2026-08	ek PDF yok
-DNM	2026-08	şart 1: ağırlık toplamı 87.97
-DRA	2026-07	şart 1: ağırlık toplamı 95.67
+DKR	2026-08	satır içi: 6/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+DNM	2026-08	satır içi: 1/17 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+DRA	2026-08	satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DRH	2026-08	ek PDF yok
 EBD	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı)
-EC2	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: DÖVĠZ ĠHRAÇCI VADE A.ġ. KLYPV )
+EC2	2026-08	şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )
+ECB	2026-08	ek PDF yok
+ECV	2026-08	ek PDF yok
 EDD	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ENA	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ENS	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
-ESP	2026-08	şart 1: ağırlık toplamı 28.03
+EP1	2026-08	ek PDF yok
+ESP	2026-08	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 EUN	2026-08	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
-EUZ	2026-08	şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+EUZ	2026-08	satır içi: 1/1 satırda nominal × fiyat ≠ rayiç
 FBZ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR)
 FFH	2026-07	şart 2: 2 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı ISDW iShares MSC)
 FLY	2026-08	şart 2: 1 satıra birden çok ISIN atandı (DE000TKMS001 CO. KGAA AVAV US0)
-FNO	2026-07	şart 1: ağırlık toplamı 87.17
-FZJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİSSE SENETLERİ Hisse Türk QTE)
+FNO	2026-07	satır içi: 1/51 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+GAS	2026-08	satır içi: 1/1 satırda nominal × fiyat ≠ rayiç
+GMC	2026-08	satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GMD	2026-08	şart 1: ağırlık toplamı 78.64
-GPL	2026-08	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+GMN	2026-08	ek PDF yok
+GPB	2026-08	satır içi: 2/94 satırda nominal × fiyat ≠ rayiç
+GPF	2026-08	satır içi: 2/242 satırda nominal × fiyat ≠ rayiç
+GPI	2026-08	satır içi: 2/104 satırda nominal × fiyat ≠ rayiç
+GPL	2026-08	satır içi: 15/15 satırda nominal × fiyat ≠ rayiç
 GPT	2026-08	şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215)
-GRL	2026-08	şart 1: ağırlık toplamı 69.15
-GRO	2026-08	şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
-GTZ	2026-08	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
+GRL	2026-08	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+GRO	2026-08	satır içi: 15/15 satırda nominal × fiyat ≠ rayiç
+GTZ	2026-08	satır içi: 1/95 satırda nominal × fiyat ≠ rayiç
 GUV	2026-08	şart 2: 3 satırda ISIN okunamadı (B.2.KAMU SEKTÖRÜ BORÇLANMA ARAÇLARI TAHVIL: T.C. HAZİNE MÜSTEŞARLIĞI)
-HAR	2026-08	şart 1: ağırlık toplamı 80.72
-HLA	2026-07	ek PDF yok
-HOA	2026-08	şart 1: ağırlık toplamı 97.70
-HTJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı AIRBUS AIRBUS NL)
-HTS	2026-08	şart 1: ağırlık toplamı 86.28
+GVI	2026-08	satır içi: 9/36 satırda nominal × fiyat ≠ rayiç
+GZJ	2026-08	satır içi: 11/35 satırda nominal × fiyat ≠ rayiç
+GZP	2026-08	satır içi: 18/57 satırda nominal × fiyat ≠ rayiç
+HAR	2026-08	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+HEH	2026-08	satır içi: 9/168 satırda yüzde sütunu rayiç / toplam ile tutmuyor

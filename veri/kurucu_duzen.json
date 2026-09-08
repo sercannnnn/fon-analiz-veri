@@ -230,106 +230,115 @@
  },
  "ASTRA PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 7.48,
   "fonSayisi": 24,
   "fonlar": {
    "EKF": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "ORC": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "beklemede",
+    "duzen": "fonbul",
     "ray": "2026-09",
-    "sebep": "düzen tanınmadı"
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
    },
    "PRV": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "sinif_farki",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 7.48,
+    "sebep": "şart 3: para_piyasasi satırlarda 0.00, TEFAS 7.48"
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 1,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
-  "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sinifFarki": 1,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 13
  },
  "ATA PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.02,
   "fonSayisi": 24,
   "fonlar": {
    "AAL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.02,
+    "sebep": ""
    },
    "AYA": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "DGH": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 14
  },
  "ATLAS PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.03,
   "fonSayisi": 29,
   "fonlar": {
    "DFI": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "PPT": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
+    "ray": "2026-08",
+    "sapma": 0.03,
+    "sebep": ""
    },
    "PSE": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 17
  },
@@ -1226,106 +1235,112 @@
  },
  "ONE PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.01,
   "fonSayisi": 21,
   "fonlar": {
    "FAL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "hata",
+    "sebep": "ek PDF yok"
    },
    "GO6": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
+    "ray": "2026-08",
+    "sapma": 0.01,
+    "sebep": ""
    },
    "GO9": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 2,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 1,
   "tarih": "2026-09-08",
   "yayimlayan": 14
  },
  "OSMANLI PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.16,
   "fonSayisi": 19,
   "fonlar": {
    "OPH": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.16,
+    "sebep": ""
    },
    "OSL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "PLR": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 19
  },
  "OYAK PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 29.79,
   "fonSayisi": 26,
   "fonlar": {
    "OKF": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "OTJ": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "OYL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "sinif_farki",
+    "duzen": "fonbul",
     "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "sapma": 29.79,
+    "sebep": "şart 3: para_piyasasi satırlarda 72.10, TEFAS 42.31"
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 2,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
-  "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sinifFarki": 1,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 19
  },
@@ -1364,36 +1379,39 @@
  },
  "PERFORM PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.01,
   "fonSayisi": 10,
   "fonlar": {
    "PJP": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "PPD": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "PPP": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 5
  },
@@ -1583,36 +1601,39 @@
  },
  "ROTA PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 24.86,
   "fonSayisi": 57,
   "fonlar": {
    "CFO": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
+    "ray": "2026-08",
+    "sapma": 0.01,
+    "sebep": ""
    },
    "RPP": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "sinif_farki",
+    "duzen": "fonbul",
+    "ray": "2026-08",
+    "sapma": 24.86,
+    "sebep": "şart 3: para_piyasasi satırlarda 84.38, TEFAS 59.52"
    },
    "RRA": {
     "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": null,
+    "sebep": "kıymet satırı yok"
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 1,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
-  "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sinifFarki": 1,
+  "sonuc": "gecti",
+  "taninmadi": 1,
   "tarih": "2026-09-08",
   "yayimlayan": 29
  },
@@ -1966,7 +1987,7 @@
     "duzen": "standart",
     "ray": "2026-08",
     "sapma": null,
-    "sebep": "şart 1: ağırlık toplamı 92.61"
+    "sebep": "satır içi: 35/47 satırda yüzde sütunu rayiç / toplam ile tutmuyor"
    },
    "VNK": {
     "durum": "duzen_taninmadi",
@@ -2082,36 +2103,39 @@
  },
  "ÜNLÜ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "fonbul",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.01,
   "fonSayisi": 16,
   "fonlar": {
    "UP2": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "UPD": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    },
    "UPP": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "fonbul",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 10
  },

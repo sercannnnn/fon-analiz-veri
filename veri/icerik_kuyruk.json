@@ -1,17 +1,31 @@
 {
  "AAL": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.02,
+  "satir": 51,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AAS": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 6,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AAV": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: 1 satırda ISIN okunamadı (A) HİSSE: ANADOLU EFES)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "AB5": {
@@ -22,8 +36,9 @@
   "tarih": "2026-09-08"
  },
  "ABG": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "ABJ": {
@@ -45,7 +60,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -56,7 +71,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -81,7 +96,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -92,7 +107,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -103,7 +118,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -155,7 +170,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -166,13 +181,15 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "AED": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: 2 satırda ISIN okunamadı (A) HİSSE SENETLERİ: MEDYA HOLDING)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "AES": {
@@ -182,7 +199,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -193,7 +210,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -204,7 +221,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -215,7 +232,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -226,7 +243,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -237,7 +254,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -248,7 +265,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -259,7 +276,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -270,19 +287,37 @@
   "tarih": "2026-09-08"
  },
  "AHI": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 27,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AHN": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 9,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AHU": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 60,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AHV": {
   "durum": "yayimlandi",
@@ -291,7 +326,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -302,8 +337,9 @@
   "tarih": "2026-09-08"
  },
  "AI1": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "AIH": {
@@ -337,7 +373,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -353,7 +389,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -364,7 +400,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -375,7 +411,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -386,7 +422,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -397,7 +433,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -408,7 +444,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -419,7 +455,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -430,7 +466,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -461,7 +497,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -472,7 +508,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -488,23 +524,29 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "ANZ": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 16,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AOJ": {
   "durum": "yayimlandi",
-  "sapma": 0.0,
+  "sapma": 0.23,
   "satir": 14,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -515,24 +557,32 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "AP2": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "AP4": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "AP5": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 17,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AP6": {
   "ay": "2026-08",
@@ -542,19 +592,17 @@
   "tarih": "2026-09-08"
  },
  "AP7": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 190,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 83/85 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "AP9": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "APJ": {
@@ -564,7 +612,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -581,7 +629,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -603,7 +651,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -614,7 +662,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -626,12 +674,12 @@
  },
  "AS1": {
   "durum": "yayimlandi",
-  "sapma": 0.0,
+  "sapma": 0.09,
   "satir": 7,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -642,15 +690,12 @@
   "tarih": "2026-09-08"
  },
  "ASJ": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 41,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "ek PDF yok",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "ATJ": {
   "durum": "yayimlandi",
@@ -659,7 +704,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -682,13 +727,14 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "AVC": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "AVT": {
@@ -698,7 +744,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -721,9 +767,15 @@
   "tarih": "2026-09-08"
  },
  "AYA": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 32,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AYR": {
   "durum": "yayimlandi",
@@ -732,7 +784,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -743,7 +795,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -772,8 +824,9 @@
   "tarih": "2026-09-08"
  },
  "BAC": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "BAG": {
@@ -782,11 +835,15 @@
   "tarih": "2026-09-08"
  },
  "BAI": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIĞI A.Ş. INTET İ)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 11,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BAL": {
   "ay": "2026-08",
@@ -813,7 +870,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -840,7 +897,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -850,8 +907,9 @@
   "tarih": "2026-09-08"
  },
  "BCC": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "BCK": {
@@ -861,7 +919,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -877,14 +935,14 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "BDC": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 93.25",
+  "sebep": "satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -913,7 +971,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -924,7 +982,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -935,7 +993,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -963,7 +1021,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -980,7 +1038,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -991,7 +1049,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1007,7 +1065,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1018,7 +1076,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1030,26 +1088,20 @@
   "tarih": "2026-09-08"
  },
  "BHI": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 151,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 1/90 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "BHL": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 141,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "duzen_taninmadi",
+  "sebep": "düzen tanınmadı",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "BHN": {
   "durum": "duzen_taninmadi",
@@ -1080,7 +1132,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1091,7 +1143,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1102,7 +1154,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1118,7 +1170,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1128,27 +1180,29 @@
   "tarih": "2026-09-08"
  },
  "BIS": {
-  "durum": "yayimlandi",
-  "sapma": 0.99,
-  "satir": 18,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "BIT": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "BIY": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. CGCAM ÇAĞDAŞ CAM SANAYİ V)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 280,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BJD": {
   "durum": "yayimlandi",
@@ -1157,7 +1211,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1174,7 +1228,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1207,7 +1261,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1228,7 +1282,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1280,7 +1334,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1291,7 +1345,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1302,7 +1356,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1318,7 +1372,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1329,7 +1383,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1360,7 +1414,7 @@
  "BSD": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 94.24",
+  "sebep": "satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -1378,9 +1432,15 @@
   "tarih": "2026-09-08"
  },
  "BSH": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 6,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BSM": {
   "ay": "2026-08",
@@ -1401,28 +1461,42 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "BTE": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: MÜHENDIS LIK SANAYI VE TICARET)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 48,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BTJ": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 8,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BTK": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TEKNOLOJI LERI A.Ş. INTET İNTE)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 37,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BTP": {
   "ay": "2026-08",
@@ -1437,9 +1511,15 @@
   "tarih": "2026-09-08"
  },
  "BTZ": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 21,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BUB": {
   "durum": "duzen_taninmadi",
@@ -1475,16 +1555,20 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "BV1": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIGI A.Ş. INTET İ)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 51,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BVB": {
   "ay": "2026-08",
@@ -1501,7 +1585,7 @@
  "BVD": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 97.82",
+  "sebep": "satır içi: 1/33 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -1512,7 +1596,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1535,12 +1619,12 @@
  },
  "BVM": {
   "durum": "yayimlandi",
-  "sapma": 0.0,
+  "sapma": 0.2,
   "satir": 10,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1557,11 +1641,15 @@
   "tarih": "2026-09-08"
  },
  "BVV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: RI SANAYI VE TICARET A.Ş. INTE)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 54,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BVZ": {
   "durum": "yayimlandi",
@@ -1570,7 +1658,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1608,14 +1696,21 @@
   "tarih": "2026-09-08"
  },
  "CEY": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "CFO": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 14,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "CGD": {
   "ay": "2026-08",
@@ -1635,7 +1730,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1646,7 +1741,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1669,7 +1764,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1681,20 +1776,17 @@
  "CKL": {
   "ay": "2026-08",
   "durum": "sinif_farki",
-  "sebep": "şart 3: maden_byf satırlarda 15.89, TEFAS 0.00",
+  "sebep": "şart 3: ybyf satırlarda 0.00, TEFAS 15.89",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "CKS": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 8,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "duzen_taninmadi",
+  "sebep": "düzen tanınmadı",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "COT": {
   "durum": "rapor_yok_bu_ay",
@@ -1703,13 +1795,15 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
  "CPT": {
+  "ay": "2026-08",
   "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sebep": "kıymet satırı yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "CPU": {
@@ -1775,7 +1869,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1804,7 +1898,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1821,7 +1915,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1837,7 +1931,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1884,7 +1978,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1895,7 +1989,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1949,7 +2043,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1981,7 +2075,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2022,7 +2116,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2045,7 +2139,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2063,21 +2157,25 @@
  },
  "DEF": {
   "durum": "yayimlandi",
-  "sapma": 0.0,
+  "sapma": 0.74,
   "satir": 19,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "DEH": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ A.Ş. FRMPL FORMÜL PLAST)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 44,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DEI": {
   "ay": "2026-08",
@@ -2092,7 +2190,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2104,9 +2202,15 @@
   "tarih": "2026-09-08"
  },
  "DFI": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 15,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DFO": {
   "ay": "2026-08",
@@ -2120,9 +2224,15 @@
   "tarih": "2026-09-08"
  },
  "DGH": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 22,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DHI": {
   "ay": "2026-08",
@@ -2138,7 +2248,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2168,7 +2278,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2186,7 +2296,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2215,7 +2325,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2244,7 +2354,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2255,7 +2365,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2279,15 +2389,12 @@
   "tarih": "2026-09-08"
  },
  "DKR": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 23,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 6/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "DKS": {
   "ay": "2026-08",
@@ -2308,7 +2415,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2319,7 +2426,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2343,7 +2450,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2354,7 +2461,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2365,7 +2472,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2376,7 +2483,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2415,7 +2522,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2426,7 +2533,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2439,7 +2546,7 @@
  "DNM": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 87.97",
+  "sebep": "satır içi: 1/17 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -2450,7 +2557,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2479,7 +2586,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2490,7 +2597,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2513,7 +2620,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2578,7 +2685,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2607,7 +2714,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2618,7 +2725,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2660,10 +2767,10 @@
   "tarih": "2026-09-08"
  },
  "DRA": {
-  "ay": "2026-07",
+  "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 95.67",
-  "sonRaporAy": "2026-07",
+  "sebep": "satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "DRD": {
@@ -2692,7 +2799,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2709,7 +2816,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2726,7 +2833,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2754,7 +2861,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2765,7 +2872,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2794,7 +2901,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2811,7 +2918,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2822,7 +2929,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2839,7 +2946,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2874,7 +2981,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2885,7 +2992,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2908,7 +3015,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2925,7 +3032,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2961,7 +3068,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2997,7 +3104,7 @@
  "EC2": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: DÖVĠZ ĠHRAÇCI VADE A.ġ. KLYPV )",
+  "sebep": "şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -3008,31 +3115,25 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "ECB": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 27,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "ek PDF yok",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "ECV": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 22,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "ek PDF yok",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "EDD": {
   "ay": "2026-07",
@@ -3047,15 +3148,15 @@
   "tarih": "2026-09-08"
  },
  "EDP": {
-  "durum": "rapor_yok_bu_ay",
-  "sapma": 0.0,
+  "durum": "yayimlandi",
+  "sapma": 0.27,
   "satir": 2,
-  "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
-  "son": "2026-07",
-  "sonRaporAy": "2026-07",
-  "surum": 3,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
   "tarih": "2026-09-08",
-  "tefasGun": "2026-08-03"
+  "tefasGun": "2026-09-01"
  },
  "EDT": {
   "durum": "yayimlandi",
@@ -3064,7 +3165,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3075,13 +3176,14 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "EES": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "EGA": {
@@ -3108,19 +3210,29 @@
   "tarih": "2026-09-08"
  },
  "EIB": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "sinif_farki",
+  "sebep": "şart 3: borclanma satırlarda 11.76, TEFAS 16.44",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "EID": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "sinif_farki",
+  "sebep": "şart 3: borclanma satırlarda 0.00, TEFAS 2.53",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "EIL": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 36,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "EJG": {
   "ay": "2026-08",
@@ -3129,9 +3241,15 @@
   "tarih": "2026-09-08"
  },
  "EKF": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 42,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "EKL": {
   "durum": "yayimlandi",
@@ -3140,13 +3258,15 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "ELZ": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "sinif_farki",
+  "sebep": "şart 3: maden_byf satırlarda 3.49, TEFAS 0.00",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "EME": {
@@ -3161,7 +3281,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3179,7 +3299,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3197,7 +3317,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3209,15 +3329,12 @@
   "tarih": "2026-09-08"
  },
  "EP1": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 100,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "ek PDF yok",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "EPA": {
   "durum": "duzen_taninmadi",
@@ -3257,7 +3374,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3270,7 +3387,7 @@
  "ESP": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 28.03",
+  "sebep": "satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -3289,7 +3406,7 @@
  "EUZ": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)",
+  "sebep": "satır içi: 1/1 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -3300,7 +3417,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3311,7 +3428,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3328,19 +3445,31 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "FAL": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 7,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FBC": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 27,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FBI": {
   "durum": "yayimlandi",
@@ -3349,7 +3478,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3375,9 +3504,15 @@
   "tarih": "2026-09-08"
  },
  "FCK": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 27,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FCS": {
   "ay": "2026-08",
@@ -3386,9 +3521,15 @@
   "tarih": "2026-09-08"
  },
  "FD1": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 16,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FDE": {
   "ay": "2026-08",
@@ -3403,7 +3544,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3470,7 +3611,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3499,7 +3640,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3510,7 +3651,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3521,7 +3662,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3532,7 +3673,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3543,7 +3684,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3554,7 +3695,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3565,7 +3706,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3594,7 +3735,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3605,7 +3746,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3648,7 +3789,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3665,7 +3806,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3684,7 +3825,7 @@
  "FNO": {
   "ay": "2026-07",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 87.17",
+  "sebep": "satır içi: 1/51 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
@@ -3695,14 +3836,20 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "FP4": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 5,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FPE": {
   "durum": "yayimlandi",
@@ -3711,7 +3858,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3722,7 +3869,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3733,7 +3880,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3744,7 +3891,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3755,7 +3902,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3771,7 +3918,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3782,8 +3929,9 @@
   "tarih": "2026-09-08"
  },
  "FR1": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FRA": {
@@ -3793,7 +3941,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3804,7 +3952,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3815,34 +3963,50 @@
   "tarih": "2026-09-08"
  },
  "FS1": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FS2": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FS3": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FS4": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FS5": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 13,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FS6": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 6,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FSF": {
   "durum": "yayimlandi",
@@ -3851,7 +4015,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3862,7 +4026,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3873,7 +4037,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3884,13 +4048,14 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
  "FSM": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FSP": {
@@ -3900,7 +4065,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3911,7 +4076,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3922,7 +4087,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3933,14 +4098,21 @@
   "tarih": "2026-09-08"
  },
  "FTF": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "FTL": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 20,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FTM": {
   "ay": "2026-08",
@@ -3961,7 +4133,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3972,7 +4144,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4018,7 +4190,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4059,7 +4231,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4070,7 +4242,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4081,11 +4253,15 @@
   "tarih": "2026-09-08"
  },
  "FZJ": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİSSE SENETLERİ Hisse Türk QTE)",
+  "durum": "yayimlandi",
+  "sapma": 0.08,
+  "satir": 36,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "FZP": {
   "durum": "yayimlandi",
@@ -4094,7 +4270,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4105,7 +4281,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4122,7 +4298,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4133,7 +4309,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4145,11 +4321,15 @@
   "tarih": "2026-09-08"
  },
  "GAH": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 9.69, TEFAS 2.49",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 100,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GAJ": {
   "ay": "2026-08",
@@ -4164,7 +4344,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4175,20 +4355,17 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GAS": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 56,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 1/1 satırda nominal × fiyat ≠ rayiç",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "GAU": {
   "ay": "2026-08",
@@ -4209,7 +4386,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4220,7 +4397,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4231,7 +4408,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4242,7 +4419,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4253,7 +4430,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4264,7 +4441,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4275,11 +4452,15 @@
   "tarih": "2026-09-08"
  },
  "GBV": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 3.34, TEFAS 0.00",
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 290,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GBZ": {
   "durum": "yayimlandi",
@@ -4288,7 +4469,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4305,8 +4486,9 @@
   "tarih": "2026-09-08"
  },
  "GCD": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "GCI": {
@@ -4346,7 +4528,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4417,7 +4599,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4452,7 +4634,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4463,7 +4645,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4474,7 +4656,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4485,7 +4667,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4502,7 +4684,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4556,7 +4738,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4567,7 +4749,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4609,7 +4791,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4620,7 +4802,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4631,7 +4813,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4647,7 +4829,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4657,8 +4839,9 @@
   "tarih": "2026-09-08"
  },
  "GLM": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-08",
+  "durum": "kapsam_disi",
+  "sebep": "son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)",
   "tarih": "2026-09-08"
  },
  "GLP": {
@@ -4674,7 +4857,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4691,20 +4874,17 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GMC": {
-  "durum": "yayimlandi",
-  "sapma": 0.56,
-  "satir": 16,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "GMD": {
   "ay": "2026-08",
@@ -4726,7 +4906,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4738,8 +4918,8 @@
  },
  "GMN": {
   "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: para_piyasasi satırlarda 42.28, TEFAS 65.99",
+  "durum": "hata",
+  "sebep": "ek PDF yok",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -4762,7 +4942,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4785,7 +4965,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4808,7 +4988,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4819,7 +4999,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4830,34 +5010,64 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GO1": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 19,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GO3": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.08,
+  "satir": 21,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GO4": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.07,
+  "satir": 23,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GO6": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 152,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GO9": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 22,
+  "sebep": "",
+  "son": "2026-08",
+  "sonRaporAy": "2026-08",
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GOF": {
   "ay": "2026-08",
@@ -4872,7 +5082,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4888,7 +5098,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4916,20 +5126,17 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GPB": {
-  "durum": "yayimlandi",
-  "sapma": 0.01,
-  "satir": 98,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 2/94 satırda nominal × fiyat ≠ rayiç",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "GPC": {
   "durum": "yayimlandi",
@@ -4938,14 +5145,14 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GPF": {
   "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 17.42, TEFAS 4.36",
+  "durum": "hata",
+  "sebep": "satır içi: 2/242 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -4956,7 +5163,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4968,8 +5175,8 @@
  },
  "GPI": {
   "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: ybyf satırlarda 0.00, TEFAS 7.07",
+  "durum": "hata",
+  "sebep": "satır içi: 2/104 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -4982,7 +5189,7 @@
  "GPL": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)",
+  "sebep": "satır içi: 15/15 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -4995,7 +5202,7 @@
  "GPN": {
   "ay": "2026-08",
   "durum": "sinif_farki",
-  "sebep": "şart 3: para_piyasasi satırlarda 63.84, TEFAS 0.00",
+  "sebep": "şart 3: borclanma satırlarda 6.30, TEFAS 70.14",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -5007,11 +5214,15 @@
   "tarih": "2026-09-08"
  },
  "GPU": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 13.37, TEFAS 0.00",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 93,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GPV": {
   "ay": "2026-08",
@@ -5026,21 +5237,21 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GRL": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 69.15",
+  "sebep": "satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "GRO": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)",
+  "sebep": "satır içi: 15/15 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -5051,7 +5262,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5086,7 +5297,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5109,7 +5320,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5120,7 +5331,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5131,7 +5342,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5148,7 +5359,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5159,7 +5370,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5170,16 +5381,20 @@
   "tarih": "2026-09-08"
  },
  "GTY": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: ybyf satırlarda 0.00, TEFAS 17.69",
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 20,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GTZ": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)",
+  "sebep": "satır içi: 1/95 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -5196,7 +5411,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5213,7 +5428,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5224,7 +5439,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5242,7 +5457,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5260,7 +5475,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5284,8 +5499,8 @@
  },
  "GVI": {
   "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 81.97, TEFAS 56.44",
+  "durum": "hata",
+  "sebep": "satır içi: 9/36 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -5320,7 +5535,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5331,7 +5546,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5366,45 +5581,49 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GZG": {
   "durum": "yayimlandi",
-  "sapma": 0.1,
+  "sapma": 0.0,
   "satir": 228,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GZH": {
   "durum": "yayimlandi",
-  "sapma": 1.0,
+  "sapma": 0.01,
   "satir": 225,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GZJ": {
   "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 85.00, TEFAS 69.93",
+  "durum": "hata",
+  "sebep": "satır içi: 11/35 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "GZL": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 5.75, TEFAS 0.00",
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 150,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GZM": {
   "ay": "2026-08",
@@ -5420,7 +5639,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5432,8 +5651,8 @@
  },
  "GZP": {
   "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 86.05, TEFAS 78.95",
+  "durum": "hata",
+  "sebep": "satır içi: 18/57 satırda nominal × fiyat ≠ rayiç",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -5444,7 +5663,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5455,11 +5674,15 @@
   "tarih": "2026-09-08"
  },
  "GZV": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: yf satırlarda 94.37, TEFAS 25.85",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 30,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 5,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GZY": {
   "ay": "2026-08",
@@ -5475,7 +5698,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5504,7 +5727,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5515,14 +5738,14 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "HAR": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 80.72",
+  "sebep": "satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -5533,7 +5756,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5554,7 +5777,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5571,7 +5794,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5589,7 +5812,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5600,7 +5823,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5623,7 +5846,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5634,7 +5857,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5651,7 +5874,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5680,7 +5903,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5703,15 +5926,12 @@
   "tarih": "2026-09-08"
  },
  "HEH": {
-  "durum": "yayimlandi",
-  "sapma": 0.0,
-  "satir": 262,
-  "sebep": "",
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "satır içi: 9/168 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-08"
  },
  "HFA": {
   "durum": "yayimlandi",
@@ -5720,7 +5940,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5731,7 +5951,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5742,7 +5962,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5787,7 +6007,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5798,7 +6018,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5821,7 +6041,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5832,7 +6052,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5849,7 +6069,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5860,7 +6080,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5883,7 +6103,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5894,7 +6114,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
+  "surum": 5,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5996,7 +6216,7 @@
   "ay": "2026-07",
   "durum": "hata",
   "sebep": "ek PDF yok",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "HLL": {
@@ -6725,7 +6945,6 @@
  "IDD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (bilinmiyor) ayrıştırılamıyor",
-  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "IDF": {
@@ -7597,6 +7816,7 @@
  "JET": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "JOT": {
@@ -7799,6 +8019,7 @@
  "KHJ": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "KHP": {
@@ -7854,6 +8075,7 @@
  "KIS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "KJK": {
@@ -7913,6 +8135,7 @@
  "KLH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "KLI": {
@@ -8102,7 +8325,7 @@
  "KPF": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-06",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "KPH": {
@@ -8390,6 +8613,7 @@
  "KVR": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "KVS": {
@@ -8966,19 +9190,19 @@
  "NAK": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NAL": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NAU": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NAV": {
@@ -8989,13 +9213,13 @@
  "NBE": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NBH": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NBM": {
@@ -9006,13 +9230,13 @@
  "NBO": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NBZ": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NCS": {
@@ -9023,7 +9247,7 @@
  "NCU": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NCV": {
@@ -9045,7 +9269,7 @@
  "NDS": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NDU": {
@@ -9062,13 +9286,13 @@
  "NFF": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NFH": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NFK": {
@@ -9085,7 +9309,7 @@
  "NHP": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NHT": {
@@ -9102,7 +9326,7 @@
  "NHY": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NIG": {
@@ -9113,7 +9337,7 @@
  "NIS": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NJF": {
@@ -9139,19 +9363,19 @@
  "NKA": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NKC": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NKH": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NKJ": {
@@ -9173,13 +9397,13 @@
  "NKM": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NKP": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NKS": {
@@ -9232,7 +9456,7 @@
  "NMG": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NMP": {
@@ -9261,7 +9485,7 @@
  "NOA": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NOI": {
@@ -9278,7 +9502,7 @@
  "NP1": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NP2": {
@@ -9294,31 +9518,31 @@
  "NPK": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NRC": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NRG": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NRM": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NSA": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NSD": {
@@ -9334,7 +9558,7 @@
  "NSK": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NSP": {
@@ -9357,7 +9581,7 @@
  "NSY": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NTB": {
@@ -9374,13 +9598,13 @@
  "NTF": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NTI": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NTO": {
@@ -9406,7 +9630,7 @@
  "NUH": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NUV": {
@@ -9417,13 +9641,13 @@
  "NVB": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NVC": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NVK": {
@@ -9440,13 +9664,13 @@
  "NVT": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NVZ": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NYH": {
@@ -9457,13 +9681,13 @@
  "NZH": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NZT": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "NZU": {
@@ -9486,6 +9710,7 @@
  "OBI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OBN": {
@@ -9497,6 +9722,7 @@
  "OBP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OBR": {
@@ -9526,11 +9752,13 @@
  "ODD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ODG": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ODN": {
@@ -9542,11 +9770,13 @@
  "ODP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ODS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ODV": {
@@ -9569,6 +9799,7 @@
  "OFI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OFK": {
@@ -9585,16 +9816,19 @@
  "OFS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OGD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OGF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OGV": {
@@ -9606,6 +9840,7 @@
  "OHB": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OHI": {
@@ -9617,6 +9852,7 @@
  "OHK": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OHT": {
@@ -9627,11 +9863,13 @@
  "OIL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OIR": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OIS": {
@@ -9677,26 +9915,31 @@
  "OKD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OKF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OKP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OKT": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OLA": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OLD": {
@@ -9708,11 +9951,13 @@
  "OLE": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OMB": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-06",
   "tarih": "2026-09-08"
  },
  "OMC": {
@@ -9736,6 +9981,7 @@
  "OMT": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ONB": {
@@ -9797,26 +10043,31 @@
  "OPB": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OPD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OPF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OPH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OPI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OPJ": {
@@ -9828,6 +10079,7 @@
  "OPL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OPU": {
@@ -9844,6 +10096,7 @@
  "ORC": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ORI": {
@@ -9860,22 +10113,25 @@
  "OSD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OSF": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OSH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OSL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OSN": {
@@ -9898,16 +10154,19 @@
  "OTF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OTJ": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OTK": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OTM": {
@@ -9925,11 +10184,13 @@
  "OUB": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OUD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OUN": {
@@ -9941,6 +10202,7 @@
  "OUR": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OUY": {
@@ -9974,6 +10236,7 @@
  "OYL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OYS": {
@@ -9984,6 +10247,7 @@
  "OYT": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "OZC": {
@@ -10072,6 +10336,7 @@
  "PBK": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PBN": {
@@ -10126,6 +10391,7 @@
  "PDD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PDE": {
@@ -10136,6 +10402,7 @@
  "PDF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PDG": {
@@ -10164,6 +10431,7 @@
  "PEA": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PFO": {
@@ -10175,11 +10443,13 @@
  "PFS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PGD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PGE": {
@@ -10257,6 +10527,7 @@
  "PIL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PIP": {
@@ -10286,6 +10557,7 @@
  "PJP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PK1": {
@@ -10302,6 +10574,7 @@
  "PKF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PKH": {
@@ -10328,11 +10601,13 @@
  "PKP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PKR": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PKT": {
@@ -10367,6 +10642,7 @@
  "PLR": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PLS": {
@@ -10472,6 +10748,7 @@
  "PPD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PPE": {
@@ -10539,6 +10816,7 @@
  "PPP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PPS": {
@@ -10550,6 +10828,7 @@
  "PPT": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PPU": {
@@ -10602,6 +10881,7 @@
  "PRV": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PRY": {
@@ -10623,6 +10903,7 @@
  "PSE": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PSG": {
@@ -10740,6 +11021,7 @@
  "PUH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "PUK": {
@@ -10823,6 +11105,7 @@
  "RAF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RAI": {
@@ -10865,6 +11148,7 @@
  "RBF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RBH": {
@@ -10936,11 +11220,13 @@
  "RD1": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RDF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RDH": {
@@ -10991,6 +11277,7 @@
  "RFM": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
  "RGD": {
@@ -11019,11 +11306,13 @@
  "RHS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RIA": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RIH": {
@@ -11047,6 +11336,7 @@
  "RKC": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RKH": {
@@ -11063,6 +11353,7 @@
  "RKS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RKV": {
@@ -11074,6 +11365,7 @@
  "RLH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RMR": {
@@ -11094,6 +11386,7 @@
  "ROF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ROY": {
@@ -11104,6 +11397,7 @@
  "RPC": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPD": {
@@ -11120,11 +11414,13 @@
  "RPG": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPK": {
@@ -11141,11 +11437,13 @@
  "RPM": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPN": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPO": {
@@ -11156,16 +11454,19 @@
  "RPP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPT": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RPU": {
@@ -11176,11 +11477,13 @@
  "RPX": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RRA": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RRP": {
@@ -11192,6 +11495,7 @@
  "RS1": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RSF": {
@@ -11202,6 +11506,7 @@
  "RSK": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RSY": {
@@ -11233,6 +11538,7 @@
  "RTG": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RTH": {
@@ -11292,6 +11598,7 @@
  "RYF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "RYI": {
@@ -11488,12 +11795,13 @@
  "SKZ": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "SLF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "SLG": {
@@ -11523,6 +11831,7 @@
  "SNY": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "SOS": {
@@ -11662,6 +11971,7 @@
  "STI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "STM": {
@@ -11683,16 +11993,19 @@
  "SUA": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "SUB": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "SUC": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "SUR": {
@@ -11750,6 +12063,7 @@
  "TAL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "TAO": {
@@ -11985,7 +12299,7 @@
  "THT": {
   "durum": "duzen_bekliyor",
   "sebep": "kurucu düzeni henüz sınanmadı",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "THV": {
@@ -12173,6 +12487,7 @@
  "TLZ": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "TMA": {
@@ -12586,6 +12901,7 @@
  "ULH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "ULL": {
@@ -12604,26 +12920,31 @@
  "UP1": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "UP2": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "UPD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "UPH": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "UPP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "UPS": {
@@ -12634,6 +12955,7 @@
  "URA": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "URC": {
@@ -12690,6 +13012,7 @@
  "USY": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "UYH": {
@@ -13155,6 +13478,7 @@
  "YLC": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "YLE": {

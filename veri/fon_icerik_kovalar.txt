@@ -1,8 +1,6 @@
-AAL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AAS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AAV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+AAV	hata	şart 2: 1 satırda ISIN okunamadı (A) HİSSE: ANADOLU EFES)
 AB5	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
-ABG	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+ABG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AC2	hata	ek PDF yok
@@ -14,13 +12,10 @@ ACD	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ACN	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ACU	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 AD4	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
-AED	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+AED	hata	şart 2: 2 satırda ISIN okunamadı (A) HİSSE SENETLERİ: MEDYA HOLDING)
 AHH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-AHI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AHN	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AHU	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 AHZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-AI1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+AI1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AIH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AII	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AIM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -34,31 +29,29 @@ AL5	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 AL6	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 AL7	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 AN1	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-ANZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AP2	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AP4	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-AP5	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+AP2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+AP4	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AP6	hata	ek PDF yok
-AP9	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+AP7	hata	satır içi: 83/85 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+AP9	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 APP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ARE	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ARF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ARP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AS3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+ASJ	hata	ek PDF yok
 AU1	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 AU3	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
-AVC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+AVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AVZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AY6	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AY7	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-AYA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 AZJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AZV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AZZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BA1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-BAC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+BAC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BAG	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BAI	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIĞI A.Ş. INTET İ)
 BAL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BAO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BAS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -66,9 +59,9 @@ BBI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BBN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BBO	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BBS	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BCC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+BCC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BCO	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BDC	hata	şart 1: ağırlık toplamı 93.25
+BDC	hata	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BDE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BDI	hata	ek PDF yok
 BDO	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -78,6 +71,8 @@ BFS	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BGH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BHA	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BHH	hata	ek PDF yok
+BHI	hata	satır içi: 1/90 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BHL	duzen_taninmadi	düzen tanınmadı
 BHN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BHO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BI5	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -85,8 +80,8 @@ BIA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BID	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 BIK	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BIP	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
-BIT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-BIY	hata	şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. CGCAM ÇAĞDAŞ CAM SANAYİ V)
+BIS	hata	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BIT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BKO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BLA	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BLD	duzen_taninmadi	düzen tanınmadı
@@ -107,41 +102,33 @@ BRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BS1	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 BSA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSC	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BSD	hata	şart 1: ağırlık toplamı 94.24
+BSD	hata	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BSE	hata	ek PDF yok
 BSF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-BSH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 BSM	hata	şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000)
 BSN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BTE	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: MÜHENDIS LIK SANAYI VE TICARET)
-BTJ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-BTK	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TEKNOLOJI LERI A.Ş. INTET İNTE)
 BTP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BTY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-BTZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 BUB	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BUC	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BUP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BUT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BUV	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BV1	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIGI A.Ş. INTET İ)
 BVB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-BVD	hata	şart 1: ağırlık toplamı 97.82
+BVD	hata	satır içi: 1/33 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BVH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVK	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BVR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-BVV	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: RI SANAYI VE TICARET A.Ş. INTE)
 BYZ	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 CA3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CAH	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 CBD	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 CBN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CBO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-CEY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-CFO	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+CEY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CGD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CHY	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 CJD	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
@@ -149,9 +136,10 @@ CJF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CJG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CJH	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 CKF	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-CKL	sinif_farki	şart 3: maden_byf satırlarda 15.89, TEFAS 0.00
+CKL	sinif_farki	şart 3: ybyf satırlarda 0.00, TEFAS 15.89
+CKS	duzen_taninmadi	düzen tanınmadı
 COT	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
-CPT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+CPT	duzen_taninmadi	kıymet satırı yok
 CPU	hata	şart 2: 1 satıra birden çok ISIN atandı (US7475251036 M INC SNPS US8716)
 CRL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 CSD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -193,13 +181,10 @@ DDC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DDE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DDP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DDS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DEH	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ A.Ş. FRMPL FORMÜL PLAST)
 DEI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DFD	duzen_taninmadi	düzen tanınmadı
-DFI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 DFO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DGF	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-DGH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 DHI	hata	ek PDF yok
 DHM	duzen_taninmadi	düzen tanınmadı
 DHP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -214,6 +199,7 @@ DKA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKL	duzen_taninmadi	düzen tanınmadı
 DKP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+DKR	hata	satır içi: 6/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DKS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DLG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -224,7 +210,7 @@ DMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DNA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DNF	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 DNL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DNM	hata	şart 1: ağırlık toplamı 87.97
+DNM	hata	satır içi: 1/17 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DNU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DOC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DOD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -248,7 +234,7 @@ DPP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DPR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DPT	duzen_taninmadi	kıymet satırı yok
 DPZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DRA	hata	şart 1: ağırlık toplamı 95.67
+DRA	hata	satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DRD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DRH	hata	ek PDF yok
 DRS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -278,26 +264,26 @@ DZS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EBD	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı)
 EBI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EBS	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-EC2	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: DÖVĠZ ĠHRAÇCI VADE A.ġ. KLYPV )
+EC2	hata	şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )
+ECB	hata	ek PDF yok
+ECV	hata	ek PDF yok
 EDD	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 EDN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-EDP	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
-EES	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+EES	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EGA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EGP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EGR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EHS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-EIB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-EID	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-EIL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+EIB	sinif_farki	şart 3: borclanma satırlarda 11.76, TEFAS 16.44
+EID	sinif_farki	şart 3: borclanma satırlarda 0.00, TEFAS 2.53
 EJG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-EKF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-ELZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+ELZ	sinif_farki	şart 3: maden_byf satırlarda 3.49, TEFAS 0.00
 EME	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 ENA	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ENO	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 ENR	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 ENS	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
+EP1	hata	ek PDF yok
 EPA	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EPI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EPK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -305,19 +291,15 @@ EPO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EPP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EPT	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 ESN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-ESP	hata	şart 1: ağırlık toplamı 28.03
+ESP	hata	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 ETN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EUN	hata	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
-EUZ	hata	şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+EUZ	hata	satır içi: 1/1 satırda nominal × fiyat ≠ rayiç
 EZM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FAL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FBC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 FBN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FBV	duzen_taninmadi	düzen tanınmadı
 FBZ	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR)
-FCK	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 FCS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FD1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 FDE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FDN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FDO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -345,23 +327,19 @@ FMB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FNO	hata	şart 1: ağırlık toplamı 87.17
-FP4	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+FNO	hata	satır içi: 1/51 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 FPR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 FQQ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FR1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+FR1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FS1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FS2	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FS3	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FS4	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FS5	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FS6	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+FS1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FS2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FS3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FS4	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FSK	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
-FSM	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+FSM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FSV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FTF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-FTL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+FTF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FUB	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
@@ -380,18 +358,16 @@ FYM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FYO	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 FYT	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 FYZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FZJ	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİSSE SENETLERİ Hisse Türk QTE)
 GAC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GAG	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
-GAH	sinif_farki	şart 3: yf satırlarda 9.69, TEFAS 2.49
 GAJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+GAS	hata	satır içi: 1/1 satırda nominal × fiyat ≠ rayiç
 GAU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GAV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GBP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GBV	sinif_farki	şart 3: yf satırlarda 3.34, TEFAS 0.00
 GCA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GCC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GCD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+GCD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GCI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GCZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GDJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -426,41 +402,37 @@ GKM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GKO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GLE	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GLL	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-GLM	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+GLM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GLP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GLV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+GMC	hata	satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GMD	hata	şart 1: ağırlık toplamı 78.64
 GME	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GMN	sinif_farki	şart 3: para_piyasasi satırlarda 42.28, TEFAS 65.99
+GMN	hata	ek PDF yok
 GMO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GNK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GNL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GO1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-GO3	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-GO4	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-GO6	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-GO9	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 GOF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GOK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GOP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GP3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPF	sinif_farki	şart 3: yf satırlarda 17.42, TEFAS 4.36
+GPB	hata	satır içi: 2/94 satırda nominal × fiyat ≠ rayiç
+GPF	hata	satır içi: 2/242 satırda nominal × fiyat ≠ rayiç
 GPH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPI	sinif_farki	şart 3: ybyf satırlarda 0.00, TEFAS 7.07
+GPI	hata	satır içi: 2/104 satırda nominal × fiyat ≠ rayiç
 GPJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPL	hata	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+GPL	hata	satır içi: 15/15 satırda nominal × fiyat ≠ rayiç
 GPM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPN	sinif_farki	şart 3: para_piyasasi satırlarda 63.84, TEFAS 0.00
+GPN	sinif_farki	şart 3: borclanma satırlarda 6.30, TEFAS 70.14
 GPT	hata	şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215)
-GPU	sinif_farki	şart 3: yf satırlarda 13.37, TEFAS 0.00
 GPV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GRL	hata	şart 1: ağırlık toplamı 69.15
-GRO	hata	şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+GRL	hata	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+GRO	hata	satır içi: 15/15 satırda nominal × fiyat ≠ rayiç
 GSE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -469,8 +441,7 @@ GSR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GTY	sinif_farki	şart 3: ybyf satırlarda 0.00, TEFAS 17.69
-GTZ	hata	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
+GTZ	hata	satır içi: 1/95 satırda nominal × fiyat ≠ rayiç
 GUA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GUC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GUK	sinif_farki	şart 3: maden_byf satırlarda 50.69, TEFAS 98.68
@@ -478,7 +449,7 @@ GUV	hata	şart 2: 3 satırda ISIN okunamadı (B.2.KAMU SEKTÖRÜ BORÇLANMA ARA�
 GVB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GVI	sinif_farki	şart 3: yf satırlarda 81.97, TEFAS 56.44
+GVI	hata	satır içi: 9/36 satırda nominal × fiyat ≠ rayiç
 GVL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GYC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -487,18 +458,16 @@ GYN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GYR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GZJ	sinif_farki	şart 3: yf satırlarda 85.00, TEFAS 69.93
-GZL	sinif_farki	şart 3: yf satırlarda 5.75, TEFAS 0.00
+GZJ	hata	satır içi: 11/35 satırda nominal × fiyat ≠ rayiç
 GZM	sinif_farki	şart 3: teminat satırlarda 49.99, TEFAS 51.24
 GZO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GZP	sinif_farki	şart 3: yf satırlarda 86.05, TEFAS 78.95
+GZP	hata	satır içi: 18/57 satırda nominal × fiyat ≠ rayiç
 GZU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GZV	sinif_farki	şart 3: yf satırlarda 94.37, TEFAS 25.85
 GZY	sinif_farki	şart 3: borclanma satırlarda 10.31, TEFAS 0.00
 HAA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HAE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HAG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HAR	hata	şart 1: ağırlık toplamı 80.72
+HAR	hata	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HB1	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 HB2	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 HBI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -512,6 +481,7 @@ HDJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HDL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HDS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HDV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+HEH	hata	satır içi: 9/168 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HFR	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 HFV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HFY	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -576,38 +546,64 @@ HZV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IAC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IAE	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IAI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IAM	kuyrukta	sırası gelmedi
 IAR	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IAS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+IAT	kuyrukta	sırası gelmedi
 IAU	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 IAY	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+IBB	kuyrukta	sırası gelmedi
 IBC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IBE	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IBG	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 IBJ	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+IBK	kuyrukta	sırası gelmedi
 IBM	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IBP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IBR	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+ICA	kuyrukta	sırası gelmedi
+ICC	kuyrukta	sırası gelmedi
+ICD	kuyrukta	sırası gelmedi
+ICE	kuyrukta	sırası gelmedi
+ICF	kuyrukta	sırası gelmedi
 ICG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ICH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 ICM	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 ICN	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ICO	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+ICS	kuyrukta	sırası gelmedi
+ICV	kuyrukta	sırası gelmedi
+ICZ	kuyrukta	sırası gelmedi
 IDD	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+IDF	kuyrukta	sırası gelmedi
+IDH	kuyrukta	sırası gelmedi
 IDI	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 IDL	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+IDO	kuyrukta	sırası gelmedi
 IDP	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 IDV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IDY	kuyrukta	sırası gelmedi
+IED	kuyrukta	sırası gelmedi
 IEN	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+IEV	kuyrukta	sırası gelmedi
 IEZ	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 IFD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IFN	kuyrukta	sırası gelmedi
+IFV	kuyrukta	sırası gelmedi
 IFY	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IGF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IGL	kuyrukta	sırası gelmedi
 IGM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IGZ	kuyrukta	sırası gelmedi
 IH1	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+IHA	kuyrukta	sırası gelmedi
 IHC	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+IHK	kuyrukta	sırası gelmedi
 IHP	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+IHT	kuyrukta	sırası gelmedi
 IHV	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 IHY	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
+IHZ	kuyrukta	sırası gelmedi
 IIA	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IIC	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IIE	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -616,14 +612,23 @@ IIH	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IIN	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 IIS	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IJA	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+IJB	kuyrukta	sırası gelmedi
+IJC	kuyrukta	sırası gelmedi
 IJE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IJF	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+IJH	kuyrukta	sırası gelmedi
 IJI	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IJK	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IJL	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+IJP	kuyrukta	sırası gelmedi
 IJS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IJT	kuyrukta	sırası gelmedi
 IJV	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+IJZ	kuyrukta	sırası gelmedi
 IK2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IKL	kuyrukta	sırası gelmedi
+IKP	kuyrukta	sırası gelmedi
+IKV	kuyrukta	sırası gelmedi
 ILC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ILE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ILH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -631,10 +636,12 @@ ILI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ILM	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ILP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ILU	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+ILZ	kuyrukta	sırası gelmedi
 IMB	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IMF	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IMG	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 IMH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IML	kuyrukta	sırası gelmedi
 IMO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IMT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -643,11 +650,14 @@ IMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 INH	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 INV	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 INZ	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+IOG	kuyrukta	sırası gelmedi
 IOH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IOJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IOL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IOM	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ION	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+IOO	kuyrukta	sırası gelmedi
+IOP	kuyrukta	sırası gelmedi
 IOT	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 IOV	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IPA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -655,11 +665,14 @@ IPB	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IPC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IPE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IPF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+IPG	kuyrukta	sırası gelmedi
+IPJ	kuyrukta	sırası gelmedi
 IPK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IPO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IPP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 IPR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IPU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IPV	kuyrukta	sırası gelmedi
 IRB	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IRE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IRF	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
@@ -676,15 +689,19 @@ ITC	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 ITD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ITJ	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ITL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+ITP	kuyrukta	sırası gelmedi
 ITR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ITV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ITZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IUA	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IUB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IUC	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+IUF	kuyrukta	sırası gelmedi
 IUH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 IUM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IUN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+IUV	kuyrukta	sırası gelmedi
+IUZ	kuyrukta	sırası gelmedi
 IV2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IV6	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 IV7	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
@@ -693,6 +710,7 @@ IVA	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IVF	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IVS	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IVY	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
+IYB	kuyrukta	sırası gelmedi
 IYP	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IYR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 IYS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -706,15 +724,22 @@ IZV	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 IZY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 JET	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 JOT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+JUP	kuyrukta	sırası gelmedi
 KAC	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KAN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KAV	kuyrukta	sırası gelmedi
 KBJ	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 KBP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KBZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KCL	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KCN	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+KCR	kuyrukta	sırası gelmedi
+KCV	kuyrukta	sırası gelmedi
+KDE	kuyrukta	sırası gelmedi
 KDI	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KDK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KDL	kuyrukta	sırası gelmedi
+KDO	kuyrukta	sırası gelmedi
 KDS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KDT	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 KDV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -723,34 +748,46 @@ KEI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KEO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KEU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KFZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KGM	kuyrukta	sırası gelmedi
+KH1	kuyrukta	sırası gelmedi
 KHA	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 KHB	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KHC	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 KHD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 KHF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KHJ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+KHP	kuyrukta	sırası gelmedi
+KHT	kuyrukta	sırası gelmedi
 KHU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KIA	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KIB	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KIE	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KIH	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+KIK	kuyrukta	sırası gelmedi
 KIS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 KJK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KKB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KKC	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KKE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KKH	kuyrukta	sırası gelmedi
+KKL	kuyrukta	sırası gelmedi
 KKO	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 KKP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KKT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KLH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+KLI	kuyrukta	sırası gelmedi
 KLL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KLM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KLS	kuyrukta	sırası gelmedi
+KLU	kuyrukta	sırası gelmedi
 KMA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KME	kuyrukta	sırası gelmedi
 KMF	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 KMN	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 KMT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KNC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KNI	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+KNJ	kuyrukta	sırası gelmedi
 KNN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KNP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KNS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -764,39 +801,65 @@ KOP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 KOT	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 KOZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KP3	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+KPA	kuyrukta	sırası gelmedi
 KPB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+KPC	kuyrukta	sırası gelmedi
+KPD	kuyrukta	sırası gelmedi
 KPF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+KPH	kuyrukta	sırası gelmedi
+KPI	kuyrukta	sırası gelmedi
 KPK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KPM	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KPP	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KPR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KPS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KPU	kuyrukta	sırası gelmedi
 KRC	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KRF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KRH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 KRO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KRR	kuyrukta	sırası gelmedi
 KRS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KRT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KRV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KSA	kuyrukta	sırası gelmedi
 KSC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KSD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 KSK	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 KSL	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 KSM	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 KSP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KSR	kuyrukta	sırası gelmedi
+KST	kuyrukta	sırası gelmedi
+KSV	kuyrukta	sırası gelmedi
 KSY	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 KTE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KTI	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+KTJ	kuyrukta	sırası gelmedi
+KTM	kuyrukta	sırası gelmedi
+KTN	kuyrukta	sırası gelmedi
+KTR	kuyrukta	sırası gelmedi
+KTS	kuyrukta	sırası gelmedi
+KTT	kuyrukta	sırası gelmedi
 KTU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KTV	kuyrukta	sırası gelmedi
+KU3	kuyrukta	sırası gelmedi
+KUA	kuyrukta	sırası gelmedi
 KUB	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+KUD	kuyrukta	sırası gelmedi
 KUP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KUT	kuyrukta	sırası gelmedi
 KVA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+KVK	kuyrukta	sırası gelmedi
 KVR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 KVS	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+KVT	kuyrukta	sırası gelmedi
 KYA	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 KYR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KYS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+KZL	kuyrukta	sırası gelmedi
 KZO	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+KZU	kuyrukta	sırası gelmedi
 LAI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 LAK	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 LET	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -804,7 +867,10 @@ LFD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 LGK	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 LGO	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 LHM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+LHP	kuyrukta	sırası gelmedi
+LKF	kuyrukta	sırası gelmedi
 LKT	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+LLA	kuyrukta	sırası gelmedi
 LPH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 LRT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 LTC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -816,10 +882,17 @@ MAD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 MAS	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 MAV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MBL	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+MBR	kuyrukta	sırası gelmedi
 MCU	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+MD1	kuyrukta	sırası gelmedi
+MD2	kuyrukta	sırası gelmedi
+MDF	kuyrukta	sırası gelmedi
 MET	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
+MGB	kuyrukta	sırası gelmedi
 MGD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MGE	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+MGH	kuyrukta	sırası gelmedi
+MHF	kuyrukta	sırası gelmedi
 MIK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MJB	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 MJE	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -832,6 +905,7 @@ MKG	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 MKL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MLK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MLS	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+MLT	kuyrukta	sırası gelmedi
 MMH	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 MOD	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 MOZ	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -839,26 +913,38 @@ MP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MP2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MP4	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MPD	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+MPE	kuyrukta	sırası gelmedi
 MPF	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 MPI	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 MPK	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+MPL	kuyrukta	sırası gelmedi
 MPN	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 MPP	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 MPS	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+MRI	kuyrukta	sırası gelmedi
 MSK	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 MSO	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 MSR	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+MT1	kuyrukta	sırası gelmedi
+MT2	kuyrukta	sırası gelmedi
 MT5	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MT6	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MT7	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MT8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MT9	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MTA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+MTD	kuyrukta	sırası gelmedi
 MTE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+MTF	kuyrukta	sırası gelmedi
+MTG	kuyrukta	sırası gelmedi
+MTH	kuyrukta	sırası gelmedi
 MTI	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+MTK	kuyrukta	sırası gelmedi
 MTL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MTS	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 MTU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+MTV	kuyrukta	sırası gelmedi
+MTX	kuyrukta	sırası gelmedi
 MU1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MUL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MUT	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
@@ -911,7 +997,9 @@ NLK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 NLL	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 NME	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 NMG	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+NMP	kuyrukta	sırası gelmedi
 NMU	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+NNF	kuyrukta	sırası gelmedi
 NNS	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 NOA	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 NOI	duzen_bekliyor	kurucu düzeni henüz sınanmadı
@@ -929,6 +1017,7 @@ NSH	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 NSK	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 NSP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 NSS	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+NST	kuyrukta	sırası gelmedi
 NSY	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 NTB	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 NTD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -964,6 +1053,7 @@ ODG	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 ODN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ODP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 ODS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+ODV	kuyrukta	sırası gelmedi
 OFA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OFB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OFI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -980,7 +1070,10 @@ OHT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OIL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OIR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OIS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+OJB	kuyrukta	sırası gelmedi
 OJH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+OJK	kuyrukta	sırası gelmedi
+OJT	kuyrukta	sırası gelmedi
 OJU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OJY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OKD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -988,6 +1081,7 @@ OKF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OKP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OKT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OLA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+OLD	kuyrukta	sırası gelmedi
 OLE	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OMB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OMC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -998,7 +1092,9 @@ ONB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OND	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ONE	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 ONF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+ONK	kuyrukta	sırası gelmedi
 ONN	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+ONS	kuyrukta	sırası gelmedi
 ONT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ONY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OPB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1006,6 +1102,7 @@ OPD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OPF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OPH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OPI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+OPJ	kuyrukta	sırası gelmedi
 OPL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OPU	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OPZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1029,6 +1126,7 @@ OUD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OUN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OUR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 OUY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+OVD	kuyrukta	sırası gelmedi
 OVR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OVT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OYH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1041,6 +1139,8 @@ PA2	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PAB	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PAC	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 PAF	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+PAI	kuyrukta	sırası gelmedi
+PAL	kuyrukta	sırası gelmedi
 PAO	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PAP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PAU	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
@@ -1066,6 +1166,7 @@ PDH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PDR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PDS	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PEA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+PFO	kuyrukta	sırası gelmedi
 PFS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PGD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PGE	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
@@ -1075,6 +1176,7 @@ PHB	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHE	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 PHI	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+PHK	kuyrukta	sırası gelmedi
 PHN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PHY	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
@@ -1084,6 +1186,7 @@ PIL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PIP	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 PIR	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 PIS	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+PJL	kuyrukta	sırası gelmedi
 PJP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PK1	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 PKD	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -1101,6 +1204,7 @@ PKZ	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PLA	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 PLR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PLS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+PMG	kuyrukta	sırası gelmedi
 PMH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PMP	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PNU	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -1115,38 +1219,51 @@ POI	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 POS	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 POU	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PP1	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+PPB	kuyrukta	sırası gelmedi
 PPD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+PPE	kuyrukta	sırası gelmedi
 PPF	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 PPG	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 PPH	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PPI	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+PPK	kuyrukta	sırası gelmedi
 PPM	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 PPN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 PPO	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PPP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+PPS	kuyrukta	sırası gelmedi
 PPT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PPU	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PPV	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 PPZ	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 PRD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 PRF	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+PRH	kuyrukta	sırası gelmedi
 PRR	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+PRU	kuyrukta	sırası gelmedi
 PRV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PRY	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PSB	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 PSD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSE	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PSG	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+PSH	kuyrukta	sırası gelmedi
 PSL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 PSO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSR	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PSS	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 PST	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PTC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+PTE	kuyrukta	sırası gelmedi
+PTF	kuyrukta	sırası gelmedi
 PTG	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+PTL	kuyrukta	sırası gelmedi
+PTN	kuyrukta	sırası gelmedi
 PTO	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PTP	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+PTS	kuyrukta	sırası gelmedi
 PUA	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+PUC	kuyrukta	sırası gelmedi
 PUD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PUH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PUK	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -1154,6 +1271,7 @@ PUR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PUT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PUV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PVK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+PYB	kuyrukta	sırası gelmedi
 PYD	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PYF	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 PYH	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
@@ -1168,10 +1286,16 @@ RAN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RAV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RAY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RBA	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+RBB	kuyrukta	sırası gelmedi
 RBE	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RBF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RBH	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+RBI	kuyrukta	sırası gelmedi
 RBK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+RBL	kuyrukta	sırası gelmedi
+RBN	kuyrukta	sırası gelmedi
+RBP	kuyrukta	sırası gelmedi
+RBR	kuyrukta	sırası gelmedi
 RBT	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 RBV	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 RCL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1182,17 +1306,26 @@ RDF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RDH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RDK	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RDS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RDT	kuyrukta	sırası gelmedi
 RDZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RE6	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RE7	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RE8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RFM	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RGD	kuyrukta	sırası gelmedi
+RGH	kuyrukta	sırası gelmedi
 RHD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RHI	kuyrukta	sırası gelmedi
 RHS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RIA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RIH	kuyrukta	sırası gelmedi
+RIK	kuyrukta	sırası gelmedi
+RJG	kuyrukta	sırası gelmedi
 RKC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RKH	kuyrukta	sırası gelmedi
 RKL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 RKS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RKV	kuyrukta	sırası gelmedi
 RLH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RMR	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 RO1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1200,10 +1333,12 @@ ROD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 ROF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 ROY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RPD	kuyrukta	sırası gelmedi
 RPE	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPG	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPK	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RPL	kuyrukta	sırası gelmedi
 RPM	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPN	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPO	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1213,6 +1348,7 @@ RPT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPU	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 RPX	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RRA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RRP	kuyrukta	sırası gelmedi
 RS1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RSF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RSK	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1220,9 +1356,13 @@ RSY	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 RSZ	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 RTA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RTB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RTD	kuyrukta	sırası gelmedi
 RTG	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+RTH	kuyrukta	sırası gelmedi
 RTI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+RTP	kuyrukta	sırası gelmedi
 RUH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+RUT	kuyrukta	sırası gelmedi
 RVI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RVS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RYA	duzen_bekliyor	kurucu düzeni henüz sınanmadı
@@ -1232,7 +1372,9 @@ RYF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RYI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RYU	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RZR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+SAP	kuyrukta	sırası gelmedi
 SAR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+SAS	kuyrukta	sırası gelmedi
 SAT	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SBH	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 SBI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -1240,33 +1382,41 @@ SBR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SBS	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SCZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SD1	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+SDA	kuyrukta	sırası gelmedi
 SDP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SDS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 SEH	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
+SER	kuyrukta	sırası gelmedi
 SFA	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 SFR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SFS	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SGK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SGT	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 SHC	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+SHE	kuyrukta	sırası gelmedi
 SHI	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 SHU	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 SIA	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 SIS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 SJP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+SKL	kuyrukta	sırası gelmedi
 SKO	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SKS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+SKT	kuyrukta	sırası gelmedi
 SKZ	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 SLF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+SLG	kuyrukta	sırası gelmedi
 SLR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SLS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SMP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SNY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+SOS	kuyrukta	sırası gelmedi
 SPA	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SPD	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SPE	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SPN	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SPP	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+SPR	kuyrukta	sırası gelmedi
 SPT	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 SPU	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SRA	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
@@ -1277,6 +1427,7 @@ SRO	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SSD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SSE	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 SSF	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+SSK	kuyrukta	sırası gelmedi
 SSN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SSO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 SSS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
@@ -1299,68 +1450,126 @@ SYL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SYN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 SYR	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 SYS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+T3B	kuyrukta	sırası gelmedi
 TAL	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+TAO	kuyrukta	sırası gelmedi
+TAR	kuyrukta	sırası gelmedi
+TAU	kuyrukta	sırası gelmedi
 TAZ	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 TB9	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TBP	kuyrukta	sırası gelmedi
+TBT	kuyrukta	sırası gelmedi
+TBV	kuyrukta	sırası gelmedi
 TCA	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 TCB	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TCC	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TCD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+TCF	kuyrukta	sırası gelmedi
 TCG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TCH	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TCI	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TCS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+TDG	kuyrukta	sırası gelmedi
 TDP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TE3	kuyrukta	sırası gelmedi
+TE4	kuyrukta	sırası gelmedi
 TEJ	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 TFE	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
+TFF	kuyrukta	sırası gelmedi
+TFU	kuyrukta	sırası gelmedi
 TGA	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
+TGE	kuyrukta	sırası gelmedi
+TGN	kuyrukta	sırası gelmedi
+TGR	kuyrukta	sırası gelmedi
 TGT	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 TGV	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TGZ	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+THF	kuyrukta	sırası gelmedi
 THG	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THO	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 THS	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 THT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+TI1	kuyrukta	sırası gelmedi
+TI2	kuyrukta	sırası gelmedi
+TI3	kuyrukta	sırası gelmedi
+TI4	kuyrukta	sırası gelmedi
+TI6	kuyrukta	sırası gelmedi
+TI7	kuyrukta	sırası gelmedi
+TIE	kuyrukta	sırası gelmedi
+TIL	kuyrukta	sırası gelmedi
 TIP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TIV	kuyrukta	sırası gelmedi
 TJB	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+TJF	kuyrukta	sırası gelmedi
+TJI	kuyrukta	sırası gelmedi
 TJL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+TJT	kuyrukta	sırası gelmedi
 TKF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TKH	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+TKK	kuyrukta	sırası gelmedi
+TKM	kuyrukta	sırası gelmedi
 TLC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TLE	kuyrukta	sırası gelmedi
+TLH	kuyrukta	sırası gelmedi
 TLK	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 TLT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TLU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TLV	kuyrukta	sırası gelmedi
 TLZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 TMA	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
+TMC	kuyrukta	sırası gelmedi
+TMG	kuyrukta	sırası gelmedi
 TMH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TMM	kuyrukta	sırası gelmedi
 TMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TMU	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+TMV	kuyrukta	sırası gelmedi
+TMZ	kuyrukta	sırası gelmedi
 TNA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TNB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TND	kuyrukta	sırası gelmedi
 TNF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TNH	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TNI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TNK	kuyrukta	sırası gelmedi
 TNS	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TO8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TOT	kuyrukta	sırası gelmedi
 TP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TP2	kuyrukta	sırası gelmedi
+TPC	kuyrukta	sırası gelmedi
+TPE	kuyrukta	sırası gelmedi
 TPF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+TPJ	kuyrukta	sırası gelmedi
+TPL	kuyrukta	sırası gelmedi
+TPO	kuyrukta	sırası gelmedi
+TPP	kuyrukta	sırası gelmedi
+TPR	kuyrukta	sırası gelmedi
+TPV	kuyrukta	sırası gelmedi
+TPZ	kuyrukta	sırası gelmedi
+TRJ	kuyrukta	sırası gelmedi
 TRN	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 TRO	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TRR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TRU	kuyrukta	sırası gelmedi
 TRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TSI	kuyrukta	sırası gelmedi
 TSP	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+TTE	kuyrukta	sırası gelmedi
 TTL	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TTP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TTS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TTV	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TTZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TUA	kuyrukta	sırası gelmedi
 TVE	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 TVN	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+TYH	kuyrukta	sırası gelmedi
 TZC	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 TZD	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 TZH	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
@@ -1371,6 +1580,7 @@ TZV	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 UAB	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UAP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UCN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+UCP	kuyrukta	sırası gelmedi
 UFH	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 UHL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 UHN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1378,6 +1588,7 @@ UHS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UHV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ULH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 ULL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+UNT	kuyrukta	sırası gelmedi
 UP1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UP2	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UPD	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1385,6 +1596,7 @@ UPH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UPP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UPS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 URA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+URC	kuyrukta	sırası gelmedi
 URD	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 URG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 URM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1396,23 +1608,31 @@ UST	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 USY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UYH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 UZY	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+VAY	kuyrukta	sırası gelmedi
 VCD	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 VCG	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
+VCY	kuyrukta	sırası gelmedi
 VFK	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 VFO	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 VFS	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 VHK	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+VHS	kuyrukta	sırası gelmedi
 VK6	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 VKI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+VKK	kuyrukta	sırası gelmedi
 VKR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 VKT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+VKV	kuyrukta	sırası gelmedi
+VLT	kuyrukta	sırası gelmedi
 VMV	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 VNK	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+VPA	kuyrukta	sırası gelmedi
 VPD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 VPE	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 VPH	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 VPP	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 VPS	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
+VRK	kuyrukta	sırası gelmedi
 VTF	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
 VTL	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 XWQ	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
@@ -1421,12 +1641,14 @@ YAC	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YAE	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YAK	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YAN	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+YAR	kuyrukta	sırası gelmedi
 YAS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YAY	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBE	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YBP	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+YBR	kuyrukta	sırası gelmedi
 YBS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YCG	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YCH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
@@ -1472,11 +1694,14 @@ YLY	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YLZ	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 YMD	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YMH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+YMP	kuyrukta	sırası gelmedi
+YNF	kuyrukta	sırası gelmedi
 YNK	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YNL	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YOA	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YOS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YOT	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+YOZ	kuyrukta	sırası gelmedi
 YP1	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YP2	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YP4	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
@@ -1522,10 +1747,14 @@ YVS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YZC	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YZF	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YZG	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+YZH	kuyrukta	sırası gelmedi
 YZK	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YZL	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
+YZT	kuyrukta	sırası gelmedi
+ZA2	kuyrukta	sırası gelmedi
 ZAD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ZAV	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+ZAY	kuyrukta	sırası gelmedi
 ZBD	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZBI	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZBJ	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
@@ -1545,6 +1774,7 @@ ZCN	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZDD	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZDK	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZDZ	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+ZFB	kuyrukta	sırası gelmedi
 ZFH	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZFZ	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 ZHH	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
