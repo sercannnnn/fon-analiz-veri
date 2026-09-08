@@ -1,15 +1,64 @@
+AFO	2026-08	şart 3: maden satırlarda 0.00, TEFAS 50.59
+AFV	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 102.43; satır düşmüş
+ALE	2026-08	şart 3: katilim satırlarda 8.35, TEFAS 0.00
+AUV	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 197.74; satır düşmüş
+BDY	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 108.51; satır düşmüş
+BGP	2026-08	şart 3: katilim satırlarda 7.44, TEFAS 0.00
 BHL	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: FABRİKALA RI A.Ş. PAPIL PAPİLO)
+DBH	2026-08	şart 3: borclanma satırlarda 82.73, TEFAS 80.62
+DBP	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT)
+DDF	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİZMETLE Rİ A.Ş. TCKRC KIRAÇ G)
+DHJ	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 191.25; satır düşmüş
+DMG	2026-08	şart 3: maden satırlarda 0.00, TEFAS 23.99
+DOH	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 117.93; satır düşmüş
+DPB	2026-08	şart 3: borclanma satırlarda 82.73, TEFAS 81.54
+DPK	2026-08	şart 3: borclanma satırlarda 95.66, TEFAS 92.06
+DPT	2026-08	kıymet satırı yok
+DTL	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ VE TİCARET A.Ş. TCKRC K)
+DVS	2026-08	şart 3: borclanma satırlarda 41.40, TEFAS 40.04
+DVT	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 106.37; satır düşmüş
+DXP	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HOLDİNG A.Ş. TCKRC KIRAÇ GALVA)
+DZE	2026-08	kıymet satırı yok
+EDT	2026-08	şart 3: borclanma satırlarda 10.39, TEFAS 8.75
+FMV	2026-08	şart 3: borclanma satırlarda 8.53, TEFAS 6.66
+GMI	2026-08	şart 3: diger satırlarda 96.28, TEFAS 0.00
 GUF	2026-08	şart 3: maden satırlarda 0.00, TEFAS 19.59
+GUM	2026-08	şart 3: diger satırlarda 17.55, TEFAS 0.00
 IDH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ TİCARET A.Ş. LKMNH LOKM)
 IEV	2026-08	şart 1: ağırlık toplamı 3.55
 IKL	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 122.41; satır düşmüş
 IOG	2026-08	şart 3: maden satırlarda 0.00, TEFAS 3.48
+KCR	2026-08	şart 3: diger satırlarda 87.31, TEFAS 0.00
 KDO	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 103.29; satır düşmüş
+KGM	2026-08	şart 3: diger satırlarda 12.01, TEFAS 0.00
+KIK	2026-08	şart 3: diger satırlarda 3.88, TEFAS 0.00
+KPA	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 107.34; satır düşmüş
+KPD	2026-08	şart 3: borclanma satırlarda 82.72, TEFAS 67.14
 KPH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.Ş. LKMNH LOKMAN HEKİM ENGÜRÜ)
+KSR	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 182.72; satır düşmüş
+KSV	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 191.53; satır düşmüş
+KTM	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: VE TICARET A.S. ATATP ATP TİCA)
+KTT	2026-08	şart 3: borclanma satırlarda 86.49, TEFAS 74.28
+KU3	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Finansman A.Ş. LKMNH LOKMAN HE)
+KUD	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: VE TICARET A.S. ATATP ATP TİCA)
+KUT	2026-08	şart 3: diger satırlarda 63.44, TEFAS 0.00
+KZL	2026-08	şart 3: diger satırlarda 90.63, TEFAS 0.00
+KZU	2026-08	şart 3: diger satırlarda 85.30, TEFAS 0.00
 LKF	2026-08	şart 3: diger satırlarda 65.52, TEFAS 0.00
+MTG	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.S. TCKRC KIRAÇ GALVANİZ TELE)
+PPJ	2026-08	şart 3: katilim satırlarda 6.28, TEFAS 0.00
+T3B	2026-08	ek PDF yok
 TAU	2026-08	kıymet satırı yok
+THF	2026-08	şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. ATATR ATA TURİZM İŞLETMEC)
 TI3	2026-08	kıymet satırı yok
 TIE	2026-08	kıymet satırı yok
 TIL	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. LKMNH LOKMAN HEKİ)
+TNK	2026-08	şart 3: borclanma satırlarda 80.22, TEFAS 75.75
+TPZ	2026-08	şart 3: borclanma satırlarda 84.01, TEFAS 50.54
+TRJ	2026-08	şart 3: borclanma satırlarda 81.03, TEFAS 79.38
+TRU	2026-08	şart 3: byf satırlarda 3.93, TEFAS 1.81
 TTA	2026-08	şart 3: maden satırlarda 0.00, TEFAS 85.34
 TTE	2026-08	kıymet satırı yok
+TUA	2026-08	şart 3: maden satırlarda 0.00, TEFAS 69.51
+VRK	2026-08	şart 3: byf satırlarda 9.82, TEFAS 0.00
+YZH	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 190.83; satır düşmüş
