@@ -42,7 +42,7 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 7
+AYRISTIRICI_SURUM = 8
 # Talimat 10 (08.09.2026): 3. sart esigi. 0,05 ve alti gecer; 0,05 ile 1,00 arasi yalnizca sebebi asagidaki listeden
 # veri/sapma_sebepleri.json dosyasinda atanmissa yayimlanir (sebep bos = hata); 1,00 ustu her kosulda yayimlanmaz.
 SAPMA_SERBEST = 0.05
@@ -70,18 +70,12 @@ def sapma_karari(fon, ok, sebep, sp):
 
 
 def rapor_ici_fark(kayit, gruplar):
-    """Raporun kendi grup toplami ile satirlarinin toplami arasindaki fark, TL (Talimat 10). Grup toplami okunan
-    duzenlerde hesaplanir; yoksa bos. Kurucunun kendi raporu tutmuyorsa bu o fon hakkinda bilgidir (GIE: 120.087,75)."""
-    gr = [g for g in gruplar or [] if g.get("rayic") is not None and g.get("tur") and g.get("icTutarlilik")]
-    if not gr:
+    """Raporun kendi yazdigi fon portfoy degeri ile kiymet satirlarinin toplami arasindaki fark, TL (Talimat 10).
+    Yalnizca FPD'nin rapordan okundugu duzenlerde (garanti, fonbul, ziraat; fpdOkundu); yoksa bos.
+    Kurucunun kendi raporu tutmuyorsa bu o fon hakkinda bilgidir: GIE 120.087,75 (hisse grubu), TZL 2,7 milyar (VDMK satirlari yok)."""
+    if not kayit or not kayit[0].get("tlTaban") or not kayit[0].get("fpdOkundu"):
         return ""
-    grup_t, satir_t = defaultdict(float), defaultdict(float)
-    for g in gr:
-        grup_t[g.get("anahtar") or g["tur"]] += g["rayic"]
-    for k in kayit:
-        if k.get("rayic") is not None:
-            satir_t[k.get("anahtar") or k.get("tur")] += k["rayic"]
-    return round(sum(grup_t[t] - satir_t.get(t, 0.0) for t in grup_t), 2)     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
+    return round(kayit[0]["tlTaban"] - sum(k["rayic"] for k in kayit if k.get("rayic") is not None), 2)     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
 # Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
 # kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
 ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni"]
@@ -670,12 +664,13 @@ def garanti_kiymetler(pdf_bayt):
                         alt = metin
             if bitti:
                 break
+    okundu = fpd is not None
     if fpd is None:
         fpd = sum(k["rayic"] for k in kayit) or None
     if fpd:
         for k in kayit:
             k["agirlik"] = 100.0 * k["rayic"] / fpd     # tam hassasiyet; yuvarlama tek seferde, ciktida
-            k["tlTaban"] = fpd
+            k["tlTaban"] = fpd; k["fpdOkundu"] = okundu
     return kayit, gruplar
 
 
@@ -802,7 +797,7 @@ def fonbul_kiymetler(pdf_bayt):
     fpd = fpd_okunan[0] or sum(k["rayic"] for k in kayit) or None
     if fpd:
         for k in kayit:
-            k["agirlik"] = 100.0 * k["rayic"] / fpd; k["tlTaban"] = fpd
+            k["agirlik"] = 100.0 * k["rayic"] / fpd; k["tlTaban"] = fpd; k["fpdOkundu"] = bool(fpd_okunan[0])
         for g in gruplar:
             g["agirlik"] = 100.0 * g["rayic"] / fpd if g["rayic"] is not None else None
     return kayit, gruplar
@@ -895,10 +890,11 @@ def ziraat_kiymetler(pdf_bayt):
                                   nominal=_sayi_tr(nom[-1]["text"]) if nom else None, rayic=_sayi_tr(ray[-1]["text"]), agirlik=None,
                                   yuzdeOkunan=_sayi_tr(oran[-1]["text"]), tur=f"{tur} {alt}".strip(), kod=sol[0] if sol else "",
                                   ihracciHam=" ".join(ih), ihracciSatir=1 if ih else 0))
+    okundu = fpd is not None
     fpd = fpd or sum(k["rayic"] for k in kayit) or None
     if fpd:
         for k in kayit:
-            k["agirlik"] = 100.0 * k["rayic"] / fpd; k["tlTaban"] = fpd
+            k["agirlik"] = 100.0 * k["rayic"] / fpd; k["tlTaban"] = fpd; k["fpdOkundu"] = okundu
     return kayit, []
 
 
@@ -930,8 +926,8 @@ def kimlik_ve_ad(k, evren):
     hisse = bool(k["tur"] and HISSE_TUR.search(norm(k["tur"])))
     bist = ""
     if hisse and evren and not re.search(r"YABANCI", norm(k["tur"] or "")):
-        if k["kod"].upper() in evren:
-            bist = k["kod"].upper()
+        if k["kod"].upper().split(".")[0] in evren:
+            bist = k["kod"].upper().split(".")[0]      # 'AKBNK.E' (Ziraat, Garanti) -> AKBNK
         else:
             aday = [t for t in re.findall(r"\b[A-Z0-9]{4,6}\b", k["ad"]) if t in evren]
             bist = aday[0] if len(set(aday)) == 1 else ""
@@ -1021,7 +1017,7 @@ def kapi(kayit, gruplar, tefas_son, evren=None):
     evren = evren or set()
     eksik = [k for k in kayit if not k["isin"] and k["tur"] and isinli_tur.search(norm(k["tur"]))
              and not (fon_tur.search(norm(k["tur"])) and re.search(r"\b[A-Z0-9]{3}\b", k["ad"]))
-             and not (HISSE_TUR.search(norm(k["tur"])) and k.get("kod", "").upper() in evren)
+             and not (HISSE_TUR.search(norm(k["tur"])) and k.get("kod", "").upper().split(".")[0] in evren)   # Ziraat ve Garanti kodu 'AKBNK.E' yazar
              and not k.get("kimlik") and k.get("rayic")]   # degeri sifir satir agirlik tasimaz (AED: kodsuz eski hisseler)   # fonbul: hisse satirinda ISIN yok, BIST kodu var
     if eksik:
         return False, f"şart 2: {len(eksik)} satırda ISIN okunamadı ({eksik[0]['tur']}: {eksik[0]['ad'][:30]})", None
