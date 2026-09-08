@@ -1,4 +1,3 @@
-AAV	hata	şart 2: 1 satırda ISIN okunamadı (A) HİSSE: ANADOLU EFES)
 AB5	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 ABG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -12,7 +11,6 @@ ACD	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ACN	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ACU	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 AD4	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
-AED	hata	şart 2: 2 satırda ISIN okunamadı (A) HİSSE SENETLERİ: MEDYA HOLDING)
 AHH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AHZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AI1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -32,14 +30,12 @@ AN1	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 AP2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AP4	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AP6	hata	ek PDF yok
-AP7	hata	satır içi: 83/85 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 AP9	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 APP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ARE	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 ARF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ARP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AS3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-ASJ	hata	ek PDF yok
 AU1	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 AU3	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 AVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -61,7 +57,7 @@ BBO	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BBS	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BCC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BCO	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BDC	hata	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BDC	hata	satır içi: 1/14 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BDE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BDI	hata	ek PDF yok
 BDO	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -71,7 +67,6 @@ BFS	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BGH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BHA	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BHH	hata	ek PDF yok
-BHI	hata	satır içi: 1/90 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BHL	duzen_taninmadi	düzen tanınmadı
 BHN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BHO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -116,7 +111,7 @@ BUT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BUV	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BVB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-BVD	hata	satır içi: 1/33 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BVD	hata	satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BVH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BVK	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -199,7 +194,6 @@ DKA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKL	duzen_taninmadi	düzen tanınmadı
 DKP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DKR	hata	satır içi: 6/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DKS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DLG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -265,8 +259,6 @@ EBD	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı)
 EBI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EBS	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EC2	hata	şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )
-ECB	hata	ek PDF yok
-ECV	hata	ek PDF yok
 EDD	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 EDN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EES	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -283,7 +275,7 @@ ENA	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ENO	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 ENR	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 ENS	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
-EP1	hata	ek PDF yok
+EP1	hata	satır içi: 13/50 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 EPA	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EPI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EPK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -293,8 +285,6 @@ EPT	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 ESN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ESP	hata	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 ETN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-EUN	hata	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
-EUZ	hata	satır içi: 1/1 satırda nominal × fiyat ≠ rayiç
 EZM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FBN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FBV	duzen_taninmadi	düzen tanınmadı
@@ -327,7 +317,7 @@ FMB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FNO	hata	satır içi: 1/51 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+FNO	hata	satır içi: 1/43 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 FPR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 FQQ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FR1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -361,7 +351,6 @@ FYZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GAC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GAG	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 GAJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GAS	hata	satır içi: 1/1 satırda nominal × fiyat ≠ rayiç
 GAU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GAV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GBP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -409,7 +398,7 @@ GMC	hata	satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GMD	hata	şart 1: ağırlık toplamı 78.64
 GME	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GMN	hata	ek PDF yok
+GMN	sinif_farki	şart 3: borclanma satırlarda 57.72, TEFAS 34.01
 GMO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GMV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -421,7 +410,6 @@ GOK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GOP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GP3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPB	hata	satır içi: 2/94 satırda nominal × fiyat ≠ rayiç
 GPF	hata	satır içi: 2/242 satırda nominal × fiyat ≠ rayiç
 GPH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GPI	hata	satır içi: 2/104 satırda nominal × fiyat ≠ rayiç

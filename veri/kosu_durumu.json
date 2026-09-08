@@ -1,47 +1,38 @@
 {
  "icerik": {
-  "ayristiriciSurum": 5,
+  "ayristiriciSurum": 6,
   "durum": "tamamlandi",
   "gecenKurucu": 48,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 390,
-  "istek": 900,
-  "kapsamOrani": 0.4584,
-  "kapsamPay": 463,
-  "kapsamPayda": 1010,
+  "islenen": 323,
+  "istek": 700,
+  "kapsamOrani": 0.4561,
+  "kapsamPay": 467,
+  "kapsamPayda": 1024,
   "kapsamTanimi": "pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
   "kovaToplami": 2146,
   "kovalar": {
    "beklemede": 7,
    "duzen_bekliyor": 127,
    "duzen_taninmadi": 781,
-   "hata": 63,
+   "hata": 50,
    "kapsam_disi": 567,
    "kuyrukta": 260,
-   "listesi_var": 309,
+   "listesi_var": 321,
    "rapor_yok_bu_ay": 19,
-   "sinif_farki": 13
+   "sinif_farki": 14
   },
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "raporYokKurucu": 3,
-  "satirBuTur": 19992,
+  "satirBuTur": 13906,
   "sinananKurucu": [
-   "ATLAS PORTFÖY YÖNETİMİ A.Ş.",
-   "ROTA PORTFÖY YÖNETİMİ A.Ş.",
-   "OYAK PORTFÖY YÖNETİMİ A.Ş.",
-   "ASTRA PORTFÖY YÖNETİMİ A.Ş.",
-   "PERFORM PORTFÖY YÖNETİMİ A.Ş.",
-   "ÜNLÜ PORTFÖY YÖNETİMİ A.Ş.",
-   "ATA PORTFÖY YÖNETİMİ A.Ş.",
-   "VEGA PORTFÖY YÖNETİMİ A.Ş.",
-   "ONE PORTFÖY YÖNETİMİ A.Ş.",
-   "OSMANLI PORTFÖY YÖNETİMİ A.Ş."
+   "VEGA PORTFÖY YÖNETİMİ A.Ş."
   ],
   "sinavSurumu": 2,
   "taninmayanKurucu": 13,
   "tarih": "2026-09-08",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 293
+  "yayimlandiBuTur": 256
  }
 }

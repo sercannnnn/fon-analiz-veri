@@ -6,7 +6,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -17,16 +17,20 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "AAV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (A) HİSSE: ANADOLU EFES)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 29,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AB5": {
   "ay": "2026-08",
@@ -60,7 +64,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -71,7 +75,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -96,7 +100,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -107,7 +111,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -118,7 +122,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -170,7 +174,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -181,16 +185,20 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "AED": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 2 satırda ISIN okunamadı (A) HİSSE SENETLERİ: MEDYA HOLDING)",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 27,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AES": {
   "durum": "yayimlandi",
@@ -199,7 +207,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -210,7 +218,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -221,7 +229,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -232,7 +240,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -243,7 +251,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -254,7 +262,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -265,7 +273,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -276,7 +284,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -293,7 +301,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -304,7 +312,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -315,7 +323,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -326,7 +334,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -373,7 +381,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -389,7 +397,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -400,7 +408,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -411,7 +419,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -422,7 +430,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -433,7 +441,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -444,7 +452,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -455,7 +463,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -466,7 +474,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -497,7 +505,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -508,7 +516,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -524,7 +532,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -535,7 +543,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -546,7 +554,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -557,7 +565,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -580,7 +588,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -592,12 +600,15 @@
   "tarih": "2026-09-08"
  },
  "AP7": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "satır içi: 83/85 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 190,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AP9": {
   "ay": "2026-08",
@@ -612,7 +623,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -629,7 +640,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -651,7 +662,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -662,7 +673,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -679,7 +690,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -690,12 +701,15 @@
   "tarih": "2026-09-08"
  },
  "ASJ": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "ek PDF yok",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 41,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "ATJ": {
   "durum": "yayimlandi",
@@ -704,7 +718,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -727,7 +741,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -744,7 +758,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -773,7 +787,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -784,7 +798,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -795,7 +809,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -841,7 +855,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -870,7 +884,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -897,7 +911,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -919,7 +933,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -935,14 +949,14 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "BDC": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sebep": "satır içi: 1/14 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -971,7 +985,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -982,7 +996,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -993,7 +1007,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1021,7 +1035,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1038,7 +1052,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1049,7 +1063,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1065,7 +1079,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1076,7 +1090,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1088,12 +1102,15 @@
   "tarih": "2026-09-08"
  },
  "BHI": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "satır içi: 1/90 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 151,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BHL": {
   "ay": "2026-08",
@@ -1132,7 +1149,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1143,7 +1160,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1154,7 +1171,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1170,7 +1187,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1200,7 +1217,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1211,7 +1228,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1228,7 +1245,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1261,7 +1278,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1282,7 +1299,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1334,7 +1351,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1345,7 +1362,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1356,7 +1373,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1372,7 +1389,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1383,7 +1400,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1438,7 +1455,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1461,7 +1478,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1472,7 +1489,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1483,7 +1500,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1494,7 +1511,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1517,7 +1534,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1555,7 +1572,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1566,7 +1583,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1585,7 +1602,7 @@
  "BVD": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "satır içi: 1/33 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sebep": "satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -1596,7 +1613,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1624,7 +1641,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1647,7 +1664,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1658,7 +1675,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1708,7 +1725,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1730,7 +1747,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1741,7 +1758,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1764,7 +1781,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1795,7 +1812,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1869,7 +1886,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1898,7 +1915,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1915,7 +1932,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1931,7 +1948,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -1978,7 +1995,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -1989,7 +2006,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2043,7 +2060,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2075,7 +2092,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2116,7 +2133,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2139,7 +2156,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2162,7 +2179,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2173,7 +2190,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2190,7 +2207,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2208,7 +2225,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2230,7 +2247,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2248,7 +2265,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2278,7 +2295,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2296,7 +2313,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2325,7 +2342,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2354,7 +2371,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2365,7 +2382,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2389,12 +2406,15 @@
   "tarih": "2026-09-08"
  },
  "DKR": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "satır içi: 6/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 23,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DKS": {
   "ay": "2026-08",
@@ -2415,7 +2435,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2426,7 +2446,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2450,7 +2470,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2461,7 +2481,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2472,7 +2492,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2483,7 +2503,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2522,7 +2542,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2533,7 +2553,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2557,7 +2577,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2586,7 +2606,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2597,7 +2617,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2620,7 +2640,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2685,7 +2705,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2714,7 +2734,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2725,7 +2745,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2799,7 +2819,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2816,7 +2836,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2833,7 +2853,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2861,7 +2881,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2872,7 +2892,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2901,7 +2921,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2918,7 +2938,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2929,7 +2949,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2946,7 +2966,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2981,7 +3001,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -2992,7 +3012,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3015,7 +3035,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3032,7 +3052,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3068,7 +3088,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3115,25 +3135,31 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "ECB": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "ek PDF yok",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 27,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "ECV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "ek PDF yok",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 22,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "EDD": {
   "ay": "2026-07",
@@ -3154,7 +3180,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3165,7 +3191,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3176,7 +3202,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3230,7 +3256,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3247,7 +3273,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3258,7 +3284,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3281,7 +3307,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3299,7 +3325,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3317,7 +3343,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3331,7 +3357,7 @@
  "EP1": {
   "ay": "2026-08",
   "durum": "hata",
-  "sebep": "ek PDF yok",
+  "sebep": "satır içi: 13/50 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
@@ -3374,7 +3400,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3397,18 +3423,26 @@
   "tarih": "2026-09-08"
  },
  "EUN": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)",
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 55,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "EUZ": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "satır içi: 1/1 satırda nominal × fiyat ≠ rayiç",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 84,
+  "sebep": "",
+  "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "EVM": {
   "durum": "yayimlandi",
@@ -3417,7 +3451,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3428,7 +3462,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3445,7 +3479,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3456,7 +3490,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3467,7 +3501,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3478,7 +3512,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3510,7 +3544,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3527,7 +3561,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3544,7 +3578,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3611,7 +3645,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3640,7 +3674,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3651,7 +3685,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -3662,7 +3696,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3673,7 +3707,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3684,7 +3718,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3695,7 +3729,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3706,7 +3740,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3735,7 +3769,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3746,7 +3780,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3789,7 +3823,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3806,7 +3840,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3825,7 +3859,7 @@
  "FNO": {
   "ay": "2026-07",
   "durum": "hata",
-  "sebep": "satır içi: 1/51 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sebep": "satır içi: 1/43 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
   "sonRaporAy": "2026-07",
   "tarih": "2026-09-08"
  },
@@ -3836,7 +3870,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3847,7 +3881,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3858,7 +3892,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3869,7 +3903,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3880,7 +3914,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3891,7 +3925,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3902,7 +3936,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3918,7 +3952,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3941,7 +3975,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3952,7 +3986,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -3993,7 +4027,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4004,7 +4038,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4015,7 +4049,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4026,7 +4060,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4037,7 +4071,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4048,7 +4082,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4065,7 +4099,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4076,7 +4110,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4087,7 +4121,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4110,7 +4144,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4133,7 +4167,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4144,7 +4178,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4190,7 +4224,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4231,7 +4265,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4242,7 +4276,7 @@
   "sebep": "bu ayın raporu yok; son rapor 2026-07 kullanıldı",
   "son": "2026-07",
   "sonRaporAy": "2026-07",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-08-03"
  },
@@ -4259,7 +4293,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4270,7 +4304,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4281,7 +4315,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4298,7 +4332,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4309,7 +4343,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4327,7 +4361,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4344,7 +4378,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4355,17 +4389,20 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GAS": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "satır içi: 1/1 satırda nominal × fiyat ≠ rayiç",
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 56,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GAU": {
   "ay": "2026-08",
@@ -4386,7 +4423,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4397,7 +4434,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4408,7 +4445,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4419,7 +4456,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4430,7 +4467,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4441,7 +4478,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4458,7 +4495,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4469,7 +4506,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4528,7 +4565,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4599,7 +4636,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4634,7 +4671,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4645,7 +4682,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4656,7 +4693,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4667,7 +4704,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4684,7 +4721,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4738,7 +4775,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4749,7 +4786,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4791,7 +4828,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4802,7 +4839,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4813,7 +4850,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4829,7 +4866,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4857,7 +4894,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4874,7 +4911,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4906,7 +4943,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4918,8 +4955,8 @@
  },
  "GMN": {
   "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "ek PDF yok",
+  "durum": "sinif_farki",
+  "sebep": "şart 3: borclanma satırlarda 57.72, TEFAS 34.01",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
@@ -4942,7 +4979,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4965,7 +5002,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4988,7 +5025,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -4999,7 +5036,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5010,7 +5047,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5021,7 +5058,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5032,7 +5069,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5043,7 +5080,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5054,7 +5091,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5065,7 +5102,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5082,7 +5119,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5098,7 +5135,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -5126,17 +5163,20 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 5,
+  "surum": 6,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
  "GPB": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "satır içi: 2/94 satırda nominal × fiyat ≠ rayiç",
+  "durum": "yayimlandi",
+  "sapma": 0.01,
+  "satir": 98,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 6,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GPC": {
   "durum": "yayimlandi",
@@ -9710,7 +9750,7 @@
  "OBI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OBN": {
@@ -9722,7 +9762,7 @@
  "OBP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OBR": {
@@ -9799,7 +9839,7 @@
  "OFI": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OFK": {
@@ -9816,19 +9856,19 @@
  "OFS": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OGD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OGF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OGV": {
@@ -9840,7 +9880,7 @@
  "OHB": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OHI": {
@@ -9852,7 +9892,7 @@
  "OHK": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OHT": {
@@ -9915,7 +9955,7 @@
  "OKD": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OKF": {
@@ -9927,13 +9967,13 @@
  "OKP": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OKT": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OLA": {
@@ -10154,13 +10194,13 @@
  "OTF": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OTJ": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OTK": {
@@ -10236,7 +10276,7 @@
  "OYL": {
   "durum": "duzen_taninmadi",
   "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
-  "sonRaporAy": "2026-07",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-08"
  },
  "OYS": {
