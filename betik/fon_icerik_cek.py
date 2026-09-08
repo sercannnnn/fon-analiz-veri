@@ -820,6 +820,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     kd = json_oku(kd_yol, {})
     ky_yol = os.path.join(veri, "icerik_kuyruk.json"); ky = json_oku(ky_yol, {})
     for f, d in list(ky.items()):            # eski kova adlarini ve 'ozel fon' varsayimini temizle
+        if d.get("durum") == "hata" and d.get("sebep") == "ayrıştırma hatası: ":   # butce bitince yanlis yazilan kayitlar (08.09.2026)
+            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
         if d.get("durum") == "kapsamDisi":
             ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
     rows = tefas_dagilim_yukle(veri); evren = bist_evren_yukle(veri)
@@ -873,10 +875,12 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             islenen += 1
             try:
                 durum, sebep, satir, bilgi = rapor_isle(f, x, kunye, kd, rows, evren, hedef)
+            except ButceBitti:
+                raise
             except Ertelendi as e:
                 durum, sebep, satir, bilgi = "ertelendi", f"ağ: {e}", [], {}
             except Exception as e:
-                durum, sebep, satir, bilgi = "hata", f"ayrıştırma hatası: {e}", [], {}
+                durum, sebep, satir, bilgi = "hata", f"ayrıştırma hatası: {type(e).__name__}: {e}", [], {}
             ray = bilgi.get("ray", rap_ay)
             if durum == "yayimlandi":
                 yazilan += satir
