@@ -1,0 +1,15 @@
+BHL	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: FABRİKALA RI A.Ş. PAPIL PAPİLO)
+GUF	2026-08	şart 3: maden satırlarda 0.00, TEFAS 19.59
+IDH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ TİCARET A.Ş. LKMNH LOKM)
+IEV	2026-08	şart 1: ağırlık toplamı 3.55
+IKL	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 122.41; satır düşmüş
+IOG	2026-08	şart 3: maden satırlarda 0.00, TEFAS 3.48
+KDO	2026-08	şart 2: satır toplamı 100.00, yaprak grup toplamı 103.29; satır düşmüş
+KPH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.Ş. LKMNH LOKMAN HEKİM ENGÜRÜ)
+LKF	2026-08	şart 3: diger satırlarda 65.52, TEFAS 0.00
+TAU	2026-08	kıymet satırı yok
+TI3	2026-08	kıymet satırı yok
+TIE	2026-08	kıymet satırı yok
+TIL	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. LKMNH LOKMAN HEKİ)
+TTA	2026-08	şart 3: maden satırlarda 0.00, TEFAS 85.34
+TTE	2026-08	kıymet satırı yok

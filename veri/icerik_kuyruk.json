@@ -1,0 +1,1072 @@
+{
+ "BAS": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "BFO": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "BHL": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: FABRİKALA RI A.Ş. PAPIL PAPİLO)",
+  "tarih": "2026-09-07"
+ },
+ "BIO": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 93,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "BOP": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "BSA": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "BSF": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "BTY": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "CKS": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 8,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "CSD": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "CTF": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "CTG": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "CTM": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "CTP": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "CTV": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "DMI": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "DPR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "EDU": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 16,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "EPO": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "FBV": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 14,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "GME": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "GMZ": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "GUF": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 19.59",
+  "tarih": "2026-09-07"
+ },
+ "IAC": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IAI": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IAM": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 10,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IAT": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 54,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IBB": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 20,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IBC": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IBK": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 88,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IBP": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ICG": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IDF": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 32,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IDH": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ TİCARET A.Ş. LKMNH LOKM)",
+  "tarih": "2026-09-07"
+ },
+ "IDO": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 28,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IDV": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IED": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 147,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IEV": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 1: ağırlık toplamı 3.55",
+  "tarih": "2026-09-07"
+ },
+ "IFD": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IGF": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IGM": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IGZ": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 22,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IHK": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 161,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IHT": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 29,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IIF": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "IJB": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 100,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IJC": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 98,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IJE": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IJP": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 101,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IJS": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IJT": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 39,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IJZ": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 98,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IK2": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "IKL": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 122.41; satır düşmüş",
+  "tarih": "2026-09-07"
+ },
+ "IKP": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 94,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IKV": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 45,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "ILC": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "ILE": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ILH": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "ILI": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "ILP": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ILZ": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 14,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IMH": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IML": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 32,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IMO": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IMS": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IMT": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IMY": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IMZ": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IOG": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 3.48",
+  "tarih": "2026-09-07"
+ },
+ "IOH": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "IOJ": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "IOL": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IOO": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 83,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IOP": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 63,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IPA": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPC": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPE": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPG": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 20,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IPJ": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 140,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IPK": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPO": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPU": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IPV": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 32,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IRE": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "ISR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ISS": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ITA": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ITD": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ITL": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ITP": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 174,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "ITR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "ITV": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "ITZ": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IUB": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IUF": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 22,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IUM": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IUN": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IUV": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 55,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IUZ": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 78,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "IYR": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "IYS": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IZE": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "IZL": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "IZY": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "JOT": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "KDO": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 103.29; satır düşmüş",
+  "tarih": "2026-09-07"
+ },
+ "KKH": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 18,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "KKP": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "KLM": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "KNN": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "KOZ": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "KPH": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.Ş. LKMNH LOKMAN HEKİM ENGÜRÜ)",
+  "tarih": "2026-09-07"
+ },
+ "KPI": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 56,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "KPK": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "KRR": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 45,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "LFD": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "LKF": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 3: diger satırlarda 65.52, TEFAS 0.00",
+  "tarih": "2026-09-07"
+ },
+ "MGB": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 6,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "MKL": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "NST": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 28,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "ONS": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 73,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "PMG": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "PSD": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "PSO": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "RAN": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "SAR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "SKS": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "SMP": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "SSD": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TAU": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "kıymet satırı yok",
+  "tarih": "2026-09-07"
+ },
+ "TBP": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TBV": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TDG": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 17,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TFU": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 9,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TGE": {
+  "durum": "yayimlandi",
+  "sapma": 0.82,
+  "satir": 23,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TI1": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 486,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TI2": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 201,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TI3": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "kıymet satırı yok",
+  "tarih": "2026-09-07"
+ },
+ "TI4": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 17,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TI6": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 26,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TI7": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 26,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TIE": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "kıymet satırı yok",
+  "tarih": "2026-09-07"
+ },
+ "TIL": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. LKMNH LOKMAN HEKİ)",
+  "tarih": "2026-09-07"
+ },
+ "TIV": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 188,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TKK": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TMC": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 31,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TMG": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 131,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TMZ": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 19,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TND": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 36,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TPE": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TPO": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TPR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "TSI": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 164,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "TTA": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 85.34",
+  "tarih": "2026-09-07"
+ },
+ "TTE": {
+  "ay": "2026-08",
+  "durum": "hata",
+  "sebep": "kıymet satırı yok",
+  "tarih": "2026-09-07"
+ },
+ "UNT": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 131,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "UST": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "YAR": {
+  "durum": "kapsamDisi",
+  "kalici": true,
+  "sebep": "özel fon; KAP'ta portföy raporu yayımlanmaz",
+  "tarih": "2026-09-07"
+ },
+ "YBR": {
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 30,
+  "son": "2026-08",
+  "tarih": "2026-09-07",
+  "tefasGun": "2026-09-01"
+ },
+ "YPN": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ },
+ "ZTS": {
+  "durum": "beklemede",
+  "sebep": "rapor henüz yayımlanmadı",
+  "tarih": "2026-09-07"
+ }
+}

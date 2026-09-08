@@ -1,0 +1,70 @@
+fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,durum,sebep
+BHL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,141,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: FABRİKALA RI A.Ş. PAPIL PAPİLO)
+BIO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,93,100.0,2026-09-01,0.0,yayimlandi,
+CKS,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,0.0,yayimlandi,
+EDU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,yayimlandi,
+FBV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,yayimlandi,
+GUF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,19.59,hata,"şart 3: maden satırlarda 0.00, TEFAS 19.59"
+IAM,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,yayimlandi,
+IAT,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,54,100.0,2026-09-01,0.0,yayimlandi,
+IBB,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,yayimlandi,
+IBK,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,88,100.0,2026-09-01,0.0,yayimlandi,
+IDF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,yayimlandi,
+IDH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,71,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ TİCARET A.Ş. LKMNH LOKM)
+IDO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,yayimlandi,
+IED,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,147,100.0,2026-09-01,0.0,yayimlandi,
+IEV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,1,3.55,2026-09-01,,hata,şart 1: ağırlık toplamı 3.55
+IGZ,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,yayimlandi,
+IHK,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,161,100.0,2026-09-01,0.0,yayimlandi,
+IHT,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,yayimlandi,
+IJB,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,100,100.0,2026-09-01,0.0,yayimlandi,
+IJC,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,98,100.0,2026-09-01,0.0,yayimlandi,
+IJP,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,101,100.0,2026-09-01,0.0,yayimlandi,
+IJT,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,0.0,yayimlandi,
+IJZ,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,98,100.0,2026-09-01,0.0,yayimlandi,
+IKL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,139,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 122.41; satır düşmüş"
+IKP,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,94,100.0,2026-09-01,0.0,yayimlandi,
+IKV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,yayimlandi,
+ILZ,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,yayimlandi,
+IML,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,yayimlandi,
+IOG,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,3.48,hata,"şart 3: maden satırlarda 0.00, TEFAS 3.48"
+IOO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,83,100.0,2026-09-01,0.0,yayimlandi,
+IOP,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,63,100.0,2026-09-01,0.0,yayimlandi,
+IPG,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,yayimlandi,
+IPJ,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,140,100.0,2026-09-01,0.0,yayimlandi,
+IPV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,yayimlandi,
+ITP,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,174,100.0,2026-09-01,0.0,yayimlandi,
+IUF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,yayimlandi,
+IUV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,yayimlandi,
+IUZ,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,78,100.0,2026-09-01,0.0,yayimlandi,
+KDO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 103.29; satır düşmüş"
+KKH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,yayimlandi,
+KPH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.Ş. LKMNH LOKMAN HEKİM ENGÜRÜ)
+KPI,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,0.0,yayimlandi,
+KRR,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,yayimlandi,
+LKF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,65.52,hata,"şart 3: diger satırlarda 65.52, TEFAS 0.00"
+MGB,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,yayimlandi,
+NST,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,yayimlandi,
+ONS,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,73,100.0,2026-09-01,0.0,yayimlandi,
+TAU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
+TDG,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,yayimlandi,
+TFU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,yayimlandi,
+TGE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-09-01,0.82,yayimlandi,
+TI1,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,486,100.0,2026-09-01,0.0,yayimlandi,
+TI2,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,201,100.0,2026-09-01,0.0,yayimlandi,
+TI3,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
+TI4,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,yayimlandi,
+TI6,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,0.0,yayimlandi,
+TI7,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,0.0,yayimlandi,
+TIE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
+TIL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. LKMNH LOKMAN HEKİ)
+TIV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,188,100.0,2026-09-01,0.0,yayimlandi,
+TMC,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,yayimlandi,
+TMG,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,131,100.0,2026-09-01,0.0,yayimlandi,
+TMZ,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,yayimlandi,
+TND,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,yayimlandi,
+TSI,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,164,100.0,2026-09-01,0.0,yayimlandi,
+TTA,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,85.34,hata,"şart 3: maden satırlarda 0.00, TEFAS 85.34"
+TTE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
+UNT,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,131,100.0,2026-09-01,0.0,yayimlandi,
+YBR,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,yayimlandi,
