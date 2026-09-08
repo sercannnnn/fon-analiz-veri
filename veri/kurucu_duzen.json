@@ -1,109 +1,1479 @@
 {
  "AK PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
-  "enBuyukSapma": 0.34,
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 136,
   "fonlar": {
-   "ONK": -0.34,
-   "PAL": -0.33
+   "ALE": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "ONK": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "PAL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 80
+ },
+ "AKTİF PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 36,
+  "fonlar": {
+   "DOL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "NKL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PPV": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 33
+ },
+ "ALBARAKA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 22,
+  "fonlar": {
+   "KSM": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PVK": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "RTI": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 21
+ },
+ "ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 31,
+  "fonlar": {
+   "HVT": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "KKL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "PRU": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 19
+ },
+ "ASTRA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 24,
+  "fonlar": {
+   "EKF": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "ORC": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-09",
+    "sebep": "düzen tanınmadı"
+   },
+   "PRV": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 13
+ },
+ "ATA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 24,
+  "fonlar": {
+   "AAL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "AYA": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "DGH": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 14
+ },
+ "ATLAS PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 29,
+  "fonlar": {
+   "DFI": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PPT": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "PSE": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 17
+ },
+ "AURA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 10,
+  "fonlar": {
+   "DLN": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-04",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   },
+   "PRH": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "TLE": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
   },
   "gecen": 2,
   "gecti": true,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
-  "sinanan": 2,
-  "tarih": "2026-09-07"
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 9
+ },
+ "AZİMUT PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "karisik",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 135,
+  "fonlar": {
+   "KNI": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "KVS": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PPZ": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 1,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 2,
+  "tarih": "2026-09-08",
+  "yayimlayan": 40
+ },
+ "BULLS PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "karisik",
+  "enBuyukSapma": null,
+  "fonSayisi": 27,
+  "fonlar": {
+   "BDO": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   },
+   "BLA": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   },
+   "YLZ": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 27
+ },
+ "BV PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 18,
+  "fonlar": {
+   "BHI": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "BVF": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "BVZ": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 15
  },
  "DENİZ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
-  "enBuyukSapma": 0.54,
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 142,
   "fonlar": {
-   "DAS": 0.22,
-   "DCB": -0.54,
-   "DLY": -0.34
+   "DAS": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "DCB": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "DLY": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
   },
   "gecen": 3,
   "gecti": true,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
   "sinanan": 3,
-  "tarih": "2026-09-07"
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 61
+ },
+ "EMAA BLUE PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 15,
+  "fonlar": {
+   "EBS": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "EPP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "EPT": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 15
+ },
+ "FİBA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 30,
+  "fonlar": {
+   "FBI": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   },
+   "FIL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "FSF": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   }
+  },
+  "gecen": 1,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 20
  },
  "GARANTİ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "garanti",
-  "enBuyukSapma": 15.0,
+  "enBuyukSapma": null,
+  "fonSayisi": 134,
   "fonlar": {
-   "EUZ": -13.65,
-   "GRO": -15.0,
-   "GTL": 9.21
+   "EUZ": {
+    "durum": "duzen_taninmadi",
+    "duzen": "garanti",
+    "ray": "2026-08",
+    "sebep": "düzen garanti için ayrıştırıcı yok"
+   },
+   "GRO": {
+    "durum": "duzen_taninmadi",
+    "duzen": "garanti",
+    "ray": "2026-08",
+    "sebep": "düzen garanti için ayrıştırıcı yok"
+   },
+   "GTL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "garanti",
+    "ray": "2026-08",
+    "sebep": "düzen garanti için ayrıştırıcı yok"
+   }
   },
   "gecen": 0,
   "gecti": false,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
   "sinanan": 3,
-  "tarih": "2026-09-07"
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 65
  },
- "KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.": {
+ "GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
-  "enBuyukSapma": 0.44,
+  "enBuyukSapma": null,
+  "fonSayisi": 16,
   "fonlar": {
-   "KLU": -0.11,
-   "KZL": -0.44
-  },
-  "gecen": 2,
-  "gecti": true,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
-  "sinanan": 2,
-  "tarih": "2026-09-07"
- },
- "QNB PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "standart",
-  "enBuyukSapma": 6.18,
-  "fonlar": {
-   "FKE": 1.31,
-   "FPZ": -6.18
+   "BSM": {
+    "durum": "hata",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 2: 1 satıra birden çok ISIN atandı (TV8 TV TRFTVSKK2617 YAYINCILIK)"
+   },
+   "ECB": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   },
+   "GZM": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   }
   },
   "gecen": 0,
   "gecti": false,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
-  "sinanan": 2,
-  "tarih": "2026-09-07"
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 1,
+  "tarih": "2026-09-08",
+  "yayimlayan": 12
  },
- "TEB PORTFÖY YÖNETİMİ A.Ş.": {
+ "HEDEF PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
-  "enBuyukSapma": 0.29,
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 73,
   "fonlar": {
-   "TKM": 0.29
-  },
-  "gecen": 1,
-  "gecti": true,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
-  "sinanan": 1,
-  "tarih": "2026-09-07"
- },
- "TERA PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "standart",
-  "enBuyukSapma": 1.0,
-  "fonlar": {
-   "THF": 0.2,
-   "TLY": 0.12,
-   "TP2": -1.0
+   "HKJ": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "HPH": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "KSA": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
   },
   "gecen": 3,
   "gecti": true,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
   "sinanan": 3,
-  "tarih": "2026-09-07"
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 30
  },
- "YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "yapikredi",
-  "enBuyukSapma": 3.56,
+ "HSBC PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 30,
   "fonlar": {
-   "YP4": -0.16,
-   "YTY": -3.56
+   "HBF": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "HMG": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "HSL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 20
+ },
+ "INVEO PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 34,
+  "fonlar": {
+   "GGK": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "INV": {
+    "durum": "hata",
+    "duzen": "standart",
+    "ray": "2026-04",
+    "sapma": null,
+    "sebep": "şart 2: 3 satırda ISIN okunamadı (Bono: G.Y.O A.Ş. TRFGKYH92616_Rep. I)"
+   },
+   "NES": {
+    "durum": "hata",
+    "duzen": "standart",
+    "ray": "2026-04",
+    "sapma": null,
+    "sebep": "şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: A.Ş ZPLIB ZİRAAT PORTFÖY YÖ"
+   }
   },
   "gecen": 1,
   "gecti": false,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 2,
+  "tarih": "2026-09-08",
+  "yayimlayan": 34
+ },
+ "KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 62,
+  "fonlar": {
+   "KLU": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "KSV": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "KZL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 32
+ },
+ "MARMARA CAPİTAL PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "karisik",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 3,
+  "fonlar": {
+   "MAC": {
+    "durum": "duzen_taninmadi",
+    "duzen": "garanti",
+    "ray": "2026-07",
+    "sebep": "düzen garanti için ayrıştırıcı yok"
+   },
+   "MAS": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "MKA": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   }
+  },
+  "gecen": 1,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 1,
+  "tarih": "2026-09-08",
+  "yayimlayan": 3
+ },
+ "MT PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 24,
+  "fonlar": {
+   "MHF": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "MPL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "MT2": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 11
+ },
+ "NUROL PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 33,
+  "fonlar": {
+   "NCS": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "NSD": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PPN": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 18
+ },
+ "ONE PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 21,
+  "fonlar": {
+   "FAL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "GO6": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "GO9": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 14
+ },
+ "OSMANLI PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 19,
+  "fonlar": {
+   "OPH": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "OSL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PLR": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 19
+ },
+ "OYAK PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 26,
+  "fonlar": {
+   "OKF": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "OTJ": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "OYL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 19
+ },
+ "PARDUS PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 65,
+  "fonlar": {
+   "AC2": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   },
+   "PKU": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   },
+   "PKV": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 1,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 2,
+  "tarih": "2026-09-08",
+  "yayimlayan": 65
+ },
+ "PERFORM PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 10,
+  "fonlar": {
+   "PJP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PPD": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "PPP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 5
+ },
+ "PHİLLİP PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 11,
+  "fonlar": {
+   "PJL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "PPS": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "PTN": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 8
+ },
+ "PUSULA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": null,
+  "fonSayisi": 19,
+  "fonlar": {
+   "PCS": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   },
+   "PKZ": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   },
+   "PRY": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 2,
+  "tarih": "2026-09-08",
+  "yayimlayan": 19
+ },
+ "QNB PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 73,
+  "fonlar": {
+   "FI5": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   },
+   "FKE": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "FPZ": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 2,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 34
+ },
+ "RE-PIE PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 26,
+  "fonlar": {
+   "RBP": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "RKV": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "RRP": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 20
+ },
+ "ROTA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 57,
+  "fonlar": {
+   "CFO": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "RPP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "RRA": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 29
+ },
+ "STATECH PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 2,
+  "fonlar": {
+   "LPH": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "SFA": {
+    "durum": "hata",
+    "sebep": "ek PDF yok"
+   }
+  },
+  "gecen": 1,
+  "gecti": false,
   "sinanan": 2,
-  "tarih": "2026-09-07"
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 1,
+  "tarih": "2026-09-08",
+  "yayimlayan": 2
+ },
+ "STRATEJİ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 19,
+  "fonlar": {
+   "AN1": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "ST1": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "SVB": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 6
+ },
+ "TEB PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.56,
+  "fonSayisi": 68,
+  "fonlar": {
+   "PTE": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   },
+   "TKM": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "TUA": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.56,
+    "sebep": ""
+   }
+  },
+  "gecen": 2,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 43
+ },
+ "TERA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.14,
+  "fonSayisi": 12,
+  "fonlar": {
+   "THF": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.14,
+    "sebep": ""
+   },
+   "TLY": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "TP2": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 11
+ },
+ "VAKIF KATILIM PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 5,
+  "fonlar": {
+   "VKK": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "VKV": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "VPA": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 5
+ },
+ "VEGA PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": null,
+  "fonSayisi": 4,
+  "fonlar": {
+   "VMV": {
+    "durum": "hata",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": null,
+    "sebep": "şart 1: ağırlık toplamı 92.61"
+   },
+   "VNK": {
+    "durum": "duzen_taninmadi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": null,
+    "sebep": "kıymet satırı yok"
+   },
+   "VPP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "standart",
+    "ray": "2026-01",
+    "sapma": null,
+    "sebep": "kıymet satırı yok"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 4
+ },
+ "YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "yapikredi",
+  "enBuyukSapma": null,
+  "fonSayisi": 116,
+  "fonlar": {
+   "YLB": {
+    "durum": "duzen_taninmadi",
+    "duzen": "yapikredi",
+    "ray": "2026-08",
+    "sebep": "düzen yapikredi için ayrıştırıcı yok"
+   },
+   "YP4": {
+    "durum": "duzen_taninmadi",
+    "duzen": "yapikredi",
+    "ray": "2026-08",
+    "sebep": "düzen yapikredi için ayrıştırıcı yok"
+   },
+   "YTY": {
+    "durum": "duzen_taninmadi",
+    "duzen": "yapikredi",
+    "ray": "2026-08",
+    "sebep": "düzen yapikredi için ayrıştırıcı yok"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 77
+ },
+ "ZİRAAT PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 90,
+  "fonlar": {
+   "TZL": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "ZBJ": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-07",
+    "sebep": "düzen tanınmadı"
+   },
+   "ZP8": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 45
  },
  "_varyantlar": {
   "garanti": "Garanti Portfoy; B'yi gecmedi",
@@ -111,18 +1481,112 @@
   "standart-genis": "Ayni sablonun genis surumu: sayfa genisligi 1.500-1.700, Amerikan sayi bicimi (1,234.56), ay basligi 'A-2026' gibi kisaltilmis, ara toplam satirlarinda yuzde yok; Is Portfoy endeks ve yabanci fonlari (TAU, TI3, TIE, TTE, IEV, IJC). Ayristirici sutunlari baslik satirindan kalibre eder, ayri ayristirici gerekmez (08.09.2026)",
   "yapikredi": "Yapi Kredi Portfoy; B'yi gecmedi"
  },
+ "ÜNLÜ PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 16,
+  "fonlar": {
+   "UP2": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "UPD": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "UPP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 10
+ },
+ "İSTANBUL PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "bilinmiyor",
+  "enBuyukSapma": null,
+  "fonSayisi": 53,
+  "fonlar": {
+   "BIP": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "IJV": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   },
+   "ILU": {
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
+    "ray": "2026-08",
+    "sebep": "düzen tanınmadı"
+   }
+  },
+  "gecen": 0,
+  "gecti": false,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "taninmadi",
+  "taninmadi": 3,
+  "tarih": "2026-09-08",
+  "yayimlayan": 30
+ },
  "İŞ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
-  "enBuyukSapma": 0.61,
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 163,
   "fonlar": {
-   "ONS": -0.45,
-   "TI1": 0.61
+   "IDO": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "ONS": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "TI1": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
   },
-  "gecen": 2,
+  "gecen": 3,
   "gecti": true,
-  "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
-  "sinanan": 2,
-  "tarih": "2026-09-07",
-  "varyant": "standart ve standart-genis"
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 78
  }
 }
