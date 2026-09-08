@@ -80,7 +80,7 @@
   "yayimlayan": 80
  },
  "AKTİF PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "infina",
+  "duzen": "bilinmiyor",
   "enBuyukSapma": null,
   "fonSayisi": 36,
   "fonlar": {
@@ -112,7 +112,8 @@
   "sonuc": "taninmadi",
   "taninmadi": 3,
   "tarih": "2026-09-08",
-  "yayimlayan": 33
+  "yayimlayan": 33,
+  "yenidenSina": true
  },
  "ALBARAKA PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "goruntu",
@@ -661,7 +662,7 @@
   "yayimlayan": 65
  },
  "GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "standart",
+  "duzen": "bilinmiyor",
   "enBuyukSapma": null,
   "fonSayisi": 16,
   "fonlar": {
@@ -696,7 +697,8 @@
   "sonuc": "taninmadi",
   "taninmadi": 1,
   "tarih": "2026-09-08",
-  "yayimlayan": 12
+  "yayimlayan": 12,
+  "yenidenSina": true
  },
  "GOLDEN GLOBAL PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "goruntu",
@@ -943,7 +945,7 @@
   "yayimlayan": 32
  },
  "LOGOS PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "logos",
+  "duzen": "bilinmiyor",
   "enBuyukSapma": null,
   "fonSayisi": 1,
   "fonlar": {
@@ -963,7 +965,8 @@
   "sonuc": "taninmadi",
   "taninmadi": 1,
   "tarih": "2026-09-08",
-  "yayimlayan": 1
+  "yayimlayan": 1,
+  "yenidenSina": true
  },
  "MARMARA CAPİTAL PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "karisik",
