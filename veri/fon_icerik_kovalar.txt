@@ -198,7 +198,7 @@ DKS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DLG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DLN	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
-DMR	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+DMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DMV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DNA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -261,6 +261,7 @@ EBS	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EC2	hata	şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )
 EDD	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 EDN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
+EDP	hata	sapma sebebi atanmamış: TEFAS sapması 0.27 puan, 0,05 üstü
 EES	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EGA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EGP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -286,6 +287,7 @@ ESN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ESP	hata	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 ETN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EZM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FBI	sinif_farki	şart 3: mevduat_katilim satırlarda 26.82, TEFAS 31.24
 FBN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FBV	duzen_taninmadi	düzen tanınmadı
 FBZ	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR)
@@ -306,9 +308,11 @@ FHP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FHZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FI3	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 FI5	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
+FJB	sinif_farki	şart 3: hisse_toplam satırlarda 72.60, TEFAS 71.55
 FJC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FJM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FJN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FJZ	hata	sapma sebebi atanmamış: TEFAS sapması 0.08 puan, 0,05 üstü
 FKH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FKV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FLS	sinif_farki	şart 3: maden_byf satırlarda 6.92, TEFAS 0.00
@@ -318,6 +322,7 @@ FMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FNO	hata	satır içi: 1/43 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+FPG	hata	sapma sebebi atanmamış: TEFAS sapması 0.86 puan, 0,05 üstü
 FPR	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 FQQ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FR1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -326,8 +331,12 @@ FS1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FS2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FS3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FS4	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FSF	sinif_farki	şart 3: para_piyasasi satırlarda 38.97, TEFAS 22.70
+FSG	sinif_farki	şart 3: para_piyasasi satırlarda 3.50, TEFAS 1.70
+FSH	sinif_farki	şart 3: para_piyasasi satırlarda 0.63, TEFAS 2.17
 FSK	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 FSM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FSR	sinif_farki	şart 3: borclanma satırlarda 82.29, TEFAS 85.17
 FSV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -348,6 +357,7 @@ FYM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FYO	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 FYT	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-07 kullanıldı
 FYZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FZP	hata	sapma sebebi atanmamış: TEFAS sapması 0.30 puan, 0,05 üstü
 GAC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GAG	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 GAJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -410,17 +420,14 @@ GOK	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GOP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 GP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GP3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPF	hata	satır içi: 2/242 satırda nominal × fiyat ≠ rayiç
+GPF	sinif_farki	şart 3: ybyf satırlarda 13.06, TEFAS 10.10
 GPH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPI	hata	satır içi: 2/104 satırda nominal × fiyat ≠ rayiç
 GPJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GPL	hata	satır içi: 15/15 satırda nominal × fiyat ≠ rayiç
 GPM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GPN	sinif_farki	şart 3: borclanma satırlarda 6.30, TEFAS 70.14
 GPT	hata	şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215)
 GPV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GRL	hata	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-GRO	hata	satır içi: 15/15 satırda nominal × fiyat ≠ rayiç
 GSE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -429,15 +436,14 @@ GSR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GTZ	hata	satır içi: 1/95 satırda nominal × fiyat ≠ rayiç
+GTZ	hata	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
 GUA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GUC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GUK	sinif_farki	şart 3: maden_byf satırlarda 50.69, TEFAS 98.68
-GUV	hata	şart 2: 3 satırda ISIN okunamadı (B.2.KAMU SEKTÖRÜ BORÇLANMA ARAÇLARI TAHVIL: T.C. HAZİNE MÜSTEŞARLIĞI)
 GVB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GVI	hata	satır içi: 9/36 satırda nominal × fiyat ≠ rayiç
+GVI	sinif_farki	şart 3: maden_byf satırlarda 0.00, TEFAS 1.95
 GVL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GYC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -446,18 +452,16 @@ GYN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GYR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GZJ	hata	satır içi: 11/35 satırda nominal × fiyat ≠ rayiç
-GZM	sinif_farki	şart 3: teminat satırlarda 49.99, TEFAS 51.24
+GZM	sinif_farki	şart 3: hisse_toplam satırlarda 50.01, TEFAS 48.76
 GZO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GZP	hata	satır içi: 18/57 satırda nominal × fiyat ≠ rayiç
 GZU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZY	sinif_farki	şart 3: borclanma satırlarda 10.31, TEFAS 0.00
 HAA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HAE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HAG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HAR	hata	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-HB1	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
-HB2	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+HB1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+HB2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HBI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HBM	duzen_taninmadi	kıymet satırı yok
 HBV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -469,7 +473,6 @@ HDJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HDL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HDS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HDV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HEH	hata	satır içi: 9/168 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HFR	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 HFV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HFY	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
@@ -483,11 +486,11 @@ HII	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HIL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HIS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HJA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HKG	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+HKG	hata	şart 2: 25 satırda ISIN okunamadı (HİSSE SENETLERİ 2. Diğer Ortaklıklar: AKBANK TAS)
 HKP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HKV	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+HKV	hata	sapma sebebi atanmamış: TEFAS sapması 0.23 puan, 0,05 üstü
 HLA	hata	ek PDF yok
-HLL	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+HLL	hata	şart 1: ağırlık toplamı 96.87
 HLR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HME	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HMK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -496,20 +499,21 @@ HMT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HMV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HNJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HNS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HOA	hata	şart 1: ağırlık toplamı 97.70
+HOA	hata	satır içi: 1/48 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HOI	duzen_taninmadi	kurucu düzeni (istanbul) ayrıştırılamıyor
 HOP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HOT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HPC	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
+HOY	hata	satır içi: 1/39 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+HPC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HPF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HPI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HPJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HPL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HPP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-HPV	duzen_taninmadi	kurucu düzeni (ziraat) ayrıştırılamıyor
 HPZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HRS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HRT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+HSA	hata	sapma sebebi atanmamış: TEFAS sapması 1.00 puan, 0,05 üstü
 HSP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HTD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 HTE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)

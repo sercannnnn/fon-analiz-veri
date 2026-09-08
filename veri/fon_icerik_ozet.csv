@@ -1,323 +1,419 @@
-fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
-AAL,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,51,100.0,2026-09-01,0.02,0,0,0,0,0,50,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AAS,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,6,100.0,2026-09-01,0.0,0,0,4,0,4,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AAV,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,29,100.0,2026-09-01,0.0,0,0,27,0,0,28,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AB5,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ABU,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,7,0,1,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC1,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,0.0,4,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC2,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC3,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC4,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,8,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC5,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,9,0,9,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC6,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,0.0,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC7,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AC8,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AD4,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ADE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,19,0,18,3,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ADP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,20,0,17,0,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AED,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.0,0,0,20,0,2,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AES,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,3,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AEV,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-09-01,0.0,23,0,20,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AFA,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,69,100.0,2026-09-01,0.0,2,0,0,61,0,41,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AFO,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,6,0,0,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AFS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,1,0,0,29,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AFT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,3,0,0,28,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AFV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,84,100.0,2026-09-01,0.0,1,0,0,73,0,56,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AGC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,0,0,0,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AHI,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.0,0,0,24,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AHN,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,9,100.0,2026-09-01,0.01,0,0,1,0,1,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AHU,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,60,100.0,2026-09-01,0.01,0,0,0,0,0,60,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AHV,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,15,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AIS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,98,100.0,2026-09-01,0.0,18,0,0,0,0,77,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AJE,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-08-03,0.0,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AJK,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AJL,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-08-03,0.0,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AJN,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-08-03,0.0,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AK2,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,12,0,0,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AK3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,88,100.0,2026-09-01,0.0,82,0,75,0,0,51,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AKE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,1,0,0,0,0,17,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AKU,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,34,0,33,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ALC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,46,0,42,0,0,35,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ALE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,523,100.0,2026-09-01,0.0,27,0,0,0,0,488,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ANL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,16,0,0,0,0,30,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ANZ,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,16,100.0,2026-09-01,0.0,0,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AOJ,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.23,14,0,12,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AOY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,0,0,0,22,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AP5,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,17,100.0,2026-09-01,0.0,0,0,16,0,0,17,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AP6,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AP7,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,190,100.0,2026-09-01,0.0,135,0,135,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-APJ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,7,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-APT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,18,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ARL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,44,99.99,2026-09-01,0.01,29,0,0,4,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ARM,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,99.96,2026-09-01,0.04,25,0,0,4,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AS1,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.09,1,0,0,1,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ASJ,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-09-01,0.0,40,0,37,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ATJ,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,38,100.0,2026-09-01,0.0,32,0,35,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AU3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AUV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,0,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AVT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,39,0,0,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AYA,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,32,100.0,2026-09-01,0.01,0,0,27,0,0,31,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AYR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,113,100.0,2026-09-01,0.0,110,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AZF,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,117,100.0,2026-09-01,0.0,112,0,0,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BAI,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,6,0,4,0,2,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BBF,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,10,0,1,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BBP,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,12,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BCK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,14,0,14,29,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BDA,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,5,100.0,2026-09-01,0.0,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BDC,2026-08,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,23,93.25,2026-09-01,,14,0,,,,,hata,satır içi: 1/14 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BDI,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BDS,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,40,0,39,0,2,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BDY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,77,100.0,2026-09-01,0.0,72,0,72,0,0,48,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BFE,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,9,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BFT,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,11,0,9,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BGP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,401,100.0,2026-09-01,0.0,20,0,0,0,0,369,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BGR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,53,0,53,0,0,27,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BHE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,10,0,9,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BHF,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,37,0,36,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BHH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BHI,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,151,100.0,2026-09-01,0.0,102,0,93,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BHL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BID,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-08-03,0.0,28,0,28,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BIG,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,32,100.0,2026-09-01,0.0,0,0,29,0,0,31,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BIH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,159,100.0,2026-09-01,0.0,107,0,106,0,2,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BIO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,93,100.0,2026-09-01,0.0,33,0,85,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BIS,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,18,99.01,2026-09-01,,9,0,,,,,hata,satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BIY,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,280,100.0,2026-09-01,0.0,276,0,278,0,1,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BJD,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BKY,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,5,100.0,2026-09-01,0.0,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BLD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BNC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,6,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BOL,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,19,0,0,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BRC,2026-08,RE-PIE PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.0,3,0,3,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BRF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BRG,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,18,0,0,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BRR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,0.0,34,0,0,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BRT,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,11,0,11,0,1,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BS1,2026-09,AHLATCI PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,,,7,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BSD,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,32,94.24,2026-09-01,,14,0,,,,,hata,satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BSE,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BSH,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,6,100.0,2026-09-01,0.0,0,0,5,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BSM,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,,0,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BST,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,10,0,10,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BTE,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,16,0,12,26,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BTJ,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,8,100.0,2026-09-01,0.01,0,0,6,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BTK,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,13,0,10,21,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BTZ,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,21,100.0,2026-09-01,0.0,0,0,19,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BUY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,45,0,44,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BV1,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,0.0,37,0,37,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BVD,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,57,97.82,2026-09-01,,27,0,,,,,hata,satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BVF,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,0.0,30,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BVM,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.2,10,0,8,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BVV,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,54,100.0,2026-09-01,0.0,15,0,12,33,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-BVZ,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,160,100.0,2026-09-01,0.0,96,0,80,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CFO,2026-08,ROTA PORTFÖY YÖNETİMİ A.Ş.,fonbul,14,100.0,2026-09-01,0.01,0,0,0,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CIN,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.66,6,0,5,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CJD,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-08-03,0.0,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CJH,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-08-03,0.0,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CKL,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,12,100.0,2026-09-01,15.89,0,0,,,,,sinif_farki,"şart 3: ybyf satırlarda 0.00, TEFAS 15.89",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CKS,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-COT,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-08-03,0.0,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CPT,2026-08,ROTA PORTFÖY YÖNETİMİ A.Ş.,fonbul,0,,2026-09-01,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CPU,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,,18,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (US7475251036 M INC SNPS US8716),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CSH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CVA,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-08-03,0.0,21,0,0,0,0,29,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CVE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,9,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CVK,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,33,0,9,0,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-CYD,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-08-03,0.0,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DAH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DAP,2026-08,DESTEK PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,6,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DAS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,66,100.0,2026-09-01,0.0,0,0,0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DBA,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DBB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DBH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DBK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DBP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,16,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DBZ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DCB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,106,100.0,2026-09-01,0.0,8,0,0,0,0,67,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DDA,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,18,0,18,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DDF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,15,0,15,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DEF,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.74,15,0,10,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DEH,2026-08,DESTEK PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-09-01,0.0,40,0,41,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DFC,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,18,0,18,23,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DFD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DFI,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,15,100.0,2026-09-01,0.01,0,0,4,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DGH,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,22,100.0,2026-09-01,0.0,0,0,0,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DHI,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DHJ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,33,0,33,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DHM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DHT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,5,0,5,24,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DHV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DID,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,7,0,7,10,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DIP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,0.0,0,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DKC,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,3,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DKH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,37,0,36,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DKL,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DKR,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-09-01,0.0,8,0,8,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DL2,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,22,0,0,0,0,30,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DLD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,35,0,35,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DLN,2026-04,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DLY,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,230,100.0,2026-09-01,0.0,58,0,0,0,0,173,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DLZ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,2,0,2,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DMG,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,3,0,0,1,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DMI,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,53,0,52,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DNH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,16,0,16,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DNK,2026-08,TACİRLER PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.38,20,0,20,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DNM,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,28,87.97,2026-09-01,,0,0,,,,,hata,satır içi: 1/17 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DNP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,24,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DOH,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,57,100.0,2026-09-01,0.0,54,0,51,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DOL,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,4,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DOV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DPB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,0.0,3,0,2,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DPI,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,29,0,29,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DPK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,57,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DPT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DRA,2026-08,NEO PORTFÖY YÖNETİMİ A.Ş.,standart,14,95.98,2026-09-01,,7,0,,,,,hata,satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DRH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DRT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,11,0,11,14,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DSD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DSP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DTL,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,43,0,43,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DTM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,17,0,17,17,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DTZ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,47,100.0,2026-09-01,0.0,22,0,19,17,0,28,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DUD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DUH,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,0.0,3,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DUV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,10,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DVS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,18,0,0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DVT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,16,0,16,25,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DXP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,30,0,30,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DYN,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,14,0,14,26,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DZE,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DZM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,3,0,2,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EBD,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,33,99.9,2026-09-01,,0,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EC2,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,,0,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. ),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ECA,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,0,0,23,4,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ECB,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,0,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ECV,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,0,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EDD,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-08-03,,2,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EDP,2026-08,NEO PORTFÖY YÖNETİMİ A.Ş.,standart,2,100.0,2026-09-01,0.27,0,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EDT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,7,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EDU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,4,0,3,2,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EIB,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,33,100.0,2026-09-01,4.68,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 11.76, TEFAS 16.44",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EID,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,25,100.0,2026-09-01,2.53,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 0.00, TEFAS 2.53",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EIL,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,36,100.0,2026-09-01,0.01,0,0,0,0,0,36,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EKF,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,42,100.0,2026-09-01,0.0,0,0,0,0,0,41,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EKL,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,7,0,0,0,0,16,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ELZ,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,30,100.0,2026-09-01,3.49,0,0,,,,,sinif_farki,"şart 3: maden_byf satırlarda 3.49, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EML,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,17,0,17,16,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ENA,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-08-03,,11,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ENJ,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,30,0,27,0,1,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ENO,2026-03,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ENR,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,62,100.0,2026-08-03,0.0,31,0,0,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ENS,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-08-03,,11,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EP1,2026-08,EMLAK KATILIM PORTFÖY YÖNETİMİ A.Ş.,standart,100,100.0,2026-09-01,,0,0,,,,,hata,satır içi: 13/50 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ESG,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.02,4,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ESP,2026-08,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,6,28.03,2026-09-01,,1,0,,,,,hata,satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EUN,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,55,100.0,2026-09-01,0.01,0,0,0,0,0,55,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EUZ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,84,100.0,2026-09-01,0.0,0,0,0,0,0,84,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EVM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-09-01,0.0,8,0,8,12,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-EYT,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,13,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FAK,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-09-01,0.0,3,0,3,0,3,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FAL,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,7,100.0,2026-09-01,0.01,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FBC,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.01,0,0,16,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FBI,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,53,100.0,2026-09-01,0.0,1,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FBV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FBZ,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,,10,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FCK,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.01,0,0,15,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FD1,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,16,100.0,2026-09-01,0.0,0,0,13,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FDG,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,8,0,4,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FDV,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,61,100.0,2026-09-01,6.42,22,0,,,,,sinif_farki,"şart 3: hisse_toplam satırlarda 73.40, TEFAS 66.98",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FFH,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-08-03,,36,0,,,,,hata,şart 2: 2 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı ISDW iShares MSC),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FFP,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-08-03,0.03,17,0,8,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FI3,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-08-03,0.0,25,0,0,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FI5,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,291,100.0,2026-08-03,0.0,103,0,0,0,0,159,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FIB,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,5,0,3,0,3,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FID,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,53,0,34,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FIL,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,111,100.0,2026-09-01,0.0,56,0,0,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FIT,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,18,0,0,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FJB,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,8,0,0,21,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FJZ,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,1,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FKE,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FLS,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,11,100.0,2026-09-01,6.92,0,0,,,,,sinif_farki,"şart 3: maden_byf satırlarda 6.92, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FLY,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,50,100.0,2026-09-01,,23,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (DE000TKMS001 CO. KGAA AVAV US0),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FMG,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,1,0,1,1,1,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FMV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,3,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FNO,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,65,87.17,2026-08-03,,44,0,,,,,hata,satır içi: 1/43 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FNT,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,18,0,17,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FP4,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,5,100.0,2026-09-01,0.0,0,0,2,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FPE,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FPG,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,0.0,1,0,1,2,1,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FPH,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,0.0,46,0,43,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FPI,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,6,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FPK,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,29,0,0,0,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FPZ,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,123,100.0,2026-09-01,0.0,0,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FRA,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.58,19,0,19,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FRC,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,9,0,9,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FS5,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,13,100.0,2026-09-01,0.01,0,0,10,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FS6,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,6,100.0,2026-09-01,0.0,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSF,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,85,100.0,2026-09-01,0.0,28,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSG,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,44,0,41,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSH,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.02,9,0,0,8,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSK,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-08-03,0.0,38,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSP,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-09-01,0.0,0,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSR,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FSU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,0.0,30,0,17,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FTL,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,20,100.0,2026-09-01,0.0,0,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FUA,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,25,0,24,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FUB,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-08-03,0.0,1,0,0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FYD,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-08-03,0.0,28,0,28,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FYI,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,112,100.0,2026-09-01,44.16,52,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda -160.57, TEFAS -116.41",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FYO,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,95,100.0,2026-08-03,0.0,89,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FYT,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,78,100.0,2026-08-03,0.0,75,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FZJ,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.08,24,0,0,1,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-FZP,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,71,100.0,2026-09-01,0.0,66,0,33,0,1,17,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GA1,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,44,100.0,2026-09-01,0.0,38,0,0,0,0,44,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAE,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,629,100.0,2026-09-01,0.0,627,0,0,0,0,629,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAF,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,26,0,25,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAG,2026-09,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,69,100.0,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,100,100.0,2026-09-01,0.0,87,0,0,3,0,100,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,665,100.0,2026-09-01,0.01,503,0,0,0,0,665,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAN,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,5,0,4,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GAS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,56,100.0,2026-09-01,0.0,0,0,0,0,0,56,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBC,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,2,0,0,41,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBG,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,0,0,0,30,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,128,100.0,2026-09-01,0.01,125,0,0,0,0,128,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBJ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,97,100.0,2026-09-01,0.0,95,0,0,0,0,97,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBL,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,119,100.0,2026-09-01,0.0,116,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBN,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,16,100.0,2026-09-01,0.01,0,0,0,0,0,16,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBV,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,290,100.0,2026-09-01,0.01,32,0,0,250,0,290,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GBZ,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,6,0,2,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GEI,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,2,100.0,2026-09-01,0.0,2,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GGK,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,10,0,2,0,1,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GHS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,258,100.0,2026-09-01,0.0,255,0,0,0,0,258,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GID,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,71,100.0,2026-09-01,0.0,66,0,0,0,0,71,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GIE,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,546,99.85,2026-09-01,0.16,529,0,0,0,0,546,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GIH,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,32,0,30,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GJB,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,12,0,1,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GJH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,189,100.0,2026-09-01,28.84,0,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 22.46, TEFAS 51.30",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GKF,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,21,100.0,2026-09-01,0.0,0,0,19,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GKG,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,252,100.0,2026-09-01,0.0,251,0,0,0,0,252,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GKH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,55,100.0,2026-09-01,6.07,37,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 6.07, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GKV,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,300,100.0,2026-09-01,0.0,297,0,0,0,0,300,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GL1,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,27,0,24,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GLC,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,10,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GLG,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.14,14,0,12,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GLS,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,26,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GMA,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,77,100.0,2026-09-01,0.0,49,0,27,2,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GMC,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,16,99.44,2026-09-01,,3,0,,,,,hata,satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GMD,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,15,78.64,2026-09-01,,0,0,,,,,hata,şart 1: ağırlık toplamı 78.64,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GMI,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,3,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GMN,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,23.71,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 57.72, TEFAS 34.01",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GMR,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,33,0,32,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GNH,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,192,100.0,2026-09-01,0.0,0,0,190,0,4,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GNP,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,34,100.0,2026-09-01,0.01,21,0,0,0,0,34,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GNS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,248,100.0,2026-09-01,0.0,247,0,0,0,0,248,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GNZ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,2,0,0,3,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GO1,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,19,100.0,2026-09-01,0.01,0,0,2,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GO3,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,21,100.0,2026-09-01,0.08,0,0,2,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GO4,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,23,100.0,2026-09-01,0.07,0,0,2,0,0,23,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GO6,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,152,100.0,2026-09-01,0.01,0,0,0,0,0,147,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GO9,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,22,100.0,2026-09-01,0.0,0,0,18,0,0,22,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GOH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,149,100.0,2026-09-01,0.01,144,0,0,0,0,149,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GOL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,57,100.0,2026-09-01,0.0,1,0,0,0,0,57,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GPA,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,35,100.0,2026-09-01,0.0,0,0,0,0,0,35,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GPB,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,98,100.0,2026-09-01,0.01,94,0,0,0,0,98,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,sapmaSebebi,raporIciTutarsizlik,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
+AAL,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,51,100.0,2026-09-01,0.02,,0.03,0,0,0,0,0,50,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AAS,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,6,100.0,2026-09-01,0.0,,0.0,0,0,4,0,4,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AAV,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,29,100.0,2026-09-01,0.0,,0.0,0,0,27,0,0,28,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AB5,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ABU,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,,,7,0,1,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC1,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,0.0,,,4,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC2,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC3,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC4,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,8,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC5,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,,,9,0,9,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC6,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,0.0,,,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC7,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AC8,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AD4,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ADE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,,,19,0,18,3,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ADP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,,,20,0,17,0,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AED,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.0,,1818749.99,0,0,20,0,2,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AES,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,,,3,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AEV,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-09-01,0.0,,,23,0,20,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AFA,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,69,100.0,2026-09-01,0.0,,,2,0,0,61,0,41,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AFO,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,,,6,0,0,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AFS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,,,1,0,0,29,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AFT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,3,0,0,28,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AFV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,84,100.0,2026-09-01,0.0,,,1,0,0,73,0,56,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AGC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,,,0,0,0,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AHI,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.0,,3909850.0,0,0,24,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AHN,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,9,100.0,2026-09-01,0.01,,0.01,0,0,1,0,1,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AHU,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,60,100.0,2026-09-01,0.01,,-0.02,0,0,0,0,0,60,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AHV,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,,,15,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AIS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,98,100.0,2026-09-01,0.0,,,18,0,0,0,0,77,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AJE,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-08-03,0.0,,,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AJK,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,,,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AJL,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-08-03,0.0,,,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AJN,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-08-03,0.0,,,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AK2,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,,,12,0,0,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AK3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,88,100.0,2026-09-01,0.0,,,82,0,75,0,0,51,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AKE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,,,1,0,0,0,0,17,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AKU,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,,,34,0,33,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ALC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,,,46,0,42,0,0,35,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ALE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,523,100.0,2026-09-01,0.0,,,27,0,0,0,0,488,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ANL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,,,16,0,0,0,0,30,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ANZ,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,16,100.0,2026-09-01,0.0,,0.0,0,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AOJ,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.23,degerleme_tarihi,,14,0,12,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AOY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,,,0,0,0,22,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AP5,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,17,100.0,2026-09-01,0.0,,-0.0,0,0,16,0,0,17,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AP6,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AP7,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,190,100.0,2026-09-01,0.0,,,135,0,135,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+APJ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,,,7,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+APT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,,,18,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ARL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,44,99.99,2026-09-01,0.01,,,29,0,0,4,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ARM,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,99.96,2026-09-01,0.04,,,25,0,0,4,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AS1,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.09,degerleme_tarihi,,1,0,0,1,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ASJ,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-09-01,0.0,,,40,0,37,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ATJ,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,38,100.0,2026-09-01,0.0,,,32,0,35,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AU3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AUV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,,,0,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AVT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,,,39,0,0,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AYA,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,32,100.0,2026-09-01,0.01,,-0.0,0,0,27,0,0,31,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AYR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,113,100.0,2026-09-01,0.0,,,110,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AZF,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,117,100.0,2026-09-01,0.0,,,112,0,0,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BAI,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,,,6,0,4,0,2,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BBF,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,,,10,0,1,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BBP,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,,,12,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BCK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,,,14,0,14,29,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BDA,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,5,100.0,2026-09-01,0.0,,,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BDC,2026-08,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,23,93.25,2026-09-01,,,,14,0,,,,,hata,satır içi: 1/14 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BDI,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BDS,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,,,40,0,39,0,2,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BDY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,77,100.0,2026-09-01,0.0,,,72,0,72,0,0,48,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BFE,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,,,9,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BFT,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,,,11,0,9,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BGP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,401,100.0,2026-09-01,0.0,,,20,0,0,0,0,369,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BGR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,,,53,0,53,0,0,27,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BHE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,,,10,0,9,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BHF,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,,,37,0,36,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BHH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BHI,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,151,100.0,2026-09-01,0.0,,,102,0,93,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BHL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BID,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-08-03,0.0,,,28,0,28,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BIG,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,32,100.0,2026-09-01,0.0,,,0,0,29,0,0,31,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BIH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,159,100.0,2026-09-01,0.0,,,107,0,106,0,2,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BIO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,93,100.0,2026-09-01,0.0,,,33,0,85,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BIS,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,18,99.01,2026-09-01,,,,9,0,,,,,hata,satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BIY,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,280,100.0,2026-09-01,0.0,,,276,0,278,0,1,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BJD,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,,,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BKY,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,5,100.0,2026-09-01,0.0,,,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BLD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BNC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,,,6,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BOL,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,,,19,0,0,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BRC,2026-08,RE-PIE PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.0,,,3,0,3,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BRF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,,,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BRG,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,,,18,0,0,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BRR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,0.0,,,34,0,0,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BRT,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,,,11,0,11,0,1,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BS1,2026-09,AHLATCI PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,,,,,7,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BSD,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,32,94.24,2026-09-01,,,,14,0,,,,,hata,satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BSE,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BSH,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,6,100.0,2026-09-01,0.0,,0.0,0,0,5,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BSM,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,,,,0,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BST,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,,,10,0,10,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BTE,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,,,16,0,12,26,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BTJ,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,8,100.0,2026-09-01,0.01,,-9923650.0,0,0,6,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BTK,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,13,0,10,21,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BTZ,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,21,100.0,2026-09-01,0.0,,0.0,0,0,19,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BUY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,,,45,0,44,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BV1,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,0.0,,,37,0,37,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BVD,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,57,97.82,2026-09-01,,,,27,0,,,,,hata,satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BVF,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,0.0,,,30,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BVM,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.2,degerleme_tarihi,,10,0,8,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BVV,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,54,100.0,2026-09-01,0.0,,,15,0,12,33,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BVZ,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,160,100.0,2026-09-01,0.0,,,96,0,80,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CFO,2026-08,ROTA PORTFÖY YÖNETİMİ A.Ş.,fonbul,14,100.0,2026-09-01,0.01,,0.07,0,0,0,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CIN,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.66,degerleme_tarihi,,6,0,5,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CJD,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-08-03,0.0,,,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CJH,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-08-03,0.0,,,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CKL,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,12,100.0,2026-09-01,15.89,,,0,0,,,,,sinif_farki,"şart 3: ybyf satırlarda 0.00, TEFAS 15.89",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CKS,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+COT,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-08-03,0.0,,,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CPT,2026-08,ROTA PORTFÖY YÖNETİMİ A.Ş.,fonbul,0,,2026-09-01,,,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CPU,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,,,,18,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (US7475251036 M INC SNPS US8716),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CSH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CVA,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-08-03,0.0,,,21,0,0,0,0,29,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CVE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,,,9,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CVK,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,,,33,0,9,0,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+CYD,2026-07,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-08-03,0.0,,,0,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DAH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DAP,2026-08,DESTEK PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,,,6,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DAS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,66,100.0,2026-09-01,0.0,,,0,0,0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBA,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,,,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,,,16,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBZ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DCB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,106,100.0,2026-09-01,0.0,,,8,0,0,0,0,67,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DDA,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,18,0,18,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DDF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,,,15,0,15,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DEF,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.74,degerleme_tarihi,,15,0,10,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DEH,2026-08,DESTEK PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-09-01,0.0,,,40,0,41,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DFC,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,,,18,0,18,23,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DFD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DFI,2026-08,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,15,100.0,2026-09-01,0.01,,0.43,0,0,4,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DGH,2026-08,ATA PORTFÖY YÖNETİMİ A.Ş.,fonbul,22,100.0,2026-09-01,0.0,,-0.44,0,0,0,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DHI,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DHJ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,,,33,0,33,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DHM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DHT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,,,5,0,5,24,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DHV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DID,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,,,7,0,7,10,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DIP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,0.0,,,0,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DKC,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,3,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DKH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,,,37,0,36,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DKL,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DKR,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-09-01,0.0,,,8,0,8,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DL2,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,,,22,0,0,0,0,30,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DLD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,35,0,35,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DLN,2026-04,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,,,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DLY,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,230,100.0,2026-09-01,0.0,,,58,0,0,0,0,173,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DLZ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,,,2,0,2,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DMG,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,,,3,0,0,1,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DMI,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,,,53,0,52,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DNH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,,,16,0,16,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DNK,2026-08,TACİRLER PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.38,vadeli_islem,,20,0,20,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DNM,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,28,87.97,2026-09-01,,,,0,0,,,,,hata,satır içi: 1/17 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DNP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,,,24,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DOH,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,57,100.0,2026-09-01,0.0,,,54,0,51,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DOL,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,,,4,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DOV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,,,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,0.0,,,3,0,2,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPI,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,,,29,0,29,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,,,57,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DRA,2026-08,NEO PORTFÖY YÖNETİMİ A.Ş.,standart,14,95.98,2026-09-01,,,,7,0,,,,,hata,satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DRH,2026-08,PARDUS PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DRT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,,,11,0,11,14,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DSD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,,,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DSP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,,,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DTL,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,,,43,0,43,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DTM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,17,0,17,17,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DTZ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,47,100.0,2026-09-01,0.0,,,22,0,19,17,0,28,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DUD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,,,0,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DUH,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,0.0,,,3,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DUV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,,,10,0,0,0,0,11,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DVS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,,,18,0,0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DVT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,,,16,0,16,25,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DXP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,,,30,0,30,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DYN,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,,,14,0,14,26,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DZE,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DZM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,,,3,0,2,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EBD,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,33,99.9,2026-09-01,,,,0,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EC2,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,,,,0,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. ),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ECA,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,0,0,23,4,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ECB,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,,,0,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ECV,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,0,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EDD,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-08-03,,,,2,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EDP,2026-08,NEO PORTFÖY YÖNETİMİ A.Ş.,standart,2,100.0,2026-09-01,0.27,,,0,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.27 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EDT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,,,7,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EDU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,,,4,0,3,2,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EIB,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,33,100.0,2026-09-01,4.68,,-0.01,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 11.76, TEFAS 16.44",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EID,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,25,100.0,2026-09-01,2.53,,-0.0,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 0.00, TEFAS 2.53",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EIL,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,36,100.0,2026-09-01,0.01,,0.0,0,0,0,0,0,36,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EKF,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,42,100.0,2026-09-01,0.0,,0.0,0,0,0,0,0,41,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EKL,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,,,7,0,0,0,0,16,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ELZ,2026-08,ASTRA PORTFÖY YÖNETİMİ A.Ş.,fonbul,30,100.0,2026-09-01,3.49,,0.0,0,0,,,,,sinif_farki,"şart 3: maden_byf satırlarda 3.49, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EML,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,,,17,0,17,16,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ENA,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-08-03,,,,11,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ENJ,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,,,30,0,27,0,1,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ENO,2026-03,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,,,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ENR,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,62,100.0,2026-08-03,0.0,,,31,0,0,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ENS,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-08-03,,,,11,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EP1,2026-08,EMLAK KATILIM PORTFÖY YÖNETİMİ A.Ş.,standart,100,100.0,2026-09-01,,,,0,0,,,,,hata,satır içi: 13/50 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ESG,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.02,,,4,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ESP,2026-08,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,6,28.03,2026-09-01,,,,1,0,,,,,hata,satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EUN,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,55,100.0,2026-09-01,0.01,,0.0,0,0,0,0,0,55,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EUZ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,84,100.0,2026-09-01,0.0,,0.0,0,0,0,0,0,84,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EVM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-09-01,0.0,,,8,0,8,12,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EYT,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,,,13,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FAK,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-09-01,0.0,,,3,0,3,0,3,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FAL,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,7,100.0,2026-09-01,0.01,,24549181.26,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FBC,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.01,,0.01,0,0,16,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FBI,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,54,100.0,2026-09-01,4.42,,,1,0,,,,,sinif_farki,"şart 3: mevduat_katilim satırlarda 26.82, TEFAS 31.24",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FBV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FBZ,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,,,,9,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FCK,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,27,100.0,2026-09-01,0.01,,0.0,0,0,15,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FD1,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,16,100.0,2026-09-01,0.0,,0.0,0,0,13,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FDG,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,8,0,4,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FDV,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,61,100.0,2026-09-01,6.42,,,22,0,,,,,sinif_farki,"şart 3: hisse_toplam satırlarda 73.40, TEFAS 66.98",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FFH,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-08-03,,,,36,0,,,,,hata,şart 2: 2 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı ISDW iShares MSC),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FFP,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-08-03,0.03,,,17,0,8,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FI3,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-08-03,0.0,,,25,0,0,0,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FI5,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,291,100.0,2026-08-03,0.0,,,103,0,0,0,0,159,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FIB,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,,,5,0,3,0,3,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FID,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,,,53,0,34,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FIL,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,111,100.0,2026-09-01,0.0,,,56,0,0,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FIT,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,18,0,0,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FJB,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,1.05,,,8,0,,,,,sinif_farki,"şart 3: hisse_toplam satırlarda 72.60, TEFAS 71.55",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FJZ,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.08,,,1,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.08 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FKE,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,,,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FLS,2026-08,YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.,yapikredi,11,100.0,2026-09-01,6.92,,,0,0,,,,,sinif_farki,"şart 3: maden_byf satırlarda 6.92, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FLY,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,50,100.0,2026-09-01,,,,23,0,,,,,hata,şart 2: 1 satıra birden çok ISIN atandı (DE000TKMS001 CO. KGAA AVAV US0),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FMG,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,1,0,1,1,1,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FMV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,3,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FNO,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,65,87.17,2026-08-03,,,,44,0,,,,,hata,satır içi: 1/43 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FNT,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,,,18,0,17,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FP4,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,5,100.0,2026-09-01,0.0,,-0.01,0,0,2,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FPE,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,0,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FPG,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.86,,,1,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.86 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FPH,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,0.0,,,46,0,43,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FPI,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,6,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FPK,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,,,29,0,0,0,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FPZ,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,123,100.0,2026-09-01,0.0,,,0,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FRA,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.58,degerleme_tarihi,,19,0,19,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FRC,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,,,9,0,9,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FS5,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,13,100.0,2026-09-01,0.01,,0.0,0,0,10,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FS6,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,6,100.0,2026-09-01,0.0,,-0.03,0,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSF,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,85,100.0,2026-09-01,16.27,,,26,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 38.97, TEFAS 22.70",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSG,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,1.8,,,39,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 3.50, TEFAS 1.70",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSH,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,1.54,,,9,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 0.63, TEFAS 2.17",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSK,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-08-03,0.0,,,38,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSP,2026-08,FONMAP PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-09-01,0.0,,,0,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSR,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,2.88,,,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 82.29, TEFAS 85.17",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,0.0,,,30,0,17,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FTL,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,20,100.0,2026-09-01,0.0,,0.0,0,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FUA,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,,,25,0,24,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FUB,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-08-03,0.0,,,1,0,0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FYD,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-08-03,0.0,,,28,0,28,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FYI,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,112,100.0,2026-09-01,44.16,,,52,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda -160.57, TEFAS -116.41",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FYO,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,95,100.0,2026-08-03,0.0,,,89,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FYT,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,78,100.0,2026-08-03,0.0,,,75,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FZJ,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.08,degerleme_tarihi,,24,0,0,1,0,15,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FZP,2026-08,FİBA PORTFÖY YÖNETİMİ A.Ş.,standart,71,100.0,2026-09-01,0.3,,,65,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.30 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GA1,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,44,100.0,2026-09-01,0.0,,0.0,38,0,0,0,0,44,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAE,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,629,100.0,2026-09-01,0.0,,59460325.97,627,0,0,0,0,629,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAF,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,,,26,0,25,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAG,2026-09,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,69,100.0,,,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,100,100.0,2026-09-01,0.0,,-0.0,87,0,0,3,0,100,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,665,100.0,2026-09-01,0.01,,0.0,503,0,0,0,0,665,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAN,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,,,5,0,4,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GAS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,56,100.0,2026-09-01,0.0,,497085854.78,0,0,0,0,0,56,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBC,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,,,2,0,0,41,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBG,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,,,0,0,0,30,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,128,100.0,2026-09-01,0.01,,0.0,125,0,0,0,0,128,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBJ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,97,100.0,2026-09-01,0.0,,-0.0,95,0,0,0,0,97,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBL,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,119,100.0,2026-09-01,0.0,,,116,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBN,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,16,100.0,2026-09-01,0.01,,-0.0,0,0,0,0,0,16,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBV,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,290,100.0,2026-09-01,0.01,,165683738.04,32,0,0,250,0,290,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GBZ,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,6,0,2,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GEI,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,2,100.0,2026-09-01,0.0,,,2,0,2,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GGK,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,,,10,0,2,0,1,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GHS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,258,100.0,2026-09-01,0.0,,-0.0,255,0,0,0,0,258,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GID,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,71,100.0,2026-09-01,0.0,,0.0,66,0,0,0,0,71,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GIE,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,546,99.85,2026-09-01,0.16,rapor_ici_tutarsizlik,120087.75,529,0,0,0,0,546,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GIH,2026-08,ALLBATROSS PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,,,32,0,30,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GJB,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,,,12,0,1,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GJH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,189,100.0,2026-09-01,28.84,,0.0,0,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 22.46, TEFAS 51.30",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GKF,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,21,100.0,2026-09-01,0.0,,,0,0,19,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GKG,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,252,100.0,2026-09-01,0.0,,546.36,251,0,0,0,0,252,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GKH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,55,100.0,2026-09-01,6.07,,-0.0,37,0,,,,,sinif_farki,"şart 3: para_piyasasi satırlarda 6.07, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GKV,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,300,100.0,2026-09-01,0.0,,0.0,297,0,0,0,0,300,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GL1,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,,,27,0,24,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GLC,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,10,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GLG,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.14,degerleme_tarihi,,14,0,12,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GLS,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,,,26,0,0,0,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMA,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,77,100.0,2026-09-01,0.0,,,49,0,27,2,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMC,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,16,99.44,2026-09-01,,,,3,0,,,,,hata,satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMD,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,15,78.64,2026-09-01,,,,0,0,,,,,hata,şart 1: ağırlık toplamı 78.64,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMI,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,,,3,0,0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMN,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,23.71,,,0,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 57.72, TEFAS 34.01",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMR,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,,,33,0,32,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GNH,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,192,100.0,2026-09-01,0.0,,,0,0,190,0,4,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GNP,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,34,100.0,2026-09-01,0.01,,-0.0,21,0,0,0,0,34,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GNS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,248,100.0,2026-09-01,0.0,,-0.0,247,0,0,0,0,248,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GNZ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,,,2,0,0,3,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GO1,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,19,100.0,2026-09-01,0.01,,0.0,0,0,2,0,0,19,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GO3,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,21,100.0,2026-09-01,0.08,degerleme_tarihi,0.02,0,0,2,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GO4,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,23,100.0,2026-09-01,0.07,degerleme_tarihi,0.0,0,0,2,0,0,23,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GO6,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,152,100.0,2026-09-01,0.01,,-0.09,0,0,0,0,0,147,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GO9,2026-08,ONE PORTFÖY YÖNETİMİ A.Ş.,fonbul,22,100.0,2026-09-01,0.0,,0.0,0,0,18,0,0,22,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GOH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,149,100.0,2026-09-01,0.01,,0.0,144,0,0,0,0,149,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GOL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,57,100.0,2026-09-01,0.0,,0.0,1,0,0,0,0,57,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPA,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,35,100.0,2026-09-01,0.0,,0.0,0,0,0,0,0,35,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPB,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,98,100.0,2026-09-01,0.01,,-0.0,94,0,0,0,0,98,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPC,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,147,100.0,2026-09-01,0.01,,5987592898.65,6,0,0,0,0,147,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPF,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,249,100.0,2026-09-01,2.96,,0.0,242,0,,,,,sinif_farki,"şart 3: ybyf satırlarda 13.06, TEFAS 10.10",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPG,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,61,99.95,2026-09-01,0.05,,,20,0,19,19,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPI,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,118,100.0,2026-09-01,0.0,,0.0,102,0,0,3,0,118,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,68,100.0,2026-09-01,0.0,,0.0,0,0,0,0,0,68,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPN,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,67,100.0,2026-09-01,63.84,,0.0,30,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 6.30, TEFAS 70.14",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPT,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,,,,22,0,,,,,hata,şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPU,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,93,100.0,2026-09-01,0.0,,0.0,79,0,0,2,0,93,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GPZ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,96,100.0,2026-09-01,0.01,,0.0,74,0,0,0,0,96,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GRL,2026-08,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,16,69.15,2026-09-01,,,,0,0,,,,,hata,satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GRO,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,172,100.0,2026-09-01,0.01,,-0.0,0,0,0,0,0,172,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GRT,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,376,100.0,2026-09-01,0.0,,0.0,375,0,0,0,0,376,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GSP,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,,,44,0,46,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTA,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,67,100.0,2026-09-01,0.0,,120487919.18,20,0,0,0,0,67,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTF,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,0.0,,,24,0,1,0,0,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,134,100.0,2026-09-01,0.0,,0.0,132,0,0,0,0,134,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,1040,100.0,2026-09-01,0.01,,0.0,610,0,0,0,0,1040,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTM,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,399,100.0,2026-09-01,0.01,,0.0,397,0,0,0,0,399,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTY,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,20,100.0,2026-09-01,0.01,,173929868.14,5,0,0,6,0,20,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GTZ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,229,100.0,2026-09-01,,,0.0,95,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUB,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,119,100.0,2026-09-01,0.01,,10521.06,115,0,0,0,0,119,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,,,2,0,0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,265,99.99,2026-09-01,0.01,,288108.18,0,0,0,261,0,265,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUK,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,60,100.0,2026-09-01,47.99,,-0.01,28,0,,,,,sinif_farki,"şart 3: maden_byf satırlarda 50.69, TEFAS 98.68",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUM,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,,,4,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUV,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,58,100.0,2026-09-01,0.0,,745780173.91,57,0,0,0,0,58,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GVA,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,115,100.0,2026-09-01,0.01,,3608.76,28,0,0,83,0,115,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GVI,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,50,100.0,2026-09-01,1.95,,0.0,36,0,,,,,sinif_farki,"şart 3: maden_byf satırlarda 0.00, TEFAS 1.95",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GYK,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,,,33,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GYL,2026-08,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-09-01,0.0,,,38,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZE,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,41,100.0,2026-09-01,0.01,,0.01,7,0,0,0,0,41,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZG,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,228,100.0,2026-09-01,0.0,,0.0,24,0,0,193,0,228,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,225,100.0,2026-09-01,0.01,,-0.0,63,0,0,155,0,225,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZJ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,50,100.0,2026-09-01,0.01,,187087361.94,35,0,0,2,0,50,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,150,100.0,2026-09-01,0.01,,-0.0,68,0,0,75,0,150,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZM,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,1.25,,,0,0,,,,,sinif_farki,"şart 3: hisse_toplam satırlarda 50.01, TEFAS 48.76",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZN,2026-08,GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.32,vadeli_islem,,0,0,8,4,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZP,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,67,100.0,2026-09-01,0.0,,0.0,57,0,0,2,0,67,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZR,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,2154,100.0,2026-09-01,0.0,,-0.0,2094,0,0,0,0,2154,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZV,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,30,100.0,2026-09-01,0.0,,-0.0,7,0,0,0,0,30,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZY,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,85,100.0,2026-09-01,10.31,,0.03,23,0,,,,,sinif_farki,"şart 3: borclanma satırlarda 10.31, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GZZ,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,124,100.0,2026-09-01,0.0,,50630.52,28,0,0,94,0,124,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HAI,2026-08,AHLATCI PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-09-01,0.0,,,3,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HAM,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,,,2,0,1,0,1,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HAR,2026-08,BV PORTFÖY YÖNETİMİ A.Ş.,standart,23,80.72,2026-09-01,,,,7,0,,,,,hata,satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HAT,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-09-01,0.0,,,1,0,1,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HBF,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,,,2,0,0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HBJ,2026-08,HAS PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,0.0,,,3,0,3,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HBM,2026-08,HAS PORTFÖY YÖNETİMİ A.Ş.,standart,0,,,,,,0,0,,,,,duzen_taninmadi,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HBN,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,,,6,0,0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HBU,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,,,45,0,45,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HCV,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,,,2,0,0,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HDA,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.0,,,5,0,4,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HDD,2026-08,AHLATCI PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,,,11,0,9,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HDK,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-09-01,0.0,,,4,0,3,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HEH,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,262,100.0,2026-09-01,0.0,,,200,0,200,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HFA,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,,,1,0,0,0,0,16,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HFI,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,,,32,0,31,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HFO,2026-08,AHLATCI PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,,,30,0,29,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HGM,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,,,28,0,25,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HGR,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,7,0,6,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HGV,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,,,19,0,16,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HIA,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,134,100.0,2026-09-01,0.0,,,87,0,83,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HIF,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,95,100.0,2026-09-01,0.0,,,85,0,84,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HIH,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,100,100.0,2026-09-01,0.0,,0.0,98,0,0,0,0,100,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HIM,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,118,100.0,2026-09-01,0.0,,,88,0,83,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HIP,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,,,3,0,0,0,0,21,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HIZ,2026-08,AZİMUT PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,0.0,,,13,0,8,13,0,8,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HJB,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,,,26,0,17,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HKG,2026-08,ZİRAAT PORTFÖY YÖNETİMİ A.Ş.,ziraat,27,100.0,2026-09-01,,,,0,0,,,,,hata,şart 2: 25 satırda ISIN okunamadı (HİSSE SENETLERİ 2. Diğer Ortaklıklar: AKBANK TAS),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HKH,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,,,27,0,26,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HKJ,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,127,100.0,2026-09-01,0.0,,,0,0,0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HKM,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,,,17,0,13,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HKR,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,,,18,0,18,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HKV,2026-08,ZİRAAT PORTFÖY YÖNETİMİ A.Ş.,ziraat,89,99.77,2026-09-01,0.23,,,0,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.23 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HLA,2026-08,NEO PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,hata,ek PDF yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HLL,2026-08,ZİRAAT PORTFÖY YÖNETİMİ A.Ş.,ziraat,78,96.87,2026-09-01,,,,0,0,,,,,hata,şart 1: ağırlık toplamı 96.87,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HMC,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,,,29,0,9,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HMG,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,,,23,0,23,0,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HML,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-09-01,0.0,,,1,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HMS,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,,,23,0,23,0,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HOA,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,51,97.7,2026-09-01,,,,20,0,,,,,hata,satır içi: 1/48 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HOY,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,46,99.2,2026-09-01,,,,0,0,,,,,hata,satır içi: 1/39 satırda yüzde sütunu rayiç / toplam ile tutmuyor,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HP3,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.0,,,2,0,0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HPD,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,0.0,,,33,0,30,5,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HPH,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,79,100.0,2026-09-01,0.0,,,13,0,0,0,0,54,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HPO,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,78,100.0,2026-09-01,0.0,,,61,0,9,0,0,24,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HPT,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,86,100.0,2026-09-01,0.0,,,62,0,0,0,0,34,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HPV,2026-08,ZİRAAT PORTFÖY YÖNETİMİ A.Ş.,ziraat,85,100.0,2026-09-01,0.01,,,0,0,0,0,0,78,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HRZ,2026-08,AKTİF PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-09-01,0.0,,,43,0,41,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HSA,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,80,100.0,2026-09-01,1.0,,,63,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 1.00 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HSL,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,228,100.0,2026-09-01,0.0,,,12,0,0,0,0,123,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HST,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,27,100.0,2026-09-01,0.0,,,24,0,0,0,0,18,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HTF,2026-08,HSBC PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,,,0,0,0,0,0,42,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HTJ,2026-08,HEDEF PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,,,,9,0,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı AIRBUS AIRBUS NL),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+HTK,2026-07,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-08-03,0.0,,,7,0,3,4,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
