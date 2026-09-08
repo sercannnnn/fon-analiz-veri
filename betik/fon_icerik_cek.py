@@ -227,9 +227,15 @@ def aileye(ad):
     return None
 
 
-def tefas_dagilim_yukle(veri):
-    fl = sorted(glob.glob(os.path.join(veri, "tefas_dagilim_*.csv*")) + glob.glob(os.path.join(veri, "son_dagilim.csv")))
+def tefas_dagilim_yukle(veri, arsiv=None):
+    """TEFAS dagilimi: once arsiv/tefas_dagilim_YYYY-MM.csv.gz, sonra gunluk dosyalar (gunluk olan ezer)."""
+    arsiv = arsiv or os.path.join(os.path.dirname(os.path.abspath(veri)), "arsiv")
     rows = {}
+    for f in sorted(glob.glob(os.path.join(arsiv, "tefas_dagilim_*.csv.gz"))):
+        with gzip.open(f, "rt", encoding="utf-8", newline="") as fh:
+            for s in csv.DictReader(fh):
+                rows[(s["tarih"], s["fonKodu"])] = s
+    fl = sorted(glob.glob(os.path.join(veri, "tefas_dagilim_*.csv*")) + glob.glob(os.path.join(veri, "son_dagilim.csv")))
     for f in fl:
         for s in csv.DictReader(open(f, encoding="utf-8")):
             rows[(s["tarih"], s["fonKodu"])] = s
@@ -826,7 +832,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
         if d.get("durum") == "kapsamDisi":
             ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
-    rows = tefas_dagilim_yukle(veri); evren = bist_evren_yukle(veri)
+    rows = tefas_dagilim_yukle(veri, arsiv); evren = bist_evren_yukle(veri)
     kd_yol2 = os.path.join(veri, "kosu_durumu.json")
     kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol2, kdur)
     bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
@@ -919,17 +925,33 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     if yazilan:
         os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
     json_yaz(ky_yol, ky)
+    # ---- kovalar tuketicidir: her faal YF fon tam bir kovada; sirasi gelmeyen 'kuyrukta'
+    for f in kunye:
+        d = ky.get(f, {})
+        if not d.get("durum"):
+            ky[f] = dict(**{k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}, durum="kuyrukta", sebep="sırası gelmedi", tarih=bit)
+    json_yaz(ky_yol, ky)
     sayim = defaultdict(int)
-    for f, d in ky.items():
-        if f in kunye and d.get("durum"):
-            sayim[d["durum"]] += 1
-    toplam_fon = len(kunye); kapsam_disi_n = sayim.get("kapsam_disi", 0)
-    yayimlayan = toplam_fon - kapsam_disi_n
-    listesi_olan = sum(1 for f, d in ky.items() if f in kunye and d.get("son"))
-    kapsam_orani = round(listesi_olan / yayimlayan, 4) if yayimlayan else None
-    durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi", sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu),
-                 raporYokKurucu=len(rapor_yok_kurucu), islenen=islenen, yayimlananBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
-                 kovalar=dict(sayim), toplamFon=toplam_fon, raporYayimlayanFon=yayimlayan, listesiOlanFon=listesi_olan, kapsamOrani=kapsam_orani,
+    for f in kunye:
+        durum_f = ky[f]["durum"]
+        sayim["listesi_var" if durum_f == "yayimlandi" else durum_f] += 1
+    toplam_fon = len(kunye); kova_toplami = sum(sayim.values())
+    # ---- kapsam orani, tek tanim: pay = hedef ay icin arsivde gecerli listesi olan fon;
+    #      payda = hedef ay icin rapor yayimlayan fon (KAP listelemesinde en yeni raporu hedef ayda olan)
+    arsiv_yol = os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")
+    kapsam_pay = len({r_[0] for r_ in gz_oku(arsiv_yol)})
+    for f, x in onbellek.items():                     # bu turda listelenen fonlarin son rapor ayi
+        if x and f in ky:
+            ky[f]["sonRaporAy"] = rapor_ayi("", x["publishDate"])
+    kapsam_payda = sum(1 for f in kunye if ky[f].get("sonRaporAy") == hedef or ky[f].get("son") == hedef)
+    kapsam_orani = round(kapsam_pay / kapsam_payda, 4) if kapsam_payda else None
+    json_yaz(ky_yol, ky)
+    durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi" if kova_toplami == toplam_fon else "denklesmedi",
+                 sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
+                 islenen=islenen, yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
+                 kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
+                 kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
                  istek=ISTEK.sayi, h429=ISTEK.h429, ayristiriciSurum=AYRISTIRICI_SURUM, sinavSurumu=SINAV_SURUM, **{"not": OZET_NOT})
     kdur = json_oku(kd_yol2, {}); kdur["icerik"] = durum; json_yaz(kd_yol2, kdur)
     return durum, ozet

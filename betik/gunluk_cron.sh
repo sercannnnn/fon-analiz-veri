@@ -54,6 +54,8 @@ else
 fi
 # Aylik arsiv: yeni gunluk dosyanin dokundugu aylar yeniden yazilir, digerleri degismez
 python3 betik/arsiv_guncelle.py --arsiv arsiv "$(ls -t veri/tefas_gunluk_*.csv | head -1)"
+# Dagilim arsivi (Talimat 8): kapinin 3. sarti eski raporlar icin de dogrulanabilsin
+python3 betik/arsiv_guncelle.py --arsiv arsiv --tur dagilim "$(ls -t veri/tefas_dagilim_*.csv | head -1)"
 # Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
 cp "$(ls -t veri/tefas_gunluk_*.csv | head -1)" veri/son_gunluk.csv
 cp "$(ls -t veri/tefas_dagilim_*.csv | head -1)" veri/son_dagilim.csv
