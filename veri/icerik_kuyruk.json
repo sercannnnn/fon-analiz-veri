@@ -174,7 +174,7 @@
   "sapma": 0.0,
   "satir": 19,
   "son": "2026-08",
-  "surum": 2,
+  "surum": 3,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -379,10 +379,13 @@
   "tefasGun": "2026-09-01"
  },
  "ALE": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: katilim satırlarda 8.35, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 523,
+  "son": "2026-08",
+  "surum": 3,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AN1": {
   "ay": "2026-08",
@@ -551,7 +554,7 @@
   "sapma": 0.0,
   "satir": 14,
   "son": "2026-08",
-  "surum": 2,
+  "surum": 3,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -803,10 +806,13 @@
   "tarih": "2026-09-08"
  },
  "BGP": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: katilim satırlarda 7.44, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 401,
+  "son": "2026-08",
+  "surum": 3,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BGR": {
   "durum": "yayimlandi",
@@ -1714,7 +1720,7 @@
   "sapma": 0.0,
   "satir": 18,
   "son": "2026-08",
-  "surum": 2,
+  "surum": 3,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -9491,10 +9497,13 @@
   "tarih": "2026-09-08"
  },
  "PPJ": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: katilim satırlarda 6.28, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 118,
+  "son": "2026-08",
+  "surum": 3,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "PPK": {
   "ay": "2026-08",
@@ -11317,7 +11326,7 @@
   "sapma": 0.0,
   "satir": 295,
   "son": "2026-08",
-  "surum": 2,
+  "surum": 3,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -11596,7 +11605,7 @@
   "sapma": 0.0,
   "satir": 25,
   "son": "2026-08",
-  "surum": 2,
+  "surum": 3,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
