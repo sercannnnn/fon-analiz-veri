@@ -1,188 +1,66 @@
-fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,durum,sebep
-ADE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,yayimlandi,
-ADP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,yayimlandi,
-AES,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.51,yayimlandi,
-AFA,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,69,100.0,2026-09-01,0.0,yayimlandi,
-AFO,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,50.59,hata,"şart 3: maden satırlarda 0.00, TEFAS 50.59"
-AFS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,yayimlandi,
-AFT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,yayimlandi,
-AFV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,84,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 102.43; satır düşmüş"
-AGC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,yayimlandi,
-AIS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,98,100.0,2026-09-01,0.76,yayimlandi,
-AJK,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,yayimlandi,
-AK2,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,yayimlandi,
-AK3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,88,100.0,2026-09-01,0.0,yayimlandi,
-AKE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,yayimlandi,
-AKU,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,yayimlandi,
-ALC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,yayimlandi,
-ALE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,523,100.0,2026-09-01,8.35,hata,"şart 3: katilim satırlarda 8.35, TEFAS 0.00"
-ANL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,yayimlandi,
-AOY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,yayimlandi,
-APJ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,16,100.0,2026-09-01,0.0,yayimlandi,
-APT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,yayimlandi,
-ARL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,44,99.99,2026-09-01,0.01,yayimlandi,
-ARM,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,99.96,2026-09-01,0.04,yayimlandi,
-AUV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 197.74; satır düşmüş"
-AVT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,yayimlandi,
-BCK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,yayimlandi,
-BDY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,77,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 108.51; satır düşmüş"
-BGP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,401,100.0,2026-09-01,7.44,hata,"şart 3: katilim satırlarda 7.44, TEFAS 0.00"
-BGR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,yayimlandi,
-BHE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,yayimlandi,
-BHL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,141,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: FABRİKALA RI A.Ş. PAPIL PAPİLO)
-BNC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,0.0,yayimlandi,
-BRF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,yayimlandi,
-BRG,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,yayimlandi,
-BRR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,0.0,yayimlandi,
-BUY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,yayimlandi,
-DAS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,66,100.0,2026-09-01,0.13,yayimlandi,
-DBH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,2.11,hata,"şart 3: borclanma satırlarda 82.73, TEFAS 80.62"
-DBP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT)
-DCB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,106,100.0,2026-09-01,0.0,yayimlandi,
-DDA,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,yayimlandi,
-DDF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİZMETLE Rİ A.Ş. TCKRC KIRAÇ G)
-DFC,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,yayimlandi,
-DHJ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 191.25; satır düşmüş"
-DHT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,45,100.0,2026-09-01,0.0,yayimlandi,
-DID,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,yayimlandi,
-DIP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,0.0,yayimlandi,
-DKC,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,yayimlandi,
-DKH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,yayimlandi,
-DKR,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,23,100.0,2026-09-01,0.0,yayimlandi,
-DL2,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,42,100.0,2026-09-01,0.0,yayimlandi,
-DLD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,yayimlandi,
-DLY,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,230,100.0,2026-09-01,0.07,yayimlandi,
-DLZ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,yayimlandi,
-DMG,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,23.99,hata,"şart 3: maden satırlarda 0.00, TEFAS 23.99"
-DNH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,yayimlandi,
-DNP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.31,yayimlandi,
-DOH,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,57,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 117.93; satır düşmüş"
-DOV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,yayimlandi,
-DPB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,1.19,hata,"şart 3: borclanma satırlarda 82.73, TEFAS 81.54"
-DPI,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,yayimlandi,
-DPK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,3.6,hata,"şart 3: borclanma satırlarda 95.66, TEFAS 92.06"
-DPT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
-DRT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,yayimlandi,
-DSD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,yayimlandi,
-DSP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,yayimlandi,
-DTL,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ VE TİCARET A.Ş. TCKRC K)
-DTM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,37,100.0,2026-09-01,0.0,yayimlandi,
-DTZ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,47,100.0,2026-09-01,0.0,yayimlandi,
-DUD,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,6,100.0,2026-09-01,0.0,yayimlandi,
-DUV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,yayimlandi,
-DVS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,1.36,hata,"şart 3: borclanma satırlarda 41.40, TEFAS 40.04"
-DVT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 106.37; satır düşmüş"
-DXP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HOLDİNG A.Ş. TCKRC KIRAÇ GALVA)
-DYN,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,49,100.0,2026-09-01,0.0,yayimlandi,
-DZE,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
-DZM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.09,yayimlandi,
-EDT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,1.64,hata,"şart 3: borclanma satırlarda 10.39, TEFAS 8.75"
-EKL,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,yayimlandi,
-EML,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,yayimlandi,
-EVM,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,41,100.0,2026-09-01,0.0,yayimlandi,
-FMV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,1.87,hata,"şart 3: borclanma satırlarda 8.53, TEFAS 6.66"
-FSU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,0.0,yayimlandi,
-FUA,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,yayimlandi,
-GMC,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,16,99.44,2026-09-01,0.56,yayimlandi,
-GMI,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,96.28,hata,"şart 3: diger satırlarda 96.28, TEFAS 0.00"
-GUF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,19.59,hata,"şart 3: maden satırlarda 0.00, TEFAS 19.59"
-GUM,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,17.55,hata,"şart 3: diger satırlarda 17.55, TEFAS 0.00"
-HVI,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,yayimlandi,
-ICZ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,yayimlandi,
-IDH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,71,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ TİCARET A.Ş. LKMNH LOKM)
-IDY,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,yayimlandi,
-IEV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,1,3.55,2026-09-01,,hata,şart 1: ağırlık toplamı 3.55
-IGL,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,34,100.0,2026-09-01,0.0,yayimlandi,
-IKL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,139,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 122.41; satır düşmüş"
-IOG,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,3.48,hata,"şart 3: maden satırlarda 0.00, TEFAS 3.48"
-KAV,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,yayimlandi,
-KCR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,87.31,hata,"şart 3: diger satırlarda 87.31, TEFAS 0.00"
-KCV,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,55,100.0,2026-09-01,0.0,yayimlandi,
-KDE,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,0.0,yayimlandi,
-KDL,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,yayimlandi,
-KDO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 103.29; satır düşmüş"
-KGM,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,12.01,hata,"şart 3: diger satırlarda 12.01, TEFAS 0.00"
-KH1,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,yayimlandi,
-KHP,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,83,100.0,2026-09-01,0.0,yayimlandi,
-KIK,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,3.88,hata,"şart 3: diger satırlarda 3.88, TEFAS 0.00"
-KLI,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,0.0,yayimlandi,
-KLU,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,543,100.0,2026-09-01,0.0,yayimlandi,
-KME,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,yayimlandi,
-KNJ,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,yayimlandi,
-KPA,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 107.34; satır düşmüş"
-KPC,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,50,100.0,2026-09-01,0.0,yayimlandi,
-KPD,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,15.58,hata,"şart 3: borclanma satırlarda 82.72, TEFAS 67.14"
-KPH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.Ş. LKMNH LOKMAN HEKİM ENGÜRÜ)
-KPU,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,yayimlandi,
-KSR,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,59,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 182.72; satır düşmüş"
-KSV,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 191.53; satır düşmüş"
-KTJ,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,38,100.0,2026-09-01,0.0,yayimlandi,
-KTM,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: VE TICARET A.S. ATATP ATP TİCA)
-KTN,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,yayimlandi,
-KTR,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,2026-09-01,0.0,yayimlandi,
-KTS,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,yayimlandi,
-KTT,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,12.21,hata,"şart 3: borclanma satırlarda 86.49, TEFAS 74.28"
-KTV,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,120,100.0,2026-09-01,0.0,yayimlandi,
-KU3,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Finansman A.Ş. LKMNH LOKMAN HE)
-KUA,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,48,100.0,2026-09-01,0.0,yayimlandi,
-KUD,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: VE TICARET A.S. ATATP ATP TİCA)
-KUT,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,63.44,hata,"şart 3: diger satırlarda 63.44, TEFAS 0.00"
-KVT,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,0.0,yayimlandi,
-KZL,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,90.63,hata,"şart 3: diger satırlarda 90.63, TEFAS 0.00"
-KZU,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-09-01,85.3,hata,"şart 3: diger satırlarda 85.30, TEFAS 0.00"
-LKF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,65.52,hata,"şart 3: diger satırlarda 65.52, TEFAS 0.00"
-MLT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,yayimlandi,
-MRI,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.0,yayimlandi,
-MTG,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.S. TCKRC KIRAÇ GALVANİZ TELE)
-MTV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,yayimlandi,
-MTX,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,yayimlandi,
-NMP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-09-01,0.0,yayimlandi,
-ODV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,yayimlandi,
-ONK,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,69,100.0,2026-09-01,0.0,yayimlandi,
-PAL,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,112,100.0,2026-09-01,0.0,yayimlandi,
-PPJ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,118,100.0,2026-09-01,6.28,hata,"şart 3: katilim satırlarda 6.28, TEFAS 0.00"
-PSH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,24,100.0,2026-09-01,0.0,yayimlandi,
-PTL,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,yayimlandi,
-PUC,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,yayimlandi,
-PYB,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,29,100.0,2026-09-01,0.0,yayimlandi,
-SAP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,38,100.0,2026-09-01,0.0,yayimlandi,
-SAS,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,yayimlandi,
-SHE,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,yayimlandi,
-SKL,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,24,100.0,2026-09-01,0.0,yayimlandi,
-SSK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,38,100.0,2026-09-01,0.0,yayimlandi,
+fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,hisseSatir,bistKoduBos,adTemiz,durum,sebep,not
+AFO,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,0,0,14,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AFV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,84,100.0,2026-09-01,0.0,73,73,56,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+ALE,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,523,100.0,2026-09-01,8.35,,,,hata,"şart 3: katilim satırlarda 8.35, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+AUV,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BDY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,77,100.0,2026-09-01,0.0,72,0,47,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BGP,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,401,100.0,2026-09-01,7.44,,,,hata,"şart 3: katilim satırlarda 7.44, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+BHL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,141,100.0,2026-09-01,0.0,140,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBH,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,2.11,,,,hata,"şart 3: borclanma satırlarda 82.73, TEFAS 80.62",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DBP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,,,,hata,şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT),gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DDF,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,15,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DHJ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,36,100.0,2026-09-01,0.0,33,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DMG,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,0.0,1,1,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DOH,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,57,100.0,2026-09-01,0.0,51,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPB,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,56,100.0,2026-09-01,1.19,,,,hata,"şart 3: borclanma satırlarda 82.73, TEFAS 81.54",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,3.6,,,,hata,"şart 3: borclanma satırlarda 95.66, TEFAS 92.06",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DPT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,,,,hata,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DTL,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,46,100.0,2026-09-01,0.0,43,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DVS,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,1.36,,,,hata,"şart 3: borclanma satırlarda 41.40, TEFAS 40.04",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DVT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,52,100.0,2026-09-01,0.0,41,25,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DXP,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,32,100.0,2026-09-01,0.0,30,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+DZE,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,,,,hata,kıymet satırı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+EDT,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,1.64,,,,hata,"şart 3: borclanma satırlarda 10.39, TEFAS 8.75",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FMV,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,1.87,,,,hata,"şart 3: borclanma satırlarda 8.53, TEFAS 6.66",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GMI,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,0,0,7,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,0,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+GUM,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,18,100.0,2026-09-01,0.0,0,0,6,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+IDH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,71,100.0,2026-09-01,0.0,65,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+IEV,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,98,100.0,2026-09-01,0.0,90,47,48,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+IKL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,139,100.0,2026-09-01,0.0,116,110,90,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+IOG,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KCR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,0.0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KDO,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,2026-09-01,0.0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KGM,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KIK,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,32,25,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KPA,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,0.0,29,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KPD,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,8,100.0,2026-09-01,15.58,,,,hata,"şart 3: borclanma satırlarda 82.72, TEFAS 67.14",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KPH,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,40,100.0,2026-09-01,0.0,31,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KSR,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,59,100.0,2026-09-01,0.0,52,33,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KSV,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,0,0,26,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KTM,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,39,100.0,2026-09-01,0.0,26,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KTT,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,20,100.0,2026-09-01,12.21,,,,hata,"şart 3: borclanma satırlarda 86.49, TEFAS 74.28",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KU3,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,58,100.0,2026-09-01,0.0,54,23,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KUD,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,31,100.0,2026-09-01,0.0,25,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KUT,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,22,100.0,2026-09-01,0.0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KZL,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,0,0,4,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+KZU,2026-08,KUVEYT TÜRK PORTFÖY YÖNETİMİ A.Ş.,standart,5,100.0,2026-09-01,0.0,0,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+LKF,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,7,100.0,2026-09-01,0.0,0,0,1,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+MTG,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,15,100.0,2026-09-01,0.0,8,0,3,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+PPJ,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,118,100.0,2026-09-01,6.28,,,,hata,"şart 3: katilim satırlarda 6.28, TEFAS 0.00",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
 T3B,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,hata,ek PDF yok
-TAR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,0.0,yayimlandi,
-TAU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
-TBT,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,yayimlandi,
-TCF,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,21,100.0,2026-09-01,0.0,yayimlandi,
-TE3,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,0.0,yayimlandi,
-TE4,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,yayimlandi,
-TFF,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,12,100.0,2026-09-01,0.0,yayimlandi,
-TGR,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,35,100.0,2026-09-01,0.0,yayimlandi,
-THF,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,163,100.0,2026-09-01,,hata,şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. ATATR ATA TURİZM İŞLETMEC)
-TI3,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
-TIE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
-TIL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,,hata,şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. LKMNH LOKMAN HEKİ)
-TJF,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,13,100.0,2026-09-01,0.0,yayimlandi,
-TJI,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,19,100.0,2026-09-01,0.0,yayimlandi,
-TKM,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,231,100.0,2026-09-01,0.0,yayimlandi,
-TLV,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,yayimlandi,
-TLY,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,295,100.0,2026-09-01,0.0,yayimlandi,
-TMM,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-01,0.0,yayimlandi,
-TMV,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,82,100.0,2026-09-01,0.0,yayimlandi,
-TNK,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,75,100.0,2026-09-01,4.47,hata,"şart 3: borclanma satırlarda 80.22, TEFAS 75.75"
-TP2,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,971,100.0,2026-09-01,0.0,yayimlandi,
-TPC,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,18,99.21,2026-09-01,0.79,yayimlandi,
-TPL,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,27,99.05,2026-09-01,0.95,yayimlandi,
-TPZ,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,33.47,hata,"şart 3: borclanma satırlarda 84.01, TEFAS 50.54"
-TRJ,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,1.65,hata,"şart 3: borclanma satırlarda 81.03, TEFAS 79.38"
-TRU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,2.12,hata,"şart 3: byf satırlarda 3.93, TEFAS 1.81"
-TTA,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,85.34,hata,"şart 3: maden satırlarda 0.00, TEFAS 85.34"
-TTE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,0,,2026-09-01,,hata,kıymet satırı yok
-TUA,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,23,99.44,2026-09-01,69.51,hata,"şart 3: maden satırlarda 0.00, TEFAS 69.51"
-TYH,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,44,100.0,2026-09-01,0.0,yayimlandi,
-VAY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-09-01,0.0,yayimlandi,
-VCY,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,47,100.0,2026-09-01,0.0,yayimlandi,
-VRK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,9.82,hata,"şart 3: byf satırlarda 9.82, TEFAS 0.00"
-YOZ,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,26,100.0,2026-09-01,0.0,yayimlandi,
-YZH,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,,hata,"şart 2: satır toplamı 100.00, yaprak grup toplamı 190.83; satır düşmüş"
+TAU,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,124,100.0,2026-09-01,0.0,119,0,99,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+THF,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,163,100.0,2026-09-01,0.14,125,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TI3,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,82,100.0,2026-09-01,0.0,75,0,70,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TIE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,343,100.0,2026-09-01,0.0,337,0,31,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TIL,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,28,100.0,2026-09-01,0.0,27,0,0,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TLY,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,295,100.0,2026-09-01,0.0,64,0,196,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TNK,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,75,100.0,2026-09-01,4.47,,,,hata,"şart 3: borclanma satırlarda 80.22, TEFAS 75.75",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TPZ,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,9,100.0,2026-09-01,33.47,,,,hata,"şart 3: borclanma satırlarda 84.01, TEFAS 50.54",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TRJ,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,51,100.0,2026-09-01,1.65,,,,hata,"şart 3: borclanma satırlarda 81.03, TEFAS 79.38",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TRU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,11,100.0,2026-09-01,0.0,1,1,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TTA,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,25,100.0,2026-09-01,0.0,0,0,10,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TTE,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,73,100.0,2026-09-01,0.0,69,0,12,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TUA,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,23,99.44,2026-09-01,0.56,1,1,13,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+VRK,2026-08,DENİZ PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,19,0,5,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+YZH,2026-08,TEB PORTFÖY YÖNETİMİ A.Ş.,standart,14,100.0,2026-09-01,0.0,10,0,2,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz

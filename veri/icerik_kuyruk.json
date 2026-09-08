@@ -170,10 +170,13 @@
   "tefasGun": "2026-09-01"
  },
  "AFO": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 50.59",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 19,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AFS": {
   "durum": "yayimlandi",
@@ -192,10 +195,13 @@
   "tefasGun": "2026-09-01"
  },
  "AFV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 102.43; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 84,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AGC": {
   "durum": "yayimlandi",
@@ -541,10 +547,13 @@
   "tarih": "2026-09-08"
  },
  "AUV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 197.74; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 14,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "AVC": {
   "ay": "2026-08",
@@ -749,10 +758,13 @@
   "tarih": "2026-09-08"
  },
  "BDY": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 108.51; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 77,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BFE": {
   "ay": "2026-08",
@@ -837,10 +849,13 @@
   "tarih": "2026-09-08"
  },
  "BHL": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: FABRİKALA RI A.Ş. PAPIL PAPİLO)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 141,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "BHN": {
   "ay": "2026-08",
@@ -1695,10 +1710,13 @@
   "tarih": "2026-09-08"
  },
  "DDF": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİZMETLE Rİ A.Ş. TCKRC KIRAÇ G)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 18,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DDP": {
   "durum": "kapsamDisi",
@@ -1775,10 +1793,13 @@
   "tarih": "2026-09-08"
  },
  "DHJ": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 191.25; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 36,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DHM": {
   "ay": "2026-08",
@@ -1956,10 +1977,13 @@
   "tefasGun": "2026-09-01"
  },
  "DMG": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 23.99",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 20,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DMI": {
   "durum": "kapsamDisi",
@@ -2048,10 +2072,13 @@
   "tarih": "2026-09-08"
  },
  "DOH": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 117.93; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 57,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DOL": {
   "ay": "2026-08",
@@ -2280,10 +2307,13 @@
   "tarih": "2026-09-08"
  },
  "DTL": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ VE TİCARET A.Ş. TCKRC K)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 46,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DTM": {
   "durum": "yayimlandi",
@@ -2381,10 +2411,13 @@
   "tarih": "2026-09-08"
  },
  "DVT": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 106.37; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 52,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DVU": {
   "durum": "kapsamDisi",
@@ -2399,10 +2432,13 @@
   "tarih": "2026-09-08"
  },
  "DXP": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HOLDİNG A.Ş. TCKRC KIRAÇ GALVA)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 32,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "DYJ": {
   "durum": "beklemede",
@@ -3832,10 +3868,13 @@
   "tarih": "2026-09-07"
  },
  "GMI": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 96.28, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 12,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GMM": {
   "ay": "2026-08",
@@ -4210,10 +4249,13 @@
   "tarih": "2026-09-08"
  },
  "GUF": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 19.59",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 15,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GUH": {
   "ay": "2026-08",
@@ -4228,10 +4270,13 @@
   "tarih": "2026-09-08"
  },
  "GUM": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 17.55, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 18,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "GUV": {
   "ay": "2026-08",
@@ -5411,10 +5456,13 @@
   "tefasGun": "2026-09-01"
  },
  "IDH": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ TİCARET A.Ş. LKMNH LOKM)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 71,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "IDI": {
   "ay": "2026-08",
@@ -5471,10 +5519,13 @@
   "tarih": "2026-09-08"
  },
  "IEV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 1: ağırlık toplamı 3.55",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 98,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "IEZ": {
   "durum": "kapsamDisi",
@@ -5730,10 +5781,13 @@
   "tarih": "2026-09-08"
  },
  "IKL": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 122.41; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 139,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "IKP": {
   "durum": "yayimlandi",
@@ -5879,10 +5933,13 @@
   "tarih": "2026-09-08"
  },
  "IOG": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 3.48",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 15,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "IOH": {
   "durum": "beklemede",
@@ -6389,10 +6446,13 @@
   "tarih": "2026-09-08"
  },
  "KCR": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 87.31, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 4,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KCV": {
   "durum": "yayimlandi",
@@ -6431,10 +6491,13 @@
   "tefasGun": "2026-09-01"
  },
  "KDO": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 103.29; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 4,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KDS": {
   "durum": "beklemede",
@@ -6481,10 +6544,13 @@
   "tarih": "2026-09-08"
  },
  "KGM": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 12.01, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 14,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KH1": {
   "durum": "yayimlandi",
@@ -6575,10 +6641,13 @@
   "tarih": "2026-09-08"
  },
  "KIK": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 3.88, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 40,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KIS": {
   "ay": "2026-08",
@@ -6810,10 +6879,13 @@
   "tarih": "2026-09-08"
  },
  "KPA": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 107.34; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 33,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KPB": {
   "durum": "kapsamDisi",
@@ -6842,10 +6914,13 @@
   "tarih": "2026-09-08"
  },
  "KPH": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.Ş. LKMNH LOKMAN HEKİM ENGÜRÜ)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 40,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KPI": {
   "durum": "yayimlandi",
@@ -6984,10 +7059,13 @@
   "tarih": "2026-09-08"
  },
  "KSR": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 182.72; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 59,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KST": {
   "ay": "2026-08",
@@ -6996,10 +7074,13 @@
   "tarih": "2026-09-08"
  },
  "KSV": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 191.53; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 28,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KSY": {
   "durum": "kapsamDisi",
@@ -7028,10 +7109,13 @@
   "tefasGun": "2026-09-01"
  },
  "KTM": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: VE TICARET A.S. ATATP ATP TİCA)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 39,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KTN": {
   "durum": "yayimlandi",
@@ -7078,10 +7162,13 @@
   "tefasGun": "2026-09-01"
  },
  "KU3": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Finansman A.Ş. LKMNH LOKMAN HE)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 58,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KUA": {
   "durum": "yayimlandi",
@@ -7098,10 +7185,13 @@
   "tarih": "2026-09-08"
  },
  "KUD": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: VE TICARET A.S. ATATP ATP TİCA)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 31,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KUP": {
   "durum": "beklemede",
@@ -7109,10 +7199,13 @@
   "tarih": "2026-09-08"
  },
  "KUT": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 63.44, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 22,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KVA": {
   "durum": "kapsamDisi",
@@ -7165,10 +7258,13 @@
   "tarih": "2026-09-08"
  },
  "KZL": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 90.63, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 11,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "KZO": {
   "durum": "kapsamDisi",
@@ -7177,10 +7273,13 @@
   "tarih": "2026-09-08"
  },
  "KZU": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 85.30, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 5,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "LAI": {
   "ay": "2026-08",
@@ -7230,10 +7329,13 @@
   "tarih": "2026-09-08"
  },
  "LKF": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: diger satırlarda 65.52, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 7,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "LKT": {
   "ay": "2026-08",
@@ -7642,10 +7744,13 @@
   "tarih": "2026-09-08"
  },
  "MTG": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: A.S. TCKRC KIRAÇ GALVANİZ TELE)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 15,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "MTH": {
   "ay": "2026-08",
@@ -10775,10 +10880,13 @@
   "tefasGun": "2026-09-01"
  },
  "TAU": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "kıymet satırı yok",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 124,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TAZ": {
   "durum": "kapsamDisi",
@@ -10977,10 +11085,13 @@
   "tarih": "2026-09-08"
  },
  "THF": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. ATATR ATA TURİZM İŞLETMEC)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.14,
+  "satir": 163,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "THG": {
   "durum": "kapsamDisi",
@@ -11035,10 +11146,13 @@
   "tefasGun": "2026-09-01"
  },
  "TI3": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "kıymet satırı yok",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 82,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TI4": {
   "durum": "yayimlandi",
@@ -11065,16 +11179,22 @@
   "tefasGun": "2026-09-01"
  },
  "TIE": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "kıymet satırı yok",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 343,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TIL": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. LKMNH LOKMAN HEKİ)",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 28,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TIP": {
   "durum": "kapsamDisi",
@@ -11197,6 +11317,7 @@
   "sapma": 0.0,
   "satir": 295,
   "son": "2026-08",
+  "surum": 2,
   "tarih": "2026-09-08",
   "tefasGun": "2026-09-01"
  },
@@ -11442,10 +11563,13 @@
   "tarih": "2026-09-08"
  },
  "TRU": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: byf satırlarda 3.93, TEFAS 1.81",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 11,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TRZ": {
   "ay": "2026-08",
@@ -11468,16 +11592,22 @@
   "tarih": "2026-09-08"
  },
  "TTA": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 85.34",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 25,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TTE": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "kıymet satırı yok",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 73,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TTL": {
   "ay": "2026-08",
@@ -11509,10 +11639,13 @@
   "tarih": "2026-09-08"
  },
  "TUA": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: maden satırlarda 0.00, TEFAS 69.51",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.56,
+  "satir": 23,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "TVE": {
   "ay": "2026-08",
@@ -11911,10 +12044,13 @@
   "tarih": "2026-09-08"
  },
  "VRK": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 3: byf satırlarda 9.82, TEFAS 0.00",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 30,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "VTF": {
   "durum": "kapsamDisi",
@@ -12604,10 +12740,13 @@
   "tarih": "2026-09-08"
  },
  "YZH": {
-  "ay": "2026-08",
-  "durum": "hata",
-  "sebep": "şart 2: satır toplamı 100.00, yaprak grup toplamı 190.83; satır düşmüş",
-  "tarih": "2026-09-08"
+  "durum": "yayimlandi",
+  "sapma": 0.0,
+  "satir": 14,
+  "son": "2026-08",
+  "surum": 2,
+  "tarih": "2026-09-08",
+  "tefasGun": "2026-09-01"
  },
  "YZK": {
   "ay": "2026-08",

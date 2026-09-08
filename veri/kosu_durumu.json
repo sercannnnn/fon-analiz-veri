@@ -1,18 +1,21 @@
 {
  "icerik": {
-  "beklemede": 98,
+  "ayristiriciSurum": 2,
+  "beklemede": 0,
   "durum": "tamamlandi",
   "ertelendi": 0,
   "h429": 0,
-  "hata": 64,
+  "hata": 18,
   "hedefAy": "2026-08",
-  "islenen": 197,
-  "istek": 400,
-  "kapsamDisi": 1723,
-  "kuyruk": 300,
-  "kuyrukKalan": 104,
-  "satir": 6410,
+  "islenen": 65,
+  "istek": 133,
+  "kapsamDisi": 0,
+  "kapsamDisiKova": {},
+  "kuyruk": 65,
+  "kuyrukKalan": 0,
+  "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
+  "satir": 2585,
   "tarih": "2026-09-08",
-  "yayimlanan": 123
+  "yayimlanan": 47
  }
 }
