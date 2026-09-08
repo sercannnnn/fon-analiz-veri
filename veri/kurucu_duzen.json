@@ -105,6 +105,12 @@
   "sinanan": 2,
   "tarih": "2026-09-07"
  },
+ "_varyantlar": {
+  "garanti": "Garanti Portfoy; B'yi gecmedi",
+  "standart": "Tera, Is, Ak, Deniz, Kuveyt Turk, TEB, QNB; sayfa genisligi ~950, Turk sayi bicimi, 'Agustos-2026' basligi",
+  "standart-genis": "Ayni sablonun genis surumu: sayfa genisligi 1.500-1.700, Amerikan sayi bicimi (1,234.56), ay basligi 'A-2026' gibi kisaltilmis, ara toplam satirlarinda yuzde yok; Is Portfoy endeks ve yabanci fonlari (TAU, TI3, TIE, TTE, IEV, IJC). Ayristirici sutunlari baslik satirindan kalibre eder, ayri ayristirici gerekmez (08.09.2026)",
+  "yapikredi": "Yapi Kredi Portfoy; B'yi gecmedi"
+ },
  "İŞ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
   "enBuyukSapma": 0.61,
@@ -116,6 +122,7 @@
   "gecti": true,
   "not": "B sinavi: 1. sayfa yuzdeleri ile TEFAS Agustos 2026 ortalamasi, sinif basina 1 puan; Ziraat Agustos raporunu 8-11 Eylul'de yayimlar, sinanmadi",
   "sinanan": 2,
-  "tarih": "2026-09-07"
+  "tarih": "2026-09-07",
+  "varyant": "standart ve standart-genis"
  }
 }
