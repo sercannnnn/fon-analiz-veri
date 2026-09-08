@@ -2055,38 +2055,41 @@
  },
  "ZİRAAT PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "ziraat",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.01,
   "fonSayisi": 90,
   "fonlar": {
    "TZL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "hata",
+    "duzen": "ziraat",
+    "ray": "2026-08",
+    "sapma": null,
+    "sebep": "şart 1: ağırlık toplamı 97.11"
    },
    "ZBJ": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
-    "ray": "2026-07",
-    "sebep": "düzen tanınmadı"
+    "durum": "hata",
+    "duzen": "ziraat",
+    "ray": "2026-08",
+    "sapma": null,
+    "sebep": "şart 1: ağırlık toplamı 98.11"
    },
    "ZP8": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "ziraat",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.01,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 1,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 2,
   "tarih": "2026-09-08",
-  "yayimlayan": 45
+  "yayimlayan": 47
  },
  "_varyantlar": {
   "fonbul": "'<KOD> FON AGUSTOS 2026 PORTFOY DAGILIM RAPORU / 1- FONU TANITICI BILGILER / A. FONUN ADI' basligi, sayfa genisligi 595 (Astra 842); Atlas, Ata, One, Osmanli, Perform, Rota, Unlu, Oyak, Astra. Ayristirici yok (08.09.2026)",
