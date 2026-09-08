@@ -188,7 +188,7 @@ KURAL = [
     (r"DEVLET TAHVIL|KAMU.*TAHVIL|KAMU BORCLANMA", "dt"), (r"OZEL SEKTOR TAHVIL|OZEL.*BORCLANMA", "ost"),
     (r"FINANSMAN BONO|FINANSMAN BONUSU|\bBONO\b", "fb"), (r"KIRA SERTIFIKA", "kira"),
     (r"TAKASBANK|TPP|\bBPP\b|BORSA PARA", "tpp"), (r"DEGERLI MADEN|KIYMETLI MADEN|D\.MADEN|\bMADEN\b|ALTIN|GUMUS", "maden"),
-    (r"(BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU).*(YABANCI|YP)", "ybyf"), (r"BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU", "byf"), (r"YATIRIM FONU|Y\.FONU|YATIRIM FON|FON SEPETI", "yf"),
+    (r"(BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU).*(YABANCI|YP)|(YABANCI|\bYP\b).*(BORSA YATIRIM FONU|\bBYF\b)", "ybyf"), (r"BORSA YATIRIM FONU|\bBYF\b|BORSA Y\.FONU", "byf"), (r"YATIRIM FONU|Y\.FONU|YATIRIM FON|FON SEPETI", "yf"),
     (r"KATILIM HESABI|KATILMA HESABI", "katilim"), (r"MEVDUAT", "mevduat"), (r"TEMINAT", "teminat"),
     (r"TAAHHUT", "taahhut"), (r"VDMK|VARLIGA DAYALI", "ost"), (r"DIGER", "diger"),
     (r"^OZEL SEKTOR$|BORSA DISI|BORCLANMA", "ost"), (r"^HAZINE|^DEVLET|^KAMU", "dt"),
@@ -291,7 +291,9 @@ def sapmalar(k_aile, t_aile):
 
 # ================================================================ duzen tanima ve 1. sayfa (Asama B)
 
-def duzen(t1):
+def duzen(t1, pdf_bayt=None):
+    """Duzen tanima. Standart duzen kiymet tablosunun basligiyla ('(FPD' ve '(FTD') taninir; 1. sayfa
+    farkli olsa da (Global MD, Aktif/INFINA, Logos) tablo aynidir (08.09.2026)."""
     n = norm(t1)
     if "AYLIK ORTALAMA PORTFOYDEKI MENKUL KIYMETLER YUZDESI" in n and "A-)" in n:
         return "standart"
@@ -299,6 +301,15 @@ def duzen(t1):
         return "garanti"
     if "AYLIK RAPORUDUR" in n:
         return "yapikredi"
+    if pdf_bayt:
+        with pdfplumber.open(io.BytesIO(pdf_bayt)) as p:
+            for pg in p.pages[:3]:
+                t = pg.extract_text() or ""
+                if "(FPD" in t and "(FTD" in t:
+                    return "standart"
+                pg.flush_cache()
+    if "(FPD" in t1 and "(FTD" in t1:
+        return "standart"
     return "bilinmiyor"
 
 
@@ -521,6 +532,135 @@ def standart_kiymetler(pdf_bayt):
     return kayit, gruplar
 
 
+# ================================================================ Garanti duzeni
+
+def _yuzde_mi(x):
+    return bool(re.match(r"^-?[\d,]+\.\d+%$", x))
+
+
+def _sayi_mi(x):
+    return bool(SAYI_RE.match(x))
+
+
+def _garanti_kalibre(R):
+    """Baslik satirindan sutun sag kenarlari: Grup%, Toplam%, 'Toplam Deger', 'Nominal Deger'; Ihracci x0, Vade x0."""
+    k = {}
+    for t, r in R:
+        m = [w["text"] for w in r]
+        if "Grup%" in m and "Toplam%" in m:
+            for i, w in enumerate(r):
+                x = w["text"]
+                if x == "Grup%": k["grup"] = w["x1"]
+                elif x == "Toplam%": k["toplam_pct"] = w["x1"]
+                elif x == "Değer" and i > 0 and r[i - 1]["text"] == "Toplam": k["toplam"] = w["x1"]
+                elif x == "Değer" and i > 0 and r[i - 1]["text"].startswith("Nomi"): k["nominal"] = w["x1"]
+                elif x.startswith("İhraç"): k["ihracci_x0"] = w["x0"]
+                elif x == "Vade": k["vade_x0"] = w["x0"]
+            break
+    return k if {"grup", "toplam_pct", "toplam"} <= set(k) else None
+
+
+def garanti_kiymetler(pdf_bayt):
+    """Garanti Portfoy duzeni: genislik 595 (iki olcek), Amerikan sayi bicimi, satir sonunda Toplam Deger, Grup%, Toplam%.
+    Toplam% fon toplam degerine (FTD) goredir; agirlik = toplam deger / FON PORTFOY DEGERI olarak yeniden hesaplanir
+    (TEFAS ile ayni taban). Bolum basliklari hiyerarsiktir ('B.1.OZEL SEKTOR ...' + 'TAHVIL'); tur = ust + alt.
+    Grup toplamlari (Toplam / Ara Grup / Ana Grup) her bolumde bulunmadigindan kapinin 2. sart grup kontrolu atlanir;
+    1. sart FON PORTFOY DEGERI ile saglanir."""
+    kayit = []
+    ust, alt, fpd, kal = "", "", None, None
+    with pdfplumber.open(io.BytesIO(pdf_bayt)) as pdf:
+        for pi, pg in enumerate(pdf.pages, start=1):
+            R = _satirlar(pg); pg.flush_cache()
+            kal = _garanti_kalibre(R) or kal
+            bitti = False
+            for t, r in R:
+                metin = " ".join(w["text"] for w in r)
+                ilk = r[0]["text"]
+                if metin.startswith("FON PORTFOY DEĞERİ") or metin.startswith("FON PORTFÖY DEĞERİ"):
+                    sayilar = [w["text"] for w in r if _sayi_mi(w["text"])]
+                    if sayilar:
+                        fpd = sayi(sayilar[-1])
+                    continue
+                if metin.startswith("IV-"):
+                    bitti = True; break
+                if ilk in ("Toplam", "Ara", "Ana"):
+                    continue
+                if not kal:
+                    continue
+                yuz = [w for w in r if _yuzde_mi(w["text"]) and w["x1"] >= kal["grup"] - 12]
+                deg = sorted([w for w in r if _sayi_mi(w["text"]) and kal["toplam"] - 25 <= w["x1"] <= kal["toplam"] + 16], key=lambda w: w["x1"])
+                if len(yuz) >= 2 and deg:
+                    nom = [w for w in r if _sayi_mi(w["text"]) and kal.get("nominal", 0) - 30 <= w["x1"] <= kal.get("nominal", 0) + 8] if "nominal" in kal else []
+                    isinler = [w["text"] for w in r if ISIN_RE.match(w["text"])]
+                    ih0, ih1 = kal.get("ihracci_x0", 97) - 8, kal.get("vade_x0", 189) - 4
+                    ad_tok = [w["text"] for w in r if ih0 <= w["x0"] < ih1 and not _sayi_mi(w["text"]) and not TARIH_RE.match(w["text"])]
+                    kayit.append(dict(sayfa=pi, ad=" ".join(ad_tok), isin=isinler[0] if isinler else "", isinSayi=len(set(isinler)),
+                                      nominal=sayi(nom[-1]["text"]) if nom else None, rayic=sayi(deg[-1]["text"]), agirlik=None,
+                                      tur=f"{ust} {alt}".strip(), kod=ilk, ihracciHam=" ".join(ad_tok), ihracciSatir=1 if ad_tok else 0))
+                    continue
+                if r[0]["x0"] < 25 and not re.search(r"\d\.\d|%", metin) and len(metin) < 70:
+                    if re.match(r"^[A-ZÇĞİÖŞÜ]{1,2}(\.\d)?\.", ilk):
+                        ust, alt = metin, ""
+                    else:
+                        alt = metin
+            if bitti:
+                break
+    if fpd is None:
+        fpd = sum(k["rayic"] for k in kayit) or None
+    if fpd:
+        for k in kayit:
+            k["agirlik"] = round(100.0 * k["rayic"] / fpd, 4)
+    return kayit, []
+
+
+# ================================================================ Yapi Kredi duzeni
+
+def yapikredi_kiymetler(pdf_bayt):
+    """Yapi Kredi Portfoy duzeni: genislik 612; satir = [ISIN] ... vade, ihracci, nominal, rayic, %; bolum
+    basliklari 'G) KIRA SERTIFIKALARI :'; ara toplam 'TOPLAM'. % sutunu FPD'ye gore alinir; agirlik
+    rayic / (TOPLAM satirlarinin rayic toplami) ile yeniden hesaplanir."""
+    kayit, gruplar = [], []
+    tur = ""
+    with pdfplumber.open(io.BytesIO(pdf_bayt)) as pdf:
+        for pi, pg in enumerate(pdf.pages, start=1):
+            R = _satirlar(pg); pg.flush_cache()
+            for t, r in R:
+                metin = " ".join(w["text"] for w in r)
+                ilk = r[0]["text"]
+                if metin.startswith("IV-") or metin.startswith("IV -"):
+                    break
+                if re.match(r"^[A-ZÇĞİÖŞÜ]{1,2}\)$", ilk):                 # bolum basligi: 'G) KIRA SERTIFIKALARI :'
+                    tur = re.sub(r"\s*:\s*$", "", " ".join(w["text"] for w in r[1:])); continue
+                if r[0]["x0"] < 80 and not re.search(r"\d", metin) and len(metin) < 40 and tur and not re.search(r"\d", tur):
+                    tur = (tur + " " + metin).strip(); continue        # basligin ikinci satiri
+                yuz = [w for w in r if _sayi_mi(w["text"]) and w["x1"] >= 570]
+                deg = [w for w in r if _sayi_mi(w["text"]) and 515 <= w["x1"] <= 530]
+                if not (yuz and deg):
+                    continue
+                if ilk == "TOPLAM":
+                    gruplar.append(dict(sayfa=pi, tur=tur, rayic=sayi(deg[-1]["text"]), agirlik=None, yaprak=True)); continue
+                nom = [w for w in r if _sayi_mi(w["text"]) and 450 <= w["x1"] <= 462]
+                isinler = [w["text"] for w in r if ISIN_RE.match(w["text"])]
+                ih = [w["text"] for w in r if 320 <= w["x0"] < 400 and not _sayi_mi(w["text"]) and not TARIH_RE.match(w["text"])]
+                ad = [w["text"] for w in r if w["x0"] < 300 and not ISIN_RE.match(w["text"]) and not TARIH_RE.match(w["text"])]
+                kayit.append(dict(sayfa=pi, ad=" ".join(ad + ih), isin=isinler[0] if isinler else "", isinSayi=len(set(isinler)),
+                                  nominal=sayi(nom[-1]["text"]) if nom else None, rayic=sayi(deg[-1]["text"]), agirlik=None,
+                                  tur=tur, kod=ilk, ihracciHam=" ".join(ih), ihracciSatir=1 if ih else 0))
+            else:
+                continue
+            break
+    fpd = sum(g["rayic"] for g in gruplar) or sum(k["rayic"] for k in kayit) or None
+    if fpd:
+        for k in kayit:
+            k["agirlik"] = round(100.0 * k["rayic"] / fpd, 4)
+        for g in gruplar:
+            g["agirlik"] = round(100.0 * g["rayic"] / fpd, 4)
+    return kayit, gruplar
+
+
+AYRISTIRICILAR = {"standart": standart_kiymetler, "garanti": garanti_kiymetler, "yapikredi": yapikredi_kiymetler}
+
+
 def satir_aileleri(kayit):
     sat = defaultdict(float)
     for k in kayit:
@@ -720,12 +860,12 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
         return "hata", "ek PDF yok", [], {}
     with pdfplumber.open(io.BytesIO(pdf)) as p:
         t1 = p.pages[0].extract_text() or ""
-    d = duzen(t1); ray = rapor_ayi(t1, x.get("publishDate")) or hedef
+    d = duzen(t1, pdf); ray = rapor_ayi(t1, x.get("publishDate")) or hedef
     if d == "bilinmiyor":
         return "duzen_taninmadi", "düzen tanınmadı", [], dict(ray=ray, duzen=d)
-    if d != "standart":
+    if d not in AYRISTIRICILAR:
         return "duzen_taninmadi", f"düzen {d} için ayrıştırıcı yok", [], dict(ray=ray, duzen=d)
-    kayit, gruplar = standart_kiymetler(pdf)
+    kayit, gruplar = AYRISTIRICILAR[d](pdf)
     gun, tefas_son = tefas_ertesi_gun(rows, f, ray)
     ok, sebep, sp = kapi(kayit, gruplar, tefas_son)
     bilgi = dict(ray=ray, duzen=d, gun=gun, sapma=sp, satir=len(kayit), toplam=round(sum(k["agirlik"] for k in kayit), 2) if kayit else "")
@@ -769,7 +909,8 @@ def kurucu_sinavi(kunye, kd, rows, evren, hedef, bas, bit, sinav_butce, kurucu_f
     for kur in sira:
         if kurucu_filtre and kur != kurucu_filtre:
             continue
-        if kd.get(kur, {}).get("sinavSurumu", 0) >= SINAV_SURUM:
+        onceki = kd.get(kur, {})
+        if onceki.get("sinavSurumu", 0) >= SINAV_SURUM and not (onceki.get("sonuc") == "taninmadi" and onceki.get("duzen") in AYRISTIRICILAR or onceki.get("duzen") == "bilinmiyor" and onceki.get("sonuc") == "taninmadi" and onceki.get("yenidenSina")):
             continue
         if ISTEK.sayi >= sinav_butce:
             break
@@ -981,8 +1122,8 @@ def main():
             fon = re.sub(r"^ek_|[_.].*$", "", os.path.basename(yol)); pdf = open(yol, "rb").read()
             with pdfplumber.open(io.BytesIO(pdf)) as p:
                 t1 = p.pages[0].extract_text() or ""
-            d = duzen(t1); ray = a.ay or rapor_ayi(t1) or "?"
-            kayit, gruplar = standart_kiymetler(pdf) if d == "standart" else ([], [])
+            d = duzen(t1, pdf); ray = a.ay or rapor_ayi(t1) or "?"
+            kayit, gruplar = AYRISTIRICILAR[d](pdf) if d in AYRISTIRICILAR else ([], [])
             gun, son = tefas_ertesi_gun(rows, fon, ray) if ray != "?" else (None, None)
             ok, sebep, sp = kapi(kayit, gruplar, son)
             print(f"=== {fon} {d} {ray}: satır {len(kayit)}, yaprak grup {sum(1 for g in gruplar if g['yaprak'])}, ISIN'siz {sum(1 for k in kayit if not k['isin'])}, toplam "
