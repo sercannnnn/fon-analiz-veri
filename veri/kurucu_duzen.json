@@ -41,6 +41,44 @@
   "tarih": "2026-09-08",
   "yayimlayan": 17
  },
+ "AHLATCI PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 9,
+  "fonlar": {
+   "BS1": {
+    "durum": "beklemede",
+    "duzen": "standart",
+    "ray": "2026-09",
+    "sapma": null,
+    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+   },
+   "LTL": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "PTP": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 2,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 7
+ },
  "AK PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
   "enBuyukSapma": 0.0,
@@ -80,40 +118,42 @@
   "yayimlayan": 80
  },
  "AKTİF PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "bilinmiyor",
-  "enBuyukSapma": null,
+  "duzen": "standart",
+  "enBuyukSapma": 7.31,
   "fonSayisi": 36,
   "fonlar": {
    "DOL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "standart",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "NKL": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "sinif_farki",
+    "duzen": "standart",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 1.05,
+    "sebep": "şart 3: borclanma satırlarda 22.71, TEFAS 23.76"
    },
    "PPV": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "sinif_farki",
+    "duzen": "standart",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 7.31,
+    "sebep": "şart 3: mevduat_katilim satırlarda 68.95, TEFAS 61.64"
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 1,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
-  "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sinifFarki": 2,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
-  "yayimlayan": 33,
-  "yenidenSina": true
+  "yayimlayan": 33
  },
  "ALBARAKA PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "goruntu",
@@ -550,6 +590,37 @@
   "tarih": "2026-09-08",
   "yayimlayan": 15
  },
+ "EMLAK KATILIM PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.02,
+  "fonSayisi": 2,
+  "fonlar": {
+   "EP1": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "KAC": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": 0.02,
+    "sebep": ""
+   }
+  },
+  "gecen": 2,
+  "gecti": true,
+  "sinanan": 2,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 2
+ },
  "FONMAP PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
   "enBuyukSapma": 0.0,
@@ -628,77 +699,79 @@
  },
  "GARANTİ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "garanti",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.01,
   "fonSayisi": 134,
   "fonlar": {
    "EUZ": {
-    "durum": "duzen_taninmadi",
+    "durum": "hata",
     "duzen": "garanti",
     "ray": "2026-08",
-    "sebep": "düzen garanti için ayrıştırıcı yok"
+    "sapma": null,
+    "sebep": "şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLAN"
    },
    "GRO": {
-    "durum": "duzen_taninmadi",
+    "durum": "hata",
     "duzen": "garanti",
     "ray": "2026-08",
-    "sebep": "düzen garanti için ayrıştırıcı yok"
+    "sapma": null,
+    "sebep": "şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLAN"
    },
    "GTL": {
-    "durum": "duzen_taninmadi",
+    "durum": "yayimlandi",
     "duzen": "garanti",
     "ray": "2026-08",
-    "sebep": "düzen garanti için ayrıştırıcı yok"
+    "sapma": 0.01,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 1,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 2,
   "tarih": "2026-09-08",
   "yayimlayan": 65
  },
  "GLOBAL MD PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "bilinmiyor",
-  "enBuyukSapma": null,
+  "duzen": "standart",
+  "enBuyukSapma": 1.25,
   "fonSayisi": 16,
   "fonlar": {
    "BSM": {
     "durum": "hata",
     "duzen": "standart",
-    "ray": "2026-07",
+    "ray": "2026-08",
     "sapma": null,
-    "sebep": "şart 2: 1 satıra birden çok ISIN atandı (TV8 TV TRFTVSKK2617 YAYINCILIK)"
+    "sebep": "şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000)"
    },
    "ECB": {
-    "durum": "beklemede",
+    "durum": "yayimlandi",
     "duzen": "standart",
-    "ray": "2026-07",
-    "sapma": null,
-    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
    },
    "GZM": {
-    "durum": "beklemede",
+    "durum": "sinif_farki",
     "duzen": "standart",
-    "ray": "2026-07",
-    "sapma": null,
-    "sebep": "şart 3: TEFAS izleyen gün dağılımı yok"
+    "ray": "2026-08",
+    "sapma": 1.25,
+    "sebep": "şart 3: teminat satırlarda 49.99, TEFAS 51.24"
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 1,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
-  "sinifFarki": 0,
-  "sonuc": "taninmadi",
+  "sinifFarki": 1,
+  "sonuc": "gecti",
   "taninmadi": 1,
   "tarih": "2026-09-08",
-  "yayimlayan": 12,
-  "yenidenSina": true
+  "yayimlayan": 12
  },
  "GOLDEN GLOBAL PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "goruntu",
@@ -965,8 +1038,7 @@
   "sonuc": "taninmadi",
   "taninmadi": 1,
   "tarih": "2026-09-08",
-  "yayimlayan": 1,
-  "yenidenSina": true
+  "yayimlayan": 1
  },
  "MARMARA CAPİTAL PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "karisik",
@@ -1078,6 +1150,44 @@
   "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 11
+ },
+ "NEO PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 46,
+  "fonlar": {
+   "NRG": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "NVB": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "NZT": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-07",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 44
  },
  "NUROL PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "goruntu",
@@ -1721,6 +1831,44 @@
   "tarih": "2026-09-08",
   "yayimlayan": 11
  },
+ "TRIVE PORTFÖY YÖNETİMİ A.Ş.": {
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
+  "fonSayisi": 11,
+  "fonlar": {
+   "KIB": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "KIE": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   },
+   "TRO": {
+    "durum": "yayimlandi",
+    "duzen": "standart",
+    "ray": "2026-08",
+    "sapma": 0.0,
+    "sebep": ""
+   }
+  },
+  "gecen": 3,
+  "gecti": true,
+  "sinanan": 3,
+  "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
+  "sinavSurumu": 2,
+  "sinifFarki": 0,
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-08",
+  "yayimlayan": 7
+ },
  "TUNA PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "-",
   "fonSayisi": 1,
@@ -1848,36 +1996,39 @@
  },
  "YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "yapikredi",
-  "enBuyukSapma": null,
+  "enBuyukSapma": 0.0,
   "fonSayisi": 116,
   "fonlar": {
    "YLB": {
-    "durum": "duzen_taninmadi",
+    "durum": "yayimlandi",
     "duzen": "yapikredi",
     "ray": "2026-08",
-    "sebep": "düzen yapikredi için ayrıştırıcı yok"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "YP4": {
-    "durum": "duzen_taninmadi",
+    "durum": "yayimlandi",
     "duzen": "yapikredi",
     "ray": "2026-08",
-    "sebep": "düzen yapikredi için ayrıştırıcı yok"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "YTY": {
-    "durum": "duzen_taninmadi",
+    "durum": "yayimlandi",
     "duzen": "yapikredi",
     "ray": "2026-08",
-    "sebep": "düzen yapikredi için ayrıştırıcı yok"
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
   "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "taninmadi",
-  "taninmadi": 3,
+  "sonuc": "gecti",
+  "taninmadi": 0,
   "tarih": "2026-09-08",
   "yayimlayan": 77
  },

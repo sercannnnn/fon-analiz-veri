@@ -10,24 +10,42 @@ BHH	2026-08	ek PDF yok
 BIY	2026-08	şart 2: 2 satırda ISIN okunamadı (Hisse Türk: A.Ş. CGCAM ÇAĞDAŞ CAM SANAYİ V)
 BSD	2026-08	şart 1: ağırlık toplamı 94.24
 BSE	2026-08	ek PDF yok
+BSM	2026-08	şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000)
 BTE	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: MÜHENDIS LIK SANAYI VE TICARET)
 BTK	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TEKNOLOJI LERI A.Ş. INTET İNTE)
 BV1	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: YATIRIM ORTAKLIGI A.Ş. INTET İ)
 BVD	2026-08	şart 1: ağırlık toplamı 97.82
 BVV	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: RI SANAYI VE TICARET A.Ş. INTE)
+CPU	2026-08	şart 2: 1 satıra birden çok ISIN atandı (US7475251036 M INC SNPS US8716)
 CSH	2026-08	ek PDF yok
 DBP	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT)
 DEH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: SANAYİ A.Ş. FRMPL FORMÜL PLAST)
 DHI	2026-08	ek PDF yok
 DNM	2026-08	şart 1: ağırlık toplamı 87.97
+DRA	2026-07	şart 1: ağırlık toplamı 95.67
 DRH	2026-08	ek PDF yok
+EBD	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı)
+EC2	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: DÖVĠZ ĠHRAÇCI VADE A.ġ. KLYPV )
 EDD	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ENA	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ENS	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
 ESP	2026-08	şart 1: ağırlık toplamı 28.03
+EUN	2026-08	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+EUZ	2026-08	şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
 FBZ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR)
 FFH	2026-07	şart 2: 2 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı ISDW iShares MSC)
+FLY	2026-08	şart 2: 1 satıra birden çok ISIN atandı (DE000TKMS001 CO. KGAA AVAV US0)
 FNO	2026-07	şart 1: ağırlık toplamı 87.17
 FZJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: HİSSE SENETLERİ Hisse Türk QTE)
+GMD	2026-08	şart 1: ağırlık toplamı 78.64
+GPL	2026-08	şart 2: 1 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+GPT	2026-08	şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215)
 GRL	2026-08	şart 1: ağırlık toplamı 69.15
+GRO	2026-08	şart 2: 2 satırda ISIN okunamadı (B.1.ÖZEL SEKTÖR BORÇLANMA ARAÇLARI DIŞ BORÇLANMA ARACI: T.C.ZIRAAT BANKASI)
+GTZ	2026-08	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
+GUV	2026-08	şart 2: 3 satırda ISIN okunamadı (B.2.KAMU SEKTÖRÜ BORÇLANMA ARAÇLARI TAHVIL: T.C. HAZİNE MÜSTEŞARLIĞI)
 HAR	2026-08	şart 1: ağırlık toplamı 80.72
+HLA	2026-07	ek PDF yok
+HOA	2026-08	şart 1: ağırlık toplamı 97.70
+HTJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı AIRBUS AIRBUS NL)
+HTS	2026-08	şart 1: ağırlık toplamı 86.28
