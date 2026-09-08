@@ -1,0 +1,17 @@
+{
+ "_aciklama": "Talimat 10 (08.09.2026): TEFAS sapmasi 0,05 ile 1,00 arasinda olan fon yalnizca sebebi bu dosyada adlandirilmissa yayimlanir. Sebep listesi: degerleme_tarihi, doviz_teminat, vadeli_islem, rapor_ici_tutarsizlik, sinif_farki. Listeye fon ancak raporu incelenip sebebi kanitlaninca girer; sapmayi kapatmak icin girmez.",
+ "CIN": {"sebep": "degerleme_tarihi", "kanit": "yabanci ETF (AIA, EWT, EWY, MCHI, INDA) KAP ay sonu, TEFAS izleyen gun fiyati; hisse +0,66 / ybyf -0,65", "tarih": "2026-09-08"},
+ "FRA": {"sebep": "degerleme_tarihi", "kanit": "USD fiyatli fon paylari (GSE-U, SPA-U Azimut); hisse +0,58 / yf -0,55", "tarih": "2026-09-08"},
+ "GLG": {"sebep": "degerleme_tarihi", "kanit": "fon payi (IDL, NKL Aktif) KAP 7,26, TEFAS 7,40", "tarih": "2026-09-08"},
+ "DEF": {"sebep": "degerleme_tarihi", "kanit": "fon payi KAP 51,49, TEFAS 52,20; hisse +0,74", "tarih": "2026-09-08"},
+ "AOJ": {"sebep": "degerleme_tarihi", "kanit": "fon payi KAP 10,96, TEFAS 11,19; hisse +0,23", "tarih": "2026-09-08"},
+ "BVM": {"sebep": "degerleme_tarihi", "kanit": "fon payi KAP 9,69, TEFAS 9,89; hisse +0,20", "tarih": "2026-09-08"},
+ "AS1": {"sebep": "degerleme_tarihi", "kanit": "yabanci hisse KAP 1,56, TEFAS 1,47; katilim -0,09", "tarih": "2026-09-08"},
+ "FZJ": {"sebep": "degerleme_tarihi", "kanit": "fon payi KAP 92,80, TEFAS 92,88", "tarih": "2026-09-08"},
+ "GO3": {"sebep": "degerleme_tarihi", "kanit": "fon payi KAP 81,20, TEFAS 81,28; BYF +0,06", "tarih": "2026-09-08"},
+ "GO4": {"sebep": "degerleme_tarihi", "kanit": "fon payi KAP 83,42, TEFAS 83,49; BYF +0,05", "tarih": "2026-09-08"},
+ "DNK": {"sebep": "vadeli_islem", "kanit": "TEFAS btas 12,51, KAP taahhut 12,13; hisse +0,38", "tarih": "2026-09-08"},
+ "GZN": {"sebep": "vadeli_islem", "kanit": "teminat KAP 11,28, TEFAS 11,60; hisse ve fon payi +0,16", "tarih": "2026-09-08"},
+ "GIE": {"sebep": "rapor_ici_tutarsizlik", "kanit": "Garanti hisse grup toplami satirlari 120.087,75 TL asiyor; raporun Toplam% sutunu 100,08", "tarih": "2026-09-08"},
+ "OPH": {"sebep": "sinif_farki", "kanit": "OPTGY KAP kunyesinde BYF, TEFAS hisse saymis; 0,16", "tarih": "2026-09-08"}
+}
