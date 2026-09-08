@@ -42,7 +42,7 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 5     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
+AYRISTIRICI_SURUM = 6     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
 # Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
 # kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
 ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni"]
@@ -570,6 +570,11 @@ def _garanti_kalibre(R):
     return k if {"grup", "toplam_pct", "toplam"} <= set(k) else None
 
 
+def _isin_ayikla(t):
+    """ISIN; Garanti duzeninde ISIN ile tarih bitisik basilabilir ('XS348774344820260901' = XS3487743448 + 20260901, GPL). Donus: eslesme ya da None."""
+    return re.match(r"^([A-Z]{2}[A-Z0-9]{9}\d)(?:\d{8})?$", t)
+
+
 def garanti_kiymetler(pdf_bayt):
     """Garanti Portfoy duzeni: genislik 595 (iki olcek), Amerikan sayi bicimi, satir sonunda Toplam Deger, Grup%, Toplam%.
     Toplam% fon toplam degerine (FTD) goredir; agirlik = toplam deger / FON PORTFOY DEGERI olarak yeniden hesaplanir
@@ -602,7 +607,7 @@ def garanti_kiymetler(pdf_bayt):
                 if len(yuz) >= 2 and deg:
                     nom = sorted([w for w in r if _sayi_mi(w["text"]) and kal.get("nominal", 0) - 20 <= w["x1"] <= kal.get("nominal", 0) + 14], key=lambda w: w["x1"]) if "nominal" in kal else []
                     fiy = [w for w in r if _sayi_mi(w["text"]) and kal.get("fiyat", 0) - 10 <= w["x1"] <= kal.get("fiyat", 0) + 6] if "fiyat" in kal else []
-                    isinler = [w["text"] for w in r if ISIN_RE.match(w["text"])]
+                    isinler = [_isin_ayikla(w["text"]).group(1) for w in r if _isin_ayikla(w["text"])]
                     ih0, ih1 = kal.get("ihracci_x0", 97) - 8, kal.get("vade_x0", 189) - 4
                     ad_tok = [w["text"] for w in r if ih0 <= w["x0"] < ih1 and not _sayi_mi(w["text"]) and not TARIH_RE.match(w["text"])]
                     kayit.append(dict(sayfa=pi, ad=" ".join(ad_tok), isin=isinler[0] if isinler else "", isinSayi=len(set(isinler)),
@@ -726,6 +731,11 @@ def fonbul_kiymetler(pdf_bayt):
                     nom = [w for w in r if _sayi_mi(w["text"]) and kal["nominal"] - 45 <= w["x1"] <= kal["nominal"] + 6]
                     isinler = [w["text"] for w in r if ISIN_RE.match(w["text"])]
                     ih = [w["text"] for w in r if kal["ihracci_x0"] - 4 <= w["x0"] < kal["nominal"] - 60 and not _sayi_mi(w["text"])]
+                    # bolum basliginin ikinci satiri ilk veri satiriyla ayni hizaya dusebilir (AAV: "SENETLERİ AEFES ANADOLU EFES"): kod, sol sutundaki ilk ISIN ya da taninan koddur
+                    sol = [w["text"] for w in r if w["x0"] < kal["ihracci_x0"]]
+                    kod_i = next((j for j, t in enumerate(sol) if ISIN_RE.match(t) or t.upper() in BIST_EVREN or t.upper() in BYF_KODLARI), 0)
+                    if kod_i > 0:
+                        tur = tur + " " + " ".join(sol[:kod_i]); ilk = sol[kod_i]
                     yz = sayi(pct[-1]["text"].replace("%", ""))
                     if "%" not in pct[-1]["text"] and yz is not None and abs(yz) < 1.0:
                         yz = yz * 100.0
@@ -751,6 +761,7 @@ def fonbul_kiymetler(pdf_bayt):
 
 
 BYF_KODLARI = set()
+BIST_EVREN = set()
 
 
 def byf_yukle(veri):
@@ -784,7 +795,9 @@ def satir_aileleri(kayit):
 
 def bist_evren_yukle(veri):
     yol = os.path.join(veri, "bist_evren.txt")
-    return {l.strip().upper() for l in open(yol, encoding="utf-8") if l.strip() and not l.startswith("#")} if os.path.exists(yol) else set()
+    ev = {l.strip().upper() for l in open(yol, encoding="utf-8") if l.strip() and not l.startswith("#")} if os.path.exists(yol) else set()
+    BIST_EVREN.update(ev)
+    return ev
 
 
 HISSE_TUR = re.compile(r"HISSE|ODUNC", re.I)
@@ -826,11 +839,13 @@ def satir_ici_denetim(kayit):
             continue
         if re.search(r"YABANCI|\bYP\b|DOVIZ|EUROBOND|DIS BORC", norm(k.get("tur") or "")) or (k.get("doviz") or "TL") not in ("TL", "TRY"):
             continue                      # yabanci para ya da altin cinsi satir (HOY, FRA: USD fon payi; PAL: USD DIBS; TTA: AU1 DIBS); kur bilinmeden sinanamaz
+        if re.search(r"-(USD|EUR|GBP|CHF)$", (k.get("kod") or "").upper()) or re.match(r"^TR[TDB]\d{6}F", k["isin"]):
+            continue                      # Garanti duzeninde doviz sutunu yok: kod soneki (GRO-USD) ve Hazine doviz DIBS ISIN'i (TRT030227F18, 10. karakter F) kuru gerektirir
         sinanan += 1
         ondalik = len(str(fiyat).split(".")[1]) if "." in str(fiyat) else 0
         nom_ondalik = len(str(nom).split(".")[1]) if "." in str(nom) else 0
         # tolerans: rayicin binde biri + fiyat hassasiyeti x nominal + nominal hassasiyeti x fiyat (HSA: 0,10 adetlik kusurat satirlari) + 0,01 TL
-        tol = 0.001 * abs(rayic) + abs(nom) * (10 ** -ondalik) / 2.0 + abs(fiyat) * (10 ** -nom_ondalik) / 2.0 + 0.01
+        tol = 0.001 * abs(rayic) + abs(nom) * (10 ** -ondalik) + abs(fiyat) * (10 ** -nom_ondalik) / 2.0 + 0.01   # fiyat kesilmis olabilir: tam basamak (Garanti fon payi 1,45 = 1,4573)
         adaylar = (nom * fiyat, nom * fiyat / 100.0)
         if not any(abs(a - rayic) <= tol for a in adaylar):
             tutmayan += 1
@@ -847,18 +862,20 @@ def yuzde_rayic_denetim(kayit):
     taban = sum(k["rayic"] for k in kayit if k.get("rayic"))
     if not taban:
         return 0, 0
-    sinanan = tutmayan = 0
+    oranlar = []
     for k in kayit:
         if not k.get("rayic") or k.get("agirlik") is None:
             continue
         hesap = 100.0 * k["rayic"] / taban
-        if k["agirlik"] <= 0 or hesap <= 0 or (aileye(k.get("tur") or "") or "diger") in ("diger", "taahhut"):
-            continue                      # turev satirinda agirlik sifir, rayic nominal tutar; sinanmaz
-        sinanan += 1
-        # taban repo teminatlariyla sisebilir (BIS: satirlar toplami FPD'nin 1,5 kati); bu yuzden yalnizca 4 kat ve ustu uyumsuzluk sayilir
-        if hesap / k["agirlik"] >= 4.0 or k["agirlik"] / hesap >= 4.0:
-            tutmayan += 1
-    return sinanan, tutmayan
+        if k["agirlik"] <= 0 or hesap < 0.05 or (aileye(k.get("tur") or "") or "diger") in ("diger", "taahhut"):
+            continue                      # turev satirinda agirlik sifir, rayic nominal tutar; hesaplanan agirlik 0,05 altinda yuvarlama hakim (okunan yuzde degil: BIS'te okunan 0,02, hesaplanan 0,66)
+        oranlar.append((k["agirlik"] / hesap, k))
+    if not oranlar:
+        return 0, 0
+    # taban repo teminatiyla sisebilir (BIS 1,5 kat, AP7 5 kat): butun satirlar ayni carpanla kayar; sapan satir ortanca carpandan 4 kat uzaktakidir
+    ortanca = sorted(o for o, _ in oranlar)[len(oranlar) // 2]
+    tutmayan = sum(1 for o, _ in oranlar if o / ortanca >= 4.0 or ortanca / o >= 4.0)
+    return len(oranlar), tutmayan
 
 
 def kapi(kayit, gruplar, tefas_son, evren=None):
@@ -885,7 +902,7 @@ def kapi(kayit, gruplar, tefas_son, evren=None):
     eksik = [k for k in kayit if not k["isin"] and k["tur"] and isinli_tur.search(norm(k["tur"]))
              and not (fon_tur.search(norm(k["tur"])) and re.search(r"\b[A-Z0-9]{3}\b", k["ad"]))
              and not (HISSE_TUR.search(norm(k["tur"])) and k.get("kod", "").upper() in evren)
-             and not k.get("kimlik")]   # fonbul: hisse satirinda ISIN yok, BIST kodu var
+             and not k.get("kimlik") and k.get("rayic")]   # degeri sifir satir agirlik tasimaz (AED: kodsuz eski hisseler)   # fonbul: hisse satirinda ISIN yok, BIST kodu var
     if eksik:
         return False, f"şart 2: {len(eksik)} satırda ISIN okunamadı ({eksik[0]['tur']}: {eksik[0]['ad'][:30]})", None
     coklu = [k for k in kayit if k["isinSayi"] > 1]
