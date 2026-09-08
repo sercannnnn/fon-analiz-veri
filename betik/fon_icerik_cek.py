@@ -800,7 +800,9 @@ def kurucu_sinavi(kunye, kd, rows, evren, hedef, bas, bit, sinav_butce, kurucu_f
         ertelenen = sum(1 for v in sonuc.values() if v["durum"] in ("ertelendi", "beklemede"))
         if ertelenen == len(sonuc):
             continue                                   # bugun karar verilemedi, yarin yeniden
-        gecti = gecen >= 1 and taninmadi == 0
+        # Kurucu, orneklerinden en az biri kapidan gecerse gecer; fon basina kapi zaten koruyor.
+        # Karisik duzenli kurucularda (Azimut, Pardus) gecmeyen fonlar tek tek duzen_taninmadi olur.
+        gecti = gecen >= 1
         sonuc_kur = "gecti" if gecti else ("sinif_farki" if taninmadi == 0 and sinif > 0 else "taninmadi")
         kd[kur] = dict(duzen=sorted(duzenler)[0] if len(duzenler) == 1 else "karisik", gecti=gecti, sonuc=sonuc_kur, sinanan=len(sonuc),
                        gecen=gecen, sinifFarki=sinif, taninmadi=taninmadi, fonSayisi=len(fonlar), yayimlayan=len(yayimlayan),
@@ -830,6 +832,9 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
 
     # ---- Asama B: kurucu sinavi (butcenin SINAV_PAYI'na kadar), oncelikli
+    for kur, v in kd.items():                # kural degisikligi: kayitli sinav sonuclari yeniden yorumlanir, istek harcanmaz
+        if not kur.startswith("_") and v.get("sinavSurumu", 0) >= SINAV_SURUM and not v.get("raporYok") and not v.get("gecti") and v.get("gecen", 0) >= 1:
+            v["gecti"] = True; v["sonuc"] = "gecti"; v["not_"] = "en az bir ornek gecti; gecmeyen fonlar tek tek duzen_taninmadi (08.09.2026)"
     sinanan, onbellek = kurucu_sinavi(kunye, kd, rows, evren, hedef, bas, bit, int(ISTEK.butce * SINAV_PAYI), kurucu_filtre)
     json_yaz(kd_yol, kd)
     gecen_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("gecti")}
