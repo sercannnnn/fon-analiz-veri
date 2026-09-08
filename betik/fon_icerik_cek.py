@@ -39,6 +39,9 @@ DAGILIM_GECIKME_GUN = 1   # TEFAS dagilimi T tarihinde T-1 kapanisini gosterir (
 
 AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6, "TEMMUZ": 7,
          "AGUSTOS": 8, "EYLUL": 9, "EKIM": 10, "KASIM": 11, "ARALIK": 12}
+SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
+SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
+KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
 AYRISTIRICI_SURUM = 3     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
 # Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
 # kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
@@ -211,6 +214,7 @@ ESLEME_TABLOSU = [
     ("maden",    "maden_byf", "ayni kanit; kmbyf TEFAS'ta kiymetli maden ailesindedir"),
     ("katilim",  "mevduat_katilim", "Ak Portfoy TEFAS'a katilma hesabini vadeli mevduat TL (vmtl) olarak bildirir: ALE KAP mevduat 31,45 + katilim 8,35 = TEFAS vmtl 39,80 birebir; BGP ve PPJ ayni (08.09.2026). Kuveyt Turk khtl ile bildirir; katlama iki tarafta da ayni toplami verir"),
     ("mevduat",  "mevduat_katilim", "ayni kanit"),
+    ("diger",    "borclanma", "TEFAS'in kodu olmayan doviz sukuklari (TVF Varlik Kiralama XS2911679004, Vakif Katilim, TT Varlik, Ziraat Katilim; XS ISIN) TEFAS d (diger) sutununa, KAP'ta Devlet Tahvili / Kamu Kesimi Kira / Ozel Sektor Kira bolumlerine yazilir. Kurus sinavi: DBH 2,11, DPB 1,19, DPK 3,60, KPD 15,58, KTT 12,21, TPZ 33,47 puan birebir (08.09.2026). DVS, EDT, FMV, TNK, TRJ'de d baska bir kalemdir, esit degil"),
 ]
 UST_GRUP = {a: g for a, g, _ in ESLEME_TABLOSU}
 
@@ -254,7 +258,13 @@ def tefas_ay_ortalama(rows, fon, ay):
 def tefas_ertesi_gun(rows, fon, ay):
     """Rapor ayindan sonraki ilk TEFAS dagilim gunu (= ay sonu portfoyu, DAGILIM_GECIKME_GUN gecikmeyle)."""
     adaylar = sorted(t for (t, k) in rows if k == fon and t > ay + "-31")
-    return (adaylar[0], rows[(adaylar[0], fon)]) if adaylar else (None, None)
+    if not adaylar:
+        return None, None
+    ilk = datetime.strptime(adaylar[0], "%Y-%m-%d").date()
+    ay_sonu = (datetime.strptime(ay + "-01", "%Y-%m-%d").date().replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
+    if (ilk - ay_sonu).days > 7:       # izleyen ilk is gunu elde yok (TEFAS dagilim penceresi disinda)
+        return None, None
+    return adaylar[0], rows[(adaylar[0], fon)]
 
 
 def katla(k_aile, t_aile):
@@ -672,108 +682,220 @@ def arsive_isle(arsiv, yazilan):
         gz_yaz(yol, birlesik)
 
 
-def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
-    bugun = date.today(); hedef = hedef_ay(bugun)
-    kd = json_oku(os.path.join(veri, "kurucu_duzen.json"), {})
-    ky_yol = os.path.join(veri, "icerik_kuyruk.json"); ky = json_oku(ky_yol, {})
-    rows = tefas_dagilim_yukle(veri)
-    evren = bist_evren_yukle(veri)
-    gecen = {k for k, v in kd.items() if v.get("gecti")}
-    yazilan, ozet, hata, kapsam_disi, ertelendi, beklemede = [], [], [], [], [], []
-    islenen = 0
-    kd_yol = os.path.join(veri, "kosu_durumu.json")
-    kdur = json_oku(kd_yol, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol, kdur)
+def ay_geri(ay, n):
+    y, m = int(ay[:4]), int(ay[5:7]); m -= n
+    while m <= 0:
+        m += 12; y -= 1
+    return f"{y}-{m:02d}"
 
-    # kuyruk: hedef ayin raporu alinmamis fonlar
-    fonlar = []
-    for f, s in sorted(kunye.items()):
-        if kurucu_filtre and s["kurucu"] != kurucu_filtre:
-            continue
-        if fon_filtre and f not in fon_filtre:
-            continue
-        d = ky.get(f, {})
-        if d.get("son") == hedef and d.get("surum", 1) >= AYRISTIRICI_SURUM:
-            continue
-        if d.get("durum") == "kapsamDisi" and (d.get("kalici") or d.get("ay") == hedef):
-            continue
-        if "ÖZEL" in s["fonUnvan"].upper():
-            ky[f] = dict(durum="kapsamDisi", sebep="özel fon; KAP'ta portföy raporu yayımlanmaz", kalici=True, tarih=bugun.isoformat())
-            kapsam_disi.append((f, ky[f]["sebep"])); continue
-        if s["kurucu"] not in gecen:
-            ky[f] = dict(durum="kapsamDisi", sebep=f"kurucu düzeni B aşamasını geçmedi ya da sınanmadı ({s['kurucu']})", ay=hedef, tarih=bugun.isoformat())
-            kapsam_disi.append((f, ky[f]["sebep"])); continue
-        fonlar.append(f)
-    print(f"hedef ay {hedef}: kuyrukta {len(fonlar)} fon", file=sys.stderr)
 
-    oids = {kunye[f]["fundOid"]: f for f in fonlar}
-    bas = (datetime.strptime(hedef + "-01", "%Y-%m-%d").date().replace(day=28) + timedelta(days=4)).replace(day=1).isoformat()
-    son = {}
-    try:
-        oid_l = list(oids)
-        for i in range(0, len(oid_l), 50):
-            for x in raporlar(oid_l[i:i + 50], bas, bugun.isoformat()):
-                f = x.get("fundCode")
-                if f in oids.values() and f not in son:
-                    son[f] = x
-        for f in fonlar:
-            x = son.get(f)
-            if not x:
-                if bugun.day >= RAPOR_BEKLEME_GUNU:
-                    ky[f] = dict(durum="kapsamDisi", sebep="dağılım raporu yayımlamıyor", ay=hedef, tarih=bugun.isoformat())
-                    kapsam_disi.append((f, ky[f]["sebep"]))
+def _tarih(s_):
+    """'03.09.2026 11:02:16' -> date"""
+    return datetime.strptime(s_[:10], "%d.%m.%Y").date()
+
+
+def son_raporlar(oids, bas, bit):
+    """Fon kodu -> en yeni 'Portfoy Dagilim Raporu' bildirimi (bas..bit). 50'lik kumeler, kume basina 1 istek."""
+    out = {}
+    oid_l = list(oids)
+    for i in range(0, len(oid_l), 50):
+        for x in raporlar(oid_l[i:i + 50], bas, bit):
+            f = x.get("fundCode")
+            if f and (f not in out or _tarih(x["publishDate"]) > _tarih(out[f]["publishDate"])):
+                out[f] = x
+    return out
+
+
+def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
+    """Tek raporu indirir, ayristirir, kapidan gecirir. Donus: (durum, sebep, satirlar, bilgi)."""
+    kur = kunye[f]["kurucu"]
+    pdf = ek_pdf(x["disclosureIndex"])
+    if not pdf:
+        return "hata", "ek PDF yok", [], {}
+    with pdfplumber.open(io.BytesIO(pdf)) as p:
+        t1 = p.pages[0].extract_text() or ""
+    d = duzen(t1); ray = rapor_ayi(t1, x.get("publishDate")) or hedef
+    if d == "bilinmiyor":
+        return "duzen_taninmadi", "düzen tanınmadı", [], dict(ray=ray, duzen=d)
+    if d != "standart":
+        return "duzen_taninmadi", f"düzen {d} için ayrıştırıcı yok", [], dict(ray=ray, duzen=d)
+    kayit, gruplar = standart_kiymetler(pdf)
+    gun, tefas_son = tefas_ertesi_gun(rows, f, ray)
+    ok, sebep, sp = kapi(kayit, gruplar, tefas_son)
+    bilgi = dict(ray=ray, duzen=d, gun=gun, sapma=sp, satir=len(kayit), toplam=round(sum(k["agirlik"] for k in kayit), 2) if kayit else "")
+    pdf = None; gruplar = None; gc.collect()
+    if ok:
+        satir, hisse_n, yabanci_n, bist_bos, ad_temiz = [], 0, 0, 0, 0
+        for k in kayit:
+            bist, ihr, temiz = kimlik_ve_ad(k, evren)
+            if k["tur"] and HISSE_TUR.search(norm(k["tur"])):
+                if re.search(r"YABANCI", norm(k["tur"])):
+                    yabanci_n += 1
                 else:
-                    ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="beklemede", sebep="rapor henüz yayımlanmadı", tarih=bugun.isoformat())
-                    beklemede.append(f)
-                continue
+                    hisse_n += 1; bist_bos += 0 if bist else 1
+            ad_temiz += 1 if temiz else 0
+            satir.append([f, ray, temiz, k["ad"], bist, ihr, k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], k["agirlik"], d])
+        bilgi.update(hisse=hisse_n, yabanci=yabanci_n, bistBos=bist_bos, adTemiz=ad_temiz)
+        return "yayimlandi", "", satir, bilgi
+    if sebep.startswith("şart 3: TEFAS"):
+        return "beklemede", sebep, [], bilgi
+    if sebep.startswith("şart 3"):
+        return "sinif_farki", sebep, [], bilgi
+    if sebep == "kıymet satırı yok":
+        return "duzen_taninmadi", sebep, [], bilgi
+    return "hata", sebep, [], bilgi
+
+
+def kurucu_sinavi(kunye, kd, rows, evren, hedef, bas, bit, sinav_butce, kurucu_filtre=None):
+    """Aşama B, Talimat 7: her kurucu icin rapor yayimlayan en fazla uc fon; kiymet tablosu kapidan
+    (TEFAS ertesi gun, sinif basina 1,0 puan) geciyorsa kurucu gecer. Sinanmamis ya da eski yontemle
+    sinanmis kurucular alinir. Donus: (sinanan kurucu listesi, fon->rapor onbellegi)."""
+    onbellek, sinanan = {}, []
+    kurucular = defaultdict(list)
+    for f, s_ in kunye.items():
+        kurucular[s_["kurucu"]].append(f)
+    buy = {}
+    fl = [f for f in [os.path.join(os.path.dirname(kd_yol_global), "son_gunluk.csv")] if os.path.exists(f)]  # veri/son_gunluk.csv
+    if fl:
+        for s_ in csv.DictReader(open(fl[0], encoding="utf-8")):
+            buy[s_["fonKodu"]] = float(s_["portfoyBuyukluk"] or 0)
+    sira = sorted(kurucular, key=lambda k: -sum(buy.get(f, 0) for f in kurucular[k]))
+    for kur in sira:
+        if kurucu_filtre and kur != kurucu_filtre:
+            continue
+        if kd.get(kur, {}).get("sinavSurumu", 0) >= SINAV_SURUM:
+            continue
+        if ISTEK.sayi >= sinav_butce:
+            break
+        fonlar = kurucular[kur]
+        try:
+            rap = son_raporlar({kunye[f]["fundOid"] for f in fonlar}, bas, bit)
+        except (ButceBitti, Ertelendi):
+            break
+        onbellek.update({f: rap.get(f) for f in fonlar})
+        yayimlayan = [f for f in sorted(fonlar, key=lambda f: -buy.get(f, 0)) if f in rap]
+        if not yayimlayan:
+            kd[kur] = dict(duzen="-", gecti=False, raporYok=True, sinanan=0, gecen=0, fonSayisi=len(fonlar),
+                           sinavSurumu=SINAV_SURUM, tarih=date.today().isoformat(), not_="6 ayda hicbir fonu portfoy dagilim raporu yayimlamadi")
+            sinanan.append(kur); continue
+        sonuc = {}
+        for f in yayimlayan[:3]:
+            if ISTEK.sayi >= sinav_butce:
+                break
+            try:
+                durum, sebep, _, bilgi = rapor_isle(f, rap[f], kunye, kd, rows, evren, hedef)
+            except Ertelendi as e:
+                durum, sebep, bilgi = "ertelendi", str(e), {}
+            except ButceBitti:
+                break
+            except Exception as e:
+                durum, sebep, bilgi = "hata", f"ayrıştırma hatası: {e}", {}
+            sonuc[f] = dict(durum=durum, sebep=sebep[:80], **{k: v for k, v in bilgi.items() if k in ("ray", "duzen", "sapma")})
+        if not sonuc:
+            break
+        duzenler = {v.get("duzen") for v in sonuc.values() if v.get("duzen")}
+        gecen = sum(1 for v in sonuc.values() if v["durum"] == "yayimlandi")
+        sinif = sum(1 for v in sonuc.values() if v["durum"] == "sinif_farki")
+        taninmadi = sum(1 for v in sonuc.values() if v["durum"] in ("duzen_taninmadi", "hata"))
+        ertelenen = sum(1 for v in sonuc.values() if v["durum"] in ("ertelendi", "beklemede"))
+        if ertelenen == len(sonuc):
+            continue                                   # bugun karar verilemedi, yarin yeniden
+        gecti = gecen >= 1 and taninmadi == 0
+        sonuc_kur = "gecti" if gecti else ("sinif_farki" if taninmadi == 0 and sinif > 0 else "taninmadi")
+        kd[kur] = dict(duzen=sorted(duzenler)[0] if len(duzenler) == 1 else "karisik", gecti=gecti, sonuc=sonuc_kur, sinanan=len(sonuc),
+                       gecen=gecen, sinifFarki=sinif, taninmadi=taninmadi, fonSayisi=len(fonlar), yayimlayan=len(yayimlayan),
+                       enBuyukSapma=max((v["sapma"] for v in sonuc.values() if v.get("sapma") is not None), default=None),
+                       fonlar=sonuc, sinavSurumu=SINAV_SURUM, sinav="kiymet tablosu + kapi, TEFAS ertesi gun", tarih=date.today().isoformat())
+        sinanan.append(kur)
+    return sinanan, onbellek
+
+
+kd_yol_global = ""
+
+
+def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
+    global kd_yol_global
+    bugun = date.today(); hedef = hedef_ay(bugun)
+    kd_yol = os.path.join(veri, "kurucu_duzen.json"); kd_yol_global = os.path.join(veri, "x")
+    kd = json_oku(kd_yol, {})
+    ky_yol = os.path.join(veri, "icerik_kuyruk.json"); ky = json_oku(ky_yol, {})
+    for f, d in list(ky.items()):            # eski kova adlarini ve 'ozel fon' varsayimini temizle
+        if d.get("durum") == "kapsamDisi":
+            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
+    rows = tefas_dagilim_yukle(veri); evren = bist_evren_yukle(veri)
+    kd_yol2 = os.path.join(veri, "kosu_durumu.json")
+    kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol2, kdur)
+    bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
+
+    # ---- Asama B: kurucu sinavi (butcenin SINAV_PAYI'na kadar), oncelikli
+    sinanan, onbellek = kurucu_sinavi(kunye, kd, rows, evren, hedef, bas, bit, int(ISTEK.butce * SINAV_PAYI), kurucu_filtre)
+    json_yaz(kd_yol, kd)
+    gecen_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("gecti")}
+    taninmayan_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("sinavSurumu", 0) >= SINAV_SURUM and v.get("sonuc") == "taninmadi"}
+    sinif_farki_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("sinavSurumu", 0) >= SINAV_SURUM and v.get("sonuc") == "sinif_farki"}
+    rapor_yok_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("raporYok")}
+
+    yazilan, ozet, hata = [], [], []
+    kova = defaultdict(list)
+    islenen = 0
+    fonlar = [f for f, s_ in sorted(kunye.items()) if (not kurucu_filtre or s_["kurucu"] == kurucu_filtre) and (not fon_filtre or f in fon_filtre)]
+    # ---- kurucu durumuna gore dagit
+    sorgulanacak = []
+    for f in fonlar:
+        kur = kunye[f]["kurucu"]
+        if kur in rapor_yok_kurucu:
+            ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="kapsam_disi", sebep="kurucunun hicbir fonu 6 ayda rapor yayimlamadi", tarih=bit); kova["kapsam_disi"].append(f)
+        elif kur in taninmayan_kurucu:
+            ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="duzen_taninmadi", sebep=f"kurucu düzeni ({kd[kur].get('duzen')}) ayrıştırılamıyor", tarih=bit); kova["duzen_taninmadi"].append(f)
+        elif kur in sinif_farki_kurucu:
+            ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="sinif_farki", sebep="kurucunun örnek fonlarında TEFAS sınıf eşleşmesi tutmadı", tarih=bit); kova["sinif_farki"].append(f)
+        elif kur not in gecen_kurucu:
+            ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="duzen_bekliyor", sebep="kurucu düzeni henüz sınanmadı", tarih=bit); kova["duzen_bekliyor"].append(f)
+        else:
+            sorgulanacak.append(f)
+    # ---- Asama C: gecen kurucularin fonlari
+    try:
+        eksik = [f for f in sorgulanacak if f not in onbellek]
+        if eksik:
+            onbellek.update({f: None for f in eksik})
+            onbellek.update(son_raporlar({kunye[f]["fundOid"] for f in eksik}, bas, bit))
+        for f in sorgulanacak:
+            x = onbellek.get(f); d = ky.get(f, {}); kur = kunye[f]["kurucu"]
+            if not x:
+                ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum="kapsam_disi", sebep=f"son {KAPSAM_AY} ayda portföy dağılım raporu yok (tek tek sorgulandı)", ay=hedef, tarih=bit)
+                kova["kapsam_disi"].append(f); continue
+            rap_ay = rapor_ayi("", x["publishDate"])          # yayim tarihinin onceki ayi; PDF'ten kesinlesir
+            if d.get("son") and d["son"] >= rap_ay and d.get("surum", 1) >= AYRISTIRICI_SURUM:
+                # elde olan liste en yeni raporun kendisi
+                ky[f]["durum"] = "yayimlandi" if d.get("son") == hedef else "rapor_yok_bu_ay"
+                ky[f]["sebep"] = "" if d.get("son") == hedef else f"bu ayın raporu yok; son rapor {d['son']}"
+                kova[ky[f]["durum"]].append(f); continue
             islenen += 1
             try:
-                pdf = ek_pdf(x["disclosureIndex"])
+                durum, sebep, satir, bilgi = rapor_isle(f, x, kunye, kd, rows, evren, hedef)
             except Ertelendi as e:
-                ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="ertelendi", sebep=f"ağ: {e}", tarih=bugun.isoformat())
-                ertelendi.append(f); continue
-            kur = kunye[f]["kurucu"]
-            if not pdf:
-                ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="hata", sebep="ek PDF yok", ay=hedef, tarih=bugun.isoformat())
-                hata.append((f, hedef, "ek PDF yok")); ozet.append([f, hedef, kur, "-", 0, "", "", "", "hata", "ek PDF yok"]); continue
-            try:
-                with pdfplumber.open(io.BytesIO(pdf)) as p:
-                    t1 = p.pages[0].extract_text() or ""
-                d = duzen(t1); ray = rapor_ayi(t1, x.get("publishDate")) or hedef
-                if d != kd[kur].get("duzen"):
-                    sebep = f"düzen {d}, kurucunun geçen düzeni {kd[kur].get('duzen')}"
-                    ky[f] = dict(durum="kapsamDisi", sebep=sebep, ay=hedef, tarih=bugun.isoformat()); kapsam_disi.append((f, sebep)); continue
-                kayit, gruplar = standart_kiymetler(pdf)
-                gun, tefas_son = tefas_ertesi_gun(rows, f, ray)
-                ok, sebep, sp = kapi(kayit, gruplar, tefas_son)
+                durum, sebep, satir, bilgi = "ertelendi", f"ağ: {e}", [], {}
             except Exception as e:
-                ok, sebep, sp, kayit, gun, ray = False, f"ayrıştırma hatası: {e}", None, [], None, hedef
-            toplam = round(sum(k["agirlik"] for k in kayit), 2) if kayit else ""
-            pdf = None; gruplar = None; gc.collect()      # bir seferde tek rapor bellekte; her fondan sonra serbest birak
-            if ok:
-                hisse_n = yabanci_n = bist_bos = ad_temiz = 0
-                for k in kayit:
-                    bist, ihr, temiz = kimlik_ve_ad(k, evren)
-                    if k["tur"] and HISSE_TUR.search(norm(k["tur"])):
-                        if re.search(r"YABANCI", norm(k["tur"])):
-                            yabanci_n += 1          # BIST kodu beklenmez; kimlik ISIN
-                        else:
-                            hisse_n += 1; bist_bos += 0 if bist else 1
-                    ad_temiz += 1 if temiz else 0
-                    yazilan.append([f, ray, temiz, k["ad"], bist, ihr, k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], k["agirlik"], d])
-                ky[f] = dict(son=ray, durum="yayimlandi", sapma=sp, tefasGun=gun, satir=len(kayit), surum=AYRISTIRICI_SURUM, tarih=bugun.isoformat())
-                ozet.append([f, ray, kur, d, len(kayit), toplam, gun or "", sp, hisse_n, yabanci_n, bist_bos, ad_temiz, "yayimlandi", "", OZET_NOT])
-            elif sebep.startswith("şart 3: TEFAS"):
-                ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="beklemede", sebep=sebep, tarih=bugun.isoformat())
-                beklemede.append(f); ozet.append([f, ray, kur, d, len(kayit), toplam, "", "", "", "", "", "", "beklemede", sebep, OZET_NOT])
+                durum, sebep, satir, bilgi = "hata", f"ayrıştırma hatası: {e}", [], {}
+            ray = bilgi.get("ray", rap_ay)
+            if durum == "yayimlandi":
+                yazilan += satir
+                ky[f] = dict(son=ray, durum="yayimlandi" if ray == hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
+                             sebep="" if ray == hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
+                kova[ky[f]["durum"]].append(f)
+                ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])
             else:
-                ky[f] = dict(**{k: v for k, v in ky.get(f, {}).items() if k == "son"}, durum="hata", sebep=sebep, ay=hedef, tarih=bugun.isoformat())
-                hata.append((f, ray, sebep)); ozet.append([f, ray, kur, d, len(kayit), toplam, gun or "", sp if sp is not None else "", "", "", "", "", "hata", sebep, OZET_NOT])
+                ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum=durum, sebep=sebep, ay=ray, tarih=bit)
+                kova[durum].append(f)
+                if durum == "hata":
+                    hata.append((f, ray, sebep))
+                ozet.append([f, ray, kur, bilgi.get("duzen", "-"), bilgi.get("satir", 0), bilgi.get("toplam", ""), bilgi.get("gun") or "", bilgi.get("sapma") if bilgi.get("sapma") is not None else "", "", "", "", "", durum, sebep, OZET_NOT])
     except ButceBitti:
-        print(f"günlük istek bütçesi ({BUTCE}) bitti; kuyruk yarın devam eder", file=sys.stderr)
+        print(f"günlük istek bütçesi ({ISTEK.butce}) bitti; kuyruk yarın devam eder", file=sys.stderr)
     except Ertelendi as e:
         print(f"listeleme ertelendi: {e}", file=sys.stderr)
 
-    # ciktilar
+    # ---- ciktilar
     with open(os.path.join(veri, "fon_icerik_son.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, lineterminator="\n"); w.writerow(ICERIK_ALAN); w.writerows(yazilan)
     with open(os.path.join(veri, "fon_icerik_ozet.csv"), "w", newline="", encoding="utf-8") as fh:
@@ -781,21 +903,26 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     with open(os.path.join(veri, "fon_icerik_hata.txt"), "w", encoding="utf-8") as fh:
         for f, ray, sebep in hata:
             fh.write(f"{f}\t{ray}\t{sebep}\n")
-    with open(os.path.join(veri, "fon_icerik_kapsam_disi.txt"), "w", encoding="utf-8") as fh:
-        for f, sebep in sorted(kapsam_disi):
-            fh.write(f"{f}\t{sebep}\n")
+    with open(os.path.join(veri, "fon_icerik_kovalar.txt"), "w", encoding="utf-8") as fh:
+        for f in sorted(ky):
+            if ky[f].get("durum") and ky[f]["durum"] != "yayimlandi":
+                fh.write(f"{f}\t{ky[f]['durum']}\t{ky[f].get('sebep', '')}\n")
     if yazilan:
         os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
     json_yaz(ky_yol, ky)
-    kalan = sum(1 for f in fonlar if ky.get(f, {}).get("son") != hedef and ky.get(f, {}).get("durum") not in ("kapsamDisi", "hata"))
-    kova = defaultdict(int)
-    for _, sebep in kapsam_disi:
-        kova["ozelFon" if sebep.startswith("özel fon") else "kurucuDuzeni" if sebep.startswith("kurucu düzeni") else
-             "duzenTaninmadi" if sebep.startswith("düzen") else "raporYayimlamiyor" if sebep.startswith("dağılım raporu") else "diger"] += 1
-    durum = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="tamamlandi", kuyruk=len(fonlar), islenen=islenen, yayimlanan=len({s[0] for s in yazilan}),
-                 satir=len(yazilan), hata=len(hata), kapsamDisi=len(kapsam_disi), kapsamDisiKova=dict(kova), ertelendi=len(ertelendi), beklemede=len(beklemede),
-                 istek=ISTEK.sayi, h429=ISTEK.h429, kuyrukKalan=kalan, ayristiriciSurum=AYRISTIRICI_SURUM, **{"not": OZET_NOT})
-    kdur = json_oku(kd_yol, {}); kdur["icerik"] = durum; json_yaz(kd_yol, kdur)
+    sayim = defaultdict(int)
+    for f, d in ky.items():
+        if f in kunye and d.get("durum"):
+            sayim[d["durum"]] += 1
+    toplam_fon = len(kunye); kapsam_disi_n = sayim.get("kapsam_disi", 0)
+    yayimlayan = toplam_fon - kapsam_disi_n
+    listesi_olan = sum(1 for f, d in ky.items() if f in kunye and d.get("son"))
+    kapsam_orani = round(listesi_olan / yayimlayan, 4) if yayimlayan else None
+    durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi", sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu),
+                 raporYokKurucu=len(rapor_yok_kurucu), islenen=islenen, yayimlananBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 kovalar=dict(sayim), toplamFon=toplam_fon, raporYayimlayanFon=yayimlayan, listesiOlanFon=listesi_olan, kapsamOrani=kapsam_orani,
+                 istek=ISTEK.sayi, h429=ISTEK.h429, ayristiriciSurum=AYRISTIRICI_SURUM, sinavSurumu=SINAV_SURUM, **{"not": OZET_NOT})
+    kdur = json_oku(kd_yol2, {}); kdur["icerik"] = durum; json_yaz(kd_yol2, kdur)
     return durum, ozet
 
 
