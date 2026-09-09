@@ -207,12 +207,26 @@ def ek_pdf(idx):
         if fids:
             break
         time.sleep(5 * (i + 1))      # yuk altinda 200 donup ek baglantisi tasimayan sayfa
+    # Birden cok ek: Istanbul Portfoy hareket tablolarini (VII satislar, VIII itfalar, IX alislar) ayri ekte, kiymet
+    # tablosunu ikinci ekte verir (IJV, 09.09.2026). Duzeni taninan ilk PDF secilir; hicbiri taninmazsa ilk PDF.
+    ilk = None
     for fid in fids:
         raw = _istek("GET", KAP + f"file/download/{fid}").content
         i = raw.find(b"%PDF")
-        if i >= 0:
-            return raw[i:]
-    return None
+        if i < 0:
+            continue
+        pdf = raw[i:]
+        if len(fids) == 1:
+            return pdf
+        try:
+            with pdfplumber.open(io.BytesIO(pdf)) as p:
+                t1 = p.pages[0].extract_text() or ""
+            if duzen(t1, pdf) != "bilinmiyor":
+                return pdf
+        except Exception:
+            pass
+        ilk = ilk or pdf
+    return ilk
 
 
 # ================================================================ TEFAS dagilimi ve aile eslemesi
@@ -565,6 +579,8 @@ def standart_kiymetler(pdf_bayt):
             for i, (t, r) in enumerate(R):
                 if i in anal or i in baslik or i <= tablo_bas:
                     continue
+                if pi > 1 and anal and i < min(anal):
+                    continue                      # sayfa basindaki sarkan satir onceki sayfanin son ana satirina aittir (VNK, dar varyant; 09.09.2026)
                 metin = " ".join(w["text"] for w in r)
                 if re.search(r"-\)|TOPLAMI|GÖRE\)", metin):
                     continue
@@ -768,6 +784,13 @@ def _fonbul_kalibre(R):
                     elif r[i - 1]["text"].startswith("Rayi"): k["rayic"] = w["x1"]
             if {"nominal", "rayic"} <= set(k):
                 return k
+    # Basliksiz varyant (Rota CPT, 09.09.2026): ihracci sutunu yok, satir = kod/ISIN, nominal, rayic, %. Sutunlar ilk
+    # 'TOPLAM:' satirinin iki sayisindan kalibre edilir; ihracci siniri nominalin soluna konur ki kod sutunu solda kalsin.
+    for t, r in R:
+        if r[0]["text"].startswith("TOPLAM"):
+            say = [w for w in r if _sayi_mi(w["text"])]
+            if len(say) >= 2:
+                return {"ihracci_x0": say[-2]["x0"] - 60, "nominal": say[-2]["x1"], "rayic": say[-1]["x1"], "pct": say[-1]["x1"] + 40, "basliksiz": True}
     return None
 
 
@@ -780,8 +803,16 @@ def fonbul_kiymetler(pdf_bayt):
     fpd_okunan = [None]
     bitti = False                          # sayfalar arasinda korunur; PRV'de fon toplam degeri tablosu sonraki sayfaya tasiyor
     with pdfplumber.open(io.BytesIO(pdf_bayt)) as pdf:
-        for pi, pg in enumerate(pdf.pages, start=1):
-            R = _satirlar(pg); pg.flush_cache()
+        sayfalar = [_satirlar(pg) for pg in pdf.pages]
+        for pg in pdf.pages:
+            pg.flush_cache()
+        # on gecis: kalibrasyon basliksiz varyantta (CPT) ilk 'TOPLAM:' satirindan gelir ve o satir 2. sayfada olabilir;
+        # 1. sayfadaki hisse satirlari kaybolmasin diye kalibrasyon once butun sayfalarda aranir
+        for R in sayfalar:
+            kal = _fonbul_kalibre(R)
+            if kal:
+                break
+        for pi, R in enumerate(sayfalar, start=1):
             kal = _fonbul_kalibre(R) or kal
             if not kal:
                 continue
