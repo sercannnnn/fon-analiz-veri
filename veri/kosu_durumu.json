@@ -1,12 +1,12 @@
 {
  "icerik": {
-  "ayristiriciSurum": 7,
+  "ayristiriciSurum": 8,
   "durum": "tamamlandi",
   "gecenKurucu": 49,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 419,
-  "istek": 900,
+  "islenen": 171,
+  "istek": 400,
   "kapsamOrani": 0.4438,
   "kapsamPay": 474,
   "kapsamPayda": 1068,
@@ -16,24 +16,24 @@
    "beklemede": 7,
    "duzen_bekliyor": 127,
    "duzen_taninmadi": 773,
+   "ertelendi": 1,
    "hata": 50,
    "kapsam_disi": 571,
    "kuyrukta": 260,
-   "listesi_var": 317,
+   "listesi_var": 316,
    "rapor_yok_bu_ay": 19,
    "sinif_farki": 22
   },
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "raporYokKurucu": 3,
-  "satirBuTur": 22349,
+  "satirBuTur": 5983,
   "sinananKurucu": [
-   "ZİRAAT PORTFÖY YÖNETİMİ A.Ş.",
    "VEGA PORTFÖY YÖNETİMİ A.Ş."
   ],
   "sinavSurumu": 2,
   "taninmayanKurucu": 12,
-  "tarih": "2026-09-08",
+  "tarih": "2026-09-09",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 323
+  "yayimlandiBuTur": 132
  }
 }

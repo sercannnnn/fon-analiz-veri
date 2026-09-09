@@ -16,34 +16,3 @@ CSH	2026-08	ek PDF yok
 DBP	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT)
 DHI	2026-08	ek PDF yok
 DNM	2026-08	satır içi: 1/17 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-DRA	2026-08	satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-DRH	2026-08	ek PDF yok
-EBD	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı)
-EC2	2026-08	şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )
-EDD	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
-EDP	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.27 puan, 0,05 üstü
-ENA	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
-ENS	2026-07	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: INC GOOGL GOOGLE)
-EP1	2026-08	satır içi: 13/50 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-ESP	2026-08	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-FBZ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TİCARET A.Ş. TPYGI.F2 TERA POR)
-FFH	2026-07	şart 2: 2 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı ISDW iShares MSC)
-FJZ	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.08 puan, 0,05 üstü
-FLY	2026-08	şart 2: 1 satıra birden çok ISIN atandı (DE000TKMS001 CO. KGAA AVAV US0)
-FNO	2026-07	satır içi: 1/43 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-FPG	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.86 puan, 0,05 üstü
-FZP	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.30 puan, 0,05 üstü
-GMC	2026-08	satır içi: 1/9 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-GMD	2026-08	şart 1: ağırlık toplamı 78.64
-GPT	2026-08	şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215)
-GRL	2026-08	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-GTZ	2026-08	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
-HAR	2026-08	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-HKG	2026-08	şart 2: 25 satırda ISIN okunamadı (HİSSE SENETLERİ 2. Diğer Ortaklıklar: AKBANK TAS)
-HKV	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.23 puan, 0,05 üstü
-HLA	2026-08	ek PDF yok
-HLL	2026-08	şart 1: ağırlık toplamı 96.87
-HOA	2026-08	satır içi: 1/48 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-HOY	2026-08	satır içi: 1/39 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-HSA	2026-08	sapma sebebi atanmamış: TEFAS sapması 1.00 puan, 0,05 üstü
-HTJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı AIRBUS AIRBUS NL)

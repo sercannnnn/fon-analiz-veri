@@ -104,6 +104,7 @@ BSM	hata	şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TR
 BSN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BTP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BTY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+BTZ	ertelendi	ağ: i/file/download/4028328d9f52dddc01a08094219c0768
 BUB	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BUC	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 BUP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
