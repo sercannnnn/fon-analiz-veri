@@ -5,28 +5,28 @@
   "gecenKurucu": 49,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 171,
-  "istek": 400,
-  "kapsamOrani": 0.4438,
-  "kapsamPay": 474,
-  "kapsamPayda": 1068,
+  "islenen": 262,
+  "istek": 600,
+  "kapsamOrani": 0.5412,
+  "kapsamPay": 591,
+  "kapsamPayda": 1092,
   "kapsamTanimi": "pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
   "kovaToplami": 2146,
   "kovalar": {
-   "beklemede": 7,
-   "duzen_bekliyor": 127,
-   "duzen_taninmadi": 773,
+   "beklemede": 15,
+   "duzen_bekliyor": 29,
+   "duzen_taninmadi": 509,
    "ertelendi": 1,
-   "hata": 50,
-   "kapsam_disi": 571,
-   "kuyrukta": 260,
-   "listesi_var": 316,
-   "rapor_yok_bu_ay": 19,
-   "sinif_farki": 22
+   "hata": 86,
+   "kapsam_disi": 802,
+   "kuyrukta": 221,
+   "listesi_var": 433,
+   "rapor_yok_bu_ay": 11,
+   "sinif_farki": 39
   },
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "raporYokKurucu": 3,
-  "satirBuTur": 5983,
+  "satirBuTur": 4351,
   "sinananKurucu": [
    "VEGA PORTFÖY YÖNETİMİ A.Ş."
   ],
@@ -34,6 +34,8 @@
   "taninmayanKurucu": 12,
   "tarih": "2026-09-09",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 132
+  "yayimlandiBuTur": 119,
+  "yeniFon": 119,
+  "yenidenIslenen": 0
  }
 }

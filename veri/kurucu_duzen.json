@@ -1987,21 +1987,21 @@
     "duzen": "standart",
     "ray": "2026-08",
     "sapma": null,
-    "sebep": "satır içi: 23/46 satırda yüzde sütunu rayiç / toplam ile tutmuyor"
+    "sebep": "satır içi: 1/32 satırda yüzde sütunu rayiç / toplam ile tutmuyor"
    },
    "VNK": {
-    "durum": "duzen_taninmadi",
+    "durum": "hata",
     "duzen": "standart",
     "ray": "2026-08",
     "sapma": null,
-    "sebep": "kıymet satırı yok"
+    "sebep": "şart 2: 1 satıra birden çok ISIN atandı (KOÇ FİNANSMAN STELLANTİS A.Ş. )"
    },
    "VPP": {
-    "durum": "duzen_taninmadi",
+    "durum": "hata",
     "duzen": "standart",
     "ray": "2026-01",
     "sapma": null,
-    "sebep": "kıymet satırı yok"
+    "sebep": "satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor"
    }
   },
   "gecen": 0,
