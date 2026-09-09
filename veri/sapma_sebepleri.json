@@ -74,5 +74,10 @@
   "sebep": "rapor_ici_tutarsizlik",
   "kanit": "Ziraat kiymet tablosunda 'I - VARLIGA DAYALI MENKUL KIYMETLER' basligi var, satiri yok; fon portfoy degeri onlari iceriyor, acik TEFAS vdm 0,23 ile birebir; satir toplami 99,77",
   "tarih": "2026-09-09"
+ },
+ "HSA": {
+  "sebep": "tefas_toplami_100_degil",
+  "kanit": "TEFAS 2026-09-01 sinif sutunlari 101,00'a toplaniyor (hs 51,82 + dt 6,60 + ost 6,91 + fb 3,52 + tpp 1,98 + tr 19,52 + vint 5,83 + yyf 4,82); KAP satirlari 100,00; fonun eksi hisse pozisyonu var (TURSG -0,44). Betik sarti: |toplam-100| > 0,05",
+  "tarih": "2026-09-09"
  }
 }

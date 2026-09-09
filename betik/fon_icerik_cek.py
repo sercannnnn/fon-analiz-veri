@@ -42,12 +42,22 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 8
+AYRISTIRICI_SURUM = 8     # artinca kuyruk, eski surumle yayimlanmis fonlari kalan butceyle, gunlere yayarak yeniden isler (Talimat 11)
+# Talimat 11: gunluk butcenin en az %60'i listesi olmayan fonlara. Uygulama: yeni fonlar once ve butcenin tamamina kadar islenir,
+# eski surumle yayimlanmis fonlar kalan butceyle ve gunlere yayilarak yeniden islenir.
 # Talimat 10 (08.09.2026): 3. sart esigi. 0,05 ve alti gecer; 0,05 ile 1,00 arasi yalnizca sebebi asagidaki listeden
 # veri/sapma_sebepleri.json dosyasinda atanmissa yayimlanir (sebep bos = hata); 1,00 ustu her kosulda yayimlanmaz.
 SAPMA_SERBEST = 0.05
 SAPMA_UST = 1.0
-SEBEP_LISTESI = {"degerleme_tarihi", "doviz_teminat", "vadeli_islem", "rapor_ici_tutarsizlik", "sinif_farki"}
+SEBEP_LISTESI = {"degerleme_tarihi", "doviz_teminat", "vadeli_islem", "rapor_ici_tutarsizlik", "sinif_farki", "tefas_toplami_100_degil"}
+TEFAS_TOPLAM_TOLERANS = 0.05   # tefas_toplami_100_degil yalnizca TEFAS sinif sutunlari toplami 100'den bu kadar fazla sapinca kullanilabilir (Talimat 11)
+
+
+def tefas_sinif_toplami(tefas_son):
+    """Ayni fon ve tarih icin TEFAS'in kendi sinif sutunlarinin toplami; ozet dosyasina tefasSinifToplami olarak yazilir."""
+    if not tefas_son:
+        return None
+    return round(sum(float(v or 0) for k, v in tefas_son.items() if k not in ("tarih", "fonKodu")), 2)
 SAPMA_SEBEPLERI = {}
 
 
@@ -59,11 +69,17 @@ def sapma_sebepleri_yukle(veri):
     return SAPMA_SEBEPLERI
 
 
-def sapma_karari(fon, ok, sebep, sp):
-    """Kapidan gecen fonda 3. sart esigini uygular. Donus: (ok, sebep, sapmaSebebi)."""
+def sapma_karari(fon, ok, sebep, sp, tefas_son=None):
+    """Kapidan gecen fonda 3. sart esigini uygular. Donus: (ok, sebep, sapmaSebebi).
+    tefas_toplami_100_degil sebebi bir yargi degil olcumdur: TEFAS sinif toplami 100'den 0,05'ten fazla sapmiyorsa kullanilamaz (HSA 101,00)."""
     if not ok or sp is None or sp <= SAPMA_SERBEST:
         return ok, sebep, ""
     kod = (SAPMA_SEBEPLERI.get(fon) or {}).get("sebep", "")
+    if kod == "tefas_toplami_100_degil":
+        t = tefas_sinif_toplami(tefas_son)
+        if t is None or abs(t - 100.0) <= TEFAS_TOPLAM_TOLERANS:
+            return False, f"sapma sebebi geçersiz: tefas_toplami_100_degil ama TEFAS sınıf toplamı {t}", ""
+        return True, "", kod
     if kod in SEBEP_LISTESI:
         return True, "", kod
     return False, f"sapma sebebi atanmamış: TEFAS sapması {sp:.2f} puan, 0,05 üstü", ""
@@ -75,11 +91,11 @@ def rapor_ici_fark(kayit, gruplar):
     Kurucunun kendi raporu tutmuyorsa bu o fon hakkinda bilgidir: GIE 120.087,75 (hisse grubu), TZL 2,7 milyar (VDMK satirlari yok)."""
     if not kayit or not kayit[0].get("tlTaban") or not kayit[0].get("fpdOkundu"):
         return ""
-    return round(kayit[0]["tlTaban"] - sum(k["rayic"] for k in kayit if k.get("rayic") is not None), 2)     # artinca kuyruk, eski surumle yayimlanmis fonlari butce dahilinde yeniden isler
+    return round(kayit[0]["tlTaban"] - sum(k["rayic"] for k in kayit if k.get("rayic") is not None), 2)
 # Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
 # kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
 ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni"]
-OZET_ALAN = ["fonKodu", "raporTarihi", "kurucu", "kurucuDuzeni", "satir", "agirlikToplam", "tefasGun", "tefasSapma", "sapmaSebebi", "raporIciTutarsizlik", "satirIciSinanan", "satirIciHata", "hisseSatir", "yabanciHisseSatir", "bistKoduBos", "adTemiz", "durum", "sebep", "not"]
+OZET_ALAN = ["fonKodu", "raporTarihi", "kurucu", "kurucuDuzeni", "satir", "agirlikToplam", "tefasGun", "tefasSapma", "sapmaSebebi", "tefasSinifToplami", "raporIciTutarsizlik", "satirIciSinanan", "satirIciHata", "hisseSatir", "yabanciHisseSatir", "bistKoduBos", "adTemiz", "durum", "sebep", "not"]
 OZET_NOT = "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz"
 
 
@@ -460,7 +476,19 @@ def _kalibre(R):
         sol = [x for x in yuzdeler if x < k["fpd"]]
         if sol:
             k["grup"] = max(sol)
-    return k if {"fpd", "grup", "toplam"} <= set(k) else None
+    if {"fpd", "grup", "toplam"} <= set(k):
+        return k
+    # Dar varyant (Vega, sayfa genisligi 595): baslik harfleri ust uste bindiginden okunmaz. Sutunlar ilk 'GRUP TOPLAMI'
+    # satirindaki bes sayinin sag kenarindan turetilir: nominal, toplam deger, grup %, FPD %, FTD % (09.09.2026).
+    for t, r in R:
+        if _grup_satiri(r):
+            say = sorted([w for w in r if SAYI_RE.match(w["text"])], key=lambda w: w["x1"])
+            if len(say) >= 5:
+                k2 = dict(k, nominal=say[-5]["x1"], toplam=say[-4]["x1"], grup=say[-3]["x1"], fpd=say[-2]["x1"], ftd=say[-1]["x1"], dar=True)
+                k2.setdefault("isin_x0", 145); k2.setdefault("ihracci_x0", 62); k2.setdefault("vade_x0", 105)
+                k2["fiyat"] = k2["toplam"] - 37            # birim fiyat sutunu toplam degerin hemen solunda
+                return k2
+    return None
 
 
 def _kolon(r, x1, sol=-45, sag=40):
@@ -547,6 +575,9 @@ def standart_kiymetler(pdf_bayt):
             for i in anal:
                 t, r = R[i]
                 fpd_l = _kolon(r, kal["fpd"], -5, 40); top_l = _kolon(r, kal["toplam"], -45, 12)
+                if kal.get("dar"):
+                    fpd_l = _kolon(r, kal["fpd"], -6, 6); top_l = _kolon(r, kal["toplam"], -8, 8)
+                    fpd_l = sorted(fpd_l, key=lambda w: abs(w["x1"] - kal["fpd"])); top_l = sorted(top_l, key=lambda w: abs(w["x1"] - kal["toplam"]))
                 if _grup_satiri(r):
                     yaprak = not son_ana_grup
                     son_ana_grup = True
@@ -557,6 +588,8 @@ def standart_kiymetler(pdf_bayt):
                 fpd, top = fpd_l[0], top_l[0]
                 nom = _kolon(r, kal["nominal"], -50, 12) if "nominal" in kal else []
                 fiy = _kolon(r, kal["fiyat"], -8, 20) if "fiyat" in kal else []
+                if kal.get("dar"):
+                    nom = _kolon(r, kal["nominal"], -8, 8); fiy = _kolon(r, kal["fiyat"], -8, 8)
                 ad_par = [(t, [w for w in r if w["x0"] < ad_sinir and _ad_token(w)])]
                 ad_par += [(tt, [w for w in rr if w["x0"] < ad_sinir and _ad_token(w)]) for tt, rr in atama[i]]
                 ad = " ".join(w["text"] for _, ws in sorted(ad_par) for w in ws)
@@ -1190,9 +1223,9 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
     byf_duzelt(kayit, kunye, evren)
     gun, tefas_son = tefas_ertesi_gun(rows, f, ray)
     ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
-    ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp)
+    ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
     sic_s, sic_h = satir_ici_denetim(kayit)
-    bilgi = dict(ray=ray, duzen=d, gun=gun, sapma=sp, sapmaSebebi=sapma_sebebi, raporIci=rapor_ici_fark(kayit, gruplar), satir=len(kayit),
+    bilgi = dict(ray=ray, duzen=d, gun=gun, sapma=sp, sapmaSebebi=sapma_sebebi, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici_fark(kayit, gruplar), satir=len(kayit),
                  toplam=round(sum(k["agirlik"] for k in kayit), 2) if kayit else "", sicSinanan=sic_s, sicHata=sic_h)
     pdf = None; gruplar = None; gc.collect()
     if ok:
@@ -1316,7 +1349,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
 
     yazilan, ozet, hata = [], [], []
     kova = defaultdict(list)
-    islenen = 0
+    islenen = 0; yeni_fon, yeniden_islenen = [0], [0]
     fonlar = [f for f, s_ in sorted(kunye.items()) if (not kurucu_filtre or s_["kurucu"] == kurucu_filtre) and (not fon_filtre or f in fon_filtre)]
     # ---- kurucu durumuna gore dagit
     sorgulanacak = []
@@ -1338,8 +1371,11 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
         if eksik:
             onbellek.update({f: None for f in eksik})
             onbellek.update(son_raporlar({kunye[f]["fundOid"] for f in eksik}, bas, bit))
+        # Talimat 11: butce bolusumu. Listesi olmayan fonlar (yeni) once ve butcenin tamamina kadar; eski surumle yayimlanmis
+        # fonlar (yeniden) kalan butceyle, gunlere yayilarak. Boylece butcenin en az YENI_FON_PAYI'i yeni kapsama gider.
+        yeni_l, yeniden_l = [], []
         for f in sorgulanacak:
-            x = onbellek.get(f); d = ky.get(f, {}); kur = kunye[f]["kurucu"]
+            x = onbellek.get(f); d = ky.get(f, {})
             if not x:
                 ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum="kapsam_disi", sebep=f"son {KAPSAM_AY} ayda portföy dağılım raporu yok (tek tek sorgulandı)", ay=hedef, tarih=bit)
                 kova["kapsam_disi"].append(f); continue
@@ -1349,7 +1385,12 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 ky[f]["durum"] = "yayimlandi" if d.get("son") == hedef else "rapor_yok_bu_ay"
                 ky[f]["sebep"] = "" if d.get("son") == hedef else f"bu ayın raporu yok; son rapor {d['son']}"
                 kova[ky[f]["durum"]].append(f); continue
+            (yeniden_l if d.get("son") and d["son"] >= rap_ay else yeni_l).append((f, x, d, rap_ay))
+        for f, x, d, rap_ay in yeni_l + yeniden_l:
+            kur = kunye[f]["kurucu"]; yeniden = bool(d.get("son") and d["son"] >= rap_ay)   # yeni fonlar listede once; butce onlara gider
             islenen += 1
+            if yeniden:
+                yeniden_islenen[0] += 1
             try:
                 durum, sebep, satir, bilgi = rapor_isle(f, x, kunye, kd, rows, evren, hedef)
             except ButceBitti:
@@ -1359,18 +1400,20 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             except Exception as e:
                 durum, sebep, satir, bilgi = "hata", f"ayrıştırma hatası: {type(e).__name__}: {e}", [], {}
             ray = bilgi.get("ray", rap_ay)
+            if durum == "yayimlandi" and not yeniden:
+                yeni_fon[0] += 1
             if durum == "yayimlandi":
                 yazilan += satir
                 ky[f] = dict(son=ray, durum="yayimlandi" if ray == hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
                              sebep="" if ray == hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
                 kova[ky[f]["durum"]].append(f)
-                ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi.get("sapmaSebebi", ""), bilgi.get("raporIci", ""), bilgi["sicSinanan"], bilgi["sicHata"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])
+                ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi.get("sapmaSebebi", ""), bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), bilgi["sicSinanan"], bilgi["sicHata"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])
             else:
                 ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum=durum, sebep=sebep, ay=ray, tarih=bit)
                 kova[durum].append(f)
                 if durum == "hata":
                     hata.append((f, ray, sebep))
-                ozet.append([f, ray, kur, bilgi.get("duzen", "-"), bilgi.get("satir", 0), bilgi.get("toplam", ""), bilgi.get("gun") or "", bilgi.get("sapma") if bilgi.get("sapma") is not None else "", "", bilgi.get("raporIci", ""), bilgi.get("sicSinanan", ""), bilgi.get("sicHata", ""), "", "", "", "", durum, sebep, OZET_NOT])
+                ozet.append([f, ray, kur, bilgi.get("duzen", "-"), bilgi.get("satir", 0), bilgi.get("toplam", ""), bilgi.get("gun") or "", bilgi.get("sapma") if bilgi.get("sapma") is not None else "", "", bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), bilgi.get("sicSinanan", ""), bilgi.get("sicHata", ""), "", "", "", "", durum, sebep, OZET_NOT])
     except ButceBitti:
         print(f"günlük istek bütçesi ({ISTEK.butce}) bitti; kuyruk yarın devam eder", file=sys.stderr)
     except Ertelendi as e:
@@ -1414,7 +1457,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     json_yaz(ky_yol, ky)
     durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi" if kova_toplami == toplam_fon else "denklesmedi",
                  sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
-                 islenen=islenen, yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 islenen=islenen, yeniFon=yeni_fon[0], yenidenIslenen=yeniden_islenen[0], yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
                  kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
                  kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
                  kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
@@ -1453,7 +1496,7 @@ def main():
             byf_duzelt(kayit, kunye, evren)
             gun, son = tefas_ertesi_gun(rows, fon, ray) if ray != "?" else (None, None)
             ok, sebep, sp = kapi(kayit, gruplar, son, evren)
-            ok, sebep, ssb = sapma_karari(fon, ok, sebep, sp)
+            ok, sebep, ssb = sapma_karari(fon, ok, sebep, sp, son)
             ss, sh = satir_ici_denetim(kayit)
             ric = rapor_ici_fark(kayit, gruplar)
             print(f"=== {fon} {d} {ray}: satır {len(kayit)}, yaprak grup {sum(1 for g in gruplar if g['yaprak'])}, ISIN'siz {sum(1 for k in kayit if not k['isin'])}, toplam "
