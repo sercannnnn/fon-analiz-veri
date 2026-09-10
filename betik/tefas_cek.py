@@ -13,8 +13,8 @@ Ciktilar:
   <cikti>/tefas_gunluk_<bit>.csv    tarih,fonKodu,fiyat,kisiSayisi,portfoyBuyukluk,tedPaySayisi
   <cikti>/tefas_dagilim_<bit>.csv   tarih,fonKodu + 56 varlik sinifi agirligi (yuzde)
 """
-import argparse, csv, os, sys, time
-from datetime import date, datetime, timedelta
+import argparse, csv, json, os, sys, time
+from datetime import date, datetime, timedelta, timezone
 import requests
 
 KOK_UC = "https://www.tefas.gov.tr/api/funds/"
@@ -88,6 +88,76 @@ def aylik_parcalar(bas, bit):
         b = e + timedelta(days=1)
 
 
+TAM_ORAN = 0.98      # kapsam: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az bu kati ise gun tam kapsamlidir
+FIYAT_ONDALIK = 6        # TEFAS pay fiyatini alti ondalikla yayimlar; kimlik sinamasinin toleransi bu basim hassasiyetinden turer
+KIMLIK_KURUS = 0.01      # ek mutlak tolerans, TL
+
+
+def _f(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def kapsam_hesapla(fiyat, dagilim, cekim_zamani):
+    """Gorev 3.1 ve 3.4: kapsam cekim aninda olculur. fiyat ve dagilim, uc_calistir'in dondurdugu satir listeleridir
+    (fiyat: FIYAT_ALAN sirasinda). Donus: kapsam_son.json'a yazilacak sozluk. Gun tam: gecerli fiyatli fon sayisi
+    penceredeki en yuksek gunun TAM_ORAN kati ve dagilim satiri da oyle. Kimlik: her fonda pay adedi x fiyat = buyukluk;
+    sapan fonlarin kodu yazilir; sapma sifir cikmadan akis hesabi kullanilmaz."""
+    gun = {}
+    kimlik_sapan = []
+    i_t, i_k, i_f = FIYAT_ALAN.index("tarih"), FIYAT_ALAN.index("fonKodu"), FIYAT_ALAN.index("fiyat")
+    i_b, i_p = FIYAT_ALAN.index("portfoyBuyukluk"), FIYAT_ALAN.index("tedPaySayisi")
+    for s_ in fiyat:
+        g = gun.setdefault(s_[i_t], dict(kayit=0, gecerli=0, dagilim=0))
+        g["kayit"] += 1
+        f, b, pay = _f(s_[i_f]), _f(s_[i_b]), _f(s_[i_p])
+        if f and f > 0:
+            g["gecerli"] += 1
+            if b is not None and pay is not None and b > 0:
+                # tolerans: pay adedi x fiyatin son basamaginin yarisi + bir kurus (olculen basim hassasiyeti, uydurma degil)
+                tol = pay * (10 ** -FIYAT_ONDALIK) / 2.0 + KIMLIK_KURUS
+                if abs(pay * f - b) > tol:
+                    kimlik_sapan.append(dict(tarih=s_[i_t], fonKodu=s_[i_k], payXfiyat=round(pay * f, 2), buyukluk=b, tolerans=round(tol, 2)))
+    for s_ in dagilim or []:
+        if s_[0] in gun:
+            gun[s_[0]]["dagilim"] += 1
+    enb_g = max((g["gecerli"] for g in gun.values()), default=0)
+    enb_d = max((g["dagilim"] for g in gun.values()), default=0)
+    for t, g in gun.items():
+        g["fiyatsiz"] = g["kayit"] - g["gecerli"]
+        g["tam"] = bool(g["gecerli"] >= TAM_ORAN * enb_g and (not enb_d or g["dagilim"] >= TAM_ORAN * enb_d))
+    tam_gunler = sorted(t for t, g in gun.items() if g["tam"])
+    son = max(gun) if gun else None
+    return dict(
+        cekimZamaniUtc=cekim_zamani,
+        sonGun=son,
+        toplamKayit=len(fiyat),
+        sonGunKayit=gun[son]["kayit"] if son else 0,
+        sonGunFiyatsiz=gun[son]["fiyatsiz"] if son else 0,
+        sonGunDagilimSatir=gun[son]["dagilim"] if son else 0,
+        tamKapsamliSonGun=tam_gunler[-1] if tam_gunler else None,
+        kimlikSapmaSayisi=len(kimlik_sapan),
+        kimlikSapanlar=kimlik_sapan[:200],
+        gunler={t: gun[t] for t in sorted(gun)},
+        tanim=f"tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az {TAM_ORAN} kati ve dagilim satiri da oyle; "
+              "kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
+    )
+
+
+def kapsam_yaz(cikti, kapsam):
+    """veri/kapsam_son.json: mevcut anahtarlar (dagilimGecikmeGun vb.) korunur, kapsam alanlari uzerine yazilir."""
+    yol = os.path.join(cikti, "kapsam_son.json")
+    try:
+        d = json.load(open(yol, encoding="utf-8"))
+    except Exception:
+        d = {}
+    d.update(kapsam)
+    json.dump(d, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return yol
+
+
 def uc_calistir(ad, bas, bit, cikti):
     uc, alanlar, dosya = UCLAR[ad]
     satirlar, gorulen = [], set()
@@ -115,6 +185,7 @@ def uc_calistir(ad, bas, bit, cikti):
     fonlar = {s[1] for s in satirlar}
     print(f"{yol}: {len(satirlar):,} satir, {len(fonlar):,} fon, "
           f"{len(tarihler)} gun ({tarihler[0]} .. {tarihler[-1]})")
+    return satirlar
 
 
 def main():
@@ -130,8 +201,14 @@ def main():
     bas = a.bas or (bugun - timedelta(days=10)).strftime("%Y%m%d")
     os.makedirs(a.cikti, exist_ok=True)
 
+    sonuc = {}
     for ad in (["fiyat", "dagilim"] if a.uc == "hepsi" else [a.uc]):
-        uc_calistir(ad, bas, bit, a.cikti)
+        sonuc[ad] = uc_calistir(ad, bas, bit, a.cikti)
+    if "fiyat" in sonuc:
+        k = kapsam_hesapla(sonuc["fiyat"], sonuc.get("dagilim"), datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        yol = kapsam_yaz(a.cikti, k)
+        print(f"{yol}: son gun {k['sonGun']}, kayit {k['sonGunKayit']:,}, fiyatsiz {k['sonGunFiyatsiz']:,}, "
+              f"dagilim {k['sonGunDagilimSatir']:,}, tam kapsamli son gun {k['tamKapsamliSonGun']}, kimlik sapan {k['kimlikSapmaSayisi']}")
 
 
 if __name__ == "__main__":
