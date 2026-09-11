@@ -3,20 +3,22 @@ AC3	2026-08	ek PDF yok
 AC7	2026-08	ek PDF yok
 AC8	2026-08	ek PDF yok
 AP6	2026-08	ek PDF yok
-BDC	2026-08	satır içi: 1/14 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BDC	2026-08	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BDI	2026-08	ek PDF yok
 BHH	2026-08	ek PDF yok
-BSD	2026-08	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BLD	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.19 puan, 0,05 üstü
+BSD	2026-09	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BSE	2026-08	ek PDF yok
 BSM	2026-08	şart 2: 1 satıra birden çok ISIN atandı (PORTFÖY BĠRĠNCĠ FON TRYGMDP000)
 BVD	2026-08	satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 CPU	2026-08	şart 2: 1 satıra birden çok ISIN atandı (US7475251036 M INC SNPS US8716)
 CSH	2026-08	ek PDF yok
 DBP	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk Z30EA ZİRAAT)
+DFD	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.20 puan, 0,05 üstü
 DHI	2026-08	ek PDF yok
 DNM	2026-08	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DPT	2026-08	şart 2: 1 satıra birden çok ISIN atandı (Hisse Türk AEFES AGHOL AKBNK A)
-DRA	2026-08	satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+DRA	2026-09	satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DRH	2026-08	ek PDF yok
 EBD	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: Hisse Yabancı)
 EC2	2026-08	şart 2: 1 satıra birden çok ISIN atandı (TREKLYN00024 LERĠ ÜRETĠM A.ġ. )
@@ -29,15 +31,15 @@ FFH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı 
 FFP	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.12 puan, 0,05 üstü
 FLY	2026-08	şart 2: 1 satıra birden çok ISIN atandı (DE000TKMS001 CO. KGAA AVAV US0)
 FNO	2026-08	satır içi: 1/42 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+GJH	2026-08	şart 1: ağırlık toplamı 596.10
 GMD	2026-08	şart 1: ağırlık toplamı 78.64
 GPT	2026-08	şart 2: 2 satıra birden çok ISIN atandı (DE000A0WMPJ6 ASML NL0010273215)
 GRL	2026-08	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GTZ	2026-08	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
-HAR	2026-08	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HLA	2026-08	ek PDF yok
 HOA	2026-08	satır içi: 1/48 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HTJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: Hisse Yabancı AIRBUS AIRBUS NL)
-HTS	2026-08	satır içi: 1/3 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+HTS	2026-08	satır içi: 1/2 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 IHZ	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.13 puan, 0,05 üstü
 INV	2026-04	şart 2: 3 satırda ISIN okunamadı (Bono: G.Y.O A.Ş. TRFGKYH92616_Rep. I)
 IOV	2026-07	ek PDF yok
@@ -49,11 +51,10 @@ KRH	2026-08	ek PDF yok
 KUB	2026-08	satır içi: 1/18 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 LLA	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.39 puan, 0,05 üstü
 MGE	2026-08	ek PDF yok
+MGH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.87 puan, 0,05 üstü
 MJG	2026-08	şart 2: 2 satıra birden çok ISIN atandı (CH0183135992 SIVR US0032641088)
-MJH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.51 puan, 0,05 üstü
+MJH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.40 puan, 0,05 üstü
 MJK	2026-08	ek PDF yok
-MPN	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.26 puan, 0,05 üstü
-MPP	2026-08	satır içi: 1/28 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 MSR	2026-08	ek PDF yok
 MT2	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.66 puan, 0,05 üstü
 MTF	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.71 puan, 0,05 üstü
@@ -61,3 +62,18 @@ NAL	2026-08	ek PDF yok
 NBE	2026-08	ek PDF yok
 NCU	2026-08	ek PDF yok
 NDS	2026-08	ek PDF yok
+NES	2026-04	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: A.Ş ZPLIB ZİRAAT PORTFÖY YÖNET)
+NFH	2026-08	ek PDF yok
+NIS	2026-08	ek PDF yok
+NKH	2026-08	ek PDF yok
+NMG	2026-08	ek PDF yok
+NOA	2026-08	ek PDF yok
+NP1	2026-08	ek PDF yok
+NPK	2026-08	ek PDF yok
+NRM	2026-08	ek PDF yok
+NTB	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.11 puan, 0,05 üstü
+NTF	2026-08	ek PDF yok
+NZH	2026-08	satır içi: 1/26 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+OHI	2026-08	ek PDF yok
+OME	2026-08	ek PDF yok
+OPB	2026-08	şart 2: 2 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk APLIB AK POR)

@@ -1,7 +1,40 @@
 {
  "icerik": {
-  "durum": "basladi",
+  "ayristiriciSurum": 8,
+  "durum": "tamamlandi",
+  "gecenKurucu": 50,
+  "h429": 0,
   "hedefAy": "2026-08",
-  "tarih": "2026-09-11"
+  "islenen": 163,
+  "istek": 400,
+  "kapsamOrani": 0.5787,
+  "kapsamPay": 651,
+  "kapsamPayda": 1125,
+  "kapsamTanimi": "pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
+  "kovaToplami": 2146,
+  "kovalar": {
+   "beklemede": 24,
+   "duzen_bekliyor": 29,
+   "duzen_taninmadi": 418,
+   "ertelendi": 1,
+   "hata": 88,
+   "kapsam_disi": 825,
+   "kuyrukta": 217,
+   "listesi_var": 493,
+   "rapor_yok_bu_ay": 10,
+   "sinif_farki": 41
+  },
+  "listeEksikBuTur": 0,
+  "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
+  "raporYokKurucu": 3,
+  "satirBuTur": 510,
+  "sinananKurucu": [],
+  "sinavSurumu": 2,
+  "taninmayanKurucu": 11,
+  "tarih": "2026-09-11",
+  "toplamFon": 2146,
+  "yayimlandiBuTur": 20,
+  "yeniFon": 20,
+  "yenidenIslenen": 0
  }
 }

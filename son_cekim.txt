@@ -1,4 +1,4 @@
-son_cekim_utc=2026-09-11T07:56:26Z
+son_cekim_utc=2026-09-11T08:41:29Z
 tefas_gunluk_20260911.csv=18324 satir, son tarih 2026-09-11
 tefas_dagilim_20260911.csv=17570 satir, son tarih 2026-09-11
 hisse_son_gunluk.csv=570 satir, son tarih 2026-09-10
