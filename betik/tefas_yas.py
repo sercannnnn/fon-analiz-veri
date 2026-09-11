@@ -9,8 +9,12 @@ ve ölçülebilir vekilidir (fon TEFAS'ta fiyatlanmaya başladığı ay). BAS'ta
 
 Çıktı: veri/fon_yas.csv  fonKodu, ilkFiyatAyi (YYYY-MM), sinir (kesin | en_gec), kaynak, olcumTarihi
 Artımlı: dosya varsa yalnızca bilinmeyen fonlar için son pencereler çekilir; tam tarama --tam ile.
+Ara kayıt: her pencereden sonra veri/fon_yas_ara.json yazılır (biten pencereler ve ilk aylar); TEFAS bağlantıyı keserse
+(11 Eylül 2026: 33 pencereden sonra 'Connection reset by peer', beş deneme de düştü ve bütün ilerleme kaybedildi) tarama
+oradan sürer. Düşen pencere 5 dakika beklenip yeniden denenir; üç kez düşerse betik durur, ara kayıt kalır, sonraki koşu sürdürür.
+CSV yalnızca bütün pencereler bittiğinde yazılır; ara kayıt o zaman silinir.
 """
-import argparse, csv, os, sys, time
+import argparse, csv, json, os, sys, time
 from datetime import date, datetime, timedelta
 import requests
 
@@ -22,6 +26,8 @@ import tefas_cek as T
 # beş yıl öncesinin bir hafta sonrasından başlar. O ayda zaten var olan fon "en_gec" (beş yaşından büyük) olarak işaretlenir.
 BAS = (date.today() - timedelta(days=5 * 365 - 7)).strftime("%Y%m%d")
 ARA = 10             # TEFAS dakikada yaklaşık altı istek
+DUSUS_BEKLE = 300    # pencere beş denemede de düşerse (bağlantı sıfırlama) beklenen saniye
+DUSUS_AZAMI = 3      # aynı pencere kaç kez düşünce betik durur (ara kayıt kalır)
 
 
 def pencereler(bas, bit):
@@ -42,12 +48,29 @@ def main():
     if os.path.exists(a.cikti) and not a.tam:
         eski = {r["fonKodu"]: r for r in csv.DictReader(open(a.cikti, encoding="utf-8"))}
     bugun = date.today().strftime("%Y%m%d")
-    ilk = {}
-    n = 0
+    ara_yol = a.cikti.replace(".csv", "_ara.json")
+    ilk, biten = {}, []
+    if os.path.exists(ara_yol):
+        ara = json.load(open(ara_yol, encoding="utf-8"))
+        # yarım kalan tarama kendi başlangıç ve bitiş tarihiyle sürer (BAS her gün kayar; gece yarısını geçen koşu bozulmasın)
+        a.bas, bugun, ilk, biten = ara["bas"], ara["bit"], ara["ilk"], ara["biten"]
+        print(f"  ara kayıt: {len(biten)} pencere bitmiş, {len(ilk):,} fon; kalan pencereler çekiliyor", file=sys.stderr)
+    n = len(biten)
     for pb, pe in pencereler(a.bas, bugun):
-        satirlar = T.cek("fonGnlBlgSiraliGetir", pb, pe)
+        if pb in biten:
+            continue
+        dusus = 0
+        while True:
+            try:
+                satirlar = T.cek("fonGnlBlgSiraliGetir", pb, pe); break
+            except SystemExit as e:
+                dusus += 1
+                if dusus >= DUSUS_AZAMI:
+                    print(f"  {pb}-{pe}: {dusus} kez düştü, betik duruyor; ara kayıt {ara_yol} sonraki koşuda sürdürür", file=sys.stderr)
+                    raise SystemExit(str(e))
+                print(f"  {pb}-{pe}: düştü ({e}), {DUSUS_BEKLE} sn sonra yeniden", file=sys.stderr)
+                time.sleep(DUSUS_BEKLE)
         n += 1
-        ay = pb[:4] + "-" + pb[4:6]
         for x in satirlar:
             f = x.get("fonKodu")
             if not f or not (T._f(x.get("fiyat")) or 0) > 0:
@@ -55,6 +78,8 @@ def main():
             t = (x.get("tarih") or "")[:7]
             if f not in ilk or t < ilk[f]:
                 ilk[f] = t
+        biten.append(pb)
+        json.dump(dict(bas=a.bas, bit=bugun, biten=biten, ilk=ilk), open(ara_yol, "w", encoding="utf-8"), ensure_ascii=False)
         print(f"  {pb}-{pe}: {len(satirlar):,} satır, bilinen fon {len(ilk):,}", file=sys.stderr)
         time.sleep(ARA)
     bas_ay = a.bas[:4] + "-" + a.bas[4:6]
@@ -65,6 +90,8 @@ def main():
         w = csv.DictWriter(fh, fieldnames=["fonKodu", "ilkFiyatAyi", "sinir", "kaynak", "olcumTarihi"], lineterminator="\n"); w.writeheader()
         for f in sorted(eski):
             w.writerow(eski[f])
+    if os.path.exists(ara_yol):
+        os.remove(ara_yol)
     kesin = sum(1 for r in eski.values() if r["sinir"] == "kesin")
     print(f"{a.cikti}: {len(eski):,} fon, ilk ayı kesin {kesin:,}, {bas_ay} öncesinden gelen {len(eski) - kesin:,}; {n} istek")
 
