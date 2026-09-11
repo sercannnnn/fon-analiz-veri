@@ -52,6 +52,8 @@ gonder() {
 # Kamuya acik kayittir; izleme listesiyle eslestirme ozel tarafta yapilir. Basarisizsa akis durmaz.
 python3 betik/kap_gunluk.py --cikti veri --arsiv arsiv || echo "uyari: KAP gunluk dizini alinamadi"
 gonder "TEFAS cekimi"
+# Fon yonetim ucreti (giris kapisi 4): KAP genel bilgiler sayfasindan gunde 150 fon, 30 gunde bir yenilenir; veri/fon_ucret.csv
+python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
 
 # KAP fon kunyesi: haftada bir (dosya yoksa ya da 7 gunden eskiyse). Basarisizsa akis durmaz.
 if [ -z "$(find veri -name fon_kunye_kap.csv -mtime -7 2>/dev/null)" ]; then
