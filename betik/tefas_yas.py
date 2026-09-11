@@ -26,6 +26,7 @@ import tefas_cek as T
 # beş yıl öncesinin bir hafta sonrasından başlar. O ayda zaten var olan fon "en_gec" (beş yaşından büyük) olarak işaretlenir.
 BAS = (date.today() - timedelta(days=5 * 365 - 7)).strftime("%Y%m%d")
 ARA = 10             # TEFAS dakikada yaklaşık altı istek
+PENCERE_GUN = 14     # 12 Eylül 2026: TEFAS 27 günlük pencereyi bağlantı sıfırlamasıyla kesmeye başladı (0,5 sn içinde), 14 günlük pencere geçiyor
 DUSUS_BEKLE = 300    # pencere beş denemede de düşerse (bağlantı sıfırlama) beklenen saniye
 DUSUS_AZAMI = 3      # aynı pencere kaç kez düşünce betik durur (ara kayıt kalır)
 
@@ -33,9 +34,23 @@ DUSUS_AZAMI = 3      # aynı pencere kaç kez düşünce betik durur (ara kayıt
 def pencereler(bas, bit):
     b = datetime.strptime(bas, "%Y%m%d").date(); s = datetime.strptime(bit, "%Y%m%d").date()
     while b <= s:
-        e = min(b + timedelta(days=27), s)
+        e = min(b + timedelta(days=PENCERE_GUN - 1), s)
         yield b.strftime("%Y%m%d"), e.strftime("%Y%m%d")
         b = e + timedelta(days=1)
+
+
+def cek_bolerek(pb, pe):
+    """Pencereyi çeker; düşerse ikiye bölüp iki yarıyı ayrı çeker (TEFAS büyük pencereyi kesince). Üç günün altına inmez."""
+    try:
+        return T.cek("fonGnlBlgSiraliGetir", pb, pe)
+    except SystemExit as e:
+        b = datetime.strptime(pb, "%Y%m%d").date(); s = datetime.strptime(pe, "%Y%m%d").date()
+        if (s - b).days < 3:
+            raise
+        o = b + timedelta(days=(s - b).days // 2)
+        print(f"  {pb}-{pe} düştü, ikiye bölünüyor", file=sys.stderr)
+        time.sleep(ARA)
+        return cek_bolerek(pb, o.strftime("%Y%m%d")) + cek_bolerek((o + timedelta(days=1)).strftime("%Y%m%d"), pe)
 
 
 def main():
@@ -62,7 +77,7 @@ def main():
         dusus = 0
         while True:
             try:
-                satirlar = T.cek("fonGnlBlgSiraliGetir", pb, pe); break
+                satirlar = cek_bolerek(pb, pe); break
             except SystemExit as e:
                 dusus += 1
                 if dusus >= DUSUS_AZAMI:
