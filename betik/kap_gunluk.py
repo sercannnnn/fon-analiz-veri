@@ -7,12 +7,15 @@ Günün bütün KAP bildirimlerini (şirketler ve fonlar) çeker, kap_izleme.py'
   arsiv/kap_YYYY-MM.json.gz      aylık birikimli, id'ye göre tekil
 Bu dizin KAP'ın kendi kamuya açık kaydıdır; izleme listesi ve eşleştirme özel tarafta yapılır (gizlilik notu kap_izleme.py).
 
-metin alanı boştur: bildirim gövdesi her bildirim için ayrı sayfa ister (günde yüzlerce istek); tarama özet ve konu üzerinden yapılır,
-tam metin gerektiğinde url'den okunur. Bu eksik brifingde açıkça belirtilir.
+Gövde metni (11 Eylül 2026 değerlendirmesi, madde 3.1): kural tam metin taraması ister; 9 Eylül'de Tera-Pusula haberi yalnızca
+Katılımevim'in bildirim gövdesinde geçiyordu. Her bildirimin sayfası (/tr/Bildirim/<id>, sunucuda üretilir) çekilir, 'Özet Bilgi'
+bölümünden alt bilgiye kadar düz metin alınır ve `metin` alanına yazılır. Fonların dönemsel raporları (portföy dağılımı, gider,
+performans) gövde taşımaz, atlanır (metinDurumu "gerekmez"). Çekilemeyen bildirim "eksik" işaretlenir; sayılar dosyanın başında
+(govdeTam, govdeEksik, govdeGerekmez) durur ve brifingin kapsam satırına girer. Gövde bütçesi aşılırsa kalanlar "eksik" kalır.
 
-Kullanım: kap_gunluk.py [--gun 2] [--cikti veri] [--arsiv arsiv]
+Kullanım: kap_gunluk.py [--gun 2] [--cikti veri] [--arsiv arsiv] [--govde-butce 700]
 """
-import argparse, gzip, json, os, sys, time
+import argparse, gzip, html as html_mod, json, os, re, sys, time
 from datetime import date, datetime, timedelta, timezone
 import requests
 
@@ -46,6 +49,36 @@ def cek(bas, bit):
     fon = _post("disclosure/funds/byCriteria", dict(ortak, fundTypeList=["YF"], fundOidList=[], passiveFundOidList=[]))
     L = (sirket if isinstance(sirket, list) else sirket.get("resultList") or []) + (fon if isinstance(fon, list) else fon.get("resultList") or [])
     return L
+
+
+GEREKMEZ = re.compile(r"Portföy Dağılım|Toplam Gider|Gider Bilgileri|Aracı Kuruma Ödenen|Performans Sunum|Fiyat Raporu|Katılma Payı Fiyat", re.I)
+GOVDE_ARA = 2.5
+GOVDE_AZAMI = 20000
+
+
+def govde_cek(idx, deneme=2):
+    """Bildirim sayfasının düz metni: 'Özet Bilgi'den sayfa sonuna kadar, etiketler atılmış. Dönüş: metin ya da None."""
+    for i in range(deneme):
+        try:
+            r = requests.get(f"https://www.kap.org.tr/tr/Bildirim/{idx}", headers={"User-Agent": BASLIK["User-Agent"]}, timeout=90)
+            if r.status_code == 429:
+                raise RuntimeError("HTTP 429")
+            r.raise_for_status()
+            t = re.sub(r"<script.*?</script>|<style.*?</style>", " ", r.text, flags=re.S)
+            t = html_mod.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)))
+            j = t.find("Özet Bilgi")
+            if j < 0:
+                return None
+            t = t[j:]
+            k = t.find("Copyright ©")
+            if k > 0:
+                t = t[:k]
+            return t[:GOVDE_AZAMI]
+        except Exception as e:
+            print(f"  govde {idx}: deneme {i+1} {e}", file=sys.stderr)
+            if i < deneme - 1:
+                time.sleep(10)
+    return None
 
 
 def donustur(x):
@@ -85,6 +118,7 @@ def main():
     ap.add_argument("--gun", type=int, default=2, help="bugün dahil geriye kaç gün (hafta sonu ve tatil için 2 yeterli)")
     ap.add_argument("--cikti", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "veri"))
     ap.add_argument("--arsiv", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "arsiv"))
+    ap.add_argument("--govde-butce", type=int, default=900, help="bugün çekilecek en fazla bildirim gövdesi (2,5 s aralıkla; 700 sayfa yaklaşık 30 dakika)")
     a = ap.parse_args()
     bugun = date.today()
     ham = cek((bugun - timedelta(days=a.gun - 1)).isoformat(), bugun.isoformat())
@@ -94,12 +128,34 @@ def main():
         if k["id"]:
             tekil[k["id"]] = k
     kayitlar = sorted(tekil.values(), key=lambda k: (k["tarih"], k["id"]))
+    # gövde: önce arşivde zaten gövdesi olan kayıtlar tekrar çekilmez
+    eski = {}
+    ay_yol = os.path.join(a.arsiv, f"kap_{bugun.isoformat()[:7]}.json.gz")
+    if os.path.exists(ay_yol):
+        with gzip.open(ay_yol, "rt", encoding="utf-8") as f:
+            eski = {k["id"]: k for k in json.load(f) if k.get("metinDurumu") == "tam"}
+    sayac = dict(tam=0, eksik=0, gerekmez=0); butce = a.govde_butce
+    for k in sorted(kayitlar, key=lambda k: (bool(k["fon"]), k["tarih"])):   # sirket bildirimleri once: butce biterse fon formlari eksik kalir
+        if k["id"] in eski:
+            k["metin"] = eski[k["id"]]["metin"]; k["metinDurumu"] = "tam"; sayac["tam"] += 1; continue
+        if k["fon"] and GEREKMEZ.search(k["konu"]):
+            k["metinDurumu"] = "gerekmez"; sayac["gerekmez"] += 1; continue
+        if butce <= 0:
+            k["metinDurumu"] = "eksik"; sayac["eksik"] += 1; continue
+        butce -= 1
+        m = govde_cek(k["id"]); time.sleep(GOVDE_ARA)
+        if m:
+            k["metin"] = m; k["metinDurumu"] = "tam"; sayac["tam"] += 1
+        else:
+            k["metinDurumu"] = "eksik"; sayac["eksik"] += 1
     os.makedirs(a.cikti, exist_ok=True)
     yol = os.path.join(a.cikti, "kap_gunluk.json")
     json.dump(dict(cekimZamaniUtc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), bas=(bugun - timedelta(days=a.gun - 1)).isoformat(),
-                   bit=bugun.isoformat(), adet=len(kayitlar), metinNotu="metin alani bos; tarama ozet ve konu uzerinden",
+                   bit=bugun.isoformat(), adet=len(kayitlar), govdeTam=sayac["tam"], govdeEksik=sayac["eksik"], govdeGerekmez=sayac["gerekmez"],
+                   metinNotu="govde /tr/Bildirim/<id> sayfasindan; 'eksik' olan bildirimde tarama yalnizca ozet ve konu uzerindendir",
                    bildirimler=kayitlar), open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print(f"{yol}: {len(kayitlar):,} bildirim ({(bugun - timedelta(days=a.gun - 1)).isoformat()} .. {bugun.isoformat()})")
+    print(f"{yol}: {len(kayitlar):,} bildirim ({(bugun - timedelta(days=a.gun - 1)).isoformat()} .. {bugun.isoformat()}); "
+          f"gövde tam {sayac['tam']}, eksik {sayac['eksik']}, gerekmez {sayac['gerekmez']}")
     arsiv_isle(a.arsiv, kayitlar)
 
 
