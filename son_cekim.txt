@@ -1,4 +1,5 @@
-son_cekim_utc=2026-09-09T06:16:09Z
-tefas_gunluk_20260909.csv=16327 satir, son tarih 2026-09-09
-tefas_dagilim_20260909.csv=15311 satir, son tarih 2026-09-09
-hisse_son_gunluk.csv=707 satir, son tarih 2026-09-08
+son_cekim_utc=2026-09-11T07:56:26Z
+tefas_gunluk_20260911.csv=18324 satir, son tarih 2026-09-11
+tefas_dagilim_20260911.csv=17570 satir, son tarih 2026-09-11
+hisse_son_gunluk.csv=570 satir, son tarih 2026-09-10
+hisse_hata=GARAN GENIL GLRMK GRTHO GSRAY GUBRF 

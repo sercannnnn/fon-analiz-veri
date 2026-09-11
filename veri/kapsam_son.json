@@ -3,29 +3,15 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-11T05:15:58Z",
+ "cekimZamaniUtc": "2026-09-11T07:05:00Z",
  "sonGun": "2026-09-11",
  "toplamKayit": 18324,
  "sonGunKayit": 2039,
- "sonGunFiyatsiz": 800,
- "sonGunDagilimSatir": 1049,
+ "sonGunFiyatsiz": 45,
+ "sonGunDagilimSatir": 1351,
  "tamKapsamliSonGun": "2026-09-10",
- "kimlikSapmaSayisi": 18,
+ "kimlikSapmaSayisi": 16,
  "kimlikSapanlar": [
-  {
-   "tarih": "2026-09-11",
-   "fonKodu": "AHN",
-   "payXfiyat": 33714894.88,
-   "buyukluk": 33714965.04,
-   "tolerans": 0.25
-  },
-  {
-   "tarih": "2026-09-11",
-   "fonKodu": "FS1",
-   "payXfiyat": 133697874.54,
-   "buyukluk": 133514709.63,
-   "tolerans": 43.7
-  },
   {
    "tarih": "2026-09-11",
    "fonKodu": "ZBD",
@@ -198,9 +184,9 @@
   },
   "2026-09-11": {
    "kayit": 2039,
-   "gecerli": 1239,
-   "dagilim": 1049,
-   "fiyatsiz": 800,
+   "gecerli": 1994,
+   "dagilim": 1351,
+   "fiyatsiz": 45,
    "tam": false
   }
  },
