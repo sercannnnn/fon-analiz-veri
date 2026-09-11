@@ -1978,30 +1978,27 @@
   "yayimlayan": 5
  },
  "VEGA PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "standart",
+  "duzen": "bilinmiyor",
   "enBuyukSapma": null,
   "fonSayisi": 4,
   "fonlar": {
    "VMV": {
-    "durum": "hata",
-    "duzen": "standart",
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
     "ray": "2026-08",
-    "sapma": null,
-    "sebep": "satır içi: 1/32 satırda yüzde sütunu rayiç / toplam ile tutmuyor"
+    "sebep": "düzen tanınmadı"
    },
    "VNK": {
-    "durum": "hata",
-    "duzen": "standart",
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
     "ray": "2026-08",
-    "sapma": null,
-    "sebep": "şart 2: 1 satıra birden çok ISIN atandı (KOÇ FİNANSMAN STELLANTİS A.Ş. )"
+    "sebep": "düzen tanınmadı"
    },
    "VPP": {
-    "durum": "hata",
-    "duzen": "standart",
+    "durum": "duzen_taninmadi",
+    "duzen": "bilinmiyor",
     "ray": "2026-01",
-    "sapma": null,
-    "sebep": "satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor"
+    "sebep": "düzen tanınmadı"
    }
   },
   "gecen": 0,
@@ -2012,7 +2009,7 @@
   "sinifFarki": 0,
   "sonuc": "taninmadi",
   "taninmadi": 3,
-  "tarih": "2026-09-09",
+  "tarih": "2026-09-10",
   "yayimlayan": 4
  },
  "YAPI KREDİ PORTFÖY YÖNETİMİ A.Ş.": {
@@ -2166,40 +2163,42 @@
   "yayimlayan": 1
  },
  "İSTANBUL PORTFÖY YÖNETİMİ A.Ş.": {
-  "duzen": "istanbul",
-  "enBuyukSapma": null,
+  "duzen": "standart",
+  "enBuyukSapma": 0.0,
   "fonSayisi": 53,
   "fonlar": {
    "BIP": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "standart",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "IJV": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "standart",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    },
    "ILU": {
-    "durum": "duzen_taninmadi",
-    "duzen": "bilinmiyor",
+    "durum": "yayimlandi",
+    "duzen": "standart",
     "ray": "2026-08",
-    "sebep": "düzen tanınmadı"
+    "sapma": 0.0,
+    "sebep": ""
    }
   },
-  "gecen": 0,
-  "gecti": false,
+  "gecen": 3,
+  "gecti": true,
   "sinanan": 3,
   "sinav": "kiymet tablosu + kapi, TEFAS ertesi gun",
-  "sinavSurumu": 0,
+  "sinavSurumu": 2,
   "sinifFarki": 0,
-  "sonuc": "sinanacak",
-  "taninmadi": 3,
-  "tarih": "2026-09-08",
-  "yayimlayan": 30,
-  "not_": "ilk ek hareket tablosu; kiymet raporu ikinci ekte, ek_pdf duzeni taninan eki secer (09.09.2026); sinav yeniden"
+  "sonuc": "gecti",
+  "taninmadi": 0,
+  "tarih": "2026-09-09",
+  "yayimlayan": 30
  },
  "İŞ PORTFÖY YÖNETİMİ A.Ş.": {
   "duzen": "standart",
