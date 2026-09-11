@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Fon yaşı: TEFAS'ta ilk fiyatlandığı ay (Görev değerlendirmesi 3.2, 11 Eylül 2026). Yalnızca 'requests'; makinede çalışır.
 
-Kuruluş tarihi KAP fon sayfalarında gömülü değildir ve KAP bildirim sorgusu eski dönemleri döndürmez. TEFAS fiyat ucu ise
+Kuruluş tarihi KAP fon sayfalarında gömülü değildir ve KAP bildirim sorgusu eski dönemleri döndürmez; TEFAS beş yıldan eskiyi vermez. TEFAS fiyat ucu ise
 `fonKod` süzgecini yok sayar ve bir aylık pencere için bütün evreni döndürür (11 Eylül 2026'da ölçüldü: Eylül 2024 penceresi
 29.411 satır). Dolayısıyla BAS'tan bugüne aylık pencereler çekilerek her fonun ilk fiyat ayı bulunur; bu, kuruluşun resmî
 ve ölçülebilir vekilidir (fon TEFAS'ta fiyatlanmaya başladığı ay). BAS'tan önce de var olan fonlar "<= BAS" olarak işaretlenir.
@@ -18,7 +18,9 @@ KOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tefas_cek as T
 
-BAS = "20180101"
+# TEFAS başlangıç tarihini beş yıldan eskiye almaz ("Baslangıc Tarihi 5 yıldan eski olamaz", 11 Eylül 2026); pencere bugünden
+# beş yıl öncesinin bir hafta sonrasından başlar. O ayda zaten var olan fon "en_gec" (beş yaşından büyük) olarak işaretlenir.
+BAS = (date.today() - timedelta(days=5 * 365 - 7)).strftime("%Y%m%d")
 ARA = 10             # TEFAS dakikada yaklaşık altı istek
 
 
