@@ -48,6 +48,9 @@ gonder() {
     echo "gonderildi: $(git rev-parse --short HEAD)"
   fi
 }
+# KAP gunluk bildirim dizini (sirketler + fonlar, iki istek): veri/kap_gunluk.json ve arsiv/kap_YYYY-MM.json.gz.
+# Kamuya acik kayittir; izleme listesiyle eslestirme ozel tarafta yapilir. Basarisizsa akis durmaz.
+python3 betik/kap_gunluk.py --cikti veri --arsiv arsiv || echo "uyari: KAP gunluk dizini alinamadi"
 gonder "TEFAS cekimi"
 
 # KAP fon kunyesi: haftada bir (dosya yoksa ya da 7 gunden eskiyse). Basarisizsa akis durmaz.
