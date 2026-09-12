@@ -16,18 +16,39 @@ BETIKLER = ["tefas_cek.py", "gunluk_cron.sh", "arsiv_guncelle.py", "hisse_cek.py
             "fonts/DejaVuSans.ttf", "fonts/DejaVuSans-Bold.ttf", "fonts/DejaVuSansMono.ttf"]
 
 
-def ozet(b):
-    return hashlib.sha256(b).hexdigest()[:12]
+API = "https://api.github.com/repos/sercannnnn/fon-analiz-veri/contents/betik/"
+
+
+def blob_sha(b):
+    """git'in nesne kimliği: sha1('blob <uzunluk>\\0' + içerik). GitHub içerik API'sindeki sha ile birebir karşılaştırılır."""
+    return hashlib.sha1(b"blob %d\0" % len(b) + b).hexdigest()
+
+
+def api_oku(ad):
+    """GitHub içerik API'si (kimliksiz, saatte 60 istek): (blob sha, içerik ya da None). raw.githubusercontent birkaç dakika
+    önbellekler ve gönderimden hemen sonra sahte fark verir; API deponun o anki hâlini verir. Erişilemezse ham adrese düşülür."""
+    import base64
+    try:
+        r = requests.get(API + ad, timeout=60, headers={"Accept": "application/vnd.github+json"})
+        if r.status_code == 200:
+            j = r.json()
+            icerik = base64.b64decode(j["content"]) if j.get("encoding") == "base64" and j.get("content") else None
+            return j["sha"], icerik
+        if r.status_code == 404:
+            return None, None
+    except Exception:
+        pass
+    r = requests.get(HAM + ad, timeout=60)
+    if r.status_code != 200:
+        return None, None
+    return blob_sha(r.content), r.content
 
 
 def saglama_oku():
-    try:
-        r = requests.get(HAM + "SAGLAMA.sha256", params={"t": int(time.time())}, timeout=60)
-        if r.status_code != 200:
-            return {}
-        return {l.split()[1].lstrip("*"): l.split()[0] for l in r.text.splitlines() if len(l.split()) == 2}
-    except Exception:
+    _, b = api_oku("SAGLAMA.sha256")
+    if not b:
         return {}
+    return {l.split()[1].lstrip("*"): l.split()[0] for l in b.decode("utf-8").splitlines() if len(l.split()) == 2}
 
 
 def main():
@@ -37,20 +58,19 @@ def main():
         print("  ?  SAGLAMA.sha256 depodan okunamadı; sağlama karşılaştırması yapılmadı")
     for ad in BETIKLER:
         yerel = os.path.join(KOK, "02 Betik", ad)
+        y = open(yerel, "rb").read() if os.path.exists(yerel) else b""
         try:
-            uzak = requests.get(HAM + ad, params={"t": int(time.time())}, timeout=60)   # raw.githubusercontent birkaç dakika önbellekler; gönderimden hemen sonra sahte fark çıkmasın
+            sha, uzak = api_oku(ad)
         except Exception as e:
             print(f"  ?  {ad}: depo okunamadı ({e})"); fark += 1; continue
-        if uzak.status_code != 200:
-            print(f"  ?  {ad}: depoda yok (HTTP {uzak.status_code})"); fark += 1; continue
-        y = open(yerel, "rb").read() if os.path.exists(yerel) else b""
-        tam = hashlib.sha256(uzak.content).hexdigest()
-        if sag.get(ad) and sag[ad] != tam:
-            print(f"  SAGLAMA {ad}: depodaki dosya SAGLAMA.sha256 ile uyuşmuyor ({tam[:12]} / {sag[ad][:12]})"); fark += 1
-        if y == uzak.content:
-            print(f"  ok {ad} {tam[:12]}")
+        if sha is None:
+            print(f"  ?  {ad}: depoda yok"); fark += 1; continue
+        if uzak is not None and sag.get(ad) and sag[ad] != hashlib.sha256(uzak).hexdigest():
+            print(f"  SAGLAMA {ad}: depodaki dosya SAGLAMA.sha256 ile uyuşmuyor"); fark += 1
+        if blob_sha(y) == sha:
+            print(f"  ok {ad} {sha[:12]}")
         else:
-            print(f"  FARKLI {ad}: yerel {ozet(y)} depo {ozet(uzak.content)}"); fark += 1
+            print(f"  FARKLI {ad}: yerel {blob_sha(y)[:12]} depo {sha[:12]}"); fark += 1
     print("sonuç:", "iki kopya aynı" if not fark else f"{fark} betikte fark var; tek kaynak depodur, yerel kopya güncellenmeli ya da depoya gönderilmeli")
     sys.exit(1 if fark else 0)
 
