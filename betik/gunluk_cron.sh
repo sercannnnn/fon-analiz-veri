@@ -54,6 +54,8 @@ python3 betik/kap_gunluk.py --cikti veri --arsiv arsiv || echo "uyari: KAP gunlu
 gonder "TEFAS cekimi"
 # Fon yonetim ucreti (giris kapisi 4): KAP genel bilgiler sayfasindan gunde 150 fon, 30 gunde bir yenilenir; veri/fon_ucret.csv
 python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
+# fon yasi, artimli (pazartesi): taramadan sonra acilan fonlar veri/fon_yas.csv'ye girer; kural G2 yalnizca bu dosyayla olculur
+if [ "$(date +%u)" = "1" ]; then python3 betik/tefas_yas.py || echo "uyari: yas taramasi basarisiz"; fi
 
 # KAP fon kunyesi: haftada bir (dosya yoksa ya da 7 gunden eskiyse). Basarisizsa akis durmaz.
 if [ -z "$(find veri -name fon_kunye_kap.csv -mtime -7 2>/dev/null)" ]; then

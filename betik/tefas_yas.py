@@ -60,9 +60,14 @@ def main():
     ap.add_argument("--tam", action="store_true", help="dosyayı yok sayıp bütün pencereleri yeniden çek")
     a = ap.parse_args()
     eski = {}
+    bugun = date.today().strftime("%Y%m%d")
     if os.path.exists(a.cikti) and not a.tam:
         eski = {r["fonKodu"]: r for r in csv.DictReader(open(a.cikti, encoding="utf-8"))}
-    bugun = date.today().strftime("%Y%m%d")
+        # artımlı koşu (cron, haftada bir): son ölçümden 45 gün öncesinden bugüne; yalnızca dosyada olmayan fon eklenir,
+        # bilinen fonun ilk ayı değişmez. Taramadan sonra açılan fon böylece bir hafta içinde yaş dosyasına girer.
+        son_olcum = max(r["olcumTarihi"] for r in eski.values())
+        a.bas = (datetime.strptime(son_olcum, "%Y-%m-%d").date() - timedelta(days=45)).strftime("%Y%m%d")
+        print(f"  artımlı: {len(eski):,} fon biliniyor, {a.bas}-{bugun} taranıyor", file=sys.stderr)
     ara_yol = a.cikti.replace(".csv", "_ara.json")
     ilk, biten = {}, []
     if os.path.exists(ara_yol):
@@ -99,8 +104,14 @@ def main():
         time.sleep(ARA)
     bas_ay = a.bas[:4] + "-" + a.bas[4:6]
     bugun_t = date.today().isoformat()
+    yeni_fon = 0
     for f, t in ilk.items():
-        eski[f] = dict(fonKodu=f, ilkFiyatAyi=t, sinir=("en_gec" if t == bas_ay else "kesin"), kaynak=f"TEFAS fiyat serisi, {n} aylık pencere {bas_ay}..{bugun_t[:7]}", olcumTarihi=bugun_t)
+        if f in eski and not a.tam:
+            continue
+        yeni_fon += 1
+        eski[f] = dict(fonKodu=f, ilkFiyatAyi=t, sinir=("en_gec" if t == bas_ay else "kesin"),
+                       kaynak=f"TEFAS fiyat serisi, {n} pencere {bas_ay}..{bugun_t[:7]}" + ("" if a.tam else ", artımlı"), olcumTarihi=bugun_t)
+    print(f"  yeni fon: {yeni_fon}", file=sys.stderr)
     with open(a.cikti, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=["fonKodu", "ilkFiyatAyi", "sinir", "kaynak", "olcumTarihi"], lineterminator="\n"); w.writeheader()
         for f in sorted(eski):
