@@ -276,15 +276,17 @@ def oneri_json(oneriler, tarih, yol=None, depo=None):
 
 # ---------------------------------------------------------------- sicil
 def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None, depo=None):
-    """Kural 18: verilen her öneri sicile yazılır; aynı gün aynı kod tekrar yazılmaz. Dönüş: yazılan kayıt sayısı."""
+    """Kural 18: verilen her öneri sicile yazılır; aynı gün aynı kod tekrar yazılmaz. Kimlik YYYYAAGG-KOD (M29): kural 18'in
+    değişmezi kimliğe taşınır, ikinci yazma sessizce çoğalamaz. Dönüş: yazılan kayıt sayısı."""
     d = _depo(depo, yol)
     s = d.sicil_oku()
     var = {(x["tarih"], x["kod"]) for x in s}
     n = 0
-    for i, o in enumerate(oneriler, 1):
+    for o in oneriler:
         if (tarih, o["kod"]) in var:
             continue
-        s.append(dict(id=f"{tarih.replace('-', '')}-O{i:02d}", tarih=tarih, kod=o["kod"], yon=o["yon"], dilim=o["dilim"], etiket=o.get("etiket", ""),
+        # M29: kimlik kaydı tekilleştiren alandan kurulur (tarih, kod); sıra numarası koşular arasında kayıp çakışıyordu
+        s.append(dict(id=f"{tarih.replace('-', '')}-{o['kod']}", tarih=tarih, kod=o["kod"], yon=o["yon"], dilim=o["dilim"], etiket=o.get("etiket", ""),
                       tutar=o.get("tutar"), gerekce=o["gerekce"], olcumTarihi=veri_tarihi, siralamaOlcusu=o.get("sira_olcusu"), yeniFon=bool(o.get("yeni_fon")),
                       uygulandi=None, uygulamaKaynagi=None, sonuc20=None, sonucTarihi=None))
         n += 1
