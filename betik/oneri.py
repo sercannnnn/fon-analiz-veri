@@ -15,7 +15,7 @@ askıya alma her öneride açıkça yazılır; kendi alımıyla fiyat yapan fon 
 Gizlilik: sicil ve aday geçmişi portföy bilgisidir, açık depoya yazılmaz (03 Veri altında durur).
 """
 import json, os
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 KOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SICIL_YOL = os.path.join(KOK, "03 Veri", "oneri_sicili.json")
@@ -107,21 +107,24 @@ DISA_AKTARIM_ALANLARI = ("olcumZamani", "pozisyonlar", "nakit")
 TAZELIK_ESIK_IS_GUNU = 1
 
 
-def disa_aktarim_dogrula(belge):
-    """Dışa aktarım belgesinin biçimini sınar. Dönüş: hata listesi (boşsa geçerli)."""
+GELECEK_TOLERANS_DK = 15    # kap ile Mac arasındaki saat farkı payı (M30): damga şimdiden en çok bu kadar ileri olabilir, adı konmuş tolerans
+
+
+def disa_aktarim_dogrula(belge, bugun=None, simdi=None):
+    """Dışa aktarım belgesinin biçimini sınar. Dönüş: hata listesi (boşsa geçerli). Gelecek tarihli olcumZamani da hatadır (M30)."""
     h = []
     if not isinstance(belge, dict):
         return ["belge sözlük değil"]
     for a in DISA_AKTARIM_ALANLARI:
         if a not in belge:
             h.append(f"{a} alanı yok")
-    oz = belge.get("olcumZamani")
-    try:
-        t = datetime.fromisoformat(str(oz))
-        if t.tzinfo is None:
-            h.append("olcumZamani saat dilimi taşımıyor")
-    except (TypeError, ValueError):
+    t = tazelik(belge.get("olcumZamani"), bugun=bugun, simdi=simdi)
+    if t["durum"] == "gecersiz":
         h.append("olcumZamani ISO 8601 değil")
+    elif t["durum"] == "saat_dilimsiz":
+        h.append("olcumZamani saat dilimi taşımıyor")
+    elif t["durum"] == "gelecek":
+        h.append(f"olcumZamani gelecek tarihli ({t['sebep']})")
     poz = belge.get("pozisyonlar")
     if not isinstance(poz, dict):
         h.append("pozisyonlar sözlük değil ({kimlik: kayıt})")
@@ -143,15 +146,32 @@ def _is_gunu_farki(bas, bit):
     return n
 
 
-def tazelik(olcum_zamani, bugun=None, esik=TAZELIK_ESIK_IS_GUNU):
-    """olcumZamani'ndan bugüne iş günü; dönüş: dict(is_gunu, eski, tarih). Kopyalama zamanı değil, ölçüm zamanı esastır."""
+def tazelik(olcum_zamani, bugun=None, esik=TAZELIK_ESIK_IS_GUNU, simdi=None):
+    """olcumZamani'ndan bugüne iş günü. Dönüş: dict(is_gunu, eski, durum, sebep, tarih); durum: taze | eski | saat_dilimsiz |
+    gelecek | gecersiz. Doğrulanamayan damga en iyi durumda değil en kötü durumda sayılır (M30): saat dilimsiz, gelecek tarihli
+    (GELECEK_TOLERANS_DK ötesinde) ya da okunamayan damgada eski=True. Klasör tarihinden gelen çıplak `date` de kabul edilir.
+    Kopyalama zamanı değil, ölçüm zamanı esastır."""
     bugun = bugun or date.today()
-    try:
-        t = datetime.fromisoformat(str(olcum_zamani)).date()
-    except (TypeError, ValueError):
-        return dict(is_gunu=None, eski=True, tarih=None)
+    if isinstance(olcum_zamani, date) and not isinstance(olcum_zamani, datetime):
+        t = olcum_zamani
+    else:
+        try:
+            dt = datetime.fromisoformat(str(olcum_zamani))
+        except (TypeError, ValueError):
+            return dict(is_gunu=None, eski=True, durum="gecersiz", sebep="olcumZamani ISO 8601 değil", tarih=None)
+        if dt.tzinfo is None:
+            return dict(is_gunu=None, eski=True, durum="saat_dilimsiz", sebep="olcumZamani saat dilimi taşımıyor", tarih=dt.date())
+        simdi_ = simdi or datetime.now(timezone.utc)
+        if simdi_.tzinfo is None:
+            simdi_ = simdi_.replace(tzinfo=timezone.utc)
+        if dt - simdi_ > timedelta(minutes=GELECEK_TOLERANS_DK):
+            ileri = -_is_gunu_farki(bugun, dt.date()) if dt.date() > bugun else 0
+            return dict(is_gunu=ileri, eski=True, durum="gelecek", sebep=f"damga şimdiden {int((dt - simdi_).total_seconds() // 60)} dakika ileride, tolerans {GELECEK_TOLERANS_DK} dakika", tarih=dt.date())
+        t = dt.date()
+    if t > bugun:
+        return dict(is_gunu=-_is_gunu_farki(bugun, t), eski=True, durum="gelecek", sebep="ölçüm tarihi bugünden ileri", tarih=t)
     n = _is_gunu_farki(t, bugun)
-    return dict(is_gunu=n, eski=n > esik, tarih=t)
+    return dict(is_gunu=n, eski=n > esik, durum=("eski" if n > esik else "taze"), sebep=None, tarih=t)
 
 
 # ---------------------------------------------------------------- sermaye (M27, 12 Eylül 2026)

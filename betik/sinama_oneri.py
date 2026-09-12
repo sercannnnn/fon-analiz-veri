@@ -62,6 +62,26 @@ def test_bolum4_boyutlandirma():
     assert o[0]["tutar"] == 120_000
 
 
+def test_m30_tazelik_dogrulayamadigini_gecirmez():
+    """M30: saat dilimsiz ve gelecek tarihli damga eski=True; sebep ayrı alanda; doğrulama gelecek tarihli belgeyi reddeder;
+    saat farkı toleransı adıyla (GELECEK_TOLERANS_DK) ve sınamayla."""
+    from datetime import datetime, timezone, timedelta
+    simdi = datetime(2026, 9, 12, 12, 0, tzinfo=timezone.utc); bugun = date(2026, 9, 12)
+    t = oneri.tazelik("2026-09-11T19:30:00", bugun=bugun, simdi=simdi)
+    assert t["eski"] and t["durum"] == "saat_dilimsiz" and t["sebep"]
+    for damga in ("2026-09-13T09:00:00+03:00", "2026-09-20T09:00:00+03:00", "2027-01-01T09:00:00+03:00"):
+        t = oneri.tazelik(damga, bugun=bugun, simdi=simdi)
+        assert t["eski"] and t["durum"] == "gelecek" and t["is_gunu"] is not None and t["is_gunu"] <= 0
+    belge = dict(olcumZamani="2026-09-13T09:00:00+03:00", pozisyonlar={"k": dict(kod="AAA", deger=1.0)}, nakit=[])
+    assert any("gelecek tarihli" in h for h in oneri.disa_aktarim_dogrula(belge, bugun=bugun, simdi=simdi))
+    assert any("saat dilimi" in h for h in oneri.disa_aktarim_dogrula(dict(belge, olcumZamani="2026-09-11T19:30:00"), bugun=bugun, simdi=simdi))
+    # tolerans: şimdiden 10 dakika ileri damga taze, 30 dakika ileri damga gelecek
+    assert not oneri.tazelik((simdi + timedelta(minutes=10)).isoformat(), bugun=bugun, simdi=simdi)["eski"]
+    assert oneri.tazelik((simdi + timedelta(minutes=30)).isoformat(), bugun=bugun, simdi=simdi)["durum"] == "gelecek"
+    assert oneri.GELECEK_TOLERANS_DK == 15
+    assert oneri.tazelik("dün", bugun=bugun)["durum"] == "gecersiz" and oneri.tazelik(date(2026, 9, 11), bugun=bugun)["durum"] == "taze"
+
+
 if __name__ == "__main__":
     for ad, f in list(globals().items()):
         if ad.startswith("test_") and callable(f):
