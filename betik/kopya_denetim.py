@@ -19,6 +19,24 @@ BETIKLER = ["tefas_cek.py", "gunluk_cron.sh", "arsiv_guncelle.py", "hisse_cek.py
 API = "https://api.github.com/repos/sercannnnn/fon-analiz-veri/contents/betik/"
 
 
+def _baslik():
+    """Kimliksiz API saatte 60 istek verir; GITHUB_TOKEN ya da Mac'teki gh oturumu varsa onunla (5.000 istek) sorulur."""
+    b = {"Accept": "application/vnd.github+json"}
+    t = os.environ.get("GITHUB_TOKEN")
+    if not t:
+        try:
+            import subprocess
+            t = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=10).stdout.strip()
+        except Exception:
+            t = ""
+    if t:
+        b["Authorization"] = "Bearer " + t
+    return b
+
+
+YEDEK_KULLANILDI = []
+
+
 def blob_sha(b):
     """git'in nesne kimliği: sha1('blob <uzunluk>\\0' + içerik). GitHub içerik API'sindeki sha ile birebir karşılaştırılır."""
     return hashlib.sha1(b"blob %d\0" % len(b) + b).hexdigest()
@@ -29,7 +47,7 @@ def api_oku(ad):
     önbellekler ve gönderimden hemen sonra sahte fark verir; API deponun o anki hâlini verir. Erişilemezse ham adrese düşülür."""
     import base64
     try:
-        r = requests.get(API + ad, timeout=60, headers={"Accept": "application/vnd.github+json"})
+        r = requests.get(API + ad, timeout=60, headers=_baslik())
         if r.status_code == 200:
             j = r.json()
             icerik = base64.b64decode(j["content"]) if j.get("encoding") == "base64" and j.get("content") else None
@@ -38,6 +56,7 @@ def api_oku(ad):
             return None, None
     except Exception:
         pass
+    YEDEK_KULLANILDI.append(ad)
     r = requests.get(HAM + ad, timeout=60)
     if r.status_code != 200:
         return None, None
@@ -71,6 +90,8 @@ def main():
             print(f"  ok {ad} {sha[:12]}")
         else:
             print(f"  FARKLI {ad}: yerel {blob_sha(y)[:12]} depo {sha[:12]}"); fark += 1
+    if YEDEK_KULLANILDI:
+        print(f"  not: {len(YEDEK_KULLANILDI)} dosya API yerine ham adresten okundu (API sınırı ya da erişim); ham adres birkaç dakika önbellekler, gönderimden hemen sonra sahte fark verebilir")
     print("sonuç:", "iki kopya aynı" if not fark else f"{fark} betikte fark var; tek kaynak depodur, yerel kopya güncellenmeli ya da depoya gönderilmeli")
     sys.exit(1 if fark else 0)
 
