@@ -294,7 +294,7 @@ KURAL = [
     (r"TAKASBANK|TPP|\bBPP\b|BORSA PARA|PARA PIYASASI", "tpp"), (r"KATILMA BELGE", "yf"),
     (r"ALTIN VADELI MEVDUAT", "mevduat"), (r"ALTIN KATILIM HESA|DOVIZ KATILIM HESA", "katilim"),
     (r"DOVIZE ENDEKSLI TAHVIL|GELIR ORTAKLIGI|GELIRE ENDEKSLI", "dt"), (r"VAADIYLE", "taahhut"), (r"\bVOB\b.*SOZLESME", "diger"), (r"DEGERLI MADEN|KIYMETLI MADEN|D\.MADEN|\bMADEN\b|ALTIN|GUMUS", "maden"),
-    (r"(BORSA YATIRIM FON|\bBYF\b|BORSA Y\.FONU).*(YABANCI|YP)|(YABANCI|\bYP\b).*(BORSA YATIRIM FON|\bBYF\b)", "ybyf"), (r"BORSA YATIRIM FON|\bBYF\b|BORSA Y\.FONU", "byf"), (r"YATIRIM FONU|Y\.FONU|YATIRIM FON|FON SEPETI", "yf"), (r"KATILMA PAY", "yf"),   # Ziraat 'Y - KATILMA PAYLARI'; BYF kurallarindan sonra gelmeli (GZE 'KATILMA PAYLARI YABANCI BORSA YATIRIM FONU')
+    (r"(BORSA YATIRIM FON|\bBYF\b|BORSA Y\.FONU).*(YABANCI|YP)|(YABANCI|\bYP\b).*(BORSA YATIRIM FON|\bBYF\b)", "ybyf"), (r"BORSA YATIRIM FON|\bBYF\b|BORSA Y\.FONU", "byf"), (r"YATIRIM FONU|Y\.FONU|YATIRIM FON|FON SEPETI", "yf"), (r"KATILMA PAY", "yf"),   # Ziraat 'Y - KATILMA PAYLARI'; BYF kurallarindan sonra gelmeli (Garanti duzeni, 'KATILMA PAYLARI YABANCI BORSA YATIRIM FONU')
     (r"KATILIM HESA|KATILMA HESA", "katilim"), (r"MEVDUAT", "mevduat"), (r"TEMINAT", "teminat"),
     (r"TAAHHUT", "taahhut"), (r"VDMK|VARLIGA DAYALI", "ost"), (r"DIGER", "diger"),
     (r"^OZEL SEKTOR$|BORSA DISI|BORCLANMA", "ost"), (r"^HAZINE|^DEVLET|^KAMU", "dt"),
@@ -312,8 +312,8 @@ ESLEME_TABLOSU = [
     ("hb",       "borclanma", "ayni kanit"),
     ("kira",     "borclanma", "ayni kanit; ayrica Yapi Kredi duzeni YP kira sertifikasini dis borclanma icinde verir (YTY, 07.09.2026)"),
     ("fb",       "borclanma", "ayni kanit"),
-    ("tpp",      "para_piyasasi", "Takasbank Para Piyasasi ile Borsa Istanbul Para Piyasasi ayni pazarin eski ve yeni adidir; KAP sablonu TPP, TEFAS bpp yazar (TP2, 07.09.2026)"),
-    ("repo",     "para_piyasasi", "Garanti duzeni 'TERS REPO' satirinda Takasbank islemlerini de verir (GZE, 07.09.2026)"),
+    ("tpp",      "para_piyasasi", "Takasbank Para Piyasasi ile Borsa Istanbul Para Piyasasi ayni pazarin eski ve yeni adidir; KAP sablonu TPP, TEFAS bpp yazar (Is Portfoy para piyasasi fonu, 07.09.2026)"),
+    ("repo",     "para_piyasasi", "Garanti duzeni 'TERS REPO' satirinda Takasbank islemlerini de verir (Garanti fonu, 07.09.2026)"),
     ("yabanci_hisse", "hisse_toplam", "Standart duzen 'Hisse Yabanci' bolumunu TEFAS yhs koduna, 'Hisse Turk' hs koduna yazar; ikisi de hisse (IED, 07.09.2026)"),
     ("hisse",    "hisse_toplam", "ayni kanit"),
     ("byf",      "maden_byf", "Altin ve gumus BYF'leri (GMSTR TRYFNBK00030, ISGLK TRYISPO01397, ZGOLD TRYZIPO00162, GLDTR) KAP'ta 'Borsa Y.Fonu Turk' bolumunde, TEFAS'ta kmbyf (kiymetli maden BYF) kodunda; GUF 18,30 ve TTA 22,67 puan birebir (08.09.2026)"),

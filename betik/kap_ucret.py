@@ -10,7 +10,7 @@ Sayfa verisi gömülüdür: "uygulananYonetimUcretiOranYillikYuzde":"1" gibi. Al
 Artımlı: veri/fon_ucret.csv içinde YENILEME_GUN'den yeni kaydı olan fon atlanır; günde en fazla --butce sayfa çekilir
 (sayfa 300 KB, istekler arası ARA saniye). Evren yaklaşık 2.150 fon; 150 sayfa/gün ile iki haftada tamamlanır, sonra aylık yenilenir.
 
-Kullanım: kap_ucret.py [--kunye veri/fon_kunye_kap.csv] [--cikti veri/fon_ucret.csv] [--butce 150] [--fon TP2,TLY]
+Kullanım: kap_ucret.py [--kunye veri/fon_kunye_kap.csv] [--cikti veri/fon_ucret.csv] [--butce 150] [--fon KOD1,KOD2]
 """
 import argparse, csv, os, re, sys, time
 from datetime import date, datetime, timedelta
