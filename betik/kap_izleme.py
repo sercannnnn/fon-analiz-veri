@@ -146,27 +146,56 @@ AGIR_KONU = [
 # ---------------------------------------------------------------- rutin tur suzgeci ve eksik govde triyaji (12 Eylul 2026)
 # Madde 1: eleme yalnizca bildirim TURUNE gore, acik listeyle; sirket adina gore hicbir eleme yapilmaz. Rutin tur kademe
 # yukselten konu tasiyorsa haber sayilir. Elenen sayisi her brifingin kapsam satirinda bildirilir; liste genisleyince sayi buyur.
-# Liste 12 Eylul 2026'da olcumle genisletildi: fonun standart belgeleri (yatirimci bilgi formu 37, surekli bilgilendirme formu 10,
-# izahname 6, risk olcum esaslari, borsa disi ve turev islem ilkeleri, vaad sozlesmesi, finansal tablo) kurucu adini tasidigi icin
-# 86 birinci kademe eslesme uretiyordu; hepsi tur adiyla listelendi, Chat'in kural metnine yazmasi istendi.
-RUTIN_TURLER = ["Portföy Dağılım Raporu", "Fiyat Raporu", "Gider Raporu", "Repo - Ters Repo Sözleşmesi", "Şirket Genel Bilgi Formu",
-                "Yatırımcı Bilgi Formu", "Fon Sürekli Bilgilendirme Formu", "İzahname", "Risk Ölçüm ve Değerleme Esasları",
-                "Borsa Dışı Sözleşmelere İlişkin İlkeler", "Türev Araç İşlemlerine İlişkin İlkeler", "Borsa Dışı Vaad Sözleşmesi",
-                "Finansal Tablo Bildirimi"]
-RUTIN_KONU = re.compile(r"Portföy Dağılım|Fiyat Raporu|Gider Raporu|Toplam Gider|Repo|Şirket Genel Bilgi Formu|Yatırımcı Bilgi Formu|"
-                        r"Sürekli Bilgilendirme Formu|İzahname|Risk Ölçüm|Borsa Dışı Sözleşme|Türev Araç İşlemleri|Vaad Sözleşmesi|Finansal Tablo", re.I)
+# M24 (Chat, 12 Eylul 2026): eslesme konu parcasina gore degil TUR ADINA gore, birebir (KAP'in konu alani; bastaki "01285 - " kodu
+# ve bosluklar atilir). "Repo Karsi Tarafi Temerrudu" bu yuzden rutin degildir. M25: izahname duzenleyici islem konusudur, listede
+# degildir; finansal tablo bildirimi de degildir (hisse cikis kapisi 1 ondan beslenir). Liste Chat'in 12 Eylul kural metnindeki
+# on iki addir; "Repo - Ters Repo Sozlesmesi" KAP'ta "Borsa Disi Repo - Ters Repo Sozlesmesi" adiyla gecer, o ad yazildi.
+RUTIN_TURLER = ["Portföy Dağılım Raporu", "Fiyat Raporu", "Gider Raporu", "Toplam Gider Oranı Bildirimi",
+                "Borsa Dışı Repo - Ters Repo Sözleşmesi", "Şirket Genel Bilgi Formu", "Yatırımcı Bilgi Formu",
+                "Fon Sürekli Bilgilendirme Formu", "Risk Ölçüm ve Değerleme Esasları", "Borsa Dışı Sözleşmelere İlişkin İlkeler",
+                "Türev Araç İşlemlerine İlişkin İlkeler", "Borsa Dışı Vaad Sözleşmesi"]
+_RUTIN_SADE = {sadelestir(t) for t in RUTIN_TURLER}
+
+
+def tur_adi(konu):
+    """KAP konu alanindan tur adi: bastaki sayisal kod ("01285 - ") ve kenar bosluklari atilir, sadelestirilir."""
+    return sadelestir(re.sub(r"^\s*\d{3,6}\s*-\s*", "", str(konu or "")))
+
+
+def rutin_mu(konu):
+    return tur_adi(konu) in _RUTIN_SADE
+
+
+_YUMUSAMA = {"T": "[TD]", "K": "[KG]", "P": "[PB]", "C": "[CÇ]"}
+
+
+def _kok_deseni(k):
+    """Kelime koku deseni: baslangic sinirli, son serbest (ek alabilir); son unsuz yumusayabilir (TEMERRUT -> TEMERRUDU,
+    KIRALIK -> KIRALIGI). Sadelestir sonrasi metinde Turkce harfler ASCII'ye inmis olur, C sinifi yine de verilir."""
+    sade = sadelestir(k)
+    if sade and sade[-1] in _YUMUSAMA:
+        sade = re.escape(sade[:-1]) + _YUMUSAMA[sade[-1]]
+    else:
+        sade = re.escape(sade)
+    return rf"(?<![A-Z0-9]){sade}[A-Z]*"
 
 
 def agir_konu_mu(metin):
-    """Metin (konu + ozet) kademe yukselten konu kelimelerinden birini tasiyor mu (AGIR_KONU)."""
+    """Metin (konu + ozet) kademe yukselten konu kelimelerinden birini tasiyor mu. Kelime KOKU aranir: Turkce ek alan ve son
+    unsuzu yumusayan bicim ("TEMERRUDU", "IFLASI", "BIRLESMESI") de yakalanir (M24)."""
     m = sadelestir(metin)
-    return any(re.search(rf"(?<![A-Z0-9]){re.escape(sadelestir(k))}(?![A-Z0-9])", m) for _, ks in AGIR_KONU for k in ks)
+    return any(re.search(_kok_deseni(k), m) for _, ks in AGIR_KONU for k in ks)
+
+
+def agir_konular(metin):
+    m = sadelestir(metin)
+    return [ad for ad, ks in AGIR_KONU if any(re.search(_kok_deseni(k), m) for k in ks)]
 
 
 def rutin_ayir(bildirimler):
     """(rutin olmayanlar, rutin tur olanlar); rutin olanlar yalnizca agir konu tasiyorsa taramada sayilir."""
-    rutin = [b for b in bildirimler if RUTIN_KONU.search(b.get("konu") or "")]
-    dis = [b for b in bildirimler if not RUTIN_KONU.search(b.get("konu") or "")]
+    rutin = [b for b in bildirimler if rutin_mu(b.get("konu"))]
+    dis = [b for b in bildirimler if not rutin_mu(b.get("konu"))]
     return dis, rutin
 
 
@@ -185,6 +214,34 @@ def eksik_triyaj(bildirimler):
     return eng, n
 
 
+def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True):
+    """Haber kapisinin TEK giris noktasi (kural 20: her kuralin bir cagirani olur; Mac brifingi ve bulut gorevi bunu cagirir).
+    bildirimler: gunun KAP dizini (kap_gunluk.json 'bildirimler'); liste: izleme_listesi(); kurucular: aday fonlarin kuruculari.
+    Sira: rutin tur suzgeci (madde 1) -> tam metin tarama -> rutin olup agir konu tasiyanlar eklenir -> eksik govde triyaji (madde 3).
+    Donus: dict(haber={kurucu: True/False/None}, notu, k1, engelleyici, elenen, eslesme)."""
+    kurucu_grup = kurucu_grup or {}
+    dis, rutin = rutin_ayir(bildirimler)
+    vurus = tara(dis, liste) + [v for v in tara(rutin, liste) if v["agir_konu"]]
+    k1 = [v for v in vurus if v["kademe"] == 1]
+    eng, eksik_diger = eksik_triyaj(bildirimler)
+    haber = {}
+    for k in kurucular:
+        anahtar = {sadelestir(g) for g in kurucu_grup.get(k, [k])}
+        if any(set(v["eslesen"]) & anahtar for v in k1):
+            haber[k] = False
+        elif any(any(a in sadelestir(b.get("sirket") or "") for a in anahtar) for b in eng):
+            haber[k] = None          # engelleyici eksik: govde okunana kadar olculemedi
+        else:
+            haber[k] = True
+    b_ = lambda n: f"{n:,}".replace(",", ".")      # binlik ayirici nokta; cumledeki virgullere dokunulmaz
+    notu = (f"{b_(len(bildirimler))} bildirim tarandı; rutin tür süzgeciyle elenen {b_(len(rutin))} ({len(RUTIN_TURLER)} tür, kademe yükselten "
+            f"konu taşıyanlar sayıldı), {b_(len(vurus))} eşleşme, {b_(len(k1))} birinci kademe"
+            + (f"; gövdesi çekilemeyen {b_(len(eng))} engelleyici bildirim (haber kapısı o kurucularda ölçülemedi)" if eng else "")
+            + (f"; gövdesi çekilemeyen {b_(eksik_diger)} rutin dışı bildirim, tarama eksiktir" if eksik_diger else "")
+            + ("" if govde_var else "; gövde metni çekilmemiş, tarama özet ve konu üzerinden"))
+    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus))
+
+
 # ---------------------------------------------------------------- tarama
 def tara(bildirimler, liste, kendi_fonlarimiz=()):
     """bildirimler: [{'id','tarih','sirket','konu','ozet','metin','url'}]"""
@@ -198,9 +255,7 @@ def tara(bildirimler, liste, kendi_fonlarimiz=()):
         if not vurus:
             continue
         kademe = min(v[1]["kademe"] for v in vurus)
-        konular = [ad for ad, kelimeler in AGIR_KONU
-                   if any(re.search(rf"(?<![A-Z0-9]){re.escape(sadelestir(k))}(?![A-Z0-9])", gövde)
-                          for k in kelimeler)]
+        konular = agir_konular(gövde)     # kelime koku: "TEMERRUDU", "IFLASI" gibi ekli bicimler de yakalanir (M24)
         if konular and kademe > 1:
             kademe = 1          # agir konu, ismi bir kademe yukari tasir
         sonuc.append({
