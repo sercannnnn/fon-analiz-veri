@@ -99,6 +99,61 @@ def _yuzde(x, hane=1):
     return ("-" if x < 0 else "") + "%" + f"{abs(x) * 100:,.{hane}f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
+# ---------------------------------------------------------------- defter dışa aktarımı sözleşmesi (Chat 19 ve 21, 13 Eylül 2026)
+# Akşam teyit görevi defteri okuyup Mac'e tek dosya yazar: 03 Veri/defter_disa_aktarim.json. Alanlar: olcumZamani (ISO 8601, saat
+# dilimli), pozisyonlar (defterin pozisyon koleksiyonu, {kimlik: kayıt}), nakit (defterin nakit koleksiyonu, liste). Tazelik yalnızca
+# olcumZamani alanından ölçülür; bir iş gününden eski ölçümle üretilen ağırlık "doğrulanmadı" etiketi alır. Dosya portföy bilgisidir.
+DISA_AKTARIM_ALANLARI = ("olcumZamani", "pozisyonlar", "nakit")
+TAZELIK_ESIK_IS_GUNU = 1
+
+
+def disa_aktarim_dogrula(belge):
+    """Dışa aktarım belgesinin biçimini sınar. Dönüş: hata listesi (boşsa geçerli)."""
+    h = []
+    if not isinstance(belge, dict):
+        return ["belge sözlük değil"]
+    for a in DISA_AKTARIM_ALANLARI:
+        if a not in belge:
+            h.append(f"{a} alanı yok")
+    oz = belge.get("olcumZamani")
+    try:
+        t = datetime.fromisoformat(str(oz))
+        if t.tzinfo is None:
+            h.append("olcumZamani saat dilimi taşımıyor")
+    except (TypeError, ValueError):
+        h.append("olcumZamani ISO 8601 değil")
+    poz = belge.get("pozisyonlar")
+    if not isinstance(poz, dict):
+        h.append("pozisyonlar sözlük değil ({kimlik: kayıt})")
+    else:
+        for k, v in poz.items():
+            if not isinstance(v, dict) or not v.get("kod") or "deger" not in v:
+                h.append(f"pozisyon {k}: kod ya da deger yok")
+    if not isinstance(belge.get("nakit"), list):
+        h.append("nakit liste değil")
+    return h
+
+
+def _is_gunu_farki(bas, bit):
+    n, g = 0, bas
+    while g < bit:
+        g = date.fromordinal(g.toordinal() + 1)
+        if g.weekday() < 5:
+            n += 1
+    return n
+
+
+def tazelik(olcum_zamani, bugun=None, esik=TAZELIK_ESIK_IS_GUNU):
+    """olcumZamani'ndan bugüne iş günü; dönüş: dict(is_gunu, eski, tarih). Kopyalama zamanı değil, ölçüm zamanı esastır."""
+    bugun = bugun or date.today()
+    try:
+        t = datetime.fromisoformat(str(olcum_zamani)).date()
+    except (TypeError, ValueError):
+        return dict(is_gunu=None, eski=True, tarih=None)
+    n = _is_gunu_farki(t, bugun)
+    return dict(is_gunu=n, eski=n > esik, tarih=t)
+
+
 # ---------------------------------------------------------------- sermaye (M27, 12 Eylül 2026)
 def acik_pozisyonlar(pozisyonlar):
     """Kapanmış pozisyon sermayeye katılmaz (M27): `durum` alanı KAPANDI olan ya da adedi sıfır olan kayıt çıkarılır.
