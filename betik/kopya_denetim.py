@@ -3,7 +3,7 @@
 """Ikinci kopya denetimi (Gorev 1.6). Sanal makine, GitHub deposunun (fon-analiz-veri) klonudur; makinedeki
 betikler depodaki betik/ klasorunden gelir. Bu betik yerel 02 Betik altindaki kopyalari deponun ham
 adreslerinden okuyup karsilastirir. Fark varsa kirmizi doner. Yalnizca standart kutuphane ve requests."""
-import hashlib, os, sys
+import hashlib, os, sys, time
 import requests
 
 KOK = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -22,7 +22,7 @@ def ozet(b):
 
 def saglama_oku():
     try:
-        r = requests.get(HAM + "SAGLAMA.sha256", timeout=60)
+        r = requests.get(HAM + "SAGLAMA.sha256", params={"t": int(time.time())}, timeout=60)
         if r.status_code != 200:
             return {}
         return {l.split()[1].lstrip("*"): l.split()[0] for l in r.text.splitlines() if len(l.split()) == 2}
@@ -38,7 +38,7 @@ def main():
     for ad in BETIKLER:
         yerel = os.path.join(KOK, "02 Betik", ad)
         try:
-            uzak = requests.get(HAM + ad, timeout=60)
+            uzak = requests.get(HAM + ad, params={"t": int(time.time())}, timeout=60)   # raw.githubusercontent birkaç dakika önbellekler; gönderimden hemen sonra sahte fark çıkmasın
         except Exception as e:
             print(f"  ?  {ad}: depo okunamadı ({e})"); fark += 1; continue
         if uzak.status_code != 200:
