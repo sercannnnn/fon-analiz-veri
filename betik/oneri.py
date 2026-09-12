@@ -36,6 +36,61 @@ def _yaz(yol, veri):
     json.dump(veri, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
+# ---------------------------------------------------------------- durum deposu (M28, 12 Eylül 2026)
+# Süreklilik sayacı ve sicil DURUMDUR; nerede tutulduğu koda değil çağırana aittir. Bulut kabı her sabah sıfırdan kurulur ve
+# 03 Veri klasörü orada yoktur: dosya yoluna bağlı sayaç her gün 1 döner, "süreklilik 1/3, öneri yazılmadı" kurala uygun görünür ve
+# öneri rejimi hiç çalışmamış olur. Bu yüzden okuma ve yazma bir arayüzün arkasındadır: Mac dosyayla (DosyaDeposu), bulut emir
+# defteriyle (BellekDeposu: görev defterin `adaylar` ve `sicil` koleksiyonlarını okuyup verir, koşu sonunda `belgeler()` ile geri yazar)
+# aynı kodu koşar. Sicil ve aday geçmişi portföy bilgisidir, açık depoya konmaz.
+class DosyaDeposu:
+    """Mac: 03 Veri/aday_gecmisi.json ve 03 Veri/oneri_sicili.json."""
+    def __init__(self, aday_yol=None, sicil_yol=None):
+        self.aday_yol = aday_yol or ADAY_YOL; self.sicil_yol = sicil_yol or SICIL_YOL
+
+    def aday_oku(self): return _oku(self.aday_yol, {})
+    def aday_yaz(self, g): _yaz(self.aday_yol, g)
+    def sicil_oku(self): return _oku(self.sicil_yol, [])
+    def sicil_yaz(self, s): _yaz(self.sicil_yol, s)
+    def sicil_var_mi(self): return os.path.exists(self.sicil_yol)
+
+
+class BellekDeposu:
+    """Bulut: durum çağıranın verdiği sözlüklerde tutulur. aday: {tarih: [kodlar]} (defterin `adaylar` koleksiyonu, belge kimliği
+    tarih); sicil: kayıt listesi (defterin `sicil` koleksiyonu, belge kimliği YYYYAAGG-KOD). Koşu sonunda `belgeler()` deftere
+    yazılacak belgeleri verir; görev bunları koleksiyonlara yazar. Kap silinse de durum defterde kalır."""
+    def __init__(self, aday=None, sicil=None):
+        self.aday = dict(aday or {}); self.sicil = list(sicil or []); self.degisen_aday, self.degisen_sicil = set(), set()
+
+    def aday_oku(self): return dict(self.aday)
+    def aday_yaz(self, g):
+        self.degisen_aday |= {t for t in g if g[t] != self.aday.get(t)}; self.aday = dict(g)
+    def sicil_oku(self): return list(self.sicil)
+    def sicil_yaz(self, s):
+        eski = {x["id"]: x for x in self.sicil}
+        self.degisen_sicil |= {x["id"] for x in s if eski.get(x["id"]) != x}; self.sicil = list(s)
+    def sicil_var_mi(self): return bool(self.sicil)
+
+    def belgeler(self, yalniz_degisen=True):
+        """(adaylar belgeleri, sicil belgeleri): {kimlik: belge}. Defterin belge kimliği biçimi: adaylar için tarih, sicil için kaydın id'si."""
+        a = {t: dict(tarih=t, kodlar=k) for t, k in self.aday.items() if not yalniz_degisen or t in self.degisen_aday}
+        s = {x["id"]: dict(x) for x in self.sicil if not yalniz_degisen or x["id"] in self.degisen_sicil}
+        return a, s
+
+    @classmethod
+    def defterden(cls, aday_belgeleri, sicil_belgeleri):
+        """Defter koleksiyonlarından kur: aday_belgeleri {tarih: {"tarih","kodlar"}} ya da liste; sicil_belgeleri {id: kayıt} ya da liste."""
+        ab = aday_belgeleri.values() if isinstance(aday_belgeleri, dict) else (aday_belgeleri or [])
+        sb = sicil_belgeleri.values() if isinstance(sicil_belgeleri, dict) else (sicil_belgeleri or [])
+        return cls(aday={b["tarih"]: list(b.get("kodlar") or []) for b in ab}, sicil=sorted(sb, key=lambda x: (x.get("tarih", ""), x.get("id", ""))))
+
+
+def _depo(depo, yol=None, tur="sicil"):
+    """Geriye uyumluluk: depo verilmemişse dosya deposu; yol verilmişse o yol (eski sınamalar)."""
+    if depo is not None:
+        return depo
+    return DosyaDeposu(aday_yol=yol if tur == "aday" else None, sicil_yol=yol if tur == "sicil" else None)
+
+
 def _tl(x):
     return f"{x:,.0f}".replace(",", ".") + " TL"
 
@@ -74,15 +129,15 @@ def sermaye_hesapla(pozisyonlar, nakit):
 
 
 # ---------------------------------------------------------------- süreklilik
-def ardisik_guncelle(tarih, acik_kodlar, yol=None):
+def ardisik_guncelle(tarih, acik_kodlar, yol=None, depo=None):
     """Kapısı açık adayların gün gün kaydı; dönüş: kod -> bugün dahil ardışık açık gün sayısı. Aynı gün iki kez çağrılırsa
-    günün kaydı üzerine yazılır. Kaynak: ölçüm."""
-    yol = yol or ADAY_YOL
-    g = _oku(yol, {})
+    günün kaydı üzerine yazılır. Durum `depo` üzerinden okunur ve yazılır (M28). Kaynak: ölçüm."""
+    d = _depo(depo, yol, "aday")
+    g = d.aday_oku()
     g[tarih] = sorted(acik_kodlar)
     gunler = sorted(g)[-60:]
     g = {t: g[t] for t in gunler}
-    _yaz(yol, g)
+    d.aday_yaz(g)
     say = {}
     for k in acik_kodlar:
         n = 0
@@ -111,17 +166,16 @@ ILK_DILIM = 0.05           # yeni fona ilk dilim: sermayenin %5'i
 FON_USTU = 0.10            # bir fonda toplam: sermayenin %10'u (mevcut pozisyonun artırılması da bu sınıra tabidir)
 
 
-def son_yeni_fon_onerisi(tarih, gun=YENI_FON_HAFTA_GUN, yol=None):
+def son_yeni_fon_onerisi(tarih, gun=YENI_FON_HAFTA_GUN, yol=None, depo=None):
     """Son `gun` gün içinde verilen yeni fon (portföyde olmayan) önerisi var mı; varsa (tarih, kod)."""
-    yol = yol or SICIL_YOL
     t0 = datetime.strptime(tarih, "%Y-%m-%d").date()
-    for x in reversed(_oku(yol, [])):
+    for x in reversed(_depo(depo, yol).sicil_oku()):
         if x.get("yeniFon") and 0 < (t0 - datetime.strptime(x["tarih"], "%Y-%m-%d").date()).days <= gun:
             return x["tarih"], x["kod"]
     return None
 
 
-def oneri_uret(ana, agresif, tarih, veri_tarihi, sermaye, agresif_mevcut, haber_notu, ardisik, serbest_nakit=None, pozisyonlar=None, sicil_yol=None):
+def oneri_uret(ana, agresif, tarih, veri_tarihi, sermaye, agresif_mevcut, haber_notu, ardisik, serbest_nakit=None, pozisyonlar=None, sicil_yol=None, depo=None):
     """ana, agresif: parlayan_fon çıktıları (DataFrame ya da kayıt listesi). sermaye: pozisyon + nakit, TL. agresif_mevcut: dilimi
     'agresif' olan pozisyonların değeri. serbest_nakit: serbest nakit ile karşılanmış satışların toplamı (None: ölçülemedi).
     pozisyonlar: kod -> elde tutulan değer. Dönüş: öneri listesi ve öneriye dönüşmeyenlerin notları.
@@ -143,7 +197,7 @@ def oneri_uret(ana, agresif, tarih, veri_tarihi, sermaye, agresif_mevcut, haber_
     nakit = float(serbest_nakit)
     if nakit <= 0:
         return [], [f"serbest nakit {_tl(nakit)}; öneri yazılmadı (bölüm 4: nakit kısıtı)"]
-    yeni_verildi = son_yeni_fon_onerisi(tarih, yol=sicil_yol)
+    yeni_verildi = son_yeni_fon_onerisi(tarih, yol=sicil_yol, depo=depo)
     yeni_bu_koşu = False
     ortak = dict(haber=haber_notu, veri_tarihi=veri_tarihi)
 
@@ -208,22 +262,23 @@ def _gecilen(askida):
     return [x for x in ("C1", "C2", "C3", "C4", "C5", "C6", "G1", "G2", "G3", "G4", "G5a", "G5b") if x not in askida]
 
 
-def oneri_json(oneriler, tarih, yol=None):
+def oneri_json(oneriler, tarih, yol=None, depo=None):
     """Brifing JSON'unun 12 Eylül 2026'da eklenen iki anahtarı: `oneri` (liste) ve `sicil` (nesne). Mevcut on dört anahtar değişmez."""
     o = [dict(kod=x["kod"], ad=x.get("ad"), yon=x["yon"], tutar=x.get("tutar"), dilim=x.get("dilim"), etiket=x.get("etiket", ""),
               gecilen=x.get("gecilen", []), askida=x.get("askida", []), sira_olcusu=x.get("sira_olcusu"), haber=x.get("haber"),
               veri_tarihi=x.get("veri_tarihi"), gerekce=x.get("gerekce"), tutar_notu=x.get("tutar_notu")) for x in oneriler]
-    oz = sicil_ozeti(tarih[:7], yol=yol)
+    d = _depo(depo, yol)
+    oz = sicil_ozeti(tarih[:7], depo=d)
     g = oz["uygulanan_getiri"]
     isabet = (f"uygulanan {oz['uygulanan']} önerinin 20 seans ortalama getirisi {_yuzde(g[0])} ({g[1]} ölçüm)" if g[0] is not None else None)
-    return o, dict(ay=oz["ay"], verilen=oz["verilen"], uygulanan=oz["uygulanan"], bilinmeyen=oz["bilinmeyen"], isabet=isabet, metin=sicil_satiri(tarih, yol=yol))
+    return o, dict(ay=oz["ay"], verilen=oz["verilen"], uygulanan=oz["uygulanan"], bilinmeyen=oz["bilinmeyen"], isabet=isabet, metin=sicil_satiri(tarih, depo=d))
 
 
 # ---------------------------------------------------------------- sicil
-def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None):
+def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None, depo=None):
     """Kural 18: verilen her öneri sicile yazılır; aynı gün aynı kod tekrar yazılmaz. Dönüş: yazılan kayıt sayısı."""
-    yol = yol or SICIL_YOL
-    s = _oku(yol, [])
+    d = _depo(depo, yol)
+    s = d.sicil_oku()
     var = {(x["tarih"], x["kod"]) for x in s}
     n = 0
     for i, o in enumerate(oneriler, 1):
@@ -233,17 +288,17 @@ def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None):
                       tutar=o.get("tutar"), gerekce=o["gerekce"], olcumTarihi=veri_tarihi, siralamaOlcusu=o.get("sira_olcusu"), yeniFon=bool(o.get("yeni_fon")),
                       uygulandi=None, uygulamaKaynagi=None, sonuc20=None, sonucTarihi=None))
         n += 1
-    _yaz(yol, s)
+    d.sicil_yaz(s)
     return n
 
 
-def sicil_guncelle(fiyat, emirler=None, yol=None):
+def sicil_guncelle(fiyat, emirler=None, yol=None, depo=None):
     """fiyat: fonKodu -> tarih sıralı (tarih, fiyat) listesi ya da pandas DataFrame(tarih, fonKodu, fiyat).
     Yirmi seansı dolan önerinin sonucu (öneri gününün fiyatından 20 seans sonraki fiyata getiri) yazılır.
     emirler: emir defteri sözlüğü; öneri tarihinden en çok UYGULAMA_GUN gün sonra GERCEKLESTI olan aynı yönlü emir
     'uygulandı' sayılır (kaynak: emir defteri). Aksi hâlde alan boş kalır; kullanıcı elle işaretler."""
-    yol = yol or SICIL_YOL
-    s = _oku(yol, [])
+    d = _depo(depo, yol)
+    s = d.sicil_oku()
     if not s:
         return 0
     seri = {}
@@ -271,14 +326,13 @@ def sicil_guncelle(fiyat, emirler=None, yol=None):
                     continue
                 if e.get("kod") == x["kod"] and e.get("yon") == x["yon"] and e.get("durum") == "GERCEKLESTI" and 0 <= (te - t0).days <= UYGULAMA_GUN:
                     x["uygulandi"] = True; x["uygulamaKaynagi"] = f"emir {eid}"; n += 1; break
-    _yaz(yol, s)
+    d.sicil_yaz(s)
     return n
 
 
-def sicil_ozeti(ay, yol=None):
+def sicil_ozeti(ay, yol=None, depo=None):
     """Ay (YYYY-MM) için: verilen, uygulanan, uygulanan ve uygulanmayanların ortalama 20 seans getirisi. Kaynak: sicil."""
-    yol = yol or SICIL_YOL
-    s = [x for x in _oku(yol, []) if x["tarih"][:7] == ay]
+    s = [x for x in _depo(depo, yol).sicil_oku() if x["tarih"][:7] == ay]
     def ort(L):
         v = [x["sonuc20"] for x in L if x.get("sonuc20") is not None]
         return (sum(v) / len(v), len(v)) if v else (None, 0)
@@ -288,12 +342,12 @@ def sicil_ozeti(ay, yol=None):
                 uygulanan_getiri=ort(uyg), uygulanmayan_getiri=ort(uym))
 
 
-def sicil_satiri(tarih, yol=None):
+def sicil_satiri(tarih, yol=None, depo=None):
     """Brifingdeki tek cümlelik sicil satırı (bölüm 8)."""
-    yol = yol or SICIL_YOL
-    if not os.path.exists(yol):
+    d = _depo(depo, yol)
+    if not d.sicil_var_mi():
         return "Sicil: öneri sicili henüz yok; ilk öneriyle açılır."
-    o = sicil_ozeti(tarih[:7], yol)
+    o = sicil_ozeti(tarih[:7], depo=d)
     if not o["verilen"]:
         return "Sicil: bu ay öneri verilmedi."
     g = o["uygulanan_getiri"]
@@ -303,7 +357,7 @@ def sicil_satiri(tarih, yol=None):
 
 
 # ---------------------------------------------------------------- brifing bölümü
-def brifing_bolumu(oneriler, notlar, tarih, haber_notu):
+def brifing_bolumu(oneriler, notlar, tarih, haber_notu, depo=None):
     L = ["## Öneri", ""]
     if not oneriler:
         L.append("Bugün öneri yoktur. Önerisiz gün olağan bir sonuçtur; ölçüm bir öneri üretmediği için bölüm boş bırakılmadı, bu cümle yazıldı (kural 1).")
@@ -315,7 +369,7 @@ def brifing_bolumu(oneriler, notlar, tarih, haber_notu):
         L.append("")
         L.append("Öneriye dönüşmeyenler: " + "; ".join(notlar[:8]) + ".")
     L.append("")
-    L.append(sicil_satiri(tarih))
+    L.append(sicil_satiri(tarih, depo=depo))
     L.append(f"Haber kapısı: {haber_notu}")
     L.append("")
     return L

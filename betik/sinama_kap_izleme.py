@@ -56,6 +56,17 @@ def test_kapanmis_pozisyon_sermayeye_katilmaz():
     assert tam["sermaye"] == azaltilmis["sermaye"] == 1700.0 and tam["kapanan"] == 3 and tam["kodlar"] == {"AAA": 1000.0}
 
 
+
+
+def test_m28_bellek_deposu_defter_uzerinden_sureklilik():
+    """M28: bulutta durum dosyada değil defterde; gün 1 belgeleri deftere, gün 2 defterden kurulur ve sayaç 2 döner."""
+    b1 = oneri.BellekDeposu(); assert oneri.ardisik_guncelle("2026-09-14", ["AAA"], depo=b1)["AAA"] == 1
+    a, s = b1.belgeler()
+    b2 = oneri.BellekDeposu.defterden(a, s); assert oneri.ardisik_guncelle("2026-09-15", ["AAA"], depo=b2)["AAA"] == 2
+    d = tempfile.mkdtemp(); d2 = tempfile.mkdtemp()      # dosya deposu her gün temiz dizinde: 1 döner (bulut kesintisi)
+    assert oneri.ardisik_guncelle("2026-09-15", ["AAA"], depo=oneri.DosyaDeposu(os.path.join(d2, "a.json"), os.path.join(d2, "s.json")))["AAA"] == 1
+
+
 if __name__ == "__main__":
     for ad, f in list(globals().items()):
         if ad.startswith("test_") and callable(f):
