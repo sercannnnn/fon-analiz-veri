@@ -109,7 +109,8 @@ def main():
         if f in eski and not a.tam:
             continue
         yeni_fon += 1
-        eski[f] = dict(fonKodu=f, ilkFiyatAyi=t, sinir=("en_gec" if t == bas_ay else "kesin"),
+        # artımlı koşuda dosyada olmayan fon önceki taramadan sonra açılmıştır; ilk ayı kesindir (pencere başı beş yıl sınırı değil)
+        eski[f] = dict(fonKodu=f, ilkFiyatAyi=t, sinir=("en_gec" if (t == bas_ay and a.tam) else "kesin"),
                        kaynak=f"TEFAS fiyat serisi, {n} pencere {bas_ay}..{bugun_t[:7]}" + ("" if a.tam else ", artımlı"), olcumTarihi=bugun_t)
     print(f"  yeni fon: {yeni_fon}", file=sys.stderr)
     with open(a.cikti, "w", newline="", encoding="utf-8") as fh:
