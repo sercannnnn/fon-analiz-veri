@@ -327,6 +327,25 @@ def yaz(b, d, cikti):
     else:
         g.append('<p class="bos">Bugün bankaya girilmesi gereken emir bulunmamaktadır.</p>')
 
+    # --- oneri ve sicil (12 Eylul 2026, kullanici onayiyla eklenen iki anahtar; yoksa bolum yazilmaz)
+    if "oneri" in b or "sicil" in b:
+        g.append('<h2 id="oneri">Öneri</h2>')
+        on = b.get("oneri") or []
+        if not on:
+            g.append('<p class="bos">Bugün öneri yoktur. Önerisiz gün olağan bir sonuçtur (kural 1).</p>')
+        else:
+            g.append('<ul class="is">')
+            for o in on:
+                et = " · yeni" if o.get("etiket") else ""
+                g.append(f'<li class="satir-karar"><div class="bas"><span class="yon karar">{e(o.get("yon","AL"))}</span>'
+                         f'<span class="kod">{e(o.get("kod"))}</span><span class="kurum">{e((o.get("ad") or "")[:60])}{et}</span>'
+                         f'<span class="tutar">{tl(o.get("tutar"))} TL</span></div>'
+                         f'<p class="ger">{e(o.get("gerekce") or "")} Karar kullanıcınındır.</p></li>')
+            g.append('</ul>')
+        sc = b.get("sicil") or {}
+        if sc:
+            g.append(f'<p class="kapsam">{e(sc.get("metin") or "")}</p>')
+
     # --- bulgular
     if b.get("dun"):
         g.append('<h2>Dün yapılmayanlar ve bugün çıkanlar</h2><div class="bulgu">')

@@ -1,7 +1,8 @@
 # betik/ klasorunun bulut gorevi icin bagimliliklari (12 Eylul 2026). Surumler Mac'teki calisan .venv ile aynidir.
-# Kullanan betikler: pandas ve numpy (parlayan_fon, denetim, kapsam, takvim, kategori), requests (kap_gunluk, kopya_denetim);
-# oneri, kapilar, kap_izleme, brifing_pdf, defter_pdf, sayfa_html yalnizca standart kutuphane (kap_izleme kunye icin pandas dener, yoksa gecer).
+# Kullanan betikler: pandas ve numpy (parlayan_fon, denetim, kapsam, takvim, kategori), requests (kap_gunluk, kopya_denetim),
+# fpdf2 (pdf_temel, brifing_pdf, defter_pdf; saf Python, yazi tipi betik/fonts altinda gomulu DejaVu, sistem yazi tipi ve
+# wkhtmltopdf GEREKMEZ). oneri, kapilar, kap_izleme, sayfa_html, surum yalnizca standart kutuphane.
 pandas==3.0.5
 numpy==2.5.2
 requests==2.34.2
-# Dis arac: wkhtmltopdf (brifing_pdf, defter_pdf); pip ile kurulmaz. Yazi tipi betik/fonts altinda gomulu (DejaVu), sistem yazi tipi gerekmez.
+fpdf2==2.8.8

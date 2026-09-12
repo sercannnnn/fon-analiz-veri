@@ -76,52 +76,118 @@ def _gerekce(r, s_askida, haber_notu, veri_tarihi, sira_olcusu):
     return "; ".join(parca)
 
 
-def oneri_uret(ana, agresif, tarih, veri_tarihi, sermaye, agresif_mevcut, haber_notu, ardisik):
-    """ana, agresif: parlayan_fon çıktıları (DataFrame ya da kayıt listesi) — kapi_durumu, getori, askida, kurucu_gecmis,
-    net_giris20, buyume_kaynagi, dpay20 alanları. sermaye: portföy tabanı TL (kaynak yazılır). agresif_mevcut: dilimde zaten
-    duran tutar. ardisik: kod -> ardışık açık gün. Dönüş: öneri listesi (boş olabilir) ve notlar."""
+YENI_FON_HAFTA_GUN = 7     # bölüm 4: haftada en çok bir yeni fona girilir
+IKINCI_DILIM_SEANS = 20    # bölüm 4: ikinci dilim kapılar dört hafta açık kaldıktan sonra
+ILK_DILIM = 0.05           # yeni fona ilk dilim: sermayenin %5'i
+FON_USTU = 0.10            # bir fonda toplam: sermayenin %10'u (mevcut pozisyonun artırılması da bu sınıra tabidir)
+
+
+def son_yeni_fon_onerisi(tarih, gun=YENI_FON_HAFTA_GUN, yol=None):
+    """Son `gun` gün içinde verilen yeni fon (portföyde olmayan) önerisi var mı; varsa (tarih, kod)."""
+    yol = yol or SICIL_YOL
+    t0 = datetime.strptime(tarih, "%Y-%m-%d").date()
+    for x in reversed(_oku(yol, [])):
+        if x.get("yeniFon") and 0 < (t0 - datetime.strptime(x["tarih"], "%Y-%m-%d").date()).days <= gun:
+            return x["tarih"], x["kod"]
+    return None
+
+
+def oneri_uret(ana, agresif, tarih, veri_tarihi, sermaye, agresif_mevcut, haber_notu, ardisik, serbest_nakit=None, pozisyonlar=None, sicil_yol=None):
+    """ana, agresif: parlayan_fon çıktıları (DataFrame ya da kayıt listesi). sermaye: pozisyon + nakit, TL. agresif_mevcut: dilimi
+    'agresif' olan pozisyonların değeri. serbest_nakit: serbest nakit ile karşılanmış satışların toplamı (None: ölçülemedi).
+    pozisyonlar: kod -> elde tutulan değer. Dönüş: öneri listesi ve öneriye dönüşmeyenlerin notları.
+
+    Boyutlandırma (12 Eylül 2026 kural metni, bölüm 4): her öneri tutar taşır, tutar ölçülemiyorsa öneri yazılmaz; yeni fona ilk
+    dilim sermayenin %5'i, haftada en çok bir yeni fon; mevcut pozisyon ancak kapılar 20 seans açık kaldıysa artırılır ve fonun toplamı
+    %10'u aşamaz; önerilen tutar serbest nakit ile karşılanmış satışların toplamını aşamaz, ikisi de yoksa öneri yazılmaz.
+    Agresif dilim (bölüm 6): toplam sermayenin %10'u eksi dilimde duran, tek fon %5, büyüme kaynağı yarıya; nakit kısıtı aynen."""
     def kayitlar(df):
         if df is None:
             return []
         return df.to_dict("records") if hasattr(df, "to_dict") else list(df)
+    pozisyonlar = pozisyonlar or {}
     oneriler, notlar = [], []
-    # ana portföy: kapısı açık ve süreklilik şartı; boyut kuralı ana portföy için kural metninde yazılı değil (tutar boş, kullanıcı belirler)
+    if not sermaye:
+        return [], ["sermaye ölçülemedi (pozisyon dosyası yok); öneri yazılmadı (bölüm 4: tutar zorunlu)"]
+    if serbest_nakit is None:
+        return [], ["serbest nakit ölçülemedi (nakit kaydı yok); öneri yazılmadı (bölüm 4: nakit kısıtı)"]
+    nakit = float(serbest_nakit)
+    if nakit <= 0:
+        return [], [f"serbest nakit {_tl(nakit)}; öneri yazılmadı (bölüm 4: nakit kısıtı)"]
+    yeni_verildi = son_yeni_fon_onerisi(tarih, yol=sicil_yol)
+    yeni_bu_koşu = False
+    ortak = dict(haber=haber_notu, veri_tarihi=veri_tarihi)
+
+    # ana portföy
     for r in sorted([x for x in kayitlar(ana) if x.get("kapi_durumu") == "acik"], key=lambda x: -(x.get("getori") or 0)):
-        n = ardisik.get(r["fonKodu"], 0)
+        kod = r["fonKodu"]; n = ardisik.get(kod, 0)
         if n < GEREKLI_SEANS:
-            notlar.append(f"{r['fonKodu']} kapısı açık, süreklilik {n}/{GEREKLI_SEANS} gün; öneri yazılmadı (kural 14)")
-            continue
-        oneriler.append(dict(kod=r["fonKodu"], ad=r.get("fonAd"), yon="AL", dilim="ana", etiket="", tutar=None,
-                             tutar_notu="ana portföy için boyut kuralı yazılı değil; tutarı kullanıcı belirler",
-                             sira_olcusu=r.get("getori"), ardisik=n,
+            notlar.append(f"{kod} kapısı açık, süreklilik {n}/{GEREKLI_SEANS} gün; öneri yazılmadı (kural 14)"); continue
+        mevcut = float(pozisyonlar.get(kod, 0) or 0)
+        if mevcut > 0:
+            if n < IKINCI_DILIM_SEANS:
+                notlar.append(f"{kod} portföyde; ikinci dilim için kapılar {IKINCI_DILIM_SEANS} seans açık kalmalı, bugün {n}; öneri yazılmadı (bölüm 4)"); continue
+            ust = sermaye * FON_USTU - mevcut; tur = "mevcut pozisyonun artırılması"
+            if ust <= 0:
+                notlar.append(f"{kod} portföyde ve fonun toplamı sermayenin %10'una ulaşmış ({_tl(mevcut)}); öneri yazılmadı (bölüm 4)"); continue
+        else:
+            if yeni_verildi:
+                notlar.append(f"{kod} yeni fon; bu hafta {yeni_verildi[1]} için {yeni_verildi[0]} tarihinde öneri verildi, haftada bir yeni fon (bölüm 4)"); continue
+            if yeni_bu_koşu:
+                notlar.append(f"{kod} yeni fon; bugün başka bir yeni fon önerildi, haftada bir yeni fon (bölüm 4)"); continue
+            ust = sermaye * ILK_DILIM; tur = "yeni fona ilk dilim"
+        tutar = round(min(ust, nakit), -3)
+        if tutar <= 0:
+            notlar.append(f"{kod} için nakit kalmadı; öneri yazılmadı (bölüm 4: nakit kısıtı)"); continue
+        nakit -= tutar
+        if mevcut == 0:
+            yeni_bu_koşu = True
+        oneriler.append(dict(kod=kod, ad=r.get("fonAd"), yon="AL", dilim="ana", etiket="", tutar=tutar, yeni_fon=(mevcut == 0),
+                             tutar_notu=f"{tur}: sermayenin {'%5' if mevcut == 0 else '%10 tavanına kadar'}'i, sermaye {_tl(sermaye)}, serbest nakit sınırı uygulandı",
+                             sira_olcusu=r.get("getori"), ardisik=n, askida=[], gecilen=_gecilen([]), **ortak,
                              gerekce=_gerekce(r, [], haber_notu, veri_tarihi, r.get("getori") or 0)))
+
     # agresif dilim
-    kalan = max(0.0, sermaye * 0.10 - (agresif_mevcut or 0)) if sermaye else 0.0
-    tek = sermaye * 0.05 if sermaye else 0.0
+    kalan = max(0.0, sermaye * 0.10 - (agresif_mevcut or 0)); tek = sermaye * 0.05
     for r in sorted([x for x in kayitlar(agresif) if x.get("kapi_durumu") == "acik"], key=lambda x: -(x.get("sira_olcusu") or 0)):
-        n = ardisik.get(r["fonKodu"], 0)
+        kod = r["fonKodu"]; n = ardisik.get(kod, 0)
         if n < GEREKLI_SEANS:
-            notlar.append(f"{r['fonKodu']} (yeni) kapısı açık, süreklilik {n}/{GEREKLI_SEANS} gün; öneri yazılmadı (kural 14)")
-            continue
+            notlar.append(f"{kod} (yeni) kapısı açık, süreklilik {n}/{GEREKLI_SEANS} gün; öneri yazılmadı (kural 14)"); continue
         if kalan <= 0:
-            notlar.append(f"{r['fonKodu']} (yeni) süreklilik sağlandı ama agresif dilim dolu (sermayenin %10'u); öneri yazılmadı")
-            continue
+            notlar.append(f"{kod} (yeni) süreklilik sağlandı ama agresif dilim dolu (sermayenin %10'u); öneri yazılmadı"); continue
         ust = min(tek, kalan)
         buyume = bool(r.get("buyume_kaynagi"))
         if buyume:
             ust = ust / 2
-        tutar = round(ust, -3)
-        kalan -= tutar
+        tutar = round(min(ust, nakit), -3)
+        if tutar <= 0:
+            notlar.append(f"{kod} (yeni) için nakit kalmadı; öneri yazılmadı (bölüm 4: nakit kısıtı)"); continue
+        kalan -= tutar; nakit -= tutar
         askida = [x for x in str(r.get("askida") or "").split(" | ") if x]
         g = _gerekce(r, [a.split()[0] for a in askida], haber_notu, veri_tarihi, r.get("sira_olcusu") or 0)
         g += (f"; 20 seanslık net giriş oranı {_yuzde(r['net_giris20'])}" if r.get("net_giris20") is not None and r.get("net_giris20") == r.get("net_giris20") else "; net giriş oranı ölçülemedi")
         g += f"; {r.get('kurucu_gecmis') or 'kurucu geçmişi ölçülemedi'}"
         if buyume:
             g += f"; büyüme kaynağı: 20 seansta pay adedi {_yuzde(r['dpay20'], 0)} arttı, fon kendi alımıyla fiyat yapıyor olabilir, boyut yarıya indirildi"
-        oneriler.append(dict(kod=r["fonKodu"], ad=r.get("fonAd"), yon="AL", dilim="agresif", etiket="yeni", tutar=tutar,
-                             tutar_notu=f"agresif dilim: sermayenin %10'u toplam, tek fonda %5; sermaye {_tl(sermaye)} (kaynak: pozisyonlar)",
-                             sira_olcusu=r.get("sira_olcusu"), ardisik=n, askida=askida, gerekce=g))
+        oneriler.append(dict(kod=kod, ad=r.get("fonAd"), yon="AL", dilim="agresif", etiket="yeni", tutar=tutar, yeni_fon=True,
+                             tutar_notu=f"agresif dilim: sermayenin %10'u toplam, tek fonda %5, dilimde duran {_tl(agresif_mevcut or 0)}; sermaye {_tl(sermaye)}; serbest nakit sınırı uygulandı",
+                             sira_olcusu=r.get("sira_olcusu"), ardisik=n, askida=askida, gecilen=_gecilen([a.split()[0] for a in askida]), **ortak, gerekce=g))
     return oneriler, notlar
+
+
+def _gecilen(askida):
+    return [x for x in ("C1", "C2", "C3", "C4", "C5", "C6", "G1", "G2", "G3", "G4", "G5a", "G5b") if x not in askida]
+
+
+def oneri_json(oneriler, tarih, yol=None):
+    """Brifing JSON'unun 12 Eylül 2026'da eklenen iki anahtarı: `oneri` (liste) ve `sicil` (nesne). Mevcut on dört anahtar değişmez."""
+    o = [dict(kod=x["kod"], ad=x.get("ad"), yon=x["yon"], tutar=x.get("tutar"), dilim=x.get("dilim"), etiket=x.get("etiket", ""),
+              gecilen=x.get("gecilen", []), askida=x.get("askida", []), sira_olcusu=x.get("sira_olcusu"), haber=x.get("haber"),
+              veri_tarihi=x.get("veri_tarihi"), gerekce=x.get("gerekce"), tutar_notu=x.get("tutar_notu")) for x in oneriler]
+    oz = sicil_ozeti(tarih[:7], yol=yol)
+    g = oz["uygulanan_getiri"]
+    isabet = (f"uygulanan {oz['uygulanan']} önerinin 20 seans ortalama getirisi {_yuzde(g[0])} ({g[1]} ölçüm)" if g[0] is not None else None)
+    return o, dict(ay=oz["ay"], verilen=oz["verilen"], uygulanan=oz["uygulanan"], bilinmeyen=oz["bilinmeyen"], isabet=isabet, metin=sicil_satiri(tarih, yol=yol))
 
 
 # ---------------------------------------------------------------- sicil
@@ -135,7 +201,7 @@ def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None):
         if (tarih, o["kod"]) in var:
             continue
         s.append(dict(id=f"{tarih.replace('-', '')}-O{i:02d}", tarih=tarih, kod=o["kod"], yon=o["yon"], dilim=o["dilim"], etiket=o.get("etiket", ""),
-                      tutar=o.get("tutar"), gerekce=o["gerekce"], olcumTarihi=veri_tarihi, siralamaOlcusu=o.get("sira_olcusu"),
+                      tutar=o.get("tutar"), gerekce=o["gerekce"], olcumTarihi=veri_tarihi, siralamaOlcusu=o.get("sira_olcusu"), yeniFon=bool(o.get("yeni_fon")),
                       uygulandi=None, uygulamaKaynagi=None, sonuc20=None, sonucTarihi=None))
         n += 1
     _yaz(yol, s)
@@ -213,7 +279,7 @@ def brifing_bolumu(oneriler, notlar, tarih, haber_notu):
     if not oneriler:
         L.append("Bugün öneri yoktur. Önerisiz gün olağan bir sonuçtur; ölçüm bir öneri üretmediği için bölüm boş bırakılmadı, bu cümle yazıldı (kural 1).")
     for o in oneriler:
-        tutar = _tl(o["tutar"]) if o.get("tutar") else "tutar: kullanıcı belirler"
+        tutar = _tl(o["tutar"])
         et = " [yeni]" if o.get("etiket") else ""
         L.append(f"- **{o['yon']} {o['kod']}{et}**, {o.get('ad') or ''}: {tutar}. {o['gerekce']}. Süreklilik {o['ardisik']} gün. {o['tutar_notu']}. Karar kullanıcınındır.")
     if notlar:
