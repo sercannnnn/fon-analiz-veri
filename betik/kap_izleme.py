@@ -104,7 +104,7 @@ def izleme_listesi(poz_json, icerik_csv, kunye_csv, esik_kirmizi=10.0, esik_sari
             kademe = 1 if r.a >= esik_kirmizi else 2
             for c in kodlar[:2]:
                 ekle(c, kademe, f"{r.fonKodu} içinde %{r.a:.2f}")
-            # uzun kurumsal ad parcasi da eklenir (ornek: DESTEK FAKTORIN)
+            # uzun kurumsal ad parcasi da eklenir (ornek: bir faktoring sirketinin unvaninin ilk iki kelimesi)
             uzun = re.findall(r"\b([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü]{4,})\s+([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü]{4,})", r.ad)
             for a1, a2 in uzun[:1]:
                 if sadelestir(a1) not in JENERIK:
