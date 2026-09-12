@@ -44,6 +44,35 @@ def _yuzde(x, hane=1):
     return ("-" if x < 0 else "") + "%" + f"{abs(x) * 100:,.{hane}f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
+# ---------------------------------------------------------------- sermaye (M27, 12 Eylül 2026)
+def acik_pozisyonlar(pozisyonlar):
+    """Kapanmış pozisyon sermayeye katılmaz (M27): `durum` alanı KAPANDI olan ya da adedi sıfır olan kayıt çıkarılır.
+    Satılan pozisyonun karşılığı nakit kaleminde zaten sayılır; canlı bırakılırsa aynı para iki kez toplanır ve bütün ağırlık
+    oranları küçük görünür (12 Eylül: en ağır fon %38 yerine %52,7 çıktı). Girdi sözlük (kimlik -> kayıt) ya da liste olabilir."""
+    L = list(pozisyonlar.values()) if isinstance(pozisyonlar, dict) else list(pozisyonlar or [])
+    acik = []
+    for v in L:
+        if str(v.get("durum") or "").upper() == "KAPANDI":
+            continue
+        if v.get("adet") is not None and float(v.get("adet") or 0) == 0:
+            continue
+        acik.append(v)
+    return acik
+
+
+def sermaye_hesapla(pozisyonlar, nakit):
+    """Sermaye = açık pozisyonların değeri + nakit (madde 5). Dönüş: dict(sermaye, pozisyon, nakit, acik, kapanan, kodlar).
+    kodlar: kod -> açık değer toplamı (aynı fon birden çok kurumda durabilir)."""
+    L = list(pozisyonlar.values()) if isinstance(pozisyonlar, dict) else list(pozisyonlar or [])
+    acik = acik_pozisyonlar(L)
+    poz = sum(float(v.get("deger") or 0) for v in acik)
+    kodlar = {}
+    for v in acik:
+        if v.get("kod"):
+            kodlar[v["kod"]] = kodlar.get(v["kod"], 0) + float(v.get("deger") or 0)
+    return dict(sermaye=poz + float(nakit or 0), pozisyon=poz, nakit=float(nakit or 0), acik=len(acik), kapanan=len(L) - len(acik), kodlar=kodlar)
+
+
 # ---------------------------------------------------------------- süreklilik
 def ardisik_guncelle(tarih, acik_kodlar, yol=None):
     """Kapısı açık adayların gün gün kaydı; dönüş: kod -> bugün dahil ardışık açık gün sayısı. Aynı gün iki kez çağrılırsa

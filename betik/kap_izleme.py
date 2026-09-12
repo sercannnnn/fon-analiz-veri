@@ -297,9 +297,10 @@ if __name__ == "__main__":
     a.add_argument("--cikti")
     a.add_argument("--liste-yaz", help="izleme listesini bu dosyaya yaz (portfoy bilgisidir, acik depoya konmaz)")
     a.add_argument("--kurucu-grup", help="kurucu -> grup adlari JSON'u (portfoy bilgisidir, acik depoya konmaz)")
+    a.add_argument("--kurucular", help="aday fonlarin kuruculari, | ile ayrilmis (haber kapisi bunlar icin olculur)")
     n = a.parse_args()
 
-    liste = izleme_listesi(n.poz, n.icerik, n.kunye, kurucu_grup=kurucu_grup_yukle(n.kurucu_grup))
+    liste = izleme_listesi(n.poz, n.icerik, n.kunye, ek_kurucular=[k for k in (n.kurucular or "").split("|") if k], kurucu_grup=kurucu_grup_yukle(n.kurucu_grup))
     if n.liste_yaz:
         json.dump(liste, open(n.liste_yaz, "w"), ensure_ascii=False, indent=1)
     if not n.bildirim:
@@ -310,9 +311,13 @@ if __name__ == "__main__":
         print("\nBirinci kademe:"); [print("  ", k, "→", liste[k]["sebep"]) for k in k1]
         print("\nİkinci kademe:");  [print("  ", k, "→", liste[k]["sebep"]) for k in k2]
         sys.exit(0)
-    bild = json.load(open(n.bildirim, encoding="utf-8"))
-    v = tara(bild, liste)
-    bol = brifing_bolumu(v, len(bild))
+    kg = json.load(open(n.bildirim, encoding="utf-8"))
+    bild = kg["bildirimler"] if isinstance(kg, dict) else kg
+    grup = kurucu_grup_yukle(n.kurucu_grup)
+    kur = [k for k in (n.kurucular or "").split("|") if k]
+    r = haber_kapisi(bild, liste, kur, kurucu_grup=grup, govde_var=(not isinstance(kg, dict) or "govdeTam" in kg))   # tek giris noktasi (kural 20)
+    bol = brifing_bolumu([v for v in r["k1"]] + [v for v in tara(bild, liste) if v["kademe"] != 1 and not rutin_mu(v.get("konu"))], len(bild))
+    bol["kapsam"] = r["notu"]; bol["haber_kapisi"] = r["haber"]; bol["engelleyici"] = [dict(sirket=b.get("sirket"), konu=b.get("konu")) for b in r["engelleyici"]]
     if n.cikti:
         json.dump(bol, open(n.cikti, "w"), ensure_ascii=False, indent=1)
     print(json.dumps(bol, ensure_ascii=False, indent=1))
