@@ -143,6 +143,48 @@ AGIR_KONU = [
     ("ilişkili taraf işlemi",     ["ILISKILI TARAF","ILISKILI TARAFLA","ILISKILI TARAFLARLA"]),
 ]
 
+# ---------------------------------------------------------------- rutin tur suzgeci ve eksik govde triyaji (12 Eylul 2026)
+# Madde 1: eleme yalnizca bildirim TURUNE gore, acik listeyle; sirket adina gore hicbir eleme yapilmaz. Rutin tur kademe
+# yukselten konu tasiyorsa haber sayilir. Elenen sayisi her brifingin kapsam satirinda bildirilir; liste genisleyince sayi buyur.
+# Liste 12 Eylul 2026'da olcumle genisletildi: fonun standart belgeleri (yatirimci bilgi formu 37, surekli bilgilendirme formu 10,
+# izahname 6, risk olcum esaslari, borsa disi ve turev islem ilkeleri, vaad sozlesmesi, finansal tablo) kurucu adini tasidigi icin
+# 86 birinci kademe eslesme uretiyordu; hepsi tur adiyla listelendi, Chat'in kural metnine yazmasi istendi.
+RUTIN_TURLER = ["Portföy Dağılım Raporu", "Fiyat Raporu", "Gider Raporu", "Repo - Ters Repo Sözleşmesi", "Şirket Genel Bilgi Formu",
+                "Yatırımcı Bilgi Formu", "Fon Sürekli Bilgilendirme Formu", "İzahname", "Risk Ölçüm ve Değerleme Esasları",
+                "Borsa Dışı Sözleşmelere İlişkin İlkeler", "Türev Araç İşlemlerine İlişkin İlkeler", "Borsa Dışı Vaad Sözleşmesi",
+                "Finansal Tablo Bildirimi"]
+RUTIN_KONU = re.compile(r"Portföy Dağılım|Fiyat Raporu|Gider Raporu|Toplam Gider|Repo|Şirket Genel Bilgi Formu|Yatırımcı Bilgi Formu|"
+                        r"Sürekli Bilgilendirme Formu|İzahname|Risk Ölçüm|Borsa Dışı Sözleşme|Türev Araç İşlemleri|Vaad Sözleşmesi|Finansal Tablo", re.I)
+
+
+def agir_konu_mu(metin):
+    """Metin (konu + ozet) kademe yukselten konu kelimelerinden birini tasiyor mu (AGIR_KONU)."""
+    m = sadelestir(metin)
+    return any(re.search(rf"(?<![A-Z0-9]){re.escape(sadelestir(k))}(?![A-Z0-9])", m) for _, ks in AGIR_KONU for k in ks)
+
+
+def rutin_ayir(bildirimler):
+    """(rutin olmayanlar, rutin tur olanlar); rutin olanlar yalnizca agir konu tasiyorsa taramada sayilir."""
+    rutin = [b for b in bildirimler if RUTIN_KONU.search(b.get("konu") or "")]
+    dis = [b for b in bildirimler if not RUTIN_KONU.search(b.get("konu") or "")]
+    return dis, rutin
+
+
+def eksik_triyaj(bildirimler):
+    """Madde 3: govdesi cekilemeyen bildirim konusuna gore ikiye ayrilir. Konusu kademe yukselten listedeyse engelleyici
+    (adiyla yazilir; o sirketin kurucusunun adaylari icin haber kapisi olculemedi doner); degilse sayilir, tarama 'eksiktir'.
+    Donus: (engelleyici liste, engelleyici olmayan sayi)."""
+    eng, n = [], 0
+    for b in bildirimler:
+        if b.get("metinDurumu") != "eksik":
+            continue
+        if agir_konu_mu(f"{b.get('konu', '')} {b.get('ozet', '')}"):
+            eng.append(b)
+        else:
+            n += 1
+    return eng, n
+
+
 # ---------------------------------------------------------------- tarama
 def tara(bildirimler, liste, kendi_fonlarimiz=()):
     """bildirimler: [{'id','tarih','sirket','konu','ozet','metin','url'}]"""
