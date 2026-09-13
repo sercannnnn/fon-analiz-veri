@@ -98,42 +98,98 @@ def son_is_gunu(gun):
     return g
 
 
-KIMLIK_ARIZA_YONTEMI = "kopruleme"   # M34 (13 Eylül 2026): arızalı günün pay adedi ve büyüklüğü önceki temiz günden taşınır; o günün
-                                     # değişimi sıfır, gerçek değişim sonraki ilk temiz güne o günün fiyatıyla yazılır. NaN bırakılsaydı
-                                     # np.diff iki günü siler ve nansum ile fillna(0) sileni sıfır akış sayardı (Chat 32).
+KIMLIK_ARIZA_YONTEMI = "onarim_yoksa_kopruleme"   # M34, M37, M38 (13 Eylül 2026)
+# Sıra: (1) imza bozuk alanı gösteriyor ve aritmetik sıfır sapmayla kapanıyorsa o alan onarılır (M38, sıfır sapma kapısı);
+# (2) onarım yoksa köprüleme: arızalı günün pay adedi ve büyüklüğü önceki temiz günden taşınır, değişim sonraki temiz güne düşer;
+# (3) çöküşteki fonun (tek seansta büyüklük COKUS_ORAN üstünde düşmüş) arızası maskelenmez, adıyla bildirilir (M40).
+# Köprüleme yansız değildir (M37): taşınan değişim arıza gününün değil sonraki temiz günün fiyatıyla değerlenir; kaydırmanın üst sınırı
+# taramada `kaydirmaUstSinir` olarak yazılır ve köprülenen günün düştüğü hafta kovası üçüncü kapı için ölçülemedi sayılır.
+
+
+def arsiv_son_gun(arsiv):
+    """Arşivdeki (tefas_YYYY-MM.csv.gz) son fiyat günü; dosya yoksa None. Dosya öncelikli maskenin bayatlığını ölçmek için (Chat 34)."""
+    import glob, gzip, csv
+    dosyalar = sorted(glob.glob(os.path.join(arsiv, "tefas_????-??.csv.gz")))
+    if not dosyalar:
+        return None
+    son = ""
+    with gzip.open(dosyalar[-1], "rt", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            if r.get("tarih", "") > son:
+                son = r["tarih"]
+    return son or None
 
 
 def kimlik_arizasi_ayikla(d, yol=None, arsiv=None):
-    """Kimlik arızası köprülemesi (30 numaralı not madde 1, M34): denetim.kimlik_taramasi'nın bulduğu fon-tarih çiftlerinde pay adedi ve
-    büyüklük ölçüme girmez; fiyat kalır. Yöntem KIMLIK_ARIZA_YONTEMI: değer önceki temiz günden taşınır (fon içinde ileri doldurma),
-    böylece arızalı günün pay değişimi sıfır olur ve gerçek değişim sonraki ilk temiz güne düşer; toplam akış kaybolmaz. Serinin
-    başındaki arıza taşınacak temiz gün olmadığı için NaN kalır.
-    Kaynak: `yol` (kimlik_arizalari.json) varsa dosya; yoksa ve `arsiv` verilmişse tarama o arşiv üzerinde yerinde koşar (M33: bulut
-    dosya bağı kurmadan aynı sonucu üretir). İkisi de yoksa çerçeve olduğu gibi döner. Dönüş: (çerçeve, düşülen satır sayısı)."""
-    arizalar = None
+    """Kimlik arızası onarımı ve köprülemesi (30 numaralı not madde 1; M34, M37, M38, M40). Kaynak: `yol` (kimlik_arizalari.json) varsa
+    dosya; dosyanın penceresi arşivin son gününden eskiyse ya da dosya yoksa ve `arsiv` verilmişse tarama o arşivde yerinde koşar
+    (M33: bulut dosya bağı kurmaz; bayat dosya kullanılmaz). Her arıza kaydı için: `onarim` varsa o alan onarılan değere yazılır;
+    `maskele` False ise (çöküş) dokunulmaz; aksi hâlde köprüleme (fon içinde önceki temiz günden ileri doldurma; serinin başı NaN kalır).
+    Dönüş: (çerçeve, dokunulan satır sayısı). Ayrıntı `kimlik_arizasi_ayikla.son` sözlüğündedir: kopru {(fon, tarih)}, onarim, cokus, maskesiz."""
+    son = dict(kopru=set(), onarim=0, cokus=set(), maskesiz=0, kaynak="yok")
+    kimlik_arizasi_ayikla.son = son
+    tara = None
     if yol and os.path.exists(yol):
         try:
-            arizalar = (json.load(open(yol, encoding="utf-8")) or {}).get("arizalar") or []
+            tara = json.load(open(yol, encoding="utf-8")) or {}
+            son["kaynak"] = "dosya"
         except Exception:
-            arizalar = None
-    if arizalar is None and arsiv and os.path.isdir(arsiv):
+            tara = None
+    if tara is not None and arsiv and os.path.isdir(arsiv):
+        bit = str((tara.get("pencere") or {}).get("bit") or "")
+        asg = arsiv_son_gun(arsiv)
+        if asg and bit < asg:
+            son["kaynak"] = f"dosya bayat ({bit} < {asg}); tarama yeniden koştu"
+            tara = None
+    if tara is None and arsiv and os.path.isdir(arsiv):
         try:
             import denetim
-            arizalar = denetim.kimlik_taramasi(arsiv=arsiv).get("arizalar") or []
+            tara = denetim.kimlik_taramasi(arsiv=arsiv)
+            son["kaynak"] = son["kaynak"] if "bayat" in son["kaynak"] else "tarama"
         except Exception:
-            arizalar = None
+            tara = None
+    arizalar = (tara or {}).get("arizalar") or []
     if not arizalar:
         return d, 0
-    ciftler = {(a["fonKodu"], str(a["tarih"])[:10]) for a in arizalar if a.get("fonKodu") and a.get("tarih")}
+    onarimlar, kopru, maskesiz = {}, set(), set()
+    for a in arizalar:
+        k = (a.get("fonKodu"), str(a.get("tarih"))[:10])
+        if not k[0] or not k[1]:
+            continue
+        if a.get("onarim"):
+            onarimlar[k] = a["onarim"]
+        elif a.get("maskele") is False:
+            maskesiz.add(k); son["cokus"].add(k[0])
+        else:
+            kopru.add(k)
     anahtar = list(zip(d["fonKodu"].astype(str), pd.to_datetime(d["tarih"]).dt.strftime("%Y-%m-%d")))
-    maske = np.array([k in ciftler for k in anahtar])
-    if not maske.any():
+    m_on = np.array([k in onarimlar for k in anahtar]); m_ko = np.array([k in kopru for k in anahtar])
+    son["maskesiz"] = sum(1 for k in anahtar if k in maskesiz)
+    if not m_on.any() and not m_ko.any():
         return d, 0
     d = d.copy()
-    sira = np.lexsort((pd.to_datetime(d["tarih"]).values, d["fonKodu"].astype(str).values))
-    for c in ("tedPaySayisi", "portfoyBuyukluk"):
-        if c in d.columns:
-            d.loc[maske, c] = np.nan
-            s = d[c].iloc[sira]
-            d[c] = s.groupby(d["fonKodu"].iloc[sira].values).ffill().reindex(d.index)   # köprüleme: fon içinde önceki temiz gün
-    return d, int(maske.sum())
+    if m_on.any():
+        for i in np.where(m_on)[0]:
+            o = onarimlar[anahtar[i]]
+            if o.get("alan") in d.columns:
+                d.iloc[i, d.columns.get_loc(o["alan"])] = float(o["yeni"])
+        son["onarim"] = int(m_on.sum())
+    if m_ko.any():
+        sira = np.lexsort((pd.to_datetime(d["tarih"]).values, d["fonKodu"].astype(str).values))
+        for c in ("tedPaySayisi", "portfoyBuyukluk"):
+            if c in d.columns:
+                d.loc[m_ko, c] = np.nan
+                s = d[c].iloc[sira]
+                d[c] = s.groupby(d["fonKodu"].iloc[sira].values).ffill().reindex(d.index)   # köprüleme: fon içinde önceki temiz gün
+        son["kopru"] = {anahtar[i] for i in np.where(m_ko)[0]}
+    return d, int(m_on.sum() + m_ko.sum())
+
+
+def kopru_olculemedi(kod, tarihler, son=None):
+    """M37: fonun son 21 seansına köprülenmiş bir gün düşüyorsa üçüncü kapının hafta kovaları ölçülemedi sayılır (True döner).
+    tarihler: fonun tarih sıralı seans tarihleri; son: kimlik_arizasi_ayikla.son (verilmezse son çağrınınki)."""
+    son = son if son is not None else getattr(kimlik_arizasi_ayikla, "son", None)
+    if not son or not son.get("kopru"):
+        return False
+    pencere = {pd.Timestamp(t).strftime("%Y-%m-%d") for t in list(tarihler)[-21:]}
+    return any((kod, g) in son["kopru"] for g in pencere)

@@ -46,6 +46,11 @@ KIMLIK_TARAMA_SEANS = 52         # kimlik taraması penceresi (30 numaralı not:
 KALICI_ORAN = 0.80               # günlerin bu oranında sapan fon kalıcı kimlik farkıdır; yalnızca kalıcı fon istisna listesine girebilir
 BIRIM_HATASI_TOL = 0.01          # oran 1000'e ya da 0,001'e bu göreli payla yakınsa birim hatası (büyüklük bin TL basılmış)
 GECIKME_TOL = 0.002              # ardışık iki seansta oranların çarpımı 1'e bu kadar yakınsa bir günlük gecikme imzası (RTH: 1,03 ve 0,97)
+SEVIYE_KIRILMA_KAT = 10.0        # M39: büyüklük ya da pay × fiyat iki seans arasında bu kattan fazla değişirse seviye kırılması; kimlik tutsa da bildirilir
+COKUS_ORAN = 0.90                # M40: büyüklük tek seansta bu oranın üstünde düşerse çöküş; fonun arızası maskelenmez, adıyla bildirilir
+COKUS_KALICI_ORAN = 0.50         # M40: düşüşten sonra pencere boyunca büyüklük önceki seviyenin bu oranına dönmüyorsa çöküş kalıcıdır (tasfiye);
+                                 # dönüyorsa besleme sıçramasıdır ve yalnızca kırılma (M39) olarak bildirilir
+ONARIM_KATLARI = (1000.0, 0.001)  # M38: birim hatası onarımı pay ya da büyüklük alanında bu katlarla denenir; kimlik sıfır sapmayla kapanmalı ve komşu seansla sürekli olmalı
 DISA_AKTARIM = os.path.join(KOK, "03 Veri", "defter_disa_aktarim.json")   # akşam görevinin yazdığı pozisyon fotoğrafı; köprünün yakıtı
 FIYAT_ESLESME_TOL = 0.5e-6       # deger/adet ile TEFAS fiyatı bu kadar yakınsa aynı gün sayılır (fiyat altı ondalıkla basılır) + 0,01/adet
 HISSE_TUR = re.compile(r"HISSE|HİSSE|ODUNC|ÖDÜNÇ", re.I)
@@ -250,7 +255,26 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
     for (kod, g), (pay, fi, bu) in kayit.items():
         if g in gun_ix:
             seriler.setdefault(kod, {})[g] = (pay * fi - bu, (pay * fi / bu) if bu else None, pay * 0.5e-6 + 0.01)
-    fonlar, arizalar = {}, []
+    fonlar, arizalar, kirilmalar, cokusler = {}, [], [], {}
+    # M39 ve M40: kimlikten bağımsız süreklilik; büyüklük ve pay × fiyat seviyesi ardışık iki seansta SEVIYE_KIRILMA_KAT'ı aşarsa kırılma,
+    # büyüklük COKUS_ORAN üstünde düşerse çöküş (fon adıyla bildirilir, arızası maskelenmez)
+    ham = {}
+    for (kod, g), (pay, fi, bu) in kayit.items():
+        if g in gun_ix:
+            ham.setdefault(kod, {})[g] = (pay, fi, bu)
+    for kod, hs in ham.items():
+        gs = sorted(hs)
+        for g0, g1 in zip(gs, gs[1:]):
+            if gun_ix[g1] - gun_ix[g0] != 1:
+                continue
+            for alan, v0, v1 in (("buyukluk", hs[g0][2], hs[g1][2]), ("payXfiyat", hs[g0][0] * hs[g0][1], hs[g1][0] * hs[g1][1])):
+                if v0 > 0 and v1 > 0 and (v1 / v0 >= SEVIYE_KIRILMA_KAT or v0 / v1 >= SEVIYE_KIRILMA_KAT):
+                    kirilmalar.append(dict(fonKodu=kod, tarih=g1, alan=alan, oran=round(v1 / v0, 6), onceki=round(v0, 2), sonraki=round(v1, 2)))
+            if hs[g0][2] > 0 and hs[g1][2] / hs[g0][2] <= 1 - COKUS_ORAN:
+                sonrasi = [hs[x][2] for x in gs if x > g0]
+                kalici = all(v <= COKUS_KALICI_ORAN * hs[g0][2] for v in sonrasi)   # pencere boyunca geri dönmedi: tasfiye, sıçrama değil
+                if kalici:
+                    cokusler.setdefault(kod, []).append(dict(tarih=g1, oran=round(hs[g1][2] / hs[g0][2], 6), onceki=round(hs[g0][2], 2), sonraki=round(hs[g1][2], 2), sonraSeans=len(sonrasi)))
     for kod, s in seriler.items():
         sapan = {g: v for g, v in s.items() if abs(v[0]) > v[2]}
         if not sapan:
@@ -286,9 +310,34 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
                     for j in (i - 1, i + 1):
                         if 0 <= j < len(gunler) and gunler[j] in sapan and o and sapan[gunler[j]][1] and abs(o * sapan[gunler[j]][1] - 1) <= GECIKME_TOL:
                             imza = "bir_gunluk_gecikme"
-                arizalar.append(dict(fonKodu=kod, tarih=g, fark=round(fark, 2), oran=(round(o, 6) if o else None), imza=imza, sinif=sinif))
+                kayd = dict(fonKodu=kod, tarih=g, fark=round(fark, 2), oran=(round(o, 6) if o else None), imza=imza, sinif=sinif)
+                i = gun_ix[g]
+                onc = next((gunler[j] for j in range(i - 1, -1, -1) if gunler[j] in s and gunler[j] not in sapan), None)
+                snr = next((gunler[j] for j in range(i + 1, len(gunler)) if gunler[j] in s and gunler[j] not in sapan), None)
+                # M38: birim hatası onarımı; tek alan, kat 1000 ya da 0,001; kimlik sıfır sapmayla kapanır ve komşu seansla sürekli olur
+                if imza == "birim_hatasi":
+                    pay, fi, bu = ham[kod][g]
+                    for alan, kat in ((("tedPaySayisi"), k) for k in ONARIM_KATLARI):
+                        yeni = pay * kat
+                        if abs(yeni * fi - bu) <= yeni * 0.5e-6 + 0.01 and any(k_ and abs(ham[kod][k_][0] - yeni) < 0.5 for k_ in (onc, snr)):
+                            kayd["onarim"] = dict(alan=alan, eski=pay, yeni=yeni, kanit=f"pay × {kat:g} kimliği {tl(abs(yeni * fi - bu), 2)} TL sapmayla kapatır ve komşu seansın pay adedine eşittir")
+                            break
+                    if "onarim" not in kayd:
+                        for kat in ONARIM_KATLARI:
+                            yeni = bu * kat
+                            komsu = [ham[kod][k_][2] for k_ in (onc, snr) if k_]
+                            if abs(pay * fi - yeni) <= pay * 0.5e-6 + 0.01 and komsu and all(0.5 <= yeni / kb <= 2.0 for kb in komsu if kb > 0):
+                                kayd["onarim"] = dict(alan="portfoyBuyukluk", eski=bu, yeni=yeni, kanit=f"büyüklük × {kat:g} kimliği {tl(abs(pay * fi - yeni), 2)} TL sapmayla kapatır ve komşu seansın büyüklüğüyle süreklidir")
+                                break
+                # M40: çöküşteki fonun arızası maskelenmez (onarım varsa uygulanır; onarım da bir maske değil ölçümdür)
+                if kod in cokusler and "onarim" not in kayd and g >= min(c["tarih"] for c in cokusler[kod]):
+                    kayd["maskele"] = False
+                # M37: köprülemenin kaydırma üst sınırı: |pay_sonraki − pay_önceki| × |fiyat_sonraki − fiyat_arıza|
+                if "onarim" not in kayd and kayd.get("maskele") is not False and onc and snr:
+                    kayd["kaydirmaUstSinir"] = round(abs(ham[kod][snr][0] - ham[kod][onc][0]) * abs(ham[kod][snr][1] - ham[kod][g][1]), 2)
+                arizalar.append(kayd)
     return dict(pencere=dict(bas=gunler[0] if gunler else None, bit=gunler[-1] if gunler else None, seans=len(gunler), fon=len(seriler)),
-                fonlar=fonlar, arizalar=arizalar)
+                fonlar=fonlar, arizalar=arizalar, kirilmalar=kirilmalar, cokusler=cokusler)
 
 
 # ---------------------------------------------------------------- girdiler
@@ -353,6 +402,21 @@ def sinama_kimlik(L, rapor):
             imzalar[a["imza"]] = imzalar.get(a["imza"], 0) + 1
         if imzalar:
             rapor.append("Arıza imzaları: " + ", ".join(f"{k} {tl(v)}" for k, v in sorted(imzalar.items())) + ". [ölçüm]")
+        onar = [a for a in tara["arizalar"] if a.get("onarim")]
+        kopr = [a for a in tara["arizalar"] if not a.get("onarim") and a.get("maskele") is not False]
+        mask = [a for a in tara["arizalar"] if a.get("maskele") is False]
+        rapor.append(f"Uygulama: onarılan {tl(len(onar))} (M38, tek alan, kimlik sıfır sapmayla kapanır), köprülenen {tl(len(kopr))} "
+                     f"(M34; kaydırma üst sınırı toplam {tl(sum(a.get('kaydirmaUstSinir') or 0 for a in kopr), 2)} TL, M37), maskelenmeyen {tl(len(mask))} (M40, çöküş). [ölçüm]")
+        for a in onar:
+            o = a["onarim"]
+            rapor.append(f"- Onarım {a['fonKodu']} {a['tarih']}: {o['alan']} {tl(o['eski'], 2)} yerine {tl(o['yeni'], 2)}; {o['kanit']}.")
+        for kod, L_ in sorted((tara.get("cokusler") or {}).items()):
+            for c in L_:
+                rapor.append(f"- Çöküş {kod} {c['tarih']}: büyüklük {tl(c['onceki'], 2)} TL'den {tl(c['sonraki'], 2)} TL'ye, oran {c['oran']:.6f}; kimlik ne derse desin bildirilir, maskelenmez (M40).")
+        kir = tara.get("kirilmalar") or []
+        if kir:
+            rapor.append(f"Seviye kırılması (M39, {tl(SEVIYE_KIRILMA_KAT, 0)} kat): {tl(len(kir))} fon-gün; " +
+                         "; ".join(f"{k['fonKodu']} {k['tarih']} {k['alan']} ×{k['oran']:.4g}" for k in sorted(kir, key=lambda k: -max(k['oran'], 1 / max(k['oran'], 1e-12)))[:8]) + ". [ölçüm]")
     # istisna listesi (2.2, 30 numaralı not): yalnızca kalıcı fon listede durabilir; satır etiketi satırın kendi farkıyla ölçülür
     ist = {x["fonKodu"]: x for x in kimlik_istisna_yukle() if x.get("fonKodu")}
     kirmizi_sebep = []
@@ -398,7 +462,8 @@ def sinama_kimlik(L, rapor):
         durum = "kirmizi"
     else:
         durum = "sari"
-    return {"durum": durum, "sapan": n, "kalici": kal, "aralikli": ara, "epizodik": len(epi), "etiketler": sayac, "celisen": kirmizi_sebep}
+    return {"durum": durum, "sapan": n, "kalici": kal, "aralikli": ara, "epizodik": len(epi), "etiketler": sayac, "celisen": kirmizi_sebep,
+            "onarilan": len(onar) if tara["pencere"] else 0, "cokus": sorted((tara.get("cokusler") or {}).keys()), "kirilma": len(tara.get("kirilmalar") or [])}
 
 
 def sinama_taban(L, rapor, klasor, tarih):

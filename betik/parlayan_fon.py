@@ -19,7 +19,7 @@ from kategori import kategori_turet
 import numpy as np, pandas as pd
 import kapilar                                   # kapi mantigi tek yerde (Gorev 2, M10)
 from kapilar import ASGARI_BUY, ASGARI_KISI
-from takvim import bosluk_maskesi as tatil_maskesi, gecersiz_fiyat_ayikla, kimlik_arizasi_ayikla   # bosluk kurali, resmi kapanislar, kimlik arizasi tek yerde
+from takvim import bosluk_maskesi as tatil_maskesi, gecersiz_fiyat_ayikla, kimlik_arizasi_ayikla, kopru_olculemedi   # bosluk, resmi kapanis, kimlik arizasi tek yerde
 import kapsam as kapsam_m                                                    # kismi kapsamli gun korumasi (Gorev 3.3)
 
 ASGARI_SEANS = 120
@@ -38,6 +38,7 @@ def panel(kok):
     d, panel.gecersiz, panel.gecersiz_son_gun = gecersiz_fiyat_ayikla(d)   # M5 / kural 15: gecersiz fiyat atilir, sayisi tutulur
     # kimlik arizasi koprulemesi (M33, M34): dosya varsa ondan, yoksa tarama kok/arsiv uzerinde yerinde kosar (bulut dosya bagi kurmaz)
     d, panel.kimlik_ariza = kimlik_arizasi_ayikla(d, os.path.join(kok, "veri", "kimlik_arizalari.json"), arsiv=os.path.join(kok, "arsiv"))
+    panel.kimlik_son = dict(kimlik_arizasi_ayikla.son)
     return d.drop_duplicates(["tarih", "fonKodu"]).sort_values(["fonKodu", "tarih"])
 
 
@@ -168,8 +169,11 @@ def ekran(kok, poz, haber=None):
     akis = (pay.diff() * fiy).fillna(0)
     haf = [akis.tail(20).iloc[i*5:(i+1)*5].sum() for i in range(4)]
     H = pd.concat(haf, axis=1)
-    m["neg4hafta"] = m.fonKodu.map((H < 0).all(axis=1))
+    m["neg4hafta"] = m.fonKodu.map((H < 0).all(axis=1)).astype(object)
     m["akis4hafta_o"] = m.fonKodu.map(H.sum(axis=1)) / m.buyukluk
+    kop = [k for k in m.fonKodu if kopru_olculemedi(k, pay.index, getattr(panel, "kimlik_son", None))]   # M37: kopru pencerede -> C3 olculemedi
+    if kop:
+        m.loc[m.fonKodu.isin(kop), ["neg4hafta", "akis4hafta_o"]] = [None, np.nan]
 
     # kapi 4: dagilim kaymasi
     yol = os.path.join(kok, "son_dagilim.csv")
@@ -264,5 +268,6 @@ if __name__ == "__main__":
     o = ekran(a.kok, [x for x in a.poz.split(",") if x])
     pd.set_option("display.width", 220); pd.set_option("display.max_colwidth", 70)
     print(o.to_string(index=False))
-    print(f"\nKimlik arızası köprülenen fon-gün: {getattr(panel, 'kimlik_ariza', 0)} (pay adedi ve büyüklük önceki temiz günden taşındı; M34, M35).")
+    ks = getattr(panel, "kimlik_son", None) or {}
+    print(f"\nKimlik arızası: onarılan {ks.get('onarim', 0)} (M38), köprülenen {len(ks.get('kopru', ()))} (M34, M37), maskelenmeyen çöküş {ks.get('maskesiz', 0)} (M40); kaynak {ks.get('kaynak', '?')} (M35).")
     print("\nAlım talimatı için: kapı durumu açık VE %d ardışık seans." % GEREKLI_SEANS)
