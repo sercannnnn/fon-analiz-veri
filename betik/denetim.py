@@ -39,7 +39,8 @@ KAPATMA_REDDI = re.compile(r"yuvarlama|dönem sınır|donem sinir|toplama fark|k
 TABAN_TOLERANS_TL = 1.0          # taban mutabakatında bir liranın altı fark sıfır sayılır (kuruş yuvarlaması değil, TL)
 ARSIV = os.environ.get("FON_DENETIM_ARSIV", os.path.join(KOK, "03 Veri", "Arşiv"))   # tefas_YYYY-MM.csv.gz; yeniden değerleme ve köprü buradan fiyat okur
 KIMLIK_ISTISNA_YOL = os.path.join(KUNYE_KLASOR, "kimlik_istisna.json")
-SAPMA_YAS_ESIK_IS_GUNU = 5       # açık sapma bu kadar iş gününü aşınca brifing ayrı satırda bildirir (varsayım, 13 Eylül 2026; SOX 30 günlük bantlar günlük döngüye uymaz)
+SAPMA_YAS_ESIK_IS_GUNU = 5       # açık sapma bu kadar iş gününü aşınca brifing ayrı satırda bildirir; kullanıcı onayı 13 Eylül 2026 (not 39, madde 3)
+SORULACAK_SIRA = ("kurucunun resmî sitesi", "TEFAS")   # 39 numaralı not, madde 7: sapma sebebi önce kurucudan sorulur; sorulan kaynak ve tarih kayda yazılır
 SAPMA_SINIFLAR = ("zamanlama", "duzeltme", "arastirma", "kayit")   # mutabakat kalemi sınıfları (finance değerlendirmesi 2.3)
 KIMLIK_ARIZA_YOL = os.path.join(KUNYE_KLASOR, "kimlik_arizalari.json")   # kimlik taramasının çıktısı; akış hesabı bu fon-tarihleri düşer (takvim.kimlik_arizasi_ayikla)
 KIMLIK_TARAMA_SEANS = 52         # kimlik taraması penceresi (30 numaralı not: 2.047 fon, 52 seans)
@@ -51,7 +52,10 @@ COKUS_ORAN = 0.90                # M40: büyüklük tek seansta bu oranın üst�
 COKUS_KALICI_ORAN = 0.50         # M40: düşüşten sonra pencere boyunca büyüklük önceki seviyenin bu oranına dönmüyorsa çöküş kalıcıdır (tasfiye);
                                  # dönüyorsa besleme sıçramasıdır ve yalnızca kırılma (M39) olarak bildirilir
 ONARIM_KATLARI = (1000.0, 0.001)  # M38: birim hatası onarımı pay ya da büyüklük alanında bu katlarla denenir; kimlik sıfır sapmayla kapanmalı ve komşu seansla sürekli olmalı
-COKUS_KESIN_SEANS = 5            # Chat 36: çöküşten sonra pencerede bu kadar seans yoksa kayıt "kesinleşmemiş"; sonraki günlerde kesinleşir ya da kırılmaya düşer (varsayım)
+COKUS_KESIN_SEANS = 5            # Chat 36: çöküşten sonra pencerede bu kadar seans yoksa kayıt "kesinleşmemiş"; kullanıcı onayı 13 Eylül 2026 (not 39)
+ANI_DUSUS_ORAN = 0.20            # 39 numaralı not, madde 4: büyüklük ya da fiyat tek seansta bu orandan fazla düşerse "ani düşüş", fon izlemeye alınır (PHE 3 Eylül)
+DEGER_KAYBI_PUAN = 40.0          # 39 numaralı not, madde 4: 20 seans getirisi kategori ortancasından bu kadar puan geride kalırsa "değer kaybı" (PHE -75,9 puan)
+DEGER_KAYBI_SEANS = 20
 KESINTI_ONCEKI_SEANS = 10        # M43: fon önceki bu kadar seansın tamamında varken
 KESINTI_SEANS = 2                # M43: pencerenin son bu kadar seansında yoksa ya da boşsa "raporlamayı kesti" (tek seans 08.15 çekiminin bilinen eksiğidir, sayılmaz)
 DISA_AKTARIM = os.path.join(KOK, "03 Veri", "defter_disa_aktarim.json")   # akşam görevinin yazdığı pozisyon fotoğrafı; köprünün yakıtı
@@ -229,7 +233,17 @@ def kimlik_istisna_yukle():
     return json_oku(KIMLIK_ISTISNA_YOL, [])
 
 
-def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
+def kunye_yukle(klasor=None):
+    """Künye: fonKodu -> dict(kategori, kurucu). Mac'te KUNYE_KLASOR/Fon Künyesi Tam*.csv, depoda kunye_tam.csv; yoksa boş sözlük."""
+    adaylar = sorted(glob.glob(os.path.join(klasor or KUNYE_KLASOR, "Fon Künyesi Tam*.csv"))) + [os.path.join(klasor or KUNYE_KLASOR, "kunye_tam.csv")]
+    for yol in reversed(adaylar):
+        if os.path.exists(yol):
+            with open(yol, encoding="utf-8") as f:
+                return {r["fonKodu"]: dict(kategori=r.get("kategori") or "", kurucu=r.get("kurucu") or "") for r in csv.DictReader(f) if r.get("fonKodu")}
+    return {}
+
+
+def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None, kunye=None):
     """Arşivdeki son `seans` günde her fonun kimlik farkını (pay × fiyat − büyüklük; tolerans pay × 0,5e-6 + 0,01 TL) ölçer ve
     fonları sınıflar (30 numaralı not, madde 1): kalıcı (günlerin en az KALICI_ORAN'ında sapan), epizodik (tek seans sapan, komşu
     seanslar tolerans içinde), aralıklı (birden çok seans ama kalıcı değil). Epizodik arızalar imzasıyla adlandırılır: birim hatası
@@ -237,7 +251,9 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
     Dönüş: dict(pencere, fonlar{kod: {sinif, sapanGun, gun, farkOrtanca, farkEnKucuk, farkEnBuyuk}}, arizalar[{fonKodu, tarih, fark, oran, imza}]).
     Liste değil kural: elle bakım istemez; sonuç KIMLIK_ARIZA_YOL dosyasına yazılır, akış hesabı arızalı fon-tarihleri köprüler.
     Arşiv kökü: `arsiv` parametresi, yoksa FON_DENETIM_ARSIV ortam değişkeni, yoksa 03 Veri/Arşiv (M33: bulut kendi klonunun
-    arsiv/ klasörünü verir ve taramayı yerinde koşturur; dosya taşınmaz)."""
+    arsiv/ klasörünü verir ve taramayı yerinde koşturur; dosya taşınmaz). kunye: fonKodu -> dict(kategori, kurucu); verilmezse
+    kunye_yukle(); kategori değer kaybı ölçümü, kurucu kesinti gruplaması için (39 numaralı not madde 4, M44)."""
+    kunye = kunye if kunye is not None else kunye_yukle()
     dosyalar = sorted(glob.glob(os.path.join(arsiv or ARSIV, "tefas_????-??.csv.gz")))[-4:]
     kayit = {}   # (kod, tarih) -> (pay, fiyat, buyukluk)
     for yol in dosyalar:
@@ -287,6 +303,43 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
         if yok >= KESINTI_SEANS and j + 1 >= KESINTI_ONCEKI_SEANS and all(gunler[x] in hs for x in range(j - KESINTI_ONCEKI_SEANS + 1, j + 1)):
             kesenler.append(dict(fonKodu=kod, sonGorulen=gunler[j], yokSeans=yok, sonBuyukluk=round(hs[gunler[j]][2], 2)))
     kesenler.sort(key=lambda k: -k["yokSeans"])
+    # M44: kesinti kayıtları kurucu ve tarihe göre gruplanır; aynı kurucunun birden çok fonu aynı seansta kesilmişse besleme kesintisi
+    grup = {}
+    for k in kesenler:
+        k["kurucu"] = (kunye.get(k["fonKodu"]) or {}).get("kurucu") or "bilinmiyor"
+        grup.setdefault((k["kurucu"], k["sonGorulen"]), []).append(k["fonKodu"])
+    for k in kesenler:
+        uye = grup[(k["kurucu"], k["sonGorulen"])]
+        k["tur"] = "muhtemel_besleme_kesintisi" if len(uye) > 1 else "muhtemel_kapanis"
+        k["grup"] = uye
+    # 39 numaralı not madde 4: ani düşüş (tek seans, büyüklük ya da fiyat > ANI_DUSUS_ORAN) ve değer kaybı (20 seans getirisi kategori
+    # ortancasından DEGER_KAYBI_PUAN geride); büyüklük yatırımcı çıkışıyla da düşer, değer kaybını fiyat gösterir (PHE: 67,9 milyar TL sıfıra)
+    ani = []
+    for kod, hs in ham.items():
+        gs = sorted(hs)
+        for g0, g1 in zip(gs, gs[1:]):
+            if gun_ix[g1] - gun_ix[g0] != 1:
+                continue
+            for alan, v0, v1 in (("buyukluk", hs[g0][2], hs[g1][2]), ("fiyat", hs[g0][1], hs[g1][1])):
+                if v0 > 0 and v1 / v0 < 1 - ANI_DUSUS_ORAN:
+                    ani.append(dict(fonKodu=kod, tarih=g1, alan=alan, oran=round(v1 / v0 - 1, 4), onceki=round(v0, 6 if alan == "fiyat" else 2), sonraki=round(v1, 6 if alan == "fiyat" else 2)))
+    getiri20, kat_getiri = {}, {}
+    for kod, hs in ham.items():
+        gs = sorted(hs)
+        if len(gs) > DEGER_KAYBI_SEANS and hs[gs[-1 - DEGER_KAYBI_SEANS]][1] > 0:
+            getiri20[kod] = hs[gs[-1]][1] / hs[gs[-1 - DEGER_KAYBI_SEANS]][1] - 1
+            kat = (kunye.get(kod) or {}).get("kategori")
+            if kat:
+                kat_getiri.setdefault(kat, []).append(getiri20[kod])
+    ortanca = {kat: sorted(v)[len(v) // 2] for kat, v in kat_getiri.items()}
+    deger_kayiplari = []
+    for kod, r in getiri20.items():
+        kat = (kunye.get(kod) or {}).get("kategori")
+        if kat in ortanca and (r - ortanca[kat]) * 100 < -DEGER_KAYBI_PUAN:
+            gs = sorted(ham[kod])
+            deger_kayiplari.append(dict(fonKodu=kod, kategori=kat, getiri20=round(r, 4), ortanca=round(ortanca[kat], 4), fark=round((r - ortanca[kat]) * 100, 1),
+                                        sonBuyukluk=round(ham[kod][gs[-1]][2], 2), kategoriFon=len(kat_getiri[kat])))
+    deger_kayiplari.sort(key=lambda x: x["fark"])
     for kod, s in seriler.items():
         sapan = {g: v for g, v in s.items() if abs(v[0]) > v[2]}
         if not sapan:
@@ -351,7 +404,8 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
                     kayd["kaydirma"] = round((ham[kod][g][0] - ham[kod][bir_onceki][0]) * (ham[kod][snr][1] - ham[kod][g][1]), 2)
                 arizalar.append(kayd)
     return dict(pencere=dict(bas=gunler[0] if gunler else None, bit=gunler[-1] if gunler else None, seans=len(gunler), fon=len(seriler)),
-                fonlar=fonlar, arizalar=arizalar, kirilmalar=kirilmalar, cokusler=cokusler, kesenler=kesenler)
+                fonlar=fonlar, arizalar=arizalar, kirilmalar=kirilmalar, cokusler=cokusler, kesenler=kesenler,
+                aniDususler=ani, degerKayiplari=deger_kayiplari, kunyeVar=bool(kunye))
 
 
 # ---------------------------------------------------------------- girdiler
@@ -437,10 +491,29 @@ def sinama_kimlik(L, rapor):
                              f"{tl(c['sonraki'], 2)} TL'ye, oran {c['oran']:.6f}; kimlik ne derse desin bildirilir, maskelenmez (M40).")
         kes = tara.get("kesenler") or []
         if kes:
-            rapor.append(f"Raporlamayı kesen (M43): {tl(len(kes))} fon, son görüldüğü seanstan önceki {tl(KESINTI_ONCEKI_SEANS, 0)} seansta varken pencere sonuna kadar en az {tl(KESINTI_SEANS, 0)} seans kayıtsız; "
-                         + "; ".join(f"{k['fonKodu']} (son {k['sonGorulen']}, {tl(k['yokSeans'])} seans, {tl(k['sonBuyukluk'], 0)} TL)" for k in kes[:15]) + ". [ölçüm]")
+            besleme = {}; kapanis = []
+            for k in kes:
+                if k.get("tur") == "muhtemel_besleme_kesintisi":
+                    besleme.setdefault((k["kurucu"], k["sonGorulen"], k["yokSeans"]), []).append(k)
+                else:
+                    kapanis.append(k)
+            rapor.append(f"Raporlamayı kesen (M43, M44): {tl(len(kes))} fon; son görüldüğü seanstan önceki {tl(KESINTI_ONCEKI_SEANS, 0)} seansta varken pencere sonuna kadar en az {tl(KESINTI_SEANS, 0)} seans kayıtsız. [ölçüm]")
+            for (kur, g, yok), L_ in sorted(besleme.items()):
+                rapor.append(f"- Muhtemel besleme kesintisi: {kur}, {g} sonrası {tl(yok)} seans, {tl(len(L_))} fon ({', '.join(x['fonKodu'] for x in L_)}), son büyüklük toplamı {tl(sum(x['sonBuyukluk'] for x in L_), 0)} TL.")
+            for k in kapanis:
+                rapor.append(f"- Muhtemel kapanış, kurucuya sorulacak: {k['fonKodu']} ({k['kurucu']}), son {k['sonGorulen']}, {tl(k['yokSeans'])} seans kayıtsız, son büyüklük {tl(k['sonBuyukluk'], 0)} TL.")
         else:
             rapor.append(f"Raporlamayı kesen (M43): yok (son görüldüğü seanstan önceki {tl(KESINTI_ONCEKI_SEANS, 0)} seansta var, sonra en az {tl(KESINTI_SEANS, 0)} seans kayıtsız fon). [ölçüm]")
+        ani = tara.get("aniDususler") or []
+        rapor.append(f"Ani düşüş (not 39, tek seansta büyüklük ya da fiyat > %{tl(ANI_DUSUS_ORAN * 100, 0)}): {tl(len(ani))} fon-gün, {tl(len({a['fonKodu'] for a in ani}))} fon; en sert fiyat düşüşleri: "
+                     + ("; ".join(f"{a['fonKodu']} {a['tarih']} {tl(a['oran'] * 100, 1)}%" for a in sorted([a for a in ani if a['alan'] == 'fiyat'], key=lambda a: a['oran'])[:8]) or "yok") + ". [ölçüm]")
+        dk = tara.get("degerKayiplari") or []
+        if tara.get("kunyeVar"):
+            rapor.append(f"Değer kaybı (not 39, {tl(DEGER_KAYBI_SEANS, 0)} seans getirisi kategori ortancasından {tl(DEGER_KAYBI_PUAN, 0)} puan geride): {tl(len(dk))} fon. [ölçüm]")
+            for x in dk[:12]:
+                rapor.append(f"- {x['fonKodu']} ({x['kategori']}, {tl(x['kategoriFon'])} fon): getiri {tl(x['getiri20'] * 100, 1)}%, ortanca {tl(x['ortanca'] * 100, 1)}%, fark {tl(x['fark'], 1)} puan, son büyüklük {tl(x['sonBuyukluk'] / 1e9, 2)} milyar TL.")
+        else:
+            rapor.append("Değer kaybı: künye (kategori) bulunamadı, ölçülemedi. [kayıt]")
         kir = tara.get("kirilmalar") or []
         if kir:
             rapor.append(f"Seviye kırılması (M39, {tl(SEVIYE_KIRILMA_KAT, 0)} kat): {tl(len(kir))} fon-gün; " +
@@ -475,8 +548,10 @@ def sinama_kimlik(L, rapor):
         rapor.append("Sapma sıfır çıkmadan bu fonlarda akış hesabı kullanılmaz (beceri bölüm 2); epizodik arıza günü akış hesabından düşülmüştür.")
     for kod in ara:
         v = fonlar[kod]
-        sapma_ekle(L, f"kimlik-aralikli-{kod}", f"{kod} kimlik farkı aralıklı: {v['sapanGun']}/{v['gun']} günde sapıyor, ne kalıcı ne tek seanslık",
-                   None, None, OLCUM, None, f"aralık {tl(v['farkEnKucuk'], 2)} ile {tl(v['farkEnBuyuk'], 2)} TL; sebebi kurucudan ya da TEFAS'tan sorulmalı", sinif="arastirma")
+        s_ = sapma_ekle(L, f"kimlik-aralikli-{kod}", f"{kod} kimlik farkı aralıklı: {v['sapanGun']}/{v['gun']} günde sapıyor, ne kalıcı ne tek seanslık",
+                        None, None, OLCUM, None, f"aralık {tl(v['farkEnKucuk'], 2)} ile {tl(v['farkEnBuyuk'], 2)} TL; sebebi önce kurucudan, sonra TEFAS'tan sorulur", sinif="arastirma")
+        if s_ is not None:
+            s_.setdefault("sorulacakSira", list(SORULACAK_SIRA)); s_.setdefault("sorulanKaynak", None); s_.setdefault("sorulmaTarihi", None)
     if kirmizi_sebep:
         for s in kirmizi_sebep:
             rapor.append(f"- {s}.")
@@ -493,7 +568,8 @@ def sinama_kimlik(L, rapor):
     return {"durum": durum, "sapan": n, "kalici": kal, "aralikli": ara, "epizodik": len(epi), "etiketler": sayac, "celisen": kirmizi_sebep,
             "onarilan": len(onar) if tara["pencere"] else 0, "cokus": sorted((tara.get("cokusler") or {}).keys()),
             "cokusFonGun": sum(len(v) for v in (tara.get("cokusler") or {}).values()), "kirilma": len(tara.get("kirilmalar") or []),
-            "kesen": [k["fonKodu"] for k in (tara.get("kesenler") or [])], "kaydirmaToplam": round(sum(kay), 2) if tara["pencere"] else 0.0}
+            "kesen": [k["fonKodu"] for k in (tara.get("kesenler") or [])], "kaydirmaToplam": round(sum(kay), 2) if tara["pencere"] else 0.0,
+            "aniDusus": len(tara.get("aniDususler") or []), "degerKaybi": [x["fonKodu"] for x in (tara.get("degerKayiplari") or [])]}
 
 
 def sinama_taban(L, rapor, klasor, tarih):
@@ -710,13 +786,10 @@ def sinama_defter(L, rapor, klasor, tarih):
         kirmizi = True
         rapor.append("Yinelenme şüphesi (aynı gün, kurum, fon, yön ve adet): " + "; ".join(", ".join(ks) for ks in yinelenen) + ". [kayıt]")
     # kaynak belge (2.7): alan defterde varsa gerçekleşen emirde boş olamaz; alan hiç yoksa sözleşme kararı beklenir, kırmızı sayılmaz
-    if any("kaynakBelge" in v for v in em.values()):
-        bos = [k for k, v in em.items() if v.get("durum") == "GERCEKLESTI" and not v.get("kaynakBelge")]
-        if bos:
-            kirmizi = True
-            rapor.append(f"Gerçekleşmiş ama kaynak belgesi (ekran görüntüsü) yazılmamış emir: {', '.join(bos)}. [kayıt]")
-    else:
-        rapor.append("Emir kaydında kaynakBelge alanı yok; ekran görüntüsü bağı sınanamadı (defter sözleşmesi, kullanıcı kararı bekliyor). [kayıt]")
+    bos = [k for k, v in em.items() if v.get("durum") == "GERCEKLESTI" and not v.get("kaynakBelge")]
+    if bos:   # not 39, madde 2: kaynakBelge defter sözleşmesine girdi; gerçekleşmiş emirde boş ya da yok olması kırmızıdır
+        kirmizi = True
+        rapor.append(f"Gerçekleşmiş ama kaynak belgesi (kaynakBelge, ekran görüntüsü) yazılmamış emir: {', '.join(bos)}. [kayıt]")
     # pozisyon adetleri: defter ile brifing pozisyon listesi
     if bri and bri.get("pozisyon"):
         def norm_k(k):

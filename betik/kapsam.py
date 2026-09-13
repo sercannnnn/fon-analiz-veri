@@ -56,3 +56,19 @@ def toplam_alan(d, dagilim=None, izin_kismi=False, beklenen=None):
     son = tam.max()
     atilan = [t for t in g.index if t > son]
     return d[d["tarih"] <= son], son, atilan
+
+
+def marj_metni(g, tarih=None):
+    """M45 / not 39 madde 6: tam gün kararının marjı. g: gun_kapsami çıktısı (gecerli, tam); tarih: bakılan gün (yoksa son gün).
+    Örnek: "11.09.2026 kısmi: 1.994 fiyatlı, eşik 1.996,26; 3 fon eksik" ya da "tam: 2.031 fiyatlı, eşik 1.996,26; 35 fon fazla"."""
+    import math
+    if g is None or not len(g):
+        return "kapsam ölçülemedi"
+    t = tarih if tarih is not None else g.index.max()
+    enb = int(g["gecerli"].max()); esik = TAM_ORAN * enb; gec = int(g.loc[t, "gecerli"]); tam = bool(g.loc[t, "tam"])
+    def s(x, h=0):
+        return f"{x:,.{h}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    gun = t.strftime("%d.%m.%Y") if hasattr(t, "strftime") else str(t)[:10]
+    if tam:
+        return f"{gun} tam: {s(gec)} fiyatlı, eşik {s(esik, 2)} (0,98 × {s(enb)}); {s(gec - math.ceil(esik))} fon fazla"
+    return f"{gun} kısmi: {s(gec)} fiyatlı, eşik {s(esik, 2)} (0,98 × {s(enb)}); {s(math.ceil(esik) - gec)} fon eksik"

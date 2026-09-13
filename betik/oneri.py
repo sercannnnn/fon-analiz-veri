@@ -349,6 +349,57 @@ def oneri_json(oneriler, tarih, yol=None, depo=None):
     return o, dict(ay=oz["ay"], verilen=oz["verilen"], uygulanan=oz["uygulanan"], bilinmeyen=oz["bilinmeyen"], isabet=isabet, metin=sicil_satiri(tarih, depo=d))
 
 
+# ---------------------------------------------------------------- park fonu (39 numaralı not, madde 1)
+PARK_KATEGORILER = ("Para Piyasası", "Kısa Vadeli Borçlanma")   # hisse, serbest, fon sepeti park olamaz
+PARK_RISK_ARALIGI = (1, 3)              # künyedeki riskDegeri; sıfır ve boş kabul edilmez (2.033 fonun 1.091'inde bildirilmemiş)
+PARK_ASGARI_BUYUKLUK = 5_000_000_000.0  # TL; "görece büyük" için varsayım (Chat 39), adlı sabit, değiştirilebilir
+PARK_SEANS = 20                         # sıralama ölçüsü: son 20 seans getirisi
+PARK_GECIKME_SEANS = 1                  # fonun son fiyatı evrenin son gününden en çok bu kadar seans geride olabilir (08.15 çekiminin bilinen eksiği)
+
+
+def park_fonu_sec(d, kunye, dislama=(), disla_yol=None):
+    """Park fonu sabit kod değil ölçüttür (39 numaralı not): kategori PARK_KATEGORILER, risk değeri PARK_RISK_ARALIGI içinde (sıfır
+    ve boş kabul edilmez), büyüklük PARK_ASGARI_BUYUKLUK üstünde, kimlik arızası / çöküş / kırılma / kesinti / değer kaybı kaydı olan
+    fon ve park_disla.txt listesindekiler dışarıda; kalanlar arasında son PARK_SEANS seans getirisi en yüksek olan seçilir, her gün yeniden.
+    d: tarih, fonKodu, fiyat, portfoyBuyukluk çerçevesi; kunye: fonKodu, kategori, riskDegeri çerçevesi; dislama: dışlanan kod kümesi.
+    Dönüş: dict(kod, kategori, risk, buyukluk, getiri20, aday, sira{kod: sıra}, gerekce, elenen{sebep: sayı}); aday yoksa kod None ve sebep."""
+    import pandas as pd
+    elle = set()
+    if disla_yol and os.path.exists(disla_yol):
+        elle = {s.strip().split()[0] for s in open(disla_yol, encoding="utf-8") if s.strip() and not s.startswith("#")}
+    k = kunye[["fonKodu", "kategori", "riskDegeri"]].drop_duplicates("fonKodu").set_index("fonKodu")
+    d = d[d["fiyat"] > 0].sort_values(["fonKodu", "tarih"])
+    gunler = sorted(d["tarih"].unique())
+    if len(gunler) <= PARK_SEANS:
+        return dict(kod=None, sebep=f"evrende {len(gunler)} seans var, {PARK_SEANS + 1} gerekir", aday=0, elenen={})
+    esik_gun = gunler[-1 - PARK_GECIKME_SEANS]
+    elenen = {"kategori": 0, "risk": 0, "buyukluk": 0, "dislama": 0, "seans": 0}
+    adaylar = []
+    for kod, g in d.groupby("fonKodu"):
+        kat = k["kategori"].get(kod); risk = k["riskDegeri"].get(kod)
+        if kat not in PARK_KATEGORILER:
+            elenen["kategori"] += 1; continue
+        if risk is None or pd.isna(risk) or not (PARK_RISK_ARALIGI[0] <= float(risk) <= PARK_RISK_ARALIGI[1]):
+            elenen["risk"] += 1; continue
+        if kod in dislama or kod in elle:
+            elenen["dislama"] += 1; continue
+        p = g["fiyat"].to_numpy(float); b = float(g["portfoyBuyukluk"].iloc[-1] or 0)
+        if len(p) <= PARK_SEANS or g["tarih"].iloc[-1] < esik_gun:
+            elenen["seans"] += 1; continue
+        if b < PARK_ASGARI_BUYUKLUK:
+            elenen["buyukluk"] += 1; continue
+        adaylar.append(dict(kod=kod, kategori=kat, risk=int(risk), buyukluk=b, getiri20=p[-1] / p[-1 - PARK_SEANS] - 1, sonGun=str(g["tarih"].iloc[-1])[:10]))
+    if not adaylar:
+        return dict(kod=None, sebep="dört şartı geçen fon yok", aday=0, elenen=elenen)
+    adaylar.sort(key=lambda a: -a["getiri20"])
+    s = adaylar[0]
+    gerekce = (f"{s['kod']} ({s['kategori']}, risk {s['risk']}, {s['buyukluk'] / 1e9:.1f} milyar TL, {PARK_SEANS} seans {_yuzde(s['getiri20'])}); "
+               f"{len(adaylar)} aday; ölçüt: kategori {', '.join(PARK_KATEGORILER)}, risk {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]}, "
+               f"büyüklük ≥ {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar TL (varsayım), arıza/çöküş/kırılma/kesinti/değer kaybı ve park_disla.txt dışarıda")
+    return dict(kod=s["kod"], kategori=s["kategori"], risk=s["risk"], buyukluk=s["buyukluk"], getiri20=s["getiri20"], aday=len(adaylar),
+                sira={a["kod"]: i + 1 for i, a in enumerate(adaylar)}, adaylar=adaylar[:5], gerekce=gerekce, elenen=elenen)
+
+
 # ---------------------------------------------------------------- sicil
 def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None, depo=None):
     """Kural 18: verilen her öneri sicile yazılır; aynı gün aynı kod tekrar yazılmaz. Kimlik YYYYAAGG-KOD (M29): kural 18'in

@@ -149,6 +149,14 @@ def kimlik_arizasi_ayikla(d, yol=None, arsiv=None):
         except Exception:
             tara = None
     arizalar = (tara or {}).get("arizalar") or []
+    if tara:
+        # park fonu dışlama kümesi (39 numaralı not): kimlik arızası, çöküş, kırılma, kesinti, ani düşüş, değer kaybı kaydı olan fon
+        # park fonu dışlama kümesi, not 39 madde 1 şart 4'ün dört kaydı: kimlik arızası, çöküş, seviye kırılması, raporlama kesintisi.
+        # Ani düşüş ve değer kaybı dışlamaya girmez: büyüklüğün tek seansta %20 oynaması para piyasası fonlarında olağan akıştır (13 Eylül: 280 fon).
+        son["dislama"] = (set((tara.get("fonlar") or {}).keys()) | set((tara.get("cokusler") or {}).keys())
+                          | {x["fonKodu"] for x in (tara.get("kirilmalar") or [])} | {x["fonKodu"] for x in (tara.get("kesenler") or [])})
+        son["degerKaybi"] = len(tara.get("degerKayiplari") or []); son["aniDusus"] = len(tara.get("aniDususler") or [])
+        son["kesen"] = len(tara.get("kesenler") or []); son["cokusSayisi"] = len(tara.get("cokusler") or {})
     if not arizalar:
         return d, 0
     onarimlar, kopru, maskesiz = {}, set(), set()
