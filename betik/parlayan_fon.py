@@ -128,10 +128,28 @@ def agresif_adaylar(m, poz):
     return o.sort_values("sira_olcusu", ascending=False).reset_index(drop=True)
 
 
+def kunye_oku(kok):
+    """Künye: <kok>/kunye_tam.csv ya da <kok>/veri/kunye_tam.csv (depo; sanal makine günlük gönderimiyle taşır). Yoksa boş çerçeve ve
+    uyarı (M47, kural 14): bir dosyanın yokluğu ekranı düşürmez, kategori unvandan türetilir, risk değeri ölçülemedi kalır."""
+    for yol in (os.path.join(kok, "kunye_tam.csv"), os.path.join(kok, "veri", "kunye_tam.csv")):
+        if os.path.exists(yol):
+            k = pd.read_csv(yol); kunye_oku.yol = yol; kunye_oku.var = True
+            return k
+    kunye_oku.yol = None; kunye_oku.var = False
+    print("uyarı: kunye_tam.csv bulunamadı; kategori unvandan türetilir, risk değeri ve künye getirileri ölçülemedi (M47)", file=sys.stderr)
+    return pd.DataFrame(columns=["fonKodu", "fonAd", "kategori", "kurucu", "riskDegeri", "g1y", "g3y", "g5y"])
+
+
 def ekran(kok, poz, haber=None):
     d = panel(kok)
-    k = pd.read_csv(os.path.join(kok, "kunye_tam.csv"))
+    k = kunye_oku(kok)
+    ekran.kunye_var = kunye_oku.var
     m = olc(d).merge(k, on="fonKodu", how="left")
+    if "fonUnvan" in d.columns and "fonUnvan" not in m.columns:
+        m = m.merge(d.sort_values("tarih").groupby("fonKodu").fonUnvan.last().rename("fonUnvan"), left_on="fonKodu", right_index=True, how="left")
+    for c in ("fonAd", "kategori", "kurucu", "riskDegeri"):
+        if c not in m.columns:
+            m[c] = np.nan
 
     # M9'un ikinci yarisi: kunye dosyasi 07.09 tarihli sabit bir goruntudur ve
     # o gunden sonra acilan fonu icermez. Gunluk cekim artik fonUnvan donuyor;
@@ -247,7 +265,9 @@ def ekran(kok, poz, haber=None):
                           kapi_durumu=s_["durum"],
                           kapali=" | ".join(s_["kapali"]), bilinmez=" | ".join(s_["bilinmez"]),
                           kapi_raporu="\n".join(kapilar.kapi_raporu(s_["cikis"] + s_["giris"]))))
-    o = pd.DataFrame(kayit)
+    # Sutunlar acikca verilir: aday cikmayan gunde bos cerceve sutunsuz kalir ve o.kapi_durumu ekrani dusururdu (13 Eylul 2026, M47 sinamasinda bulundu)
+    o = pd.DataFrame(kayit, columns=["fonKodu", "fonAd", "kategori", "kurucu", "getori", "r30", "vol60", "buyukluk", "kisi", "kurucu_akis20",
+                                     "kapi_durumu", "kapali", "bilinmez", "kapi_raporu"])
     # Liste iki kumeden olusur: kapisi acik olan her aday, ve siralamada
     # en ustteki bes aday. Kesisim tekrarlanmaz.
     acik = o[o.kapi_durumu == "acik"]
@@ -268,6 +288,8 @@ if __name__ == "__main__":
     o = ekran(a.kok, [x for x in a.poz.split(",") if x])
     pd.set_option("display.width", 220); pd.set_option("display.max_colwidth", 70)
     print(o.to_string(index=False))
+    if not getattr(ekran, "kunye_var", True):
+        print("\nKünye bulunamadı (kunye_tam.csv): kategori unvandan türetildi, risk değeri ve künye getirileri ölçülemedi; kategori ölçümleri yedek kaynakla (M47).")
     ks = getattr(panel, "kimlik_son", None) or {}
     print(f"\nKimlik arızası: onarılan {ks.get('onarim', 0)} (M38), köprülenen {len(ks.get('kopru', ()))} (M34, M37), maskelenmeyen çöküş {ks.get('maskesiz', 0)} (M40); kaynak {ks.get('kaynak', '?')} (M35).")
     print("\nAlım talimatı için: kapı durumu açık VE %d ardışık seans." % GEREKLI_SEANS)

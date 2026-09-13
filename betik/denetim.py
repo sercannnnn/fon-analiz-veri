@@ -505,8 +505,11 @@ def sinama_kimlik(L, rapor):
         else:
             rapor.append(f"Raporlamayı kesen (M43): yok (son görüldüğü seanstan önceki {tl(KESINTI_ONCEKI_SEANS, 0)} seansta var, sonra en az {tl(KESINTI_SEANS, 0)} seans kayıtsız fon). [ölçüm]")
         ani = tara.get("aniDususler") or []
-        rapor.append(f"Ani düşüş (not 39, tek seansta büyüklük ya da fiyat > %{tl(ANI_DUSUS_ORAN * 100, 0)}): {tl(len(ani))} fon-gün, {tl(len({a['fonKodu'] for a in ani}))} fon; en sert fiyat düşüşleri: "
-                     + ("; ".join(f"{a['fonKodu']} {a['tarih']} {tl(a['oran'] * 100, 1)}%" for a in sorted([a for a in ani if a['alan'] == 'fiyat'], key=lambda a: a['oran'])[:8]) or "yok") + ". [ölçüm]")
+        af = sorted([a for a in ani if a["alan"] == "fiyat"], key=lambda a: a["oran"]); ab = [a for a in ani if a["alan"] == "buyukluk"]
+        # M48: fiyat tetiği alarmdır ve adıyla yazılır; büyüklük tetiği sessiz kayıttır, yalnızca sayısı yazılır (52 seansta 279 fon, olağan akış)
+        rapor.append(f"Ani fiyat düşüşü (not 39, tek seansta > %{tl(ANI_DUSUS_ORAN * 100, 0)}; alarm): {tl(len(af))} fon-gün, {tl(len({a['fonKodu'] for a in af}))} fon"
+                     + (": " + "; ".join(f"{a['fonKodu']} {a['tarih']} {tl(a['oran'] * 100, 1)}%" for a in af[:12]) if af else "") + ". [ölçüm]")
+        rapor.append(f"Ani büyüklük düşüşü (sessiz kayıt, M48): {tl(len(ab))} fon-gün, {tl(len({a['fonKodu'] for a in ab}))} fon; kimlik_arizalari.json içinde adlarıyla durur, raporda sayılır. [ölçüm]")
         dk = tara.get("degerKayiplari") or []
         if tara.get("kunyeVar"):
             rapor.append(f"Değer kaybı (not 39, {tl(DEGER_KAYBI_SEANS, 0)} seans getirisi kategori ortancasından {tl(DEGER_KAYBI_PUAN, 0)} puan geride): {tl(len(dk))} fon. [ölçüm]")
@@ -569,7 +572,8 @@ def sinama_kimlik(L, rapor):
             "onarilan": len(onar) if tara["pencere"] else 0, "cokus": sorted((tara.get("cokusler") or {}).keys()),
             "cokusFonGun": sum(len(v) for v in (tara.get("cokusler") or {}).values()), "kirilma": len(tara.get("kirilmalar") or []),
             "kesen": [k["fonKodu"] for k in (tara.get("kesenler") or [])], "kaydirmaToplam": round(sum(kay), 2) if tara["pencere"] else 0.0,
-            "aniDusus": len(tara.get("aniDususler") or []), "degerKaybi": [x["fonKodu"] for x in (tara.get("degerKayiplari") or [])]}
+            "aniDusus": len(tara.get("aniDususler") or []), "aniDususFiyat": sum(1 for x in (tara.get("aniDususler") or []) if x.get("alan") == "fiyat"),
+            "degerKaybi": [x["fonKodu"] for x in (tara.get("degerKayiplari") or [])]}
 
 
 def sinama_taban(L, rapor, klasor, tarih):

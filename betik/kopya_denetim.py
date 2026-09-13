@@ -11,7 +11,7 @@ HAM = "https://raw.githubusercontent.com/sercannnnn/fon-analiz-veri/main/betik/"
 # 12 Eylul 2026: bulut gorevinin betikleri de depoda; liste betik_esitle.sh ile aynidir. Depodaki SAGLAMA.sha256 ayrica okunur
 # ve depodaki dosya kendi saglamasiyla da karsilastirilir (bozuk ya da eksik gonderim gorunur olsun).
 BETIKLER = ["tefas_cek.py", "gunluk_cron.sh", "arsiv_guncelle.py", "hisse_cek.py", "kap_kunye.py", "kategori.py", "fon_icerik_cek.py",
-            "kap_ucret.py", "tefas_yas.py", "kap_gunluk.py", "kapilar.py", "parlayan_fon.py", "oneri.py", "kap_izleme.py", "takvim.py",
+            "kap_ucret.py", "tefas_yas.py", "kunye_tam_uret.py", "kap_gunluk.py", "kapilar.py", "parlayan_fon.py", "oneri.py", "kap_izleme.py", "takvim.py",
             "kapsam.py", "denetim.py", "brifing_pdf.py", "defter_pdf.py", "sayfa_html.py", "pdf_temel.py", "surum.py", "sinama_kap_izleme.py", "sinama_oneri.py", "requirements.txt", "kopya_denetim.py",
             "fonts/DejaVuSans.ttf", "fonts/DejaVuSans-Bold.ttf", "fonts/DejaVuSansMono.ttf"]
 

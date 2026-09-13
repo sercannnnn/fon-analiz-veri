@@ -151,11 +151,13 @@ def kimlik_arizasi_ayikla(d, yol=None, arsiv=None):
     arizalar = (tara or {}).get("arizalar") or []
     if tara:
         # park fonu dışlama kümesi (39 numaralı not): kimlik arızası, çöküş, kırılma, kesinti, ani düşüş, değer kaybı kaydı olan fon
-        # park fonu dışlama kümesi, not 39 madde 1 şart 4'ün dört kaydı: kimlik arızası, çöküş, seviye kırılması, raporlama kesintisi.
-        # Ani düşüş ve değer kaybı dışlamaya girmez: büyüklüğün tek seansta %20 oynaması para piyasası fonlarında olağan akıştır (13 Eylül: 280 fon).
+        # park fonu dışlama kümesi (not 39 madde 1 şart 4, karar not 41): kimlik arızası, çöküş, seviye kırılması, raporlama kesintisi ve
+        # değer kaybı (fiyata dayanır) girer; ani düşüş girmez (büyüklüğün tek seansta %20 oynaması olağan akıştır: 52 seansta 279 fon, M48).
         son["dislama"] = (set((tara.get("fonlar") or {}).keys()) | set((tara.get("cokusler") or {}).keys())
-                          | {x["fonKodu"] for x in (tara.get("kirilmalar") or [])} | {x["fonKodu"] for x in (tara.get("kesenler") or [])})
+                          | {x["fonKodu"] for x in (tara.get("kirilmalar") or [])} | {x["fonKodu"] for x in (tara.get("kesenler") or [])}
+                          | {x["fonKodu"] for x in (tara.get("degerKayiplari") or [])})
         son["degerKaybi"] = len(tara.get("degerKayiplari") or []); son["aniDusus"] = len(tara.get("aniDususler") or [])
+        son["aniDususFiyat"] = sum(1 for x in (tara.get("aniDususler") or []) if x.get("alan") == "fiyat")   # M48: alarm fiyat tetiğidir
         son["kesen"] = len(tara.get("kesenler") or []); son["cokusSayisi"] = len(tara.get("cokusler") or {})
     if not arizalar:
         return d, 0
