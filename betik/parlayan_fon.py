@@ -178,6 +178,26 @@ def olculemeyen_giris_kapilari(o):
     return sorted(kume or [])
 
 
+def bekleyen_adaylar(o):
+    """M51: kapatan kapisi olmayan ama olculemeyen kapisi olan her aday adiyla ve eksik girdisiyle yazilir; kesisim degil aday bazinda.
+    Dönüş: [(kod, [kisa kapi adlari])]."""
+    if o is None or not len(o) or "bilinmez" not in o.columns:
+        return []
+    L = []
+    for _, r in o.iterrows():
+        kapali = str(r.get("kapali") or "").strip(); kapali = "" if kapali.lower() == "nan" else kapali
+        bil = [x.strip().split(" ")[0] for x in str(r.get("bilinmez") or "").split("|") if x.strip() and x.strip().lower() != "nan"]
+        if not kapali and bil:
+            L.append((r.fonKodu, bil))
+    return L
+
+
+def bekleyen_cumleler(o):
+    """M51 cumleleri: 'TMV'yi kapatan olculmus kapi yok; yalnizca G4 (yonetim ucreti dosyasi) olculemiyor.'"""
+    return [f"{kod} için kapatan ölçülmüş kapı yok; yalnızca " + ", ".join(f"{k} ({KAPI_GIRDI.get(k, 'girdisi yok')})" for k in kap) + " ölçülemiyor"
+            for kod, kap in bekleyen_adaylar(o)]
+
+
 KAPI_GIRDI = {"G4": "yönetim ücreti dosyası (veri/fon_ucret.csv)", "G5b": "KAP dizini taraması (kap_gunluk.json)", "C4": "dağılım dosyası (son_dagilim.csv)",
               "G2": "yaş dosyası (veri/fon_yas.csv)", "C5": "iki yıllık oynaklık geçmişi"}
 
@@ -324,6 +344,7 @@ def ekran(kok, poz, haber=None):
     ag.to_csv(os.path.join(kok, "agresif.csv"), index=False)
     ekran.agresif = ag
     ekran.olculemeyen = olculemeyen_giris_kapilari(o)
+    ekran.bekleyen = bekleyen_adaylar(o)
     return o
 
 
@@ -338,6 +359,14 @@ if __name__ == "__main__":
     if getattr(ekran, "olculemeyen", None):
         print("\nGiriş kapısı ölçülemiyor: " + "; ".join(f"{k} ({KAPI_GIRDI.get(k, 'girdisi yok')})" for k in ekran.olculemeyen)
               + ". Bu kapılar hiçbir adayda ölçülemediği için kapısı açık aday olamaz; 'aday yok' değil, girdi eksiği (M50).")
+    for c in bekleyen_cumleler(o):
+        print("Bekleyen aday (M51): " + c + ".")
+    ks_b = (getattr(panel, "kimlik_son", None) or {}).get("buyume") or {}
+    if ks_b:
+        print(f"Büyüme (M53, 20 seansta pay adedi ya da büyüklük ≥ 3 kat): {len(ks_b)} fon: " + "; ".join(f"{k} pay ×{v[0]:.1f}, büyüklük ×{v[1]:.1f}" for k, v in sorted(ks_b.items(), key=lambda kv: -kv[1][1])[:8]) + ".")
+        tut = [k for k in a.poz.split(",") if k in ks_b]
+        if tut:
+            print("Tutulan pozisyonda büyüme: " + ", ".join(f"{k} (pay ×{ks_b[k][0]:.1f}, büyüklük ×{ks_b[k][1]:.1f})" for k in tut) + ".")
     if getattr(ekran, "haber_notu", None):
         print("Haber kapısı: " + ekran.haber_notu)
     if not getattr(ekran, "kunye_var", True):

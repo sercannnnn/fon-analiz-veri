@@ -159,6 +159,7 @@ def kimlik_arizasi_ayikla(d, yol=None, arsiv=None):
         son["degerKaybi"] = len(tara.get("degerKayiplari") or []); son["aniDusus"] = len(tara.get("aniDususler") or [])
         son["aniDususFiyat"] = sum(1 for x in (tara.get("aniDususler") or []) if x.get("alan") == "fiyat")   # M48: alarm fiyat tetiğidir
         son["kesen"] = len(tara.get("kesenler") or []); son["cokusSayisi"] = len(tara.get("cokusler") or {})
+        son["buyume"] = {x["fonKodu"]: (x.get("payKat") or 0, x.get("buyuklukKat") or 0, x.get("buyuklukSon") or 0) for x in (tara.get("buyumeler") or [])}   # M53
     if not arizalar:
         return d, 0
     onarimlar, kopru, maskesiz = {}, set(), set()

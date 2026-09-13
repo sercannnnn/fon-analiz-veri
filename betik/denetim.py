@@ -56,6 +56,8 @@ COKUS_KESIN_SEANS = 5            # Chat 36: çöküşten sonra pencerede bu kada
 ANI_DUSUS_ORAN = 0.20            # 39 numaralı not, madde 4: büyüklük ya da fiyat tek seansta bu orandan fazla düşerse "ani düşüş", fon izlemeye alınır (PHE 3 Eylül)
 DEGER_KAYBI_PUAN = 40.0          # 39 numaralı not, madde 4: 20 seans getirisi kategori ortancasından bu kadar puan geride kalırsa "değer kaybı" (PHE -75,9 puan)
 DEGER_KAYBI_SEANS = 20
+BUYUME_KAT = 3.0                 # M53 (Chat 45): 20 seansta pay adedi ya da büyüklük bu katı aşarsa "büyüme" kaydı; tutulan pozisyonda ayrıca öne çıkar
+BUYUME_SEANS = 20
 KESINTI_ONCEKI_SEANS = 10        # M43: fon önceki bu kadar seansın tamamında varken
 KESINTI_SEANS = 2                # M43: pencerenin son bu kadar seansında yoksa ya da boşsa "raporlamayı kesti" (tek seans 08.15 çekiminin bilinen eksiğidir, sayılmaz)
 DISA_AKTARIM = os.path.join(KOK, "03 Veri", "defter_disa_aktarim.json")   # akşam görevinin yazdığı pozisyon fotoğrafı; köprünün yakıtı
@@ -340,6 +342,17 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None, kunye=N
             deger_kayiplari.append(dict(fonKodu=kod, kategori=kat, getiri20=round(r, 4), ortanca=round(ortanca[kat], 4), fark=round((r - ortanca[kat]) * 100, 1),
                                         sonBuyukluk=round(ham[kod][gs[-1]][2], 2), kategoriFon=len(kat_getiri[kat])))
     deger_kayiplari.sort(key=lambda x: x["fark"])
+    # M53: yukarı yönlü ölçü; dört aşağı yönlü ölçünün (çöküş, ani düşüş, değer kaybı, kesinti) karşılığı. Pencere fonun son 21 seansı.
+    buyumeler = []
+    for kod, hs in ham.items():
+        gs = sorted(hs)
+        if len(gs) > BUYUME_SEANS:
+            p0, b0 = hs[gs[-1 - BUYUME_SEANS]][0], hs[gs[-1 - BUYUME_SEANS]][2]; p1, b1 = hs[gs[-1]][0], hs[gs[-1]][2]
+            pk = p1 / p0 if p0 > 0 else None; bk = b1 / b0 if b0 > 0 else None
+            if (pk and pk >= BUYUME_KAT) or (bk and bk >= BUYUME_KAT):
+                buyumeler.append(dict(fonKodu=kod, bas=gs[-1 - BUYUME_SEANS], bit=gs[-1], payKat=round(pk or 0, 2), buyuklukKat=round(bk or 0, 2),
+                                      payBas=p0, paySon=p1, buyuklukBas=round(b0, 2), buyuklukSon=round(b1, 2)))
+    buyumeler.sort(key=lambda x: -x["buyuklukKat"])
     for kod, s in seriler.items():
         sapan = {g: v for g, v in s.items() if abs(v[0]) > v[2]}
         if not sapan:
@@ -405,7 +418,7 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None, kunye=N
                 arizalar.append(kayd)
     return dict(pencere=dict(bas=gunler[0] if gunler else None, bit=gunler[-1] if gunler else None, seans=len(gunler), fon=len(seriler)),
                 fonlar=fonlar, arizalar=arizalar, kirilmalar=kirilmalar, cokusler=cokusler, kesenler=kesenler,
-                aniDususler=ani, degerKayiplari=deger_kayiplari, kunyeVar=bool(kunye))
+                aniDususler=ani, degerKayiplari=deger_kayiplari, buyumeler=buyumeler, kunyeVar=bool(kunye))
 
 
 # ---------------------------------------------------------------- girdiler
@@ -510,6 +523,9 @@ def sinama_kimlik(L, rapor):
         rapor.append(f"Ani fiyat düşüşü (not 39, tek seansta > %{tl(ANI_DUSUS_ORAN * 100, 0)}; alarm): {tl(len(af))} fon-gün, {tl(len({a['fonKodu'] for a in af}))} fon"
                      + (": " + "; ".join(f"{a['fonKodu']} {a['tarih']} {tl(a['oran'] * 100, 1)}%" for a in af[:12]) if af else "") + ". [ölçüm]")
         rapor.append(f"Ani büyüklük düşüşü (sessiz kayıt, M48): {tl(len(ab))} fon-gün, {tl(len({a['fonKodu'] for a in ab}))} fon; kimlik_arizalari.json içinde adlarıyla durur, raporda sayılır. [ölçüm]")
+        by = tara.get("buyumeler") or []
+        rapor.append(f"Büyüme (M53, {tl(BUYUME_SEANS, 0)} seansta pay adedi ya da büyüklük ≥ {tl(BUYUME_KAT, 0)} kat): {tl(len(by))} fon"
+                     + (": " + "; ".join(f"{x['fonKodu']} pay ×{x['payKat']:.1f}, büyüklük ×{x['buyuklukKat']:.1f} ({tl(x['buyuklukSon'] / 1e9, 2)} milyar TL)" for x in by[:10]) if by else "") + ". [ölçüm]")
         dk = tara.get("degerKayiplari") or []
         if tara.get("kunyeVar"):
             rapor.append(f"Değer kaybı (not 39, {tl(DEGER_KAYBI_SEANS, 0)} seans getirisi kategori ortancasından {tl(DEGER_KAYBI_PUAN, 0)} puan geride): {tl(len(dk))} fon. [ölçüm]")
@@ -573,7 +589,7 @@ def sinama_kimlik(L, rapor):
             "cokusFonGun": sum(len(v) for v in (tara.get("cokusler") or {}).values()), "kirilma": len(tara.get("kirilmalar") or []),
             "kesen": [k["fonKodu"] for k in (tara.get("kesenler") or [])], "kaydirmaToplam": round(sum(kay), 2) if tara["pencere"] else 0.0,
             "aniDusus": len(tara.get("aniDususler") or []), "aniDususFiyat": sum(1 for x in (tara.get("aniDususler") or []) if x.get("alan") == "fiyat"),
-            "degerKaybi": [x["fonKodu"] for x in (tara.get("degerKayiplari") or [])]}
+            "degerKaybi": [x["fonKodu"] for x in (tara.get("degerKayiplari") or [])], "buyume": [x["fonKodu"] for x in (tara.get("buyumeler") or [])]}
 
 
 def sinama_taban(L, rapor, klasor, tarih):
