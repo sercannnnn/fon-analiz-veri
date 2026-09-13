@@ -134,7 +134,7 @@ AGIR_KONU = [
                                    "HISSE DEVRI","HAKIM ORTAK","YONETIM KONTROLU","CAGRI"]),
     ("düzenleyici işlem",         ["SPK","SERMAYE PIYASASI KURULU","BDDK","IDARI PARA CEZASI",
                                    "YAPTIRIM","SORUSTURMA","TEDBIR","ISLEM SIRASI","SIRA KAPATMA",
-                                   "TEDBIRLI","BRUT TAKAS","IZAHNAME"]),
+                                   "TEDBIRLI","BRUT TAKAS"]),   # M55: IZAHNAME cikti; izahname ve bilgi formu aileleri dikkat konusu degildir
     ("sermaye / temettü",         ["SERMAYE ARTIRIMI","BEDELLI","BEDELSIZ","TEMETTU","KAR PAYI",
                                    "GERI ALIM","PAY GERI ALIM"]),
     ("mali durum",                ["KONKORDATO","IFLAS","ODEME GUCLUGU","TEMERRUT","DEFAULT",
@@ -153,6 +153,33 @@ AGIR_KONU = [
 # ve bosluklar atilir). "Repo Karsi Tarafi Temerrudu" bu yuzden rutin degildir. M25: izahname duzenleyici islem konusudur, listede
 # degildir; finansal tablo bildirimi de degildir (hisse cikis kapisi 1 ondan beslenir). Liste Chat'in 12 Eylul kural metnindeki
 # on iki addir; "Repo - Ters Repo Sozlesmesi" KAP'ta "Borsa Disi Repo - Ters Repo Sozlesmesi" adiyla gecer, o ad yazildi.
+# M55 (13 Eylul 2026, not 49): kapinin tetigi varliktan maddilige. Yalnizca bu olaylar kapiyi kapatir; AGIR_KONU artik dikkat (bilgi) listesidir,
+# kapatmaz. Liste dar ve aciktir; genisletmek kural degisikligidir.
+KAPATAN_OLAY = [
+    ("kontrol veya pay devri, devralma, birleşme, bölünme", ["PAY DEVRI","HISSE DEVRI","DEVRALINMASI","DEVRALMA","DEVRALINMA","BIRLESME","BOLUNME",
+                                                             "HAKIM ORTAK","YONETIM KONTROLU","KONTROL DEGISIKLIGI","CAGRI YOLUYLA"]),
+    ("faaliyet izninin iptali ya da sınırlandırılması",     ["FAALIYET IZNI","IZIN IPTALI","IZNININ IPTALI","IZNI IPTAL","YETKI BELGESI IPTAL","FAALIYETLERININ DURDURULMASI",
+                                                             "FAALIYETININ SINIRLANDIRILMASI","FAALIYET SINIRLAMASI"]),
+    ("idari yaptırım, idari para cezası",                   ["IDARI PARA CEZASI","IDARI YAPTIRIM","YAPTIRIM KARARI"]),
+    ("iflas, konkordato, temerrüt",                         ["IFLAS","KONKORDATO","TEMERRUT","ODEME GUCLUGU"]),
+    ("fonun tasfiyesi ya da işlemlerinin durdurulması",     ["TASFIYE","ISLEMLERININ DURDURULMASI","ISLEM SIRASI KAPATMA","SIRA KAPATMA","ISLEMLERI DURDURULMUS"]),
+    ("kurucunun ya da portföy yöneticisinin değişmesi",     ["KURUCU DEGISIKLIGI","KURUCUNUN DEGISMESI","KURUCUSUNUN DEGISMESI","PORTFOY YONETICISI DEGISIKLIGI",
+                                                             "PORTFOY YONETICISININ DEGISMESI","PORTFOY YONETIM SIRKETININ DEGISMESI","YONETICI DEGISIKLIGI"]),
+]
+KAP_TURLERI = {"OZEL DURUM ACIKLAMASI GENEL", "GENEL ACIKLAMA"}   # M55: iceriksiz "kap" turleri; ozeti ve govdesi bos gelirse o kurucu icin kapi olculemedi
+
+
+def kapatan_olaylar(metin):
+    """Metindeki kapatan olay adlari (KAPATAN_OLAY, kok deseniyle)."""
+    m = sadelestir(metin)
+    return [ad for ad, ks in KAPATAN_OLAY if any(re.search(_kok_deseni(k), m) for k in ks)]
+
+
+def kap_bos_mu(b):
+    """Ozel Durum Aciklamasi (Genel) ya da Genel Aciklama olup ozeti ve govdesi bos bildirim: icerigi okunmadan siniflanamaz (M55)."""
+    return tur_adi(b.get("konu", "")) in KAP_TURLERI and not str(b.get("ozet") or "").strip() and not str(b.get("metin") or "").strip()
+
+
 RUTIN_TURLER = ["Portföy Dağılım Raporu", "Fiyat Raporu", "Gider Raporu", "Toplam Gider Oranı Bildirimi",
                 "Borsa Dışı Repo - Ters Repo Sözleşmesi", "Şirket Genel Bilgi Formu", "Yatırımcı Bilgi Formu",
                 "Fon Sürekli Bilgilendirme Formu", "Risk Ölçüm ve Değerleme Esasları", "Borsa Dışı Sözleşmelere İlişkin İlkeler",
@@ -210,7 +237,7 @@ def eksik_triyaj(bildirimler):
     for b in bildirimler:
         if b.get("metinDurumu") != "eksik":
             continue
-        if agir_konu_mu(f"{b.get('konu', '')} {b.get('ozet', '')}"):
+        if kapatan_olaylar(f"{b.get('konu', '')} {b.get('ozet', '')}"):   # M55: engelleyici yalnizca kapatan olay konulu eksik bildirim
             eng.append(b)
         else:
             n += 1
@@ -227,22 +254,29 @@ def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True
     vurus = tara(dis, liste) + [v for v in tara(rutin, liste) if v["agir_konu"]]
     k1 = [v for v in vurus if v["kademe"] == 1]
     eng, eksik_diger = eksik_triyaj(bildirimler)
-    haber = {}
+    kapatan = [v for v in k1 if v["kapatan"]]                       # M55: kapatan olay tasiyan birinci kademe vurus
+    kap_bos = [v for v in k1 if v["kap_bos"] and not v["kapatan"]]   # M55: icerigi okunamayan kap bildirimi
+    bilgi = [v for v in k1 if not v["kapatan"] and not v["kap_bos"]] # kapatmaz, brifingde bilgi satiri
+    haber, sebep = {}, {}
     for k in kurucular:
         anahtar = {sadelestir(g) for g in kurucu_grup.get(k, [k])}
-        if any(set(v["eslesen"]) & anahtar for v in k1):
-            haber[k] = False
+        vur = [v for v in kapatan if set(v["eslesen"]) & anahtar]
+        if vur:
+            haber[k] = False; sebep[k] = "; ".join(f"{v['sirket']}: {', '.join(v['kapatan'])}" for v in vur[:3])
         elif any(any(a in sadelestir(b.get("sirket") or "") for a in anahtar) for b in eng):
-            haber[k] = None          # engelleyici eksik: govde okunana kadar olculemedi
+            haber[k] = None; sebep[k] = "gövdesi çekilemeyen kapatan konulu bildirim"   # engelleyici eksik: govde okunana kadar olculemedi
+        elif any(set(v["eslesen"]) & anahtar for v in kap_bos):
+            haber[k] = None; sebep[k] = "özeti ve gövdesi boş kap bildirimi (Özel Durum Açıklaması / Genel Açıklama); içerik okunmadan sınıflanamaz"
         else:
             haber[k] = True
     b_ = lambda n: f"{n:,}".replace(",", ".")      # binlik ayirici nokta; cumledeki virgullere dokunulmaz
     notu = (f"{b_(len(bildirimler))} bildirim tarandı; rutin tür süzgeciyle elenen {b_(len(rutin))} ({len(RUTIN_TURLER)} tür, kademe yükselten "
-            f"konu taşıyanlar sayıldı), {b_(len(vurus))} eşleşme, {b_(len(k1))} birinci kademe"
+            f"konu taşıyanlar sayıldı), {b_(len(vurus))} eşleşme, {b_(len(k1))} birinci kademe; kapatan olay {b_(len(kapatan))}, "
+            f"bilgi satırı {b_(len(bilgi))}, içeriksiz kap bildirimi {b_(len(kap_bos))} (M55: yalnızca kapatan olay kapıyı kapatır)"
             + (f"; gövdesi çekilemeyen {b_(len(eng))} engelleyici bildirim (haber kapısı o kurucularda ölçülemedi)" if eng else "")
             + (f"; gövdesi çekilemeyen {b_(eksik_diger)} rutin dışı bildirim, tarama eksiktir" if eksik_diger else "")
             + ("" if govde_var else "; gövde metni çekilmemiş, tarama özet ve konu üzerinden"))
-    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus))
+    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus), kapatan=kapatan, bilgi=bilgi, kap_bos=kap_bos, sebep=sebep)
 
 
 # ---------------------------------------------------------------- tarama
@@ -268,6 +302,8 @@ def tara(bildirimler, liste, kendi_fonlarimiz=()):
             "eslesen": sorted({v[0] for v in vurus}),
             "sebep": sorted({v[1]["sebep"] for v in vurus}),
             "agir_konu": konular,
+            "kapatan": kapatan_olaylar(gövde),      # M55: yalnizca bu dolu olan birinci kademe vurus kapiyi kapatir
+            "kap_bos": kap_bos_mu(b),                 # M55: icerigi okunamayan kap bildirimi -> olculemedi
         })
     sonuc.sort(key=lambda x: (x["kademe"], x["sirket"] or ""))
     return sonuc
