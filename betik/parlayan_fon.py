@@ -14,7 +14,7 @@ Cikti
 
 Kullanim:  python3 parlayan_fon.py [--kok .] [--poz KOD1,KOD2]   (elde tutulan fon kodlari; portfoy bilgisi, komut satirindan verilir)
 """
-import argparse, glob, os, sys
+import argparse, json, glob, os, sys
 from kategori import kategori_turet
 import numpy as np, pandas as pd
 import kapilar                                   # kapi mantigi tek yerde (Gorev 2, M10)
@@ -70,7 +70,9 @@ def olc(d):
                         dpay20=(u[-1] / u[-21] - 1) if n > 21 else np.nan,
                         akis20=float(np.sum(np.diff(u[-21:]) * p[-20:])) if n > 21 else np.nan,   # arizali gun koprulenmis (takvim.KIMLIK_ARIZA_YONTEMI), NaN yok
                         eksigun=int((r60 < 0).sum())))
-    m = pd.DataFrame(sat)
+    # M49: hicbir fon ASGARI_SEANS'i gecmeyen kisa arsivde sat bos kalir; sutunsuz cerceve ilk erisimde (m.r30) dusuyordu
+    m = pd.DataFrame(sat, columns=["fonKodu", "seans", "fiyat", "buyukluk", "kisi", "r30", "r63", "r126", "r250", "vol60", "volort",
+                                   "ddsimdi", "ddceyrek", "dpay20", "akis20", "eksigun"])
     m["hiz30"] = (1 + m.r30) ** (252 / 30) - 1
     m["getori"] = m.hiz30 / m.vol60
     return m
@@ -140,6 +142,46 @@ def kunye_oku(kok):
     return pd.DataFrame(columns=["fonKodu", "fonAd", "kategori", "kurucu", "riskDegeri", "g1y", "g3y", "g5y"])
 
 
+def haber_kapisi_hesapla(kok, poz, m, adaylar):
+    """G5b'nin bulut cagirani (M50, kural 20): <kok>/veri/kap_gunluk.json (ya da <kok>/kap_gunluk.json) varsa izleme listesi kurulur
+    (tutulan kodlar, fon icerigi varsa, aday kurucular) ve kap_izleme.haber_kapisi cagrilir. Kurucu grup dosyasi portfoy bilgisidir ve
+    yalniz Mac'te vardir; bulutta bos sozluk. Dizin yoksa None doner ve G5b olculemedi kalir. ekran.haber_notu bilgilendirir."""
+    import kap_izleme
+    yol = next((y for y in (os.path.join(kok, "veri", "kap_gunluk.json"), os.path.join(kok, "kap_gunluk.json")) if os.path.exists(y)), None)
+    if not yol:
+        ekran.haber_notu = "KAP dizini (kap_gunluk.json) yok; haber kapısı ölçülemedi, hiçbir aday önerilemez (kural 14)"; return None
+    try:
+        kg = json.load(open(yol, encoding="utf-8"))
+    except Exception as e:
+        ekran.haber_notu = f"KAP dizini okunamadı ({e}); haber kapısı ölçülemedi"; return None
+    if not kg.get("bildirimler"):
+        ekran.haber_notu = "KAP dizini boş; haber kapısı ölçülemedi"; return None
+    kurucular = sorted({str(k) for k in adaylar.kurucu if isinstance(k, str)})
+    icerik = next((y for y in (os.path.join(kok, "veri", "fon_icerik_son.csv"),) if os.path.exists(y)), "")
+    kunye = getattr(kunye_oku, "yol", None) or ""
+    grup = kap_izleme.kurucu_grup_yukle(os.path.join(kok, "veri", "kurucu_grup.json"))
+    liste = kap_izleme.izleme_listesi([{"kod": k, "tip": "Fon"} for k in poz], icerik, kunye, ek_kurucular=kurucular, kurucu_grup=grup)
+    r = kap_izleme.haber_kapisi(kg["bildirimler"], liste, kurucular, kurucu_grup=grup, govde_var=("govdeTam" in kg))
+    ekran.haber_notu = r["notu"]; ekran.haber_k1 = r.get("k1", [])
+    return r["haber"]
+
+
+def olculemeyen_giris_kapilari(o):
+    """Aday cerceve o (bilinmez sutunu: ' | ' ile ayrik kapi adlari). Her adayda olculemeyen kapi adlari (kisa ad: G4, G5b, C4...):
+    bu kapilar acilamaz ve 'aday yok' cumlesi yaniltici olur (M50). Dönüş: sirali liste; aday yoksa bos."""
+    if o is None or not len(o) or "bilinmez" not in o.columns:
+        return []
+    kume = None
+    for b in o.bilinmez.fillna(""):
+        adlar = {x.strip().split(" ")[0] for x in str(b).split("|") if x.strip()}
+        kume = adlar if kume is None else (kume & adlar)
+    return sorted(kume or [])
+
+
+KAPI_GIRDI = {"G4": "yönetim ücreti dosyası (veri/fon_ucret.csv)", "G5b": "KAP dizini taraması (kap_gunluk.json)", "C4": "dağılım dosyası (son_dagilim.csv)",
+              "G2": "yaş dosyası (veri/fon_yas.csv)", "C5": "iki yıllık oynaklık geçmişi"}
+
+
 def ekran(kok, poz, haber=None):
     d = panel(kok)
     k = kunye_oku(kok)
@@ -193,9 +235,10 @@ def ekran(kok, poz, haber=None):
     if kop:
         m.loc[m.fonKodu.isin(kop), ["neg4hafta", "akis4hafta_o"]] = [None, np.nan]
 
-    # kapi 4: dagilim kaymasi
-    yol = os.path.join(kok, "son_dagilim.csv")
-    if os.path.exists(yol):
+    # kapi 4: dagilim kaymasi; dosya <kok>/son_dagilim.csv (Mac bagi) ya da <kok>/veri/son_dagilim.csv (depo; M50: bulutta yalniz veri/ altinda)
+    yol = next((y for y in (os.path.join(kok, "son_dagilim.csv"), os.path.join(kok, "veri", "son_dagilim.csv")) if os.path.exists(y)), None)
+    ekran.dagilim_var = yol is not None
+    if yol:
         g = pd.read_csv(yol).sort_values("tarih")
         sut = [c for c in g.columns if c not in ("tarih", "fonKodu")]
         kay = (g.groupby("fonKodu").last()[sut].fillna(0)
@@ -241,6 +284,9 @@ def ekran(kok, poz, haber=None):
         m["yas_ay"] = np.nan; ekran.yasli = 0
     m["gecmis_ay"] = m.yas_ay
     # Haber kapisi G5b: kurucu -> True (temiz) / False (birinci kademe eslesme). Tarama yapilmadiysa NaN -> olculemedi (kural 14).
+    # M50: haber verilmediyse (bulut, tek basina kosu) kap_izleme.haber_kapisi buradan cagrilir; girdi <kok>/veri/kap_gunluk.json.
+    if haber is None:
+        haber = haber_kapisi_hesapla(kok, poz, m, m[(m.buyukluk >= ASGARI_BUY) & (m.kisi >= ASGARI_KISI) & (~m.fonKodu.isin(poz))])
     m["kurucu_haber"] = m.kurucu.map(haber) if haber is not None else np.nan
     # Agresif dilim gerekceleri (kural metni bolum 6): 20 seanslik net giris orani ve kurucunun diger fonlarinin gecmisi
     m["net_giris20"] = m.akis20 / (m.buyukluk - m.akis20).where(lambda x: x > 0)
@@ -277,6 +323,7 @@ def ekran(kok, poz, haber=None):
     ag = agresif_adaylar(m, poz)
     ag.to_csv(os.path.join(kok, "agresif.csv"), index=False)
     ekran.agresif = ag
+    ekran.olculemeyen = olculemeyen_giris_kapilari(o)
     return o
 
 
@@ -288,6 +335,11 @@ if __name__ == "__main__":
     o = ekran(a.kok, [x for x in a.poz.split(",") if x])
     pd.set_option("display.width", 220); pd.set_option("display.max_colwidth", 70)
     print(o.to_string(index=False))
+    if getattr(ekran, "olculemeyen", None):
+        print("\nGiriş kapısı ölçülemiyor: " + "; ".join(f"{k} ({KAPI_GIRDI.get(k, 'girdisi yok')})" for k in ekran.olculemeyen)
+              + ". Bu kapılar hiçbir adayda ölçülemediği için kapısı açık aday olamaz; 'aday yok' değil, girdi eksiği (M50).")
+    if getattr(ekran, "haber_notu", None):
+        print("Haber kapısı: " + ekran.haber_notu)
     if not getattr(ekran, "kunye_var", True):
         print("\nKünye bulunamadı (kunye_tam.csv): kategori unvandan türetildi, risk değeri ve künye getirileri ölçülemedi; kategori ölçümleri yedek kaynakla (M47).")
     ks = getattr(panel, "kimlik_son", None) or {}

@@ -522,9 +522,13 @@ def sicil_satiri(tarih, yol=None, depo=None):
 
 
 # ---------------------------------------------------------------- brifing bölümü
-def brifing_bolumu(oneriler, notlar, tarih, haber_notu, depo=None):
+def brifing_bolumu(oneriler, notlar, tarih, haber_notu, depo=None, olculemeyen=None):
+    """olculemeyen: her adayda ölçülemeyen giriş kapıları (M50). Doluysa "öneri yoktur" cümlesi yanıltıcıdır; eksik girdi adıyla yazılır."""
     L = ["## Öneri", ""]
-    if not oneriler:
+    if not oneriler and olculemeyen:
+        L.append("Giriş kapısı ölçülemiyor: " + "; ".join(olculemeyen) + ". Bu kapılar hiçbir adayda ölçülemediği için kapısı açık aday olamaz ve "
+                 "öneri üretilemez; bu bir sonuç değil, girdi eksiğidir (M50, kural 14).")
+    elif not oneriler:
         L.append("Bugün öneri yoktur. Önerisiz gün olağan bir sonuçtur; ölçüm bir öneri üretmediği için bölüm boş bırakılmadı, bu cümle yazıldı (kural 1).")
     for o in oneriler:
         tutar = _tl(o["tutar"])
