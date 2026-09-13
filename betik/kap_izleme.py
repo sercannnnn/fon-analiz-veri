@@ -94,18 +94,21 @@ def izleme_listesi(poz_json, icerik_csv, kunye_csv, esik_kirmizi=10.0, esik_sari
     if ic is not None and len(ic):
         ic = ic[ic.fonKodu.isin(fon)].copy()
         ic["ad"] = ic.kiymetAdi.astype(str)
-        ic["k"] = ic.apply(lambda r: r.isin if isinstance(r.isin, str) and r.isin.strip()
-                           else r.ad[:30], axis=1)
+        # M38 (13 Eylül 2026): r.isin pandas'ın Series.isin yöntemidir, sütun değil; öznitelikle okununca ISIN hiç kullanılmıyor ve
+        # kıymet adı boş satırda (pandas 3 string dtype'ta eksik değer nan kalır) [:30] patlıyordu. Sütunlar köşeli ayraçla okunur.
+        ic["k"] = ic.apply(lambda r: r["isin"] if isinstance(r["isin"], str) and r["isin"].strip()
+                           else str(r["ad"])[:30], axis=1)
         g = ic.groupby(["fonKodu", "k"]).agg(a=("agirlik", "sum"), ad=("ad", "first")).reset_index()
         for _, r in g[g.a >= esik_sari].iterrows():
+            ad = r.ad if isinstance(r.ad, str) else ""     # adı boş kıymet (M38): ad yok, BIST kodu ve unvan parçası aranmaz
             # BIST kodu: 4-6 harfli, jenerik olmayan
-            kodlar = [c for c in re.findall(r"\b([A-ZÇĞİÖŞÜ]{4,6})\b", r.ad)
+            kodlar = [c for c in re.findall(r"\b([A-ZÇĞİÖŞÜ]{4,6})\b", ad)
                       if sadelestir(c) not in JENERIK]
             kademe = 1 if r.a >= esik_kirmizi else 2
             for c in kodlar[:2]:
                 ekle(c, kademe, f"{r.fonKodu} içinde %{r.a:.2f}")
             # uzun kurumsal ad parcasi da eklenir (ornek: bir faktoring sirketinin unvaninin ilk iki kelimesi)
-            uzun = re.findall(r"\b([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü]{4,})\s+([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü]{4,})", r.ad)
+            uzun = re.findall(r"\b([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü]{4,})\s+([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü]{4,})", ad)
             for a1, a2 in uzun[:1]:
                 if sadelestir(a1) not in JENERIK:
                     ekle(f"{a1} {a2}", kademe, f"{r.fonKodu} içinde %{r.a:.2f}")
