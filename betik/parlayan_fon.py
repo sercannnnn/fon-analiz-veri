@@ -159,7 +159,9 @@ def haber_kapisi_hesapla(kok, poz, m, adaylar):
     kurucular = sorted({str(k) for k in adaylar.kurucu if isinstance(k, str)})
     icerik = next((y for y in (os.path.join(kok, "veri", "fon_icerik_son.csv"),) if os.path.exists(y)), "")
     kunye = getattr(kunye_oku, "yol", None) or ""
-    grup = kap_izleme.kurucu_grup_yukle(os.path.join(kok, "veri", "kurucu_grup.json"))
+    grup = kap_izleme.kurucu_grup_yukle(next((y for y in (os.path.join(kok, "veri", "kurucu_grup.json"), os.path.join(kok, "kurucu_grup.json")) if os.path.exists(y)), None))
+    if not grup:   # M54: tablo olmayan ortamda haber kapısı "açık" yazamaz; ölçemediğini geçmiş sayma (kural 14)
+        ekran.haber_notu = "kurucu grup tablosu (kurucu_grup.json) yok; haber kapısı ölçülemedi, hiçbir aday önerilemez (M54, kural 14)"; return None
     liste = kap_izleme.izleme_listesi([{"kod": k, "tip": "Fon"} for k in poz], icerik, kunye, ek_kurucular=kurucular, kurucu_grup=grup)
     r = kap_izleme.haber_kapisi(kg["bildirimler"], liste, kurucular, kurucu_grup=grup, govde_var=("govdeTam" in kg))
     ekran.haber_notu = r["notu"]; ekran.haber_k1 = r.get("k1", [])
@@ -198,7 +200,7 @@ def bekleyen_cumleler(o):
             for kod, kap in bekleyen_adaylar(o)]
 
 
-KAPI_GIRDI = {"G4": "yönetim ücreti dosyası (veri/fon_ucret.csv)", "G5b": "KAP dizini taraması (kap_gunluk.json)", "C4": "dağılım dosyası (son_dagilim.csv)",
+KAPI_GIRDI = {"G4": "yönetim ücreti dosyası (veri/fon_ucret.csv)", "G5b": "KAP dizini taraması (kap_gunluk.json) ve kurucu grup tablosu (kurucu_grup.json)", "C4": "dağılım dosyası (son_dagilim.csv)",
               "G2": "yaş dosyası (veri/fon_yas.csv)", "C5": "iki yıllık oynaklık geçmişi"}
 
 

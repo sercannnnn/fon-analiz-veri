@@ -22,6 +22,13 @@ except Exception:   # kategori.py yanında değilse unvandan türetme yapılmaz
     kategori_turet = None
 
 ALANLAR = ["fonKodu", "fonAd", "kategori", "semsiye", "kurucu", "riskDegeri", "g1y", "g3y", "g5y"]
+import re
+KISALT = re.compile(r"\s+(PORTFÖY|PORTFOY)\s+YÖNETİMİ.*$", re.I)
+
+
+def kisa_kurucu(ad):
+    """'TERA PORTFÖY YÖNETİMİ A.Ş.' -> 'TERA PORTFÖY' (künye ve kurucu grup tablosu aynı anahtarı kullanır)."""
+    return KISALT.sub(lambda m: " " + m.group(1).upper(), (ad or "").strip()).strip()
 
 
 def oku(yol):
@@ -46,7 +53,8 @@ def uret(son_gunluk, kap_kunye, onceki, cikti):
         kat = e.get("kategori") or k.get("kategori") or ""
         if not kat and kategori_turet and ad:
             kat = kategori_turet(ad) or ""; turetilen += 1
-        satirlar.append(dict(fonKodu=kod, fonAd=ad, kategori=kat, semsiye=e.get("semsiye", ""), kurucu=k.get("kurucu") or e.get("kurucu", ""),
+        kur = kisa_kurucu(k.get("kurucu") or "") or e.get("kurucu", "")   # KAP künyesi taze, uzun unvanı kısaltılır (M54: iki ortamda aynı anahtar); yoksa önceki
+        satirlar.append(dict(fonKodu=kod, fonAd=ad, kategori=kat, semsiye=e.get("semsiye", ""), kurucu=kur,
                              riskDegeri=e.get("riskDegeri", ""), g1y=e.get("g1y", ""), g3y=e.get("g3y", ""), g5y=e.get("g5y", "")))
         if kod not in eski:
             yeni += 1

@@ -54,6 +54,8 @@ python3 betik/kap_gunluk.py --cikti veri --arsiv arsiv || echo "uyari: KAP gunlu
 # Kamuya acik fon kunyesi (M47, 13 Eylul 2026): bulut parlayan fon ekrani veri/kunye_tam.csv okur; unvan ve kurucu her gun tazelenir,
 # risk degeri ve kunye getirileri onceki dosyadan tasinir. Basarisizsa akis durmaz.
 python3 betik/kunye_tam_uret.py --veri veri || echo "uyari: kunye_tam uretilemedi"
+# Kurucu grup tablosu, butun kurucular icin (M54): KAP dizinindeki sirket adlarindan kok kelimeyle ve kamuya acik ek dosyayla; veri/kurucu_grup.json
+python3 betik/kurucu_grup_uret.py --veri veri --arsiv arsiv || echo "uyari: kurucu_grup uretilemedi"   # ek dosya veri/kurucu_grup_ek.json (veri olarak depoda)
 gonder "TEFAS cekimi"
 # Fon yonetim ucreti (giris kapisi 4): KAP genel bilgiler sayfasindan gunde 150 fon, 30 gunde bir yenilenir; veri/fon_ucret.csv
 python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
