@@ -163,8 +163,9 @@ def haber_kapisi_hesapla(kok, poz, m, adaylar):
     if not grup:   # M54: tablo olmayan ortamda haber kapısı "açık" yazamaz; ölçemediğini geçmiş sayma (kural 14)
         ekran.haber_notu = "kurucu grup tablosu (kurucu_grup.json) yok; haber kapısı ölçülemedi, hiçbir aday önerilemez (M54, kural 14)"; return None
     liste = kap_izleme.izleme_listesi([{"kod": k, "tip": "Fon"} for k in poz], icerik, kunye, ek_kurucular=kurucular, kurucu_grup=grup)
-    r = kap_izleme.haber_kapisi(kg["bildirimler"], liste, kurucular, kurucu_grup=grup, govde_var=("govdeTam" in kg))
-    ekran.haber_notu = r["notu"]; ekran.haber_k1 = r.get("k1", [])
+    gecmis = kap_izleme.kap_gecmisi(os.path.join(kok, "arsiv"))   # M56: tasfiye sayimi icin pencere
+    r = kap_izleme.haber_kapisi(kg["bildirimler"], liste, kurucular, kurucu_grup=grup, govde_var=("govdeTam" in kg), gecmis=gecmis)
+    ekran.haber_notu = r["notu"]; ekran.haber_k1 = r.get("k1", []); ekran.haber_fon_kapali = set(r.get("fon_kapali") or [])
     return r["haber"]
 
 
@@ -204,8 +205,10 @@ KAPI_GIRDI = {"G4": "yönetim ücreti dosyası (veri/fon_ucret.csv)", "G5b": "KA
               "G2": "yaş dosyası (veri/fon_yas.csv)", "C5": "iki yıllık oynaklık geçmişi"}
 
 
-def ekran(kok, poz, haber=None):
+def ekran(kok, poz, haber=None, haber_fon=None):
+    """haber: kurucu -> True/False/None; haber_fon: kendi tasfiyesi olan fon kodlari (M56, kapisi kapali)."""
     d = panel(kok)
+    ekran.haber_fon_kapali = set(haber_fon or [])
     k = kunye_oku(kok)
     ekran.kunye_var = kunye_oku.var
     m = olc(d).merge(k, on="fonKodu", how="left")
@@ -310,6 +313,9 @@ def ekran(kok, poz, haber=None):
     if haber is None:
         haber = haber_kapisi_hesapla(kok, poz, m, m[(m.buyukluk >= ASGARI_BUY) & (m.kisi >= ASGARI_KISI) & (~m.fonKodu.isin(poz))])
     m["kurucu_haber"] = m.kurucu.map(haber) if haber is not None else np.nan
+    fk = getattr(ekran, "haber_fon_kapali", set())
+    if fk:
+        m.loc[m.fonKodu.isin(fk), "kurucu_haber"] = False   # M56: fonun kendi tasfiyesi kapiyi kapatir, kardes fon degil
     # Agresif dilim gerekceleri (kural metni bolum 6): 20 seanslik net giris orani ve kurucunun diger fonlarinin gecmisi
     m["net_giris20"] = m.akis20 / (m.buyukluk - m.akis20).where(lambda x: x > 0)
     kg = kurucu_gecmisi(d, m)

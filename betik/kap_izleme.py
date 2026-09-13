@@ -167,6 +167,36 @@ KAPATAN_OLAY = [
                                                              "PORTFOY YONETICISININ DEGISMESI","PORTFOY YONETIM SIRKETININ DEGISMESI","YONETICI DEGISIKLIGI"]),
 ]
 KAP_TURLERI = {"OZEL DURUM ACIKLAMASI GENEL", "GENEL ACIKLAMA"}   # M55: iceriksiz "kap" turleri; ozeti ve govdesi bos gelirse o kurucu icin kapi olculemedi
+# M56 (not 51): tasfiye maddesi adayin kendi fonuna uygulanir. Ozel fon tasfiyesi hic sayilmaz (sureli kurulur), kardes fonun tasfiyesi
+# bilgi satiridir; ayni kurucuda TASFIYE_PENCERE_GUN icinde TASFIYE_KURUCU_ESIK ve ustu kamuya acik fon tasfiyesi yonetici isaretidir ve kapatir.
+TASFIYE_AD = "fonun tasfiyesi ya da işlemlerinin durdurulması"
+TASFIYE_KURUCU_ESIK = 3
+TASFIYE_PENCERE_GUN = 28        # takvim gunu, yaklasik yirmi seans
+
+
+def ozel_fon_mu(sirket):
+    return "OZEL FON" in sadelestir(sirket or "")
+
+
+def kap_gecmisi(arsiv, bugun=None, gun=TASFIYE_PENCERE_GUN):
+    """arsiv/kap_YYYY-MM.json.gz icinden son `gun` takvim gunune dusen bildirimler (M56 tasfiye sayimi icin). Arsiv yoksa bos liste."""
+    import glob, gzip
+    from datetime import date, timedelta
+    if not arsiv or not os.path.isdir(arsiv):
+        return []
+    bugun = bugun or date.today()
+    bas = (bugun - timedelta(days=gun)).isoformat()
+    L = []
+    for f in sorted(glob.glob(os.path.join(arsiv, "kap_*.json.gz")))[-2:]:
+        try:
+            with gzip.open(f, "rt", encoding="utf-8") as h:
+                j = json.load(h)
+        except Exception:
+            continue
+        for b in (j.get("bildirimler") if isinstance(j, dict) else j) or []:
+            if str(b.get("tarih", ""))[:10] >= bas:
+                L.append(b)
+    return L
 
 
 def kapatan_olaylar(metin):
@@ -244,7 +274,7 @@ def eksik_triyaj(bildirimler):
     return eng, n
 
 
-def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True):
+def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True, gecmis=None):
     """Haber kapisinin TEK giris noktasi (kural 20: her kuralin bir cagirani olur; Mac brifingi ve bulut gorevi bunu cagirir).
     bildirimler: gunun KAP dizini (kap_gunluk.json 'bildirimler'); liste: izleme_listesi(); kurucular: aday fonlarin kuruculari.
     Sira: rutin tur suzgeci (madde 1) -> tam metin tarama -> rutin olup agir konu tasiyanlar eklenir -> eksik govde triyaji (madde 3).
@@ -254,15 +284,36 @@ def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True
     vurus = tara(dis, liste) + [v for v in tara(rutin, liste) if v["agir_konu"]]
     k1 = [v for v in vurus if v["kademe"] == 1]
     eng, eksik_diger = eksik_triyaj(bildirimler)
+    # M56: tasfiye maddesi fon duzeyindedir. Ozel fon tasfiyesi hic sayilmaz; kamuya acik fonun tasfiyesi o fonu kapatir (fon_kapali),
+    # kurucu duzeyinde bilgi satiridir; ayni kurucuda pencere icinde TASFIYE_KURUCU_ESIK ve ustu kamu fonu tasfiyesi kurucuyu kapatir.
+    fon_kapali, tasfiye_kamu, tasfiye_ozel = set(), [], []
+    def _tasfiye_ayikla(vurus_listesi):
+        for v in vurus_listesi:
+            if TASFIYE_AD not in v["kapatan"]:
+                continue
+            v["kapatan"] = [x for x in v["kapatan"] if x != TASFIYE_AD]
+            if ozel_fon_mu(v["sirket"]):
+                v["tasfiye"] = "ozel"; tasfiye_ozel.append(v)
+            else:
+                v["tasfiye"] = "kamu"; tasfiye_kamu.append(v)
+                if v.get("fon"):
+                    fon_kapali.add(v["fon"])
+    _tasfiye_ayikla(k1)
+    gecmis_vurus = [v for v in tara(list(gecmis or []), liste) if v["kademe"] == 1]
+    bugun_idler = {v["id"] for v in k1}
+    _tasfiye_ayikla([v for v in gecmis_vurus if v["id"] not in bugun_idler])
     kapatan = [v for v in k1 if v["kapatan"]]                       # M55: kapatan olay tasiyan birinci kademe vurus
     kap_bos = [v for v in k1 if v["kap_bos"] and not v["kapatan"]]   # M55: icerigi okunamayan kap bildirimi
-    bilgi = [v for v in k1 if not v["kapatan"] and not v["kap_bos"]] # kapatmaz, brifingde bilgi satiri
+    bilgi = [v for v in k1 if not v["kapatan"] and not v["kap_bos"]] # kapatmaz, brifingde bilgi satiri (kardes fon tasfiyesi dahil)
     haber, sebep = {}, {}
     for k in kurucular:
         anahtar = {sadelestir(g) for g in kurucu_grup.get(k, [k])}
         vur = [v for v in kapatan if set(v["eslesen"]) & anahtar]
+        kamu_fonlar = {v["fon"] or v["sirket"] for v in tasfiye_kamu if set(v["eslesen"]) & anahtar}
         if vur:
             haber[k] = False; sebep[k] = "; ".join(f"{v['sirket']}: {', '.join(v['kapatan'])}" for v in vur[:3])
+        elif len(kamu_fonlar) >= TASFIYE_KURUCU_ESIK:
+            haber[k] = False; sebep[k] = f"{TASFIYE_PENCERE_GUN} günde {len(kamu_fonlar)} kamuya açık fon tasfiyesi (eşik {TASFIYE_KURUCU_ESIK}); yönetici işareti"
         elif any(any(a in sadelestir(b.get("sirket") or "") for a in anahtar) for b in eng):
             haber[k] = None; sebep[k] = "gövdesi çekilemeyen kapatan konulu bildirim"   # engelleyici eksik: govde okunana kadar olculemedi
         elif any(set(v["eslesen"]) & anahtar for v in kap_bos):
@@ -273,10 +324,12 @@ def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True
     notu = (f"{b_(len(bildirimler))} bildirim tarandı; rutin tür süzgeciyle elenen {b_(len(rutin))} ({len(RUTIN_TURLER)} tür, kademe yükselten "
             f"konu taşıyanlar sayıldı), {b_(len(vurus))} eşleşme, {b_(len(k1))} birinci kademe; kapatan olay {b_(len(kapatan))}, "
             f"bilgi satırı {b_(len(bilgi))}, içeriksiz kap bildirimi {b_(len(kap_bos))} (M55: yalnızca kapatan olay kapıyı kapatır)"
+            + (f"; fon tasfiyesi: özel {b_(len(tasfiye_ozel))} sayılmadı, kamuya açık {b_(len(fon_kapali))} fon kendi kapısı kapalı, kardeş fon bilgi (M56)" if tasfiye_ozel or fon_kapali else "")
             + (f"; gövdesi çekilemeyen {b_(len(eng))} engelleyici bildirim (haber kapısı o kurucularda ölçülemedi)" if eng else "")
             + (f"; gövdesi çekilemeyen {b_(eksik_diger)} rutin dışı bildirim, tarama eksiktir" if eksik_diger else "")
             + ("" if govde_var else "; gövde metni çekilmemiş, tarama özet ve konu üzerinden"))
-    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus), kapatan=kapatan, bilgi=bilgi, kap_bos=kap_bos, sebep=sebep)
+    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus), kapatan=kapatan, bilgi=bilgi, kap_bos=kap_bos, sebep=sebep,
+                fon_kapali=sorted(fon_kapali), tasfiye_ozel=len(tasfiye_ozel), tasfiye_kamu=len(tasfiye_kamu))
 
 
 # ---------------------------------------------------------------- tarama
@@ -304,6 +357,7 @@ def tara(bildirimler, liste, kendi_fonlarimiz=()):
             "agir_konu": konular,
             "kapatan": kapatan_olaylar(gövde),      # M55: yalnizca bu dolu olan birinci kademe vurus kapiyi kapatir
             "kap_bos": kap_bos_mu(b),                 # M55: icerigi okunamayan kap bildirimi -> olculemedi
+            "fon": b.get("fon") or "",                # M56: fon bildirimiyse kodu; tasfiye adayin kendi fonuna uygulanir
         })
     sonuc.sort(key=lambda x: (x["kademe"], x["sirket"] or ""))
     return sonuc
