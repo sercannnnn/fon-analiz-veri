@@ -41,6 +41,12 @@ ARSIV = os.environ.get("FON_DENETIM_ARSIV", os.path.join(KOK, "03 Veri", "Arşiv
 KIMLIK_ISTISNA_YOL = os.path.join(KUNYE_KLASOR, "kimlik_istisna.json")
 SAPMA_YAS_ESIK_IS_GUNU = 5       # açık sapma bu kadar iş gününü aşınca brifing ayrı satırda bildirir (varsayım, 13 Eylül 2026; SOX 30 günlük bantlar günlük döngüye uymaz)
 SAPMA_SINIFLAR = ("zamanlama", "duzeltme", "arastirma", "kayit")   # mutabakat kalemi sınıfları (finance değerlendirmesi 2.3)
+KIMLIK_ARIZA_YOL = os.path.join(KUNYE_KLASOR, "kimlik_arizalari.json")   # kimlik taramasının çıktısı; akış hesabı bu fon-tarihleri düşer (takvim.kimlik_arizasi_ayikla)
+KIMLIK_TARAMA_SEANS = 52         # kimlik taraması penceresi (30 numaralı not: 2.047 fon, 52 seans)
+KALICI_ORAN = 0.80               # günlerin bu oranında sapan fon kalıcı kimlik farkıdır; yalnızca kalıcı fon istisna listesine girebilir
+BIRIM_HATASI_TOL = 0.01          # oran 1000'e ya da 0,001'e bu göreli payla yakınsa birim hatası (büyüklük bin TL basılmış)
+GECIKME_TOL = 0.002              # ardışık iki seansta oranların çarpımı 1'e bu kadar yakınsa bir günlük gecikme imzası (RTH: 1,03 ve 0,97)
+DISA_AKTARIM = os.path.join(KOK, "03 Veri", "defter_disa_aktarim.json")   # akşam görevinin yazdığı pozisyon fotoğrafı; köprünün yakıtı
 FIYAT_ESLESME_TOL = 0.5e-6       # deger/adet ile TEFAS fiyatı bu kadar yakınsa aynı gün sayılır (fiyat altı ondalıkla basılır) + 0,01/adet
 HISSE_TUR = re.compile(r"HISSE|HİSSE|ODUNC|ÖDÜNÇ", re.I)
 
@@ -215,6 +221,74 @@ def kimlik_istisna_yukle():
     return json_oku(KIMLIK_ISTISNA_YOL, [])
 
 
+def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None):
+    """Arşivdeki son `seans` günde her fonun kimlik farkını (pay × fiyat − büyüklük; tolerans pay × 0,5e-6 + 0,01 TL) ölçer ve
+    fonları sınıflar (30 numaralı not, madde 1): kalıcı (günlerin en az KALICI_ORAN'ında sapan), epizodik (tek seans sapan, komşu
+    seanslar tolerans içinde), aralıklı (birden çok seans ama kalıcı değil). Epizodik arızalar imzasıyla adlandırılır: birim hatası
+    (oran 1000 ya da 0,001'e yakın), bir günlük gecikme (ardışık iki seansta oranlar birbirinin tersi), diğer.
+    Dönüş: dict(pencere, fonlar{kod: {sinif, sapanGun, gun, farkOrtanca, farkEnKucuk, farkEnBuyuk}}, arizalar[{fonKodu, tarih, fark, oran, imza}]).
+    Liste değil kural: elle bakım istemez; sonuç KIMLIK_ARIZA_YOL dosyasına yazılır, akış hesabı epizodik fon-tarihleri düşer."""
+    dosyalar = sorted(glob.glob(os.path.join(ARSIV, "tefas_????-??.csv.gz")))[-4:]
+    kayit = {}   # (kod, tarih) -> (pay, fiyat, buyukluk)
+    for yol in dosyalar:
+        with gzip.open(yol, "rt", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                try:
+                    pay, fi, bu = float(r["tedPaySayisi"] or 0), float(r["fiyat"] or 0), float(r["portfoyBuyukluk"] or 0)
+                except (ValueError, KeyError):
+                    continue
+                if fi > 0 and pay > 0:
+                    kayit[(r["fonKodu"], r["tarih"])] = (pay, fi, bu)
+    gunler = sorted({g for _, g in kayit})
+    if son_gun:
+        gunler = [g for g in gunler if g <= son_gun]
+    gunler = gunler[-seans:]
+    gun_ix = {g: i for i, g in enumerate(gunler)}
+    seriler = {}
+    for (kod, g), (pay, fi, bu) in kayit.items():
+        if g in gun_ix:
+            seriler.setdefault(kod, {})[g] = (pay * fi - bu, (pay * fi / bu) if bu else None, pay * 0.5e-6 + 0.01)
+    fonlar, arizalar = {}, []
+    for kod, s in seriler.items():
+        sapan = {g: v for g, v in s.items() if abs(v[0]) > v[2]}
+        if not sapan:
+            continue
+        farklar = [v[0] for v in sapan.values()]
+        oran = len(sapan) / len(s)
+        if oran >= KALICI_ORAN:
+            sinif = "kalici"
+        else:
+            sinif = "epizodik"
+            sg = sorted(sapan)
+            # tek seanslık: her sapan günün komşu seansları tolerans içinde ya da ayna imzalı çift; aksi hâlde aralıklı
+            for g in sg:
+                i = gun_ix[g]
+                kom = [gunler[j] for j in (i - 1, i + 1) if 0 <= j < len(gunler)]
+                if any(k in sapan for k in kom):
+                    # ayna çifti (gecikme) tek arıza sayılır; başka biçimde komşu sapan aralıklıdır
+                    eslesen = [k for k in kom if k in sapan and s[k][1] and sapan[g][1] and abs(s[k][1] * sapan[g][1] - 1) <= GECIKME_TOL]
+                    if not eslesen:
+                        sinif = "aralikli"; break
+            if sinif == "epizodik" and len(sapan) > 3:
+                sinif = "aralikli"
+        fonlar[kod] = dict(sinif=sinif, sapanGun=len(sapan), gun=len(s), farkOrtanca=round(sorted(farklar)[len(farklar) // 2], 2),
+                           farkEnKucuk=round(min(farklar), 2), farkEnBuyuk=round(max(farklar), 2))
+        if sinif != "kalici":
+            for g in sorted(sapan):
+                fark, o, _ = sapan[g]
+                imza = "diger"
+                if o and (abs(o / 1000 - 1) <= BIRIM_HATASI_TOL or abs(o * 1000 - 1) <= BIRIM_HATASI_TOL):
+                    imza = "birim_hatasi"
+                else:
+                    i = gun_ix[g]
+                    for j in (i - 1, i + 1):
+                        if 0 <= j < len(gunler) and gunler[j] in sapan and o and sapan[gunler[j]][1] and abs(o * sapan[gunler[j]][1] - 1) <= GECIKME_TOL:
+                            imza = "bir_gunluk_gecikme"
+                arizalar.append(dict(fonKodu=kod, tarih=g, fark=round(fark, 2), oran=(round(o, 6) if o else None), imza=imza, sinif=sinif))
+    return dict(pencere=dict(bas=gunler[0] if gunler else None, bit=gunler[-1] if gunler else None, seans=len(gunler), fon=len(seriler)),
+                fonlar=fonlar, arizalar=arizalar)
+
+
 # ---------------------------------------------------------------- girdiler
 
 def son_klasor():
@@ -255,44 +329,74 @@ def sinama_kimlik(L, rapor):
     rapor.append(f"Çekim {ks.get('cekimZamaniUtc')} UTC, son gün {ks['sonGun']}: {tl(ks['sonGunKayit'])} kayıt, fiyatsız {tl(ks['sonGunFiyatsiz'])}, "
                  f"tam kapsamlı son gün {ks.get('tamKapsamliSonGun')}. [kayıt, çekim anında ölçüm]")
     rapor.append(f"Kimlik sınamasından sapan fon: {tl(n)}. Tolerans pay adedi × 0,5e-6 + 0,01 TL (fiyat altı ondalıkla basılır). [ölçüm]")
-    # istisna listesi (2.2): fon başına en son günün farkı listedeki farkla karşılaştırılır; tolerans aşılırsa kırmızı
+    # tarama (30 numaralı not): son 52 seans, kalıcı / epizodik / aralıklı; epizodik fon-tarihler akış hesabından düşülür
+    tara = kimlik_taramasi() if glob.glob(os.path.join(ARSIV, "tefas_????-??.csv.gz")) else dict(pencere={}, fonlar={}, arizalar=[])
+    if tara["pencere"]:
+        try:
+            json.dump(tara, open(KIMLIK_ARIZA_YOL, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        except OSError:
+            pass
+    fonlar = tara["fonlar"]; ariza_ix = {(a["fonKodu"], a["tarih"]): a for a in tara["arizalar"]}
+    kal = sorted(k for k, v in fonlar.items() if v["sinif"] == "kalici")
+    ara = sorted(k for k, v in fonlar.items() if v["sinif"] == "aralikli")
+    epi = sorted(k for k, v in fonlar.items() if v["sinif"] == "epizodik")
+    if tara["pencere"]:
+        p = tara["pencere"]
+        rapor.append(f"Tarama {p['bas']} ile {p['bit']} arası {tl(p['seans'])} seans, {tl(p['fon'])} fon: kalıcı {tl(len(kal))} ({', '.join(kal) or '-'}), "
+                     f"aralıklı {tl(len(ara))} ({', '.join(ara) or '-'}), epizodik {tl(len(epi))}; arızalı fon-gün {tl(len(tara['arizalar']))} "
+                     f"(epizodik {tl(len([a for a in tara['arizalar'] if a['sinif'] == 'epizodik']))}, aralıklı {tl(len([a for a in tara['arizalar'] if a['sinif'] == 'aralikli']))}) "
+                     f"akış hesabından düşülür (kimlik_arizalari.json); kalıcı fonun günleri düşülmez. [ölçüm]")
+        imzalar = {}
+        for a in tara["arizalar"]:
+            imzalar[a["imza"]] = imzalar.get(a["imza"], 0) + 1
+        if imzalar:
+            rapor.append("Arıza imzaları: " + ", ".join(f"{k} {tl(v)}" for k, v in sorted(imzalar.items())) + ". [ölçüm]")
+    # istisna listesi (2.2, 30 numaralı not): yalnızca kalıcı fon listede durabilir; satır etiketi satırın kendi farkıyla ölçülür
     ist = {x["fonKodu"]: x for x in kimlik_istisna_yukle() if x.get("fonKodu")}
-    son_fark = {}
-    for s in sap:
-        if s["tarih"] >= son_fark.get(s["fonKodu"], ("", 0))[0]:
-            son_fark[s["fonKodu"]] = (s["tarih"], round(s["payXfiyat"] - s["buyukluk"], 2))
-    yeni, sari, bozulan = [], [], []
-    for kod, (g, f) in sorted(son_fark.items()):
+    kirmizi_sebep = []
+    for kod, e in ist.items():
+        if tara["pencere"] and fonlar.get(kod, {}).get("sinif") != "kalici":
+            kirmizi_sebep.append(f"{kod} listede ama taramada kalıcı değil ({fonlar.get(kod, {}).get('sinif', 'sapmıyor')}); liste kaydı ölçümle çelişiyor")
+    for kod in kal:
+        if kod not in ist:
+            kirmizi_sebep.append(f"{kod} taramada kalıcı ({fonlar[kod]['sapanGun']}/{fonlar[kod]['gun']} gün, ortanca {tl(fonlar[kod]['farkOrtanca'], 2)} TL) ama listede yok")
+    def etiket(kod, g, fark):
         e = ist.get(kod)
-        if not e:
-            yeni.append((kod, f))
-        elif abs(f - float(e.get("fark") or 0)) <= float(e.get("tolerans") or 0):
-            sari.append((kod, f, e))
-        else:
-            bozulan.append((kod, f, e))
+        if e:
+            return "bilinen" if abs(fark - float(e.get("fark") or 0)) <= float(e.get("tolerans") or 0) else "TOLERANS AŞILDI"
+        a = ariza_ix.get((kod, g))
+        if a:
+            return f"besleme arızası ({a['imza']})" if a["sinif"] == "epizodik" else "aralıklı"
+        return "yeni"
+    sayac = {}
     if sap:
         rapor.append("")
-        rapor.append("| Tarih | Fon | Pay × fiyat | Büyüklük | Fark | İstisna |")
+        rapor.append("| Tarih | Fon | Pay × fiyat | Büyüklük | Fark | Etiket |")
         rapor.append("|---|---|---|---|---|---|")
         for s in sorted(sap, key=lambda s: -abs(s["payXfiyat"] - s["buyukluk"]))[:25]:
-            e = ist.get(s["fonKodu"])
-            etiket = "-" if not e else ("bilinen" if (s["fonKodu"], round(s["payXfiyat"] - s["buyukluk"], 2), e) in sari else "TOLERANS AŞILDI")
-            rapor.append(f"| {s['tarih']} | {s['fonKodu']} | {tl(s['payXfiyat'], 2)} | {tl(s['buyukluk'], 2)} | {tl(s['payXfiyat'] - s['buyukluk'], 2)} | {etiket} |")
+            f = round(s["payXfiyat"] - s["buyukluk"], 2); et = etiket(s["fonKodu"], s["tarih"], f)
+            sayac[et.split(" (")[0]] = sayac.get(et.split(" (")[0], 0) + 1
+            rapor.append(f"| {s['tarih']} | {s['fonKodu']} | {tl(s['payXfiyat'], 2)} | {tl(s['buyukluk'], 2)} | {tl(f, 2)} | {et} |")
         rapor.append("")
-        rapor.append("Sapma sıfır çıkmadan bu fonlarda akış hesabı kullanılmaz (beceri bölüm 2).")
+        rapor.append("Sapma sıfır çıkmadan bu fonlarda akış hesabı kullanılmaz (beceri bölüm 2); epizodik arıza günü akış hesabından düşülmüştür.")
+    for kod in ara:
+        v = fonlar[kod]
+        sapma_ekle(L, f"kimlik-aralikli-{kod}", f"{kod} kimlik farkı aralıklı: {v['sapanGun']}/{v['gun']} günde sapıyor, ne kalıcı ne tek seanslık",
+                   None, None, OLCUM, None, f"aralık {tl(v['farkEnKucuk'], 2)} ile {tl(v['farkEnBuyuk'], 2)} TL; sebebi kurucudan ya da TEFAS'tan sorulmalı", sinif="arastirma")
+    if kirmizi_sebep:
+        for s in kirmizi_sebep:
+            rapor.append(f"- {s}.")
     if ist:
-        rapor.append(f"İstisna listesi ({os.path.basename(KIMLIK_ISTISNA_YOL)}): {tl(len(ist))} fon; bilinen ve tolerans içinde {tl(len(sari))}, "
-                     f"toleransı aşan {tl(len(bozulan))}, listede olmayan yeni sapma {tl(len(yeni))}. [kayıt]")
-        for kod, f, e in bozulan:
-            rapor.append(f"- {kod}: fark {tl(f, 2)} TL, listeye alınırken {tl(float(e.get('fark') or 0), 2)} TL, tolerans {tl(float(e.get('tolerans') or 0), 2)} TL; kayıt kırmızıya döndü.")
+        rapor.append(f"İstisna listesi ({os.path.basename(KIMLIK_ISTISNA_YOL)}): {tl(len(ist))} fon ({', '.join(sorted(ist))}); satır etiketleri: "
+                     + ", ".join(f"{k} {tl(v)}" for k, v in sorted(sayac.items())) + ". [kayıt]")
     rapor.append("")
-    if not n:
+    if not n and not kirmizi_sebep:
         durum = "yesil"
-    elif yeni or bozulan:
+    elif kirmizi_sebep or sayac.get("TOLERANS AŞILDI") or sayac.get("yeni"):
         durum = "kirmizi"
     else:
         durum = "sari"
-    return {"durum": durum, "sapan": n, "istisnaBilinen": len(sari), "istisnaBozulan": len(bozulan), "yeniSapan": len(yeni)}
+    return {"durum": durum, "sapan": n, "kalici": kal, "aralikli": ara, "epizodik": len(epi), "etiketler": sayac, "celisen": kirmizi_sebep}
 
 
 def sinama_taban(L, rapor, klasor, tarih):
@@ -563,7 +667,8 @@ def sinama_kopru(L, rapor, klasor, tarih):
         rapor.append("Bugünkü ya da önceki günün pozisyon dosyası yok; köprü kurulamadı. [kayıt]"); rapor.append(""); return {"durum": "olculemedi"}
     poz0 = json_oku(os.path.join(onceki, "06 Pozisyonlar.json"), {})
     t0, t1 = os.path.basename(onceki), tarih
-    em = json_oku(os.path.join(klasor, "05 Emirler.json"), {}) or {}
+    em_yol = os.path.join(klasor, "05 Emirler.json")
+    em = json_oku(em_yol, {}) or {}
     try:
         gun = date.fromisoformat(t1)
     except ValueError:
@@ -579,8 +684,18 @@ def sinama_kopru(L, rapor, klasor, tarih):
     if len(g0) != 1 or len(g1) != 1:
         rapor.append("Değerleme günü tek değil ya da eşleşmedi; köprü kurulamadı, pozisyonlar tek tek incelenmeli. [hesaplama]"); rapor.append("")
         return {"durum": "olculemedi", "toplamOnceki": top0, "toplamBugun": top1}
-    son_seans = max((g for k in F for g in F[k] if g <= t1), default=None)   # klasör tarihine kadar TEFAS'ın son fiyat günü
-    teyit = g1[0] >= t1 or (son_seans is not None and g1[0] == son_seans)
+    if not os.path.exists(em_yol):
+        adet_degisti = any(float(poz0[k].get("adet") or 0) != float(poz1[k].get("adet") or 0) for k in poz0 if k in poz1) or set(poz0) != set(poz1)
+        if adet_degisti:
+            rapor.append("Emir dosyası (05 Emirler.json) yok ve adetler değişmiş; işlem etkisi ölçülemez, köprü kurulamadı. [kayıt]"); rapor.append("")
+            return {"durum": "olculemedi", "toplamOnceki": top0, "toplamBugun": top1, "sebep": "emir dosyası yok"}
+    from takvim import son_is_gunu
+    son_is = son_is_gunu(t1).isoformat()                                          # ölçüt takvimdir, arşivin son günü değil (30 numaralı not, madde 4)
+    arsiv_son = max((g for k in F for g in F[k] if g <= t1), default=None)
+    teyit = g1[0] >= son_is
+    if arsiv_son is not None and arsiv_son < son_is:
+        rapor.append(f"Arşivin son fiyat günü {arsiv_son}, takvimin son iş günü {son_is}: arşiv eski; teyit bu yüzden ölçülemez, köprü bilgi amaçlıdır. [ölçüm]")
+        teyit = False
     # fiyat etkisi: dünkü adetler, iki değerleme günü arası fiyat farkı
     fiyat_etkisi, eslesmeyen = 0.0, []
     for k, v in poz0.items():
@@ -682,6 +797,23 @@ def calistir(klasor, icerik_yol, isimler, bildirilen):
     return metin, genel
 
 
+def disa_aktarimi_klasore_yaz(disa=None, rapor_kok=None):
+    """Akşam görevinin yazdığı defter dışa aktarımı (olcumZamani, pozisyonlar, nakit) o günün klasörüne 06 Pozisyonlar.json olarak
+    kopyalanır; köprünün yakıtı budur (30 numaralı not, madde 3). Var olan dosyanın üstüne yazılmaz. Dönüş: yazılan yol ya da None."""
+    from oneri import disa_aktarim_dogrula
+    disa = disa or DISA_AKTARIM; rapor_kok = rapor_kok or RAPOR
+    j = json_oku(disa, None)
+    if not j or disa_aktarim_dogrula(j):
+        return None
+    gun = str(j.get("olcumZamani"))[:10]
+    klasor = os.path.join(rapor_kok, gun); hedef = os.path.join(klasor, "06 Pozisyonlar.json")
+    if os.path.exists(hedef):
+        return None
+    os.makedirs(klasor, exist_ok=True)
+    json.dump(j["pozisyonlar"], open(hedef, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return hedef
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--klasor", help="günlük rapor klasörü; varsayılan en yeni")
@@ -693,6 +825,9 @@ def main():
     a = ap.parse_args()
     if a.kapat:
         sapma_kapat(a.kapat, a.kanit); return
+    y = disa_aktarimi_klasore_yaz()
+    if y:
+        print(f"defter dışa aktarımı günün klasörüne yazıldı: {y}", file=sys.stderr)
     klasor = a.klasor or son_klasor()
     isimler = a.isim
     if isimler is None:

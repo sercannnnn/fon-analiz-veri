@@ -9,6 +9,8 @@ Kural 15: fiyatı sıfır ya da boş olan kayıt ölçüme girmez, sayısı bild
 Kullanım: oynaklık, yıllık getiri ve düşüş ölçümleri bu modülün maskesini kullanır; betikler kendi
 boşluk kuralını yazmaz. Yalnızca numpy ve pandas.
 """
+import json, os
+from datetime import date, timedelta
 import numpy as np
 import pandas as pd
 
@@ -78,3 +80,43 @@ def gecersiz_fiyat_ayikla(d):
     son_gun = d["tarih"].max()
     son_gun_fon = int(d.loc[gecersiz & (d["tarih"] == son_gun), "fonKodu"].nunique())
     return d[~gecersiz].copy(), int(gecersiz.sum()), son_gun_fon
+
+
+def son_is_gunu(gun):
+    """gun (date ya da 'YYYY-AA-GG') tarihine eşit ya da ondan önceki son iş günü: hafta sonu ve doğrulanmış resmî kapanış
+    aralığı (RESMI_KAPANIS: son seans ile ilk seans arasındaki günler) atlanır. Köprünün "defter teyit edildi" ölçütü
+    arşivin son günü değil bu takvim günüdür (30 numaralı not, madde 4): arşiv eskiyse ölçüt eskimez."""
+    g = gun if isinstance(gun, date) else date.fromisoformat(str(gun)[:10])
+    kapali = set()
+    for a, z in RESMI_KAPANIS:
+        a_, z_ = date.fromisoformat(a), date.fromisoformat(z)
+        x = a_ + timedelta(days=1)
+        while x < z_:
+            kapali.add(x); x += timedelta(days=1)
+    while g.weekday() >= 5 or g in kapali:
+        g -= timedelta(days=1)
+    return g
+
+
+def kimlik_arizasi_ayikla(d, yol):
+    """Tek seanslık kimlik arızası (30 numaralı not, madde 1): denetim.py'nin yazdığı kimlik_arizalari.json içindeki fon-tarih
+    çiftlerinde pay adedi ve büyüklük ölçüme girmez (NaN); fiyat kalır. Akış ve itfa ölçümleri o günü atlar, kalıcı tolerans
+    doğmaz. Dönüş: (çerçeve, düşülen satır sayısı). Dosya yoksa çerçeve olduğu gibi döner ve sayı sıfırdır."""
+    if not yol or not os.path.exists(yol):
+        return d, 0
+    try:
+        j = json.load(open(yol, encoding="utf-8"))
+    except Exception:
+        return d, 0
+    ciftler = {(a["fonKodu"], str(a["tarih"])[:10]) for a in (j.get("arizalar") or []) if a.get("fonKodu") and a.get("tarih")}
+    if not ciftler:
+        return d, 0
+    anahtar = list(zip(d["fonKodu"].astype(str), pd.to_datetime(d["tarih"]).dt.strftime("%Y-%m-%d")))
+    maske = np.array([k in ciftler for k in anahtar])
+    if not maske.any():
+        return d, 0
+    d = d.copy()
+    for c in ("tedPaySayisi", "portfoyBuyukluk"):
+        if c in d.columns:
+            d.loc[maske, c] = np.nan
+    return d, int(maske.sum())

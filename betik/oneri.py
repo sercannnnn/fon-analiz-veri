@@ -345,7 +345,7 @@ def oneri_json(oneriler, tarih, yol=None, depo=None):
     d = _depo(depo, yol)
     oz = sicil_ozeti(tarih[:7], depo=d)
     g = oz["uygulanan_getiri"]
-    isabet = (f"uygulanan {oz['uygulanan']} önerinin 20 seans ortalama getirisi {_yuzde(g[0])} ({g[1]} ölçüm)" if g[0] is not None else None)
+    isabet = (f"uygulanan {oz['uygulanan']} önerinin 20 seans ortalama getirisi {_yuzde(g[0])} ({g[1]} ölçüm); {kiyas_cumlesi(oz)}" if g[0] is not None else None)
     return o, dict(ay=oz["ay"], verilen=oz["verilen"], uygulanan=oz["uygulanan"], bilinmeyen=oz["bilinmeyen"], isabet=isabet, metin=sicil_satiri(tarih, depo=d))
 
 
@@ -369,9 +369,20 @@ def sicil_yaz(oneriler, tarih, veri_tarihi, yol=None, depo=None):
     return n
 
 
-def sicil_guncelle(fiyat, emirler=None, yol=None, depo=None):
+def _pencere_getirisi(L, t0, k=SONUC_SEANS):
+    """Tarih sıralı (tarih, fiyat) listesinde t0'dan (ilk seans >= t0) k seans sonraya getiri; yoksa None."""
+    i = next((j for j, (t, _) in enumerate(L) if t >= t0), None)
+    if i is None or i + k >= len(L) or L[i][1] <= 0:
+        return None
+    return L[i + k][1] / L[i][1] - 1, L[i + k][0]
+
+
+def sicil_guncelle(fiyat, emirler=None, yol=None, depo=None, kategori=None, park=None):
     """fiyat: fonKodu -> tarih sıralı (tarih, fiyat) listesi ya da pandas DataFrame(tarih, fonKodu, fiyat).
     Yirmi seansı dolan önerinin sonucu (öneri gününün fiyatından 20 seans sonraki fiyata getiri) yazılır.
+    Kural 18 kıyası (30 numaralı not, madde 5): aynı pencerede fonun kendi kategorisindeki fonların ortanca getirisi
+    (`kiyas20`, `kiyasKategori`, `kiyasFon` sayısı) ve park fonunun getirisi (`park20`) ayrıca yazılır; kategori: kod -> kategori,
+    park: park fonunun kodu. Yükselen piyasada ham getiri her öneriyi isabetli gösterir; isabet kıyasa göre ölçülür.
     emirler: emir defteri sözlüğü; öneri tarihinden en çok UYGULAMA_GUN gün sonra GERCEKLESTI olan aynı yönlü emir
     'uygulandı' sayılır (kaynak: emir defteri). Aksi hâlde alan boş kalır; kullanıcı elle işaretler."""
     d = _depo(depo, yol)
@@ -385,15 +396,23 @@ def sicil_guncelle(fiyat, emirler=None, yol=None, depo=None):
             seri[k] = [(str(t)[:10], float(p)) for t, p in zip(g.tarih, g.fiyat)]
     else:
         seri = fiyat
+    kategori = kategori or {}
     n = 0
     for x in s:
         if x.get("sonuc20") is None and x["kod"] in seri:
-            L = seri[x["kod"]]
-            i = next((j for j, (t, _) in enumerate(L) if t >= x["tarih"]), None)
-            if i is not None and i + SONUC_SEANS < len(L):
-                p0, (t1, p1) = L[i][1], L[i + SONUC_SEANS]
-                if p0 > 0:
-                    x["sonuc20"] = p1 / p0 - 1; x["sonucTarihi"] = t1; n += 1
+            r = _pencere_getirisi(seri[x["kod"]], x["tarih"])
+            if r is not None:
+                x["sonuc20"], x["sonucTarihi"] = r; n += 1
+                kat = kategori.get(x["kod"])
+                if kat:
+                    emsal = [v[0] for k, L in seri.items() if k != x["kod"] and kategori.get(k) == kat
+                             for v in [_pencere_getirisi(L, x["tarih"])] if v is not None]
+                    if emsal:
+                        emsal.sort(); x["kiyas20"] = emsal[len(emsal) // 2]; x["kiyasKategori"] = kat; x["kiyasFon"] = len(emsal)
+                if park and park in seri:
+                    rp = _pencere_getirisi(seri[park], x["tarih"])
+                    if rp is not None:
+                        x["park20"] = rp[0]; x["parkKod"] = park
         if x.get("uygulandi") is None and emirler:
             t0 = datetime.strptime(x["tarih"], "%Y-%m-%d").date()
             for eid, e in emirler.items():
@@ -408,15 +427,33 @@ def sicil_guncelle(fiyat, emirler=None, yol=None, depo=None):
 
 
 def sicil_ozeti(ay, yol=None, depo=None):
-    """Ay (YYYY-MM) için: verilen, uygulanan, uygulanan ve uygulanmayanların ortalama 20 seans getirisi. Kaynak: sicil."""
+    """Ay (YYYY-MM) için: verilen, uygulanan, uygulanan ve uygulanmayanların ortalama 20 seans getirisi; kural 18 kıyası:
+    kategori ortancasına göre üstte ve altta kalan öneri sayısı, ortalama fark (yanlılık: her öneri aynı yönde sapıyorsa
+    ölçü kendini doğrulamaktadır), park fonuna göre üstte kalan sayısı. Kaynak: sicil."""
     s = [x for x in _depo(depo, yol).sicil_oku() if x["tarih"][:7] == ay]
     def ort(L):
         v = [x["sonuc20"] for x in L if x.get("sonuc20") is not None]
         return (sum(v) / len(v), len(v)) if v else (None, 0)
     uyg = [x for x in s if x.get("uygulandi") is True]
     uym = [x for x in s if x.get("uygulandi") is not True]
+    k = [x for x in s if x.get("sonuc20") is not None and x.get("kiyas20") is not None]
+    farklar = [x["sonuc20"] - x["kiyas20"] for x in k]
+    pk = [x for x in s if x.get("sonuc20") is not None and x.get("park20") is not None]
     return dict(ay=ay, verilen=len(s), uygulanan=len(uyg), bilinmeyen=sum(1 for x in s if x.get("uygulandi") is None),
-                uygulanan_getiri=ort(uyg), uygulanmayan_getiri=ort(uym))
+                uygulanan_getiri=ort(uyg), uygulanmayan_getiri=ort(uym),
+                kiyas_olculen=len(k), kiyas_ustu=sum(1 for f in farklar if f > 0), kiyas_alti=sum(1 for f in farklar if f < 0),
+                kiyas_fark_ort=(sum(farklar) / len(farklar) if farklar else None),
+                park_olculen=len(pk), park_ustu=sum(1 for x in pk if x["sonuc20"] > x["park20"]))
+
+
+def kiyas_cumlesi(o):
+    """Sicil satırının kıyas parçası; kıyas ölçülmemişse bunu söyler (kural 18: kıyassız isabet yazılmaz)."""
+    if not o.get("kiyas_olculen"):
+        return "kategori kıyası henüz ölçülmedi"
+    c = (f"kategori ortancasının üstünde {o['kiyas_ustu']}, altında {o['kiyas_alti']} öneri, ortalama fark {_yuzde(o['kiyas_fark_ort'])}")
+    if o.get("park_olculen"):
+        c += f"; park fonunu geçen {o['park_ustu']}/{o['park_olculen']}"
+    return c
 
 
 def sicil_satiri(tarih, yol=None, depo=None):
@@ -428,7 +465,7 @@ def sicil_satiri(tarih, yol=None, depo=None):
     if not o["verilen"]:
         return "Sicil: bu ay öneri verilmedi."
     g = o["uygulanan_getiri"]
-    isabet = (f"uygulanan {o['uygulanan']} önerinin 20 seans ortalama getirisi {_yuzde(g[0])} ({g[1]} ölçüm)"
+    isabet = (f"uygulanan {o['uygulanan']} önerinin 20 seans ortalama getirisi {_yuzde(g[0])} ({g[1]} ölçüm); {kiyas_cumlesi(o)}"
               if g[0] is not None else "henüz 20 seansı dolan öneri yok")
     return f"Sicil: bu ay {o['verilen']} öneri verildi, {o['uygulanan']} uygulandı, {o['bilinmeyen']} tanesinin uygulanıp uygulanmadığı işaretlenmedi; {isabet}."
 
