@@ -98,25 +98,42 @@ def son_is_gunu(gun):
     return g
 
 
-def kimlik_arizasi_ayikla(d, yol):
-    """Tek seanslık kimlik arızası (30 numaralı not, madde 1): denetim.py'nin yazdığı kimlik_arizalari.json içindeki fon-tarih
-    çiftlerinde pay adedi ve büyüklük ölçüme girmez (NaN); fiyat kalır. Akış ve itfa ölçümleri o günü atlar, kalıcı tolerans
-    doğmaz. Dönüş: (çerçeve, düşülen satır sayısı). Dosya yoksa çerçeve olduğu gibi döner ve sayı sıfırdır."""
-    if not yol or not os.path.exists(yol):
+KIMLIK_ARIZA_YONTEMI = "kopruleme"   # M34 (13 Eylül 2026): arızalı günün pay adedi ve büyüklüğü önceki temiz günden taşınır; o günün
+                                     # değişimi sıfır, gerçek değişim sonraki ilk temiz güne o günün fiyatıyla yazılır. NaN bırakılsaydı
+                                     # np.diff iki günü siler ve nansum ile fillna(0) sileni sıfır akış sayardı (Chat 32).
+
+
+def kimlik_arizasi_ayikla(d, yol=None, arsiv=None):
+    """Kimlik arızası köprülemesi (30 numaralı not madde 1, M34): denetim.kimlik_taramasi'nın bulduğu fon-tarih çiftlerinde pay adedi ve
+    büyüklük ölçüme girmez; fiyat kalır. Yöntem KIMLIK_ARIZA_YONTEMI: değer önceki temiz günden taşınır (fon içinde ileri doldurma),
+    böylece arızalı günün pay değişimi sıfır olur ve gerçek değişim sonraki ilk temiz güne düşer; toplam akış kaybolmaz. Serinin
+    başındaki arıza taşınacak temiz gün olmadığı için NaN kalır.
+    Kaynak: `yol` (kimlik_arizalari.json) varsa dosya; yoksa ve `arsiv` verilmişse tarama o arşiv üzerinde yerinde koşar (M33: bulut
+    dosya bağı kurmadan aynı sonucu üretir). İkisi de yoksa çerçeve olduğu gibi döner. Dönüş: (çerçeve, düşülen satır sayısı)."""
+    arizalar = None
+    if yol and os.path.exists(yol):
+        try:
+            arizalar = (json.load(open(yol, encoding="utf-8")) or {}).get("arizalar") or []
+        except Exception:
+            arizalar = None
+    if arizalar is None and arsiv and os.path.isdir(arsiv):
+        try:
+            import denetim
+            arizalar = denetim.kimlik_taramasi(arsiv=arsiv).get("arizalar") or []
+        except Exception:
+            arizalar = None
+    if not arizalar:
         return d, 0
-    try:
-        j = json.load(open(yol, encoding="utf-8"))
-    except Exception:
-        return d, 0
-    ciftler = {(a["fonKodu"], str(a["tarih"])[:10]) for a in (j.get("arizalar") or []) if a.get("fonKodu") and a.get("tarih")}
-    if not ciftler:
-        return d, 0
+    ciftler = {(a["fonKodu"], str(a["tarih"])[:10]) for a in arizalar if a.get("fonKodu") and a.get("tarih")}
     anahtar = list(zip(d["fonKodu"].astype(str), pd.to_datetime(d["tarih"]).dt.strftime("%Y-%m-%d")))
     maske = np.array([k in ciftler for k in anahtar])
     if not maske.any():
         return d, 0
     d = d.copy()
+    sira = np.lexsort((pd.to_datetime(d["tarih"]).values, d["fonKodu"].astype(str).values))
     for c in ("tedPaySayisi", "portfoyBuyukluk"):
         if c in d.columns:
             d.loc[maske, c] = np.nan
+            s = d[c].iloc[sira]
+            d[c] = s.groupby(d["fonKodu"].iloc[sira].values).ffill().reindex(d.index)   # köprüleme: fon içinde önceki temiz gün
     return d, int(maske.sum())

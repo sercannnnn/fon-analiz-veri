@@ -221,14 +221,16 @@ def kimlik_istisna_yukle():
     return json_oku(KIMLIK_ISTISNA_YOL, [])
 
 
-def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None):
+def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
     """Arşivdeki son `seans` günde her fonun kimlik farkını (pay × fiyat − büyüklük; tolerans pay × 0,5e-6 + 0,01 TL) ölçer ve
     fonları sınıflar (30 numaralı not, madde 1): kalıcı (günlerin en az KALICI_ORAN'ında sapan), epizodik (tek seans sapan, komşu
     seanslar tolerans içinde), aralıklı (birden çok seans ama kalıcı değil). Epizodik arızalar imzasıyla adlandırılır: birim hatası
     (oran 1000 ya da 0,001'e yakın), bir günlük gecikme (ardışık iki seansta oranlar birbirinin tersi), diğer.
     Dönüş: dict(pencere, fonlar{kod: {sinif, sapanGun, gun, farkOrtanca, farkEnKucuk, farkEnBuyuk}}, arizalar[{fonKodu, tarih, fark, oran, imza}]).
-    Liste değil kural: elle bakım istemez; sonuç KIMLIK_ARIZA_YOL dosyasına yazılır, akış hesabı epizodik fon-tarihleri düşer."""
-    dosyalar = sorted(glob.glob(os.path.join(ARSIV, "tefas_????-??.csv.gz")))[-4:]
+    Liste değil kural: elle bakım istemez; sonuç KIMLIK_ARIZA_YOL dosyasına yazılır, akış hesabı arızalı fon-tarihleri köprüler.
+    Arşiv kökü: `arsiv` parametresi, yoksa FON_DENETIM_ARSIV ortam değişkeni, yoksa 03 Veri/Arşiv (M33: bulut kendi klonunun
+    arsiv/ klasörünü verir ve taramayı yerinde koşturur; dosya taşınmaz)."""
+    dosyalar = sorted(glob.glob(os.path.join(arsiv or ARSIV, "tefas_????-??.csv.gz")))[-4:]
     kayit = {}   # (kod, tarih) -> (pay, fiyat, buyukluk)
     for yol in dosyalar:
         with gzip.open(yol, "rt", encoding="utf-8") as f:
@@ -654,13 +656,16 @@ def onceki_klasor(klasor):
     return None
 
 
-def sinama_kopru(L, rapor, klasor, tarih):
+def sinama_kopru(L, rapor, klasor, tarih, disa=None):
     """5. Günlük köprü (2.5): dünkü toplam + fiyat etkisi + işlem etkisi (+ eşleşmeyen pozisyonlar) = bugünkü toplam.
     Fiyat etkisi: dünkü adet × (bugünkü değerleme günü fiyatı − dünkü değerleme günü fiyatı). İşlem etkisi: iki tarih arasında
     gerçekleşen emirlerin gerçekleşen adet × fiyat tutarı (alış +, satış −); gerçekleşen fiyat yoksa bugünkü fiyat varsayılır ve yazılır.
     Defter teyit hâli: bugünkü pozisyonların değerleme günü klasör tarihinden eskiyse "defter teyit edilmedi"; köprü yazılır, sapma açılmaz."""
     rapor.append("## 5. Günlük köprü")
     rapor.append("")
+    if disa is None:
+        disa = disa_aktarimi_klasore_yaz()
+    rapor.append(f"Dışa aktarım yakıtı: {disa['durum']}; {disa['sebep']}. [kayıt]")   # M36: dört hâl ayrı ayrı görünür
     poz1 = json_oku(os.path.join(klasor, "06 Pozisyonlar.json"), None)
     onceki = onceki_klasor(klasor)
     if not poz1 or not onceki:
@@ -759,6 +764,8 @@ def calistir(klasor, icerik_yol, isimler, bildirilen):
     s3 = sinama_bakis(L, rapor, klasor, tarih, icerik_yol, isimler, bildirilen) if klasor else {"durum": "olculemedi"}
     s4 = sinama_defter(L, rapor, klasor, tarih) if klasor else {"durum": "olculemedi"}
     s5 = sinama_kopru(L, rapor, klasor, tarih) if klasor else {"durum": "olculemedi"}
+    if s5.get("durum") == "olculemedi" and not klasor:
+        s5["disa"] = disa_aktarimi_klasore_yaz()
     bugun = date.today()   # yaş bugüne göre ölçülür; klasör tarihi verinin tarihidir, denetimin değil
     acik = [s for s in L if s["durum"] == "acik"]
     asan = []
@@ -799,19 +806,38 @@ def calistir(klasor, icerik_yol, isimler, bildirilen):
 
 def disa_aktarimi_klasore_yaz(disa=None, rapor_kok=None):
     """Akşam görevinin yazdığı defter dışa aktarımı (olcumZamani, pozisyonlar, nakit) o günün klasörüne 06 Pozisyonlar.json olarak
-    kopyalanır; köprünün yakıtı budur (30 numaralı not, madde 3). Var olan dosyanın üstüne yazılmaz. Dönüş: yazılan yol ya da None."""
+    kopyalanır; köprünün yakıtı budur (30 numaralı not, madde 3). Dört hâl ayrı ayrı bildirilir (M36): dosya yok; belge geçersiz
+    (hata listesiyle); yazıldı; hedef zaten var. Hedef varsa yanındaki `06 Pozisyonlar.kaynak.json` damgasına bakılır: dışa aktarım
+    daha yeni bir olcumZamani taşıyorsa üstüne yazılır ve eski damga bildirilir (aynı gün düzeltilen defter klasöre ulaşır);
+    damga yoksa dosya başka kaynaktan (bulut görevinin klasörü) gelmiştir, üstüne yazılmaz ve içerik farkı bildirilir.
+    Dönüş: dict(durum, yol, sebep); durum ∈ yok, gecersiz, yazildi, guncellendi, ayni, farkli_yazilmadi."""
     from oneri import disa_aktarim_dogrula
     disa = disa or DISA_AKTARIM; rapor_kok = rapor_kok or RAPOR
+    if not os.path.exists(disa):
+        return dict(durum="yok", yol=None, sebep=f"{os.path.basename(disa)} yok; akşam görevi yazmamış")
     j = json_oku(disa, None)
-    if not j or disa_aktarim_dogrula(j):
-        return None
+    hata = disa_aktarim_dogrula(j) if j else ["JSON okunamadı"]
+    if hata:
+        return dict(durum="gecersiz", yol=None, sebep="dışa aktarım doğrulamadan geçmedi: " + "; ".join(hata[:3]))
     gun = str(j.get("olcumZamani"))[:10]
-    klasor = os.path.join(rapor_kok, gun); hedef = os.path.join(klasor, "06 Pozisyonlar.json")
+    klasor = os.path.join(rapor_kok, gun); hedef = os.path.join(klasor, "06 Pozisyonlar.json"); damga_yol = os.path.join(klasor, "06 Pozisyonlar.kaynak.json")
+    damga = json_oku(damga_yol, None)
     if os.path.exists(hedef):
-        return None
+        mevcut = json_oku(hedef, None)
+        if mevcut == j["pozisyonlar"]:
+            return dict(durum="ayni", yol=hedef, sebep=f"hedef zaten var ve içerik aynı (damga {damga.get('olcumZamani') if damga else 'yok'})")
+        if not damga:
+            return dict(durum="farkli_yazilmadi", yol=hedef, sebep="hedef başka kaynaktan yazılmış (damga yok) ve içerik farklı; üstüne yazılmadı")
+        if str(damga.get("olcumZamani")) >= str(j.get("olcumZamani")):
+            return dict(durum="farkli_yazilmadi", yol=hedef, sebep=f"hedefin damgası ({damga.get('olcumZamani')}) dışa aktarımdan yeni ya da eşit; üstüne yazılmadı")
+        eski = damga.get("olcumZamani")
+        json.dump(j["pozisyonlar"], open(hedef, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        json.dump(dict(olcumZamani=j.get("olcumZamani"), yazilma=date.today().isoformat(), onceki=eski), open(damga_yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        return dict(durum="guncellendi", yol=hedef, sebep=f"aynı günün daha yeni dışa aktarımı ({eski} yerine {j.get('olcumZamani')}) üstüne yazıldı")
     os.makedirs(klasor, exist_ok=True)
     json.dump(j["pozisyonlar"], open(hedef, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    return hedef
+    json.dump(dict(olcumZamani=j.get("olcumZamani"), yazilma=date.today().isoformat()), open(damga_yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return dict(durum="yazildi", yol=hedef, sebep=f"olcumZamani {j.get('olcumZamani')}")
 
 
 def main():
@@ -825,9 +851,6 @@ def main():
     a = ap.parse_args()
     if a.kapat:
         sapma_kapat(a.kapat, a.kanit); return
-    y = disa_aktarimi_klasore_yaz()
-    if y:
-        print(f"defter dışa aktarımı günün klasörüne yazıldı: {y}", file=sys.stderr)
     klasor = a.klasor or son_klasor()
     isimler = a.isim
     if isimler is None:

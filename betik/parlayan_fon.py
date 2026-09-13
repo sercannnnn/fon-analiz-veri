@@ -36,7 +36,8 @@ def panel(kok):
     d = pd.concat([pd.read_csv(f) for f in fs], ignore_index=True)
     d["tarih"] = pd.to_datetime(d["tarih"])
     d, panel.gecersiz, panel.gecersiz_son_gun = gecersiz_fiyat_ayikla(d)   # M5 / kural 15: gecersiz fiyat atilir, sayisi tutulur
-    d, panel.kimlik_ariza = kimlik_arizasi_ayikla(d, os.path.join(kok, "veri", "kimlik_arizalari.json"))   # tek seanslik kimlik arizasi akisa girmez
+    # kimlik arizasi koprulemesi (M33, M34): dosya varsa ondan, yoksa tarama kok/arsiv uzerinde yerinde kosar (bulut dosya bagi kurmaz)
+    d, panel.kimlik_ariza = kimlik_arizasi_ayikla(d, os.path.join(kok, "veri", "kimlik_arizalari.json"), arsiv=os.path.join(kok, "arsiv"))
     return d.drop_duplicates(["tarih", "fonKodu"]).sort_values(["fonKodu", "tarih"])
 
 
@@ -66,7 +67,7 @@ def olc(d):
                         vol60=vol60, volort=volort,
                         ddsimdi=float(dd.iloc[-1]), ddceyrek=float(dd.quantile(0.25)),
                         dpay20=(u[-1] / u[-21] - 1) if n > 21 else np.nan,
-                        akis20=float(np.nansum(np.diff(u[-21:]) * p[-20:])) if n > 21 else np.nan,   # arizali gun NaN, atlanir
+                        akis20=float(np.sum(np.diff(u[-21:]) * p[-20:])) if n > 21 else np.nan,   # arizali gun koprulenmis (takvim.KIMLIK_ARIZA_YONTEMI), NaN yok
                         eksigun=int((r60 < 0).sum())))
     m = pd.DataFrame(sat)
     m["hiz30"] = (1 + m.r30) ** (252 / 30) - 1
@@ -263,4 +264,5 @@ if __name__ == "__main__":
     o = ekran(a.kok, [x for x in a.poz.split(",") if x])
     pd.set_option("display.width", 220); pd.set_option("display.max_colwidth", 70)
     print(o.to_string(index=False))
+    print(f"\nKimlik arızası köprülenen fon-gün: {getattr(panel, 'kimlik_ariza', 0)} (pay adedi ve büyüklük önceki temiz günden taşındı; M34, M35).")
     print("\nAlım talimatı için: kapı durumu açık VE %d ardışık seans." % GEREKLI_SEANS)
