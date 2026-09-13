@@ -183,7 +183,7 @@ def kimlik_arizasi_ayikla(d, yol=None, arsiv=None):
             o = onarimlar[anahtar[i]]
             if o.get("alan") in d.columns:
                 d.iloc[i, d.columns.get_loc(o["alan"])] = float(o["yeni"])
-        son["onarim"] = int(m_on.sum())
+        son["onarim"] = len({anahtar[i] for i in np.where(m_on)[0]})   # fon-gün sayısı; aynı gün iki dosyada (arşiv + son_gunluk) iki satır olabilir
     if m_ko.any():
         sira = np.lexsort((pd.to_datetime(d["tarih"]).values, d["fonKodu"].astype(str).values))
         for c in ("tedPaySayisi", "portfoyBuyukluk"):
