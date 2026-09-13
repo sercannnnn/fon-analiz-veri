@@ -51,6 +51,9 @@ COKUS_ORAN = 0.90                # M40: büyüklük tek seansta bu oranın üst�
 COKUS_KALICI_ORAN = 0.50         # M40: düşüşten sonra pencere boyunca büyüklük önceki seviyenin bu oranına dönmüyorsa çöküş kalıcıdır (tasfiye);
                                  # dönüyorsa besleme sıçramasıdır ve yalnızca kırılma (M39) olarak bildirilir
 ONARIM_KATLARI = (1000.0, 0.001)  # M38: birim hatası onarımı pay ya da büyüklük alanında bu katlarla denenir; kimlik sıfır sapmayla kapanmalı ve komşu seansla sürekli olmalı
+COKUS_KESIN_SEANS = 5            # Chat 36: çöküşten sonra pencerede bu kadar seans yoksa kayıt "kesinleşmemiş"; sonraki günlerde kesinleşir ya da kırılmaya düşer (varsayım)
+KESINTI_ONCEKI_SEANS = 10        # M43: fon önceki bu kadar seansın tamamında varken
+KESINTI_SEANS = 2                # M43: pencerenin son bu kadar seansında yoksa ya da boşsa "raporlamayı kesti" (tek seans 08.15 çekiminin bilinen eksiğidir, sayılmaz)
 DISA_AKTARIM = os.path.join(KOK, "03 Veri", "defter_disa_aktarim.json")   # akşam görevinin yazdığı pozisyon fotoğrafı; köprünün yakıtı
 FIYAT_ESLESME_TOL = 0.5e-6       # deger/adet ile TEFAS fiyatı bu kadar yakınsa aynı gün sayılır (fiyat altı ondalıkla basılır) + 0,01/adet
 HISSE_TUR = re.compile(r"HISSE|HİSSE|ODUNC|ÖDÜNÇ", re.I)
@@ -274,7 +277,16 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
                 sonrasi = [hs[x][2] for x in gs if x > g0]
                 kalici = all(v <= COKUS_KALICI_ORAN * hs[g0][2] for v in sonrasi)   # pencere boyunca geri dönmedi: tasfiye, sıçrama değil
                 if kalici:
-                    cokusler.setdefault(kod, []).append(dict(tarih=g1, oran=round(hs[g1][2] / hs[g0][2], 6), onceki=round(hs[g0][2], 2), sonraki=round(hs[g1][2], 2), sonraSeans=len(sonrasi)))
+                    cokusler.setdefault(kod, []).append(dict(tarih=g1, oran=round(hs[g1][2] / hs[g0][2], 6), onceki=round(hs[g0][2], 2), sonraki=round(hs[g1][2], 2),
+                                                             sonraSeans=len(sonrasi), kesin=len(sonrasi) >= COKUS_KESIN_SEANS))
+    # M43: raporlamayı kesen fon; kimlik süzgeci (fiyat > 0, pay > 0) bu hâli görünmez kılar, ayrı ölçülür
+    kesenler = []
+    for kod, hs in ham.items():
+        j = gun_ix[max(hs)]                                   # son görüldüğü seans
+        yok = len(gunler) - 1 - j                             # o günden pencere sonuna kadar kayıtsız seans
+        if yok >= KESINTI_SEANS and j + 1 >= KESINTI_ONCEKI_SEANS and all(gunler[x] in hs for x in range(j - KESINTI_ONCEKI_SEANS + 1, j + 1)):
+            kesenler.append(dict(fonKodu=kod, sonGorulen=gunler[j], yokSeans=yok, sonBuyukluk=round(hs[gunler[j]][2], 2)))
+    kesenler.sort(key=lambda k: -k["yokSeans"])
     for kod, s in seriler.items():
         sapan = {g: v for g, v in s.items() if abs(v[0]) > v[2]}
         if not sapan:
@@ -332,12 +344,14 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None):
                 # M40: çöküşteki fonun arızası maskelenmez (onarım varsa uygulanır; onarım da bir maske değil ölçümdür)
                 if kod in cokusler and "onarim" not in kayd and g >= min(c["tarih"] for c in cokusler[kod]):
                     kayd["maskele"] = False
-                # M37: köprülemenin kaydırma üst sınırı: |pay_sonraki − pay_önceki| × |fiyat_sonraki − fiyat_arıza|
+                # M37 ve M41: köprülemenin kayması, tam değer: (pay_arıza − pay_bir önceki gün) × (fiyat_sonraki temiz − fiyat_arıza).
+                # Ardışık arızada her gün kendi payını taşır ve toplam teleskopik olur (köprü − ham); işaretli yazılır.
                 if "onarim" not in kayd and kayd.get("maskele") is not False and onc and snr:
-                    kayd["kaydirmaUstSinir"] = round(abs(ham[kod][snr][0] - ham[kod][onc][0]) * abs(ham[kod][snr][1] - ham[kod][g][1]), 2)
+                    bir_onceki = gunler[i - 1] if i > 0 and gunler[i - 1] in s else onc
+                    kayd["kaydirma"] = round((ham[kod][g][0] - ham[kod][bir_onceki][0]) * (ham[kod][snr][1] - ham[kod][g][1]), 2)
                 arizalar.append(kayd)
     return dict(pencere=dict(bas=gunler[0] if gunler else None, bit=gunler[-1] if gunler else None, seans=len(gunler), fon=len(seriler)),
-                fonlar=fonlar, arizalar=arizalar, kirilmalar=kirilmalar, cokusler=cokusler)
+                fonlar=fonlar, arizalar=arizalar, kirilmalar=kirilmalar, cokusler=cokusler, kesenler=kesenler)
 
 
 # ---------------------------------------------------------------- girdiler
@@ -405,14 +419,28 @@ def sinama_kimlik(L, rapor):
         onar = [a for a in tara["arizalar"] if a.get("onarim")]
         kopr = [a for a in tara["arizalar"] if not a.get("onarim") and a.get("maskele") is not False]
         mask = [a for a in tara["arizalar"] if a.get("maskele") is False]
-        rapor.append(f"Uygulama: onarılan {tl(len(onar))} (M38, tek alan, kimlik sıfır sapmayla kapanır), köprülenen {tl(len(kopr))} "
-                     f"(M34; kaydırma üst sınırı toplam {tl(sum(a.get('kaydirmaUstSinir') or 0 for a in kopr), 2)} TL, M37), maskelenmeyen {tl(len(mask))} (M40, çöküş). [ölçüm]")
+        kay = [a.get("kaydirma") or 0 for a in kopr]
+        rapor.append(f"Uygulama: onarılan {tl(len(onar))} (M38, tek alan, kimlik sıfır sapmayla kapanır; hesaplama, eski ve yeni değer aşağıda), köprülenen {tl(len(kopr))} "
+                     f"(M34; kayma toplamı {tl(sum(kay), 2)} TL, mutlak toplam {tl(sum(abs(k) for k in kay), 2)} TL, en büyük {tl(max((abs(k) for k in kay), default=0), 2)} TL; M41), "
+                     f"maskelenmeyen {tl(len(mask))} (M40, çöküş). [ölçüm]")
         for a in onar:
             o = a["onarim"]
-            rapor.append(f"- Onarım {a['fonKodu']} {a['tarih']}: {o['alan']} {tl(o['eski'], 2)} yerine {tl(o['yeni'], 2)}; {o['kanit']}.")
-        for kod, L_ in sorted((tara.get("cokusler") or {}).items()):
+            rapor.append(f"- Onarım {a['fonKodu']} {a['tarih']}: {o['alan']} {tl(o['eski'], 2)} yerine {tl(o['yeni'], 2)}; {o['kanit']}. [hesaplama]")
+        ck = tara.get("cokusler") or {}
+        cg = sum(len(v) for v in ck.values()); kesin = sum(1 for v in ck.values() for c in v if c.get("kesin"))
+        if ck:
+            rapor.append(f"Kalıcı çöküş (M40): {tl(len(ck))} fon, {tl(cg)} fon-gün; kesinleşmiş {tl(kesin)}, kesinleşmemiş {tl(cg - kesin)} "
+                         f"(çöküşten sonra {tl(COKUS_KESIN_SEANS, 0)} seanstan az kaldı). [ölçüm]")
+        for kod, L_ in sorted(ck.items()):
             for c in L_:
-                rapor.append(f"- Çöküş {kod} {c['tarih']}: büyüklük {tl(c['onceki'], 2)} TL'den {tl(c['sonraki'], 2)} TL'ye, oran {c['oran']:.6f}; kimlik ne derse desin bildirilir, maskelenmez (M40).")
+                rapor.append(f"- Çöküş {kod} {c['tarih']}{'' if c.get('kesin') else ' (kesinleşmemiş, ' + str(c['sonraSeans']) + ' seans)'}: büyüklük {tl(c['onceki'], 2)} TL'den "
+                             f"{tl(c['sonraki'], 2)} TL'ye, oran {c['oran']:.6f}; kimlik ne derse desin bildirilir, maskelenmez (M40).")
+        kes = tara.get("kesenler") or []
+        if kes:
+            rapor.append(f"Raporlamayı kesen (M43): {tl(len(kes))} fon, son görüldüğü seanstan önceki {tl(KESINTI_ONCEKI_SEANS, 0)} seansta varken pencere sonuna kadar en az {tl(KESINTI_SEANS, 0)} seans kayıtsız; "
+                         + "; ".join(f"{k['fonKodu']} (son {k['sonGorulen']}, {tl(k['yokSeans'])} seans, {tl(k['sonBuyukluk'], 0)} TL)" for k in kes[:15]) + ". [ölçüm]")
+        else:
+            rapor.append(f"Raporlamayı kesen (M43): yok (son görüldüğü seanstan önceki {tl(KESINTI_ONCEKI_SEANS, 0)} seansta var, sonra en az {tl(KESINTI_SEANS, 0)} seans kayıtsız fon). [ölçüm]")
         kir = tara.get("kirilmalar") or []
         if kir:
             rapor.append(f"Seviye kırılması (M39, {tl(SEVIYE_KIRILMA_KAT, 0)} kat): {tl(len(kir))} fon-gün; " +
@@ -463,7 +491,9 @@ def sinama_kimlik(L, rapor):
     else:
         durum = "sari"
     return {"durum": durum, "sapan": n, "kalici": kal, "aralikli": ara, "epizodik": len(epi), "etiketler": sayac, "celisen": kirmizi_sebep,
-            "onarilan": len(onar) if tara["pencere"] else 0, "cokus": sorted((tara.get("cokusler") or {}).keys()), "kirilma": len(tara.get("kirilmalar") or [])}
+            "onarilan": len(onar) if tara["pencere"] else 0, "cokus": sorted((tara.get("cokusler") or {}).keys()),
+            "cokusFonGun": sum(len(v) for v in (tara.get("cokusler") or {}).values()), "kirilma": len(tara.get("kirilmalar") or []),
+            "kesen": [k["fonKodu"] for k in (tara.get("kesenler") or [])], "kaydirmaToplam": round(sum(kay), 2) if tara["pencere"] else 0.0}
 
 
 def sinama_taban(L, rapor, klasor, tarih):
