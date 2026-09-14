@@ -2673,15 +2673,18 @@
   "tarih": "2026-09-14"
  },
  "DOH": {
+  "bildirim": 1661174,
   "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
   "sapma": 0.0,
-  "satir": 57,
+  "satir": 68,
   "sebep": "",
-  "son": "2026-08",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 8,
-  "tarih": "2026-09-09",
-  "tefasGun": "2026-09-01"
+  "surum": 9,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
+  "yayim": "09.09.2026 18:00:07"
  },
  "DOL": {
   "durum": "yayimlandi",
@@ -13469,11 +13472,14 @@
   "tarih": "2026-09-08"
  },
  "THF": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "ay": "2026-08",
+  "bildirim": 1657113,
+  "durum": "hata",
+  "sebep": "sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "tarih": "2026-09-15",
+  "yayim": "02.09.2026 11:02:16"
  },
  "THG": {
   "ay": "2026-08",
@@ -13748,11 +13754,18 @@
   "tarih": "2026-09-08"
  },
  "TMV": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
-  "son": "2026-08",
+  "bildirim": 1661171,
+  "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
+  "sapma": 0.0,
+  "satir": 81,
+  "sebep": "",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 9,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
+  "yayim": "09.09.2026 18:00:07"
  },
  "TMZ": {
   "durum": "kuyrukta",

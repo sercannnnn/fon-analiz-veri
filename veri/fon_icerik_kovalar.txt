@@ -1290,7 +1290,7 @@ TGT	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 TGV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TGZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
-THF	kuyrukta	sırası gelmedi
+THF	hata	sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü
 THG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1332,7 +1332,6 @@ TMM	kuyrukta	sırası gelmedi
 TMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMU	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
-TMV	kuyrukta	sırası gelmedi
 TMZ	kuyrukta	sırası gelmedi
 TNA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TNB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)

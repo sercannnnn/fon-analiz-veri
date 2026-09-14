@@ -1,12 +1,12 @@
 {
  "icerik": {
-  "ayristiriciSurum": 8,
+  "ayristiriciSurum": 9,
   "durum": "tamamlandi",
   "gecenKurucu": 50,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 164,
-  "istek": 400,
+  "islenen": 3,
+  "istek": 7,
   "kapsamOrani": 0.5884,
   "kapsamPay": 662,
   "kapsamPayda": 1125,
@@ -17,24 +17,24 @@
    "duzen_bekliyor": 28,
    "duzen_taninmadi": 404,
    "ertelendi": 1,
-   "hata": 89,
+   "hata": 90,
    "kapsam_disi": 825,
-   "kuyrukta": 214,
-   "listesi_var": 504,
+   "kuyrukta": 212,
+   "listesi_var": 505,
    "rapor_yok_bu_ay": 11,
    "sinif_farki": 45
   },
   "listeEksikBuTur": 0,
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "raporYokKurucu": 3,
-  "satirBuTur": 502,
+  "satirBuTur": 149,
   "sinananKurucu": [],
   "sinavSurumu": 2,
   "taninmayanKurucu": 11,
-  "tarih": "2026-09-14",
+  "tarih": "2026-09-15",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 12,
-  "yeniFon": 12,
-  "yenidenIslenen": 0
+  "yayimlandiBuTur": 2,
+  "yeniFon": 0,
+  "yenidenIslenen": 3
  }
 }
