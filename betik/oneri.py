@@ -14,7 +14,7 @@ askıya alma her öneride açıkça yazılır; kendi alımıyla fiyat yapan fon 
 
 Gizlilik: sicil ve aday geçmişi portföy bilgisidir, açık depoya yazılmaz (03 Veri altında durur).
 """
-import json, os
+import json, os, re
 from datetime import date, datetime, timedelta, timezone
 
 KOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
@@ -374,30 +374,196 @@ def park_fonu_sec(d, kunye, dislama=(), disla_yol=None):
         return dict(kod=None, sebep=f"evrende {len(gunler)} seans var, {PARK_SEANS + 1} gerekir", aday=0, elenen={})
     esik_gun = gunler[-1 - PARK_GECIKME_SEANS]
     elenen = {"kategori": 0, "risk": 0, "buyukluk": 0, "dislama": 0, "seans": 0}
+    neden = {}      # M57: kod -> eleme sebebi (bekleyen defter kaydının yeniden doğrulanması bunu yazar); bütün şartlar sınanır, ilk sebepte durulmaz
     adaylar = []
     for kod, g in d.groupby("fonKodu"):
         kat = k["kategori"].get(kod); risk = k["riskDegeri"].get(kod)
-        if kat not in PARK_KATEGORILER:
-            elenen["kategori"] += 1; continue
-        if risk is None or pd.isna(risk) or not (PARK_RISK_ARALIGI[0] <= float(risk) <= PARK_RISK_ARALIGI[1]):
-            elenen["risk"] += 1; continue
-        if kod in dislama or kod in elle:
-            elenen["dislama"] += 1; continue
         p = g["fiyat"].to_numpy(float); b = float(g["portfoyBuyukluk"].iloc[-1] or 0)
+        seb = []
+        if kat not in PARK_KATEGORILER:
+            seb.append(f"kategori {kat or 'boş'} park kategorisi değil")
+        if risk is None or pd.isna(risk) or not (PARK_RISK_ARALIGI[0] <= float(risk) <= PARK_RISK_ARALIGI[1]):
+            seb.append("risk değeri " + ("boş" if risk is None or pd.isna(risk) else str(int(risk))) + f" (ölçüt {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]})")
+        if kod in dislama or kod in elle:
+            seb.append("dışlama listesinde (arıza/çöküş/kırılma/kesinti/değer kaybı ya da park_disla.txt)")
         if len(p) <= PARK_SEANS or g["tarih"].iloc[-1] < esik_gun:
-            elenen["seans"] += 1; continue
+            seb.append(f"seans yetersiz ya da fiyatı geride ({len(p)} seans, son {str(g['tarih'].iloc[-1])[:10]})")
         if b < PARK_ASGARI_BUYUKLUK:
-            elenen["buyukluk"] += 1; continue
+            seb.append(f"büyüklük {b / 1e9:.2f} milyar TL (taban {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar)")
+        if seb:
+            neden[kod] = "; ".join(seb)
+            anahtar = ("kategori" if "kategori" in seb[0] else "risk" if seb[0].startswith("risk") else "dislama" if "dışlama" in seb[0]
+                       else "seans" if seb[0].startswith("seans") else "buyukluk")
+            elenen[anahtar] += 1; continue
         adaylar.append(dict(kod=kod, kategori=kat, risk=int(risk), buyukluk=b, getiri20=p[-1] / p[-1 - PARK_SEANS] - 1, sonGun=str(g["tarih"].iloc[-1])[:10]))
     if not adaylar:
-        return dict(kod=None, sebep="dört şartı geçen fon yok", aday=0, elenen=elenen)
+        return dict(kod=None, sebep="dört şartı geçen fon yok", aday=0, elenen=elenen, neden=neden, sira={}, adaylar=[])
     adaylar.sort(key=lambda a: -a["getiri20"])
     s = adaylar[0]
     gerekce = (f"{s['kod']} ({s['kategori']}, risk {s['risk']}, {s['buyukluk'] / 1e9:.1f} milyar TL, {PARK_SEANS} seans {_yuzde(s['getiri20'])}); "
                f"{len(adaylar)} aday; ölçüt: kategori {', '.join(PARK_KATEGORILER)}, risk {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]}, "
                f"büyüklük ≥ {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar TL (varsayım), arıza/çöküş/kırılma/kesinti/değer kaybı ve park_disla.txt dışarıda")
     return dict(kod=s["kod"], kategori=s["kategori"], risk=s["risk"], buyukluk=s["buyukluk"], getiri20=s["getiri20"], aday=len(adaylar),
-                sira={a["kod"]: i + 1 for i, a in enumerate(adaylar)}, adaylar=adaylar[:5], gerekce=gerekce, elenen=elenen)
+                sira={a["kod"]: i + 1 for i, a in enumerate(adaylar)}, adaylar=adaylar[:5], gerekce=gerekce, elenen=elenen, neden=neden)
+
+
+# ---------------------------------------------------------------- kural sürümü ve bekleyen defter kaydı (M57, kural 24; 53 numaralı not, 14 Eylül 2026)
+KURAL_SURUMU = "2026-09-14.M58"   # defter kaydının üretildiği kural seti; bekleyen kayıt `kuralSurumu` alanında bunu taşır. Kural değişince damga ilerler.
+
+
+def kayit_turu(k):
+    """Bekleyen kaydın türü: `tur` alanı varsa o (park, aday, satis); yoksa SAT yönlü kayıt satış, notunda 'park' geçen alım park, kalan alım aday."""
+    t = str(k.get("tur") or "").strip().lower()
+    if t:
+        return t
+    if str(k.get("yon") or "").upper() == "SAT":
+        return "satis"
+    return "park" if "park" in str(k.get("not") or "").lower() else "aday"
+
+
+def bekleyen_dogrula(emirler, park=None, acik_kodlar=None, serbest_nakit=None, kurucu_haber=None, kurucu=None, surum=KURAL_SURUMU):
+    """Kural 24 (M57): brifing bekleyen bir defter kaydını yazmadan önce kaydın `kuralSurumu` damgasını günceliyle karşılaştırır.
+    Güncelse olduğu gibi yazılır. Eski ya da yoksa yeniden doğrulanır: park kaydı park ölçütüyle (park_fonu_sec çıktısı), aday kaydı
+    kapı kümesiyle (bugün kapısı açık kodlar), her alım nakit kısıtıyla (serbest nakit). Geçmezse "iptale çekilmeli" ve gerekçe;
+    yerine güncel ölçütün seçtiği kod (park: sıradaki ilk aday, kurucusu haber kapısından kapalı olan atlanır). Satış kaydı yeniden
+    doğrulama kapsamı dışıdır (çıkış kararı kullanıcınındır). Defter burada değiştirilmez; karar kullanıcınındır.
+    Dönüş: [dict(kimlik, kod, tur, tutar, surum, guncel, sonuc(gecerli|iptale_cekilmeli|olculemedi|kapsam_disi), gerekce, yerine)]."""
+    park = park or {}; kurucu_haber = kurucu_haber or {}; kurucu = kurucu or {}
+    def yerine_park():
+        for a in park.get("adaylar") or []:
+            if kurucu_haber.get(kurucu.get(a["kod"]), True) is not False:
+                return a["kod"]
+        return park.get("kod")
+    S = []
+    for kimlik, k in sorted((emirler or {}).items()):
+        if str(k.get("durum") or "").upper() != "BEKLIYOR":
+            continue
+        tur = kayit_turu(k); ks = k.get("kuralSurumu"); guncel = (ks == surum)
+        r = dict(kimlik=kimlik, kod=k.get("kod"), tur=tur, tutar=k.get("tutar"), surum=ks, guncel=guncel, yerine=None)
+        if guncel:
+            r.update(sonuc="gecerli", gerekce="kural sürümü güncel, olduğu gibi yazıldı")
+        elif tur == "satis":
+            r.update(sonuc="kapsam_disi", gerekce="satış kaydı yeniden doğrulama kapsamı dışında (çıkış kararı kullanıcının)")
+        else:
+            seb = []; olculemedi = []
+            if tur == "park":
+                if not park.get("sira") and not park.get("neden"):
+                    olculemedi.append("park ölçütü ölçülemedi")
+                elif k.get("kod") not in park.get("sira", {}):
+                    seb.append("park ölçütü: " + park.get("neden", {}).get(k.get("kod"), "fon evrende yok"))
+                elif park.get("kod") and k.get("kod") != park.get("kod"):
+                    seb.append(f"park ölçütü: dört şartı geçiyor ama {park['sira'][k['kod']]}. sırada, ölçütün seçtiği {park['kod']}")
+            else:
+                if acik_kodlar is None:
+                    olculemedi.append("kapı kümesi ölçülemedi")
+                elif k.get("kod") not in set(acik_kodlar):
+                    seb.append("kapı kümesi: bugün kapısı açık aday değil")
+            tutar = k.get("tutar")
+            if serbest_nakit is None:
+                olculemedi.append("nakit kısıtı ölçülemedi (serbest nakit yok)")
+            elif tutar is not None and float(tutar) > float(serbest_nakit):
+                seb.append(f"nakit kısıtı: tutar {_tl(float(tutar))} > serbest nakit {_tl(float(serbest_nakit))}")
+            if seb:
+                r.update(sonuc="iptale_cekilmeli", gerekce="; ".join(seb + olculemedi), yerine=(yerine_park() if tur == "park" else None))
+            elif olculemedi:
+                r.update(sonuc="olculemedi", gerekce="; ".join(olculemedi))
+            else:
+                r.update(sonuc="gecerli", gerekce="yeniden doğrulandı, güncel ölçütü geçiyor")
+        S.append(r)
+    return S
+
+
+def bekleyen_satirlari(sonuclar, kaynak=None, surum=KURAL_SURUMU):
+    """Brifing satırları (kural 24). Kayıt yoksa tek cümle."""
+    if not sonuclar:
+        return [f"Bekleyen defter kaydı yok (kural 24, M57; kaynak {kaynak or 'emir defteri'}; güncel kural sürümü {surum})."]
+    ad = {"gecerli": "geçerli", "iptale_cekilmeli": "İPTALE ÇEKİLMELİ", "olculemedi": "ölçülemedi", "kapsam_disi": "kapsam dışı"}
+    L = [f"Bekleyen defter kayıtları (kural 24, M57; güncel kural sürümü {surum}; defter değiştirilmedi, karar kullanıcınındır):"]
+    for r in sonuclar:
+        s = (f"- {r['kimlik']} {r['kod']} ({r['tur']}" + (f", {_tl(float(r['tutar']))}" if r.get("tutar") is not None else "") + "): kural sürümü "
+             + (r["surum"] if r["surum"] else "yok") + ", " + ad.get(r["sonuc"], r["sonuc"]) + "; " + r["gerekce"]
+             + (f"; yerine güncel ölçütün seçtiği {r['yerine']}" if r.get("yerine") else "") + ".")
+        L.append(s)
+    return L
+
+
+# ---------------------------------------------------------------- nakit ayrımı ve atıl nakit (M58, kural 16 genişletmesi; 53 numaralı not)
+def _tarih_coz(s, bugun):
+    """'2026-09-09', '09.09' (yıl bugünün yılı) ya da '09.09.2026' -> date; çözülemezse None."""
+    s = str(s or "").strip()
+    if not s:
+        return None
+    try:
+        return date.fromisoformat(s[:10])
+    except ValueError:
+        pass
+    m = re.match(r"^(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?$", s)
+    if m:
+        try:
+            return date(int(m.group(3) or bugun.year), int(m.group(2)), int(m.group(1)))
+        except ValueError:
+            return None
+    return None
+
+
+def _sebep(k):
+    s = str(k.get("beklemeSebebi") or "").strip().lower()
+    return s.replace("ö", "o").replace("ı", "i").replace("ş", "s").replace("ç", "c").replace("ü", "u").replace("ğ", "g")
+
+
+def nakit_ayir(nakit_listesi, pozisyonlar=None, park=None, bugun=None, kategori=None):
+    """Kural 16 genişletmesi (M58): nakit koleksiyonu üç tutara ayrılır. Ödemeye bağlı: `beklemeSebebi` 'ödeme' ile başlayan kalem
+    (tarihi `odemeTarihi` ya da `valor`). Park edilmiş: park kategorisindeki açık pozisyonlar (fon koduyla) ve `beklemeSebebi` 'park'
+    kalemler. Atıl: `beklemeSebebi` taşımayan, tutarı dolu, valörü geçmiş ya da yazılmamış kalem; başka bir sebep taşıyan kalem
+    'ayrılmış' sayılır. Valörü gelecekte olan kalem beklenen giriştir, atıl değildir. Atıl satır: tutar, kurum, kaç gündür (kaydın
+    `tarih` ya da `valor` alanından), günlük maliyet = tutar × park fonunun günlük getirisi (PARK_SEANS getirisi / PARK_SEANS).
+    Dönüş: dict(odeme[list], park[list], atil[list], ayrilmis[list], beklenen_giris[list], bos(int), toplamlar, gunluk_getiri, gunluk_maliyet)."""
+    bugun = bugun or date.today(); kategori = kategori or {}; park = park or {}
+    odeme, parkl, atil, ayrilmis, giris = [], [], [], [], []
+    bos = 0
+    for k in nakit_listesi or []:
+        tutar = k.get("tutar")
+        if tutar is None:
+            bos += 1; continue
+        tutar = float(tutar); s = _sebep(k)
+        valor = _tarih_coz(k.get("valor"), bugun); tarih = _tarih_coz(k.get("tarih"), bugun) or valor
+        kayit = dict(kalem=k.get("kalem"), tutar=tutar, kurum=k.get("kurum") or "kurum yazılmamış", tarih=(tarih.isoformat() if tarih else None),
+                     gun=((bugun - tarih).days if tarih else None))
+        if s.startswith("odeme"):
+            odeme.append(dict(kayit, tarih=str(k.get("odemeTarihi") or k.get("valor") or "tarih yazılmamış")))
+        elif s.startswith("park"):
+            parkl.append(dict(kayit, fon=k.get("fon") or "fon yazılmamış"))
+        elif s:
+            ayrilmis.append(dict(kayit, sebep=k.get("beklemeSebebi")))
+        elif valor and valor > bugun:
+            giris.append(dict(kayit, valor=valor.isoformat()))
+        else:
+            atil.append(kayit)
+    for v in acik_pozisyonlar(pozisyonlar or {}):
+        if kategori.get(v.get("kod")) in PARK_KATEGORILER:
+            parkl.append(dict(kalem=f"pozisyon {v.get('kurum') or ''} {v.get('kod')}", tutar=float(v.get("deger") or 0), kurum=v.get("kurum") or "", fon=v.get("kod")))
+    gg = (float(park["getiri20"]) / PARK_SEANS) if park.get("getiri20") is not None else None
+    at = sum(x["tutar"] for x in atil)
+    return dict(odeme=odeme, park=parkl, atil=atil, ayrilmis=ayrilmis, beklenen_giris=giris, bos=bos,
+                odeme_toplam=sum(x["tutar"] for x in odeme), park_toplam=sum(x["tutar"] for x in parkl), atil_toplam=at,
+                gunluk_getiri=gg, gunluk_maliyet=(at * gg if gg is not None else None), park_kod=park.get("kod"))
+
+
+def nakit_satirlari(n, kaynak=None):
+    """Brifingin nakit ve ödeme takvimi satırları (M58)."""
+    L = [f"Nakit ve ödeme takvimi (kural 16, M58; kaynak {kaynak or 'emir defteri nakit koleksiyonu'}): "
+         f"ödemeye bağlı {_tl(n['odeme_toplam'])}" + (" (" + "; ".join(f"{x['kalem']} {x['tarih']}" for x in n["odeme"][:4]) + ")" if n["odeme"] else "")
+         + f", park edilmiş {_tl(n['park_toplam'])}" + (" (" + "; ".join(f"{x['fon']} {_tl(x['tutar'])}" for x in n["park"][:4]) + ")" if n["park"] else "")
+         + f", atıl {_tl(n['atil_toplam'])}"
+         + (f", ayrılmış {_tl(sum(x['tutar'] for x in n['ayrilmis']))}" if n["ayrilmis"] else "")
+         + (f", valörü gelmemiş giriş {_tl(sum(x['tutar'] for x in n['beklenen_giris']))}" if n["beklenen_giris"] else "")
+         + (f"; tutarı boş {n['bos']} kalem ölçülemedi" if n["bos"] else "") + "."]
+    if n["atil"]:
+        for x in n["atil"]:
+            L.append(f"- **Atıl nakit: {_tl(x['tutar'])}, {x['kurum']}, " + (f"{x['gun']} gündür bekliyor" if x.get("gun") is not None else "bekleme süresi ölçülemedi (tarih yok)")
+                     + (f", günlük maliyet {_tl(x['tutar'] * n['gunluk_getiri'])} ({n['park_kod']} günlük getirisi {_yuzde(n['gunluk_getiri'], 3)})" if n["gunluk_getiri"] is not None else ", günlük maliyet ölçülemedi (park fonu yok)")
+                     + ".** Karar kullanıcınındır.")
+    return L
 
 
 # ---------------------------------------------------------------- sicil
