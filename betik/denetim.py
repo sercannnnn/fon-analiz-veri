@@ -723,6 +723,13 @@ def sinama_bakis(L, rapor, klasor, tarih, icerik_yol, isimler, bildirilen):
     listeler = {}
     for r in ic:
         listeler.setdefault(r["fonKodu"], []).append(r)
+    # M59: icerik tazeligi; eski ya da tutulan fon arsivde yoksa bolum olculemedi (kural 14), sayilar yine yazilir
+    import icerik_kapsam
+    tutulan_fon = sorted({v["kod"] for v in poz.values() if not (v.get("tip") or "").lower().startswith("hisse")})
+    tz = icerik_kapsam.icerik_tazeligi(os.path.dirname(icerik_yol), tutulan_fon, bugun=date.fromisoformat(tarih) if tarih else None, satirlar=ic)
+    rapor.append(f"İçerik tazeliği (M59): arşivin en yeni veri günü {tz['veri_gunu'] or 'yok'} ({tz['yas'] if tz['yas'] is not None else '-'} gün; eşik {tz['esik']} gün, varsayım); "
+                 + "tutulan fonlar: " + (", ".join(f"{k} {v['veri_gunu'] or 'arşivde yok'}" + (f" ({v['yas']} gün)" if v['yas'] is not None else "") for k, v in tz["fon"].items()) or "yok")
+                 + (f". ÖLÇÜLEMEDİ: {tz['sebep']}" if tz["olculemedi"] else "") + ". [kayıt]")
     taban = sum(float(v.get("deger") or 0) for v in poz.values())
     dogrudan = sum(float(v.get("deger") or 0) for v in poz.values() if (v.get("tip") or "").lower().startswith("hisse"))
     ic_hisse = 0.0; ic_tek = {ad: 0.0 for ad in isimler}; eksik = []; liste_eksik = []
@@ -768,8 +775,10 @@ def sinama_bakis(L, rapor, klasor, tarih, icerik_yol, isimler, bildirilen):
                 sapma_ekle(L, f"{anah}-{tarih}", f"bakış geçirgen maruziyet: {anah}", bil, round(hes, 2), HESAP, tarih)
         else:
             rapor.append(f"Bildirilen {anah} verilmedi (--bildirilen {anah}=<TL>); karşılaştırma yapılmadı.")
+    if tz["olculemedi"]:
+        durum = "olculemedi"        # M59: bayat ya da eksik icerik "gecti" degildir
     rapor.append("")
-    return {"durum": durum, "hisseToplam": round(hisse_toplam, 2), "tekIsim": {k: round(v, 2) for k, v in ic_tek.items()}}
+    return {"durum": durum, "hisseToplam": round(hisse_toplam, 2), "tekIsim": {k: round(v, 2) for k, v in ic_tek.items()}, "icerikTazelik": dict(veriGunu=tz["veri_gunu"], yas=tz["yas"], olculemedi=tz["olculemedi"], sebep=tz["sebep"])}
 
 
 def sinama_defter(L, rapor, klasor, tarih):

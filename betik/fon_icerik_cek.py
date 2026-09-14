@@ -42,7 +42,8 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 8     # artinca kuyruk, eski surumle yayimlanmis fonlari kalan butceyle, gunlere yayarak yeniden isler (Talimat 11)
+AYRISTIRICI_SURUM = 9     # 9 (M59, 15 Eylul 2026): sarilan satir ustteki kiymete, ad ve ihracci dolu, satirTuru ve veriGunu sutunlari, yayim penceresinde TEFAS gunu eslesmesi
+# artinca kuyruk, eski surumle yayimlanmis fonlari kalan butceyle, gunlere yayarak yeniden isler (Talimat 11)
 # Talimat 11: gunluk butcenin en az %60'i listesi olmayan fonlara. Uygulama: yeni fonlar once ve butcenin tamamina kadar islenir,
 # eski surumle yayimlanmis fonlar kalan butceyle ve gunlere yayilarak yeniden islenir.
 # Talimat 10 (08.09.2026): 3. sart esigi. 0,05 ve alti gecer; 0,05 ile 1,00 arasi yalnizca sebebi asagidaki listeden
@@ -133,7 +134,8 @@ def rapor_ici_fark(kayit, gruplar):
     return round(kayit[0]["tlTaban"] - sum(k["rayic"] for k in kayit if k.get("rayic") is not None), 2)
 # Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
 # kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
-ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni", "kaynak", "listeTam"]
+ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni", "kaynak", "listeTam",
+               "satirTuru", "veriGunu"]   # M59: satirTuru pozisyon | negatif_eslesen | negatif_tek; veriGunu raporun eslestigi TEFAS dagilim gunu (portfoy bir is gunu oncesine ait)
 # kaynak: kap (raporun satiri) ya da tefas_kalan (raporun yazmadigi kalem, tutari TEFAS'tan; kirilimi bilinmiyor).
 # listeTam: fonun listesinde tefas_kalan satiri varsa false; olcum tarafi (icerik_olcu.py) o fonda yogunlasma, ortusme, ilk on hesaplamaz.
 OZET_ALAN = ["fonKodu", "raporTarihi", "kurucu", "kurucuDuzeni", "satir", "agirlikToplam", "tefasGun", "tefasSapma", "sapmaSebebi", "tefasSinifToplami", "raporIciTutarsizlik", "listeTam", "eksikKalem", "satirIciSinanan", "satirIciHata", "hisseSatir", "yabanciHisseSatir", "bistKoduBos", "adTemiz", "durum", "sebep", "not"]
@@ -567,6 +569,64 @@ def _ana(r, k):
     return bool(_kolon(r, k["grup"], -5, 40)) and bool(_kolon(r, k["fpd"], -5, 40)) and bool(_kolon(r, k["toplam"], -45, 12))
 
 
+def _sarilan_atama(R, anal, baslik, tablo_bas, tol, etiket_satir=()):
+    """Ana satir olmayan satirlar (sarilan ad, ihracci devami, ISIN) ait olduklari kiymet satirina atanir.
+    M59 (15 Eylul 2026): sarilan satir her zaman USTUNDEKI ana satira aittir (ad asagi dogru sarar). Onceki kural en yakin ana
+    satira atiyordu; satir araligi dar raporlarda (Tera) devam satiri alttaki kiymete yapisiyor, kiymetAdiHam bir satir kayiyordu
+    ("VE TİCARET A.Ş. ASELS ASELSAN ..."). Ustunde ana satir yoksa (sayfa basi) atanmaz; grup etiketi satirlari ad degildir."""
+    atama = defaultdict(list)
+    ana_sirali = sorted(anal)
+    for i, (t, r) in enumerate(R):
+        if i in anal or i in baslik or i <= tablo_bas or i in etiket_satir:
+            continue
+        metin = " ".join(w["text"] for w in r)
+        if re.search(r"-\)|TOPLAMI|GÖRE\)", metin):
+            continue
+        ust = [a for a in ana_sirali if R[a][0] <= t]
+        if not ust:
+            continue
+        j = ust[-1]
+        if t - R[j][0] <= tol:
+            atama[j].append((t, r))
+    return atama
+
+
+def satir_turleri(kayit):
+    """M59: negatif nominalli satir ayni kiymetin pozitif satiriyla NET okunur. Kanit: Tera'nin bir hisse fonunun 2 Eylul raporunda ALKLC 2.750.000 ve
+    -1.400.000 nominal, 9 Eylul raporunda 1.350.000 (takas bekleyen satis; varsayim, rapor bolum adi tasimiyor). Tuketiciler
+    (denetim.sinama_bakis, icerik_olcu.anahtar) agirliklari zaten toplayarak netler. Donus, satir sirasiyla:
+    'pozisyon' | 'negatif_eslesen' (ayni ISIN/kodun pozitif satiri var) | 'negatif_tek' (pozitif esi yok: acik pozisyon ya da borc)."""
+    def anahtar(k):
+        return k.get("isin") or k.get("kod") or k.get("ad")
+    pozitif = {anahtar(k) for k in kayit if (k.get("agirlik") or 0) > 0}
+    return ["pozisyon" if (k.get("agirlik") or 0) >= 0 else ("negatif_eslesen" if anahtar(k) in pozitif else "negatif_tek") for k in kayit]
+
+
+def tefas_gun_esle(rows, f, ay, yayim, kayit, gruplar, evren):
+    """M59: rapor ay sonu portfoyunu yansitmiyorsa ay sonundan yayim tarihine kadarki TEFAS gunleri denenir. Kanit: Tera'nin bir hisse fonu icin
+    'Agustos-2026' basligiyla 9 Eylul'de yayimlanan ikinci rapor 4 Eylul portfoyudur (alis tarihleri 02-04/09), TEFAS'in 7 Eylul
+    dagilimiyla sifir sapma. En kucuk sapma SAPMA_ESIK icindeyse o gun alinir. Donus: (gun, tefas satiri, sapma) ya da (None, None, None)."""
+    try:
+        bit = datetime.strptime(str(yayim)[:10], "%d.%m.%Y").date().isoformat()
+    except ValueError:
+        return None, None, None
+    enb = None
+    for t in sorted(t for (t, k) in rows if k == f and t > ay + "-31" and t <= bit):
+        _, _, sp = kapi(kayit, gruplar, rows[(t, f)], evren)
+        if sp is not None and (enb is None or sp < enb[2]):
+            enb = (t, rows[(t, f)], sp)
+    return enb if enb and enb[2] <= SAPMA_ESIK else (None, None, None)
+
+
+def yeniden_islenmeli(d, x, rap_ay, surum=None):
+    """Kuyruk karari (M59): elde olan liste en yeni raporun kendisiyse atlanir. Ayni ay icin YENIDEN yayimlanan rapor
+    (disclosureIndex farkli; Tera'nin bir fonu, 2 ve 9 Eylul) yeniden islenir; eski surumle uretilen liste de yeniden islenir."""
+    surum = surum or AYRISTIRICI_SURUM
+    if not (d.get("son") and d["son"] >= rap_ay and d.get("surum", 1) >= surum):
+        return True
+    return d.get("bildirim") != x.get("disclosureIndex")
+
+
 def standart_kiymetler(pdf_bayt):
     """Standart duzende (dar ve genis varyant) kiymet satirlarini ve yaprak grup toplamlarini cikarir.
     Tablo 1. sayfanin altinda baslayabilir; grup etiketi sayfalar arasinda tasinir.
@@ -590,7 +650,7 @@ def standart_kiymetler(pdf_bayt):
                 return (("MENKUL" in m and "KIYMET" in m) or ("CİNSİ" in m and "KURUM" in m) or "VADEYE" in m
                         or ("DÖVİZ" in m and "İHRAÇCI" in m) or ("GÜN" in m and "ORANI" in m) or "(FPD" in m or "(%)" in m)
             baslik = {i for i, (t, r) in enumerate(R) if i not in anal and _baslik(r)}
-            etiket_i = {}
+            etiket_i = {}; etiket_satir = set()
             for i, (t, r) in enumerate(R):
                 metin = " ".join(w["text"] for w in r)
                 if i in anal:
@@ -608,26 +668,15 @@ def standart_kiymetler(pdf_bayt):
                     bekleyen, adaylar = True, []
                     continue
                 if bekleyen and r[0]["x0"] < 60 and not re.search(r"\d", metin) and len(metin) < 60:
-                    adaylar.append(metin)
+                    adaylar.append(metin); etiket_satir.add(i)
             # sarilan ihracci satirlari ve ISIN: en yakin ana satira; tolerans satir araligina gore
             # (uzun ihracci adinda ISIN 6-8 satir uzaga dusebilir; BHL, 08.09.2026)
             tops = [t for t, r in R]
             farklar = sorted(b - a for a, b in zip(tops, tops[1:]) if b - a > 0)
             pitch = farklar[len(farklar) // 2] if farklar else 10
             tol = max(40, 8 * pitch)
-            atama = defaultdict(list)
             tablo_bas = next((i for i, (t, r) in enumerate(R) if pi == 1 and "TABLOSU" in " ".join(w["text"] for w in r)), -1)
-            for i, (t, r) in enumerate(R):
-                if i in anal or i in baslik or i <= tablo_bas:
-                    continue
-                if pi > 1 and anal and i < min(anal):
-                    continue                      # sayfa basindaki sarkan satir onceki sayfanin son ana satirina aittir (VNK, dar varyant; 09.09.2026)
-                metin = " ".join(w["text"] for w in r)
-                if re.search(r"-\)|TOPLAMI|GÖRE\)", metin):
-                    continue
-                j = min(anal, key=lambda a: abs(R[a][0] - t))
-                if abs(R[j][0] - t) <= tol:
-                    atama[j].append((t, r))
+            atama = _sarilan_atama(R, anal, baslik, tablo_bas, tol, etiket_satir)
             ad_sinir = kal.get("isin_x0", 230) - 5
             for i in anal:
                 t, r = R[i]
@@ -1036,11 +1085,11 @@ def kimlik_ve_ad(k, evren):
         else:
             aday = [t for t in re.findall(r"\b[A-Z0-9]{4,6}\b", k["ad"]) if t in evren]
             bist = aday[0] if len(set(aday)) == 1 else ""
-    temiz_ad = k["ihracciHam"] if k["ihracciSatir"] == 1 and re.search(r"[A-Za-zÇĞİÖŞÜçğıöşü]{2}", k["ihracciHam"]) else ""
-    if hisse and bist and not temiz_ad and k["ihracciSatir"] == 0:
-        temiz_ad = ""
-    ihracci = temiz_ad if not hisse else ""
-    return bist, ihracci, temiz_ad
+    # M59: ad ve ihracci, ihracci sutununun sarilan satirlariyla birlestirilmis metnidir; onceki 'yalnizca tek satirdan okunan ad'
+    # kurali 22.137 satiri bos birakiyordu. Satir kirilmasi kelime icinde kalabilir ('ELEKTRON İK'); kimlik bistKodu ve ISIN'dir,
+    # ad temizligi yapilmaz (Talimat 8). Hisse satirinda ihracci sirketin kendisidir.
+    temiz_ad = re.sub(r"\s+", " ", k["ihracciHam"]).strip() if re.search(r"[A-Za-zÇĞİÖŞÜçğıöşü]{2}", k["ihracciHam"]) else ""
+    return bist, temiz_ad, temiz_ad
 
 
 SATIR_ICI_AILE = {"hisse", "yabanci_hisse", "dt", "hb", "ost", "fb", "kira", "yf", "byf", "ybyf", "maden", "dis_borc"}
@@ -1249,7 +1298,13 @@ def arsive_isle(arsiv, yazilan):
             continue
         yol = os.path.join(arsiv, f"fon_icerik_{ay}.csv.gz")
         yeni = {s[0] for s in L}
-        birlesik = [(s + ["kap", "true"] if len(s) == 12 else s) for s in gz_oku(yol) if s[0] not in yeni] + L   # eski sema (12 sutun) kaynak=kap, listeTam=true
+        def _tamamla(s):
+            if len(s) == 12:
+                s = s + ["kap", "true"]        # eski sema (12 sutun) kaynak=kap, listeTam=true
+            if len(s) == 14:
+                s = s + ["", ""]               # M59: satirTuru, veriGunu bilinmiyor
+            return s
+        birlesik = [_tamamla(s) for s in gz_oku(yol) if s[0] not in yeni] + L
         birlesik.sort(key=lambda s: (s[0], s[7], s[6], s[3]))
         gz_yaz(yol, birlesik)
 
@@ -1296,6 +1351,12 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
     gun, tefas_son = tefas_ertesi_gun(rows, f, ray)
     rapor_ici = rapor_ici_fark(kayit, gruplar)              # raporun kendi acigi, tamamlamadan once
     ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
+    eslesme = "ay sonu"
+    if not ok and sebep.startswith("şart 3") and x.get("publishDate"):
+        g2, t2, sp2 = tefas_gun_esle(rows, f, ray, x["publishDate"], kayit, gruplar, evren)   # M59: yayim penceresindeki TEFAS gunu
+        if g2:
+            gun, tefas_son, ray, eslesme = g2, t2, g2[:7], "yayım penceresi"
+            ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
     ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
     ek, eksik_kalem = tefas_tamamla(kayit, tefas_son)       # gecen fonda da uygulanir: eksik kalem tasiyan her fon ayni sekilde (09.09.2026 karari)
     if ek:
@@ -1304,12 +1365,13 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
         ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
     liste_tam = not any(k.get("kaynak") == "tefas_kalan" for k in kayit)
     sic_s, sic_h = satir_ici_denetim(kayit)
-    bilgi = dict(ray=ray, duzen=d, gun=gun, sapma=sp, sapmaSebebi=sapma_sebebi, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici, listeTam=liste_tam, eksikKalem=eksik_kalem, satir=len(kayit),
+    bilgi = dict(ray=ray, duzen=d, gun=gun, gunEsleme=eslesme, sapma=sp, sapmaSebebi=sapma_sebebi, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici, listeTam=liste_tam, eksikKalem=eksik_kalem, satir=len(kayit),
                  toplam=round(sum(k["agirlik"] for k in kayit), 2) if kayit else "", sicSinanan=sic_s, sicHata=sic_h)
     pdf = None; gruplar = None; gc.collect()
     if ok:
         satir, hisse_n, yabanci_n, bist_bos, ad_temiz = [], 0, 0, 0, 0
-        for k in kayit:
+        turler = satir_turleri(kayit)                       # M59
+        for k, satir_turu in zip(kayit, turler):
             bist, ihr, temiz = kimlik_ve_ad(k, evren)
             if k["tur"] and HISSE_TUR.search(norm(k["tur"])):
                 if re.search(r"YABANCI", norm(k["tur"])):
@@ -1318,7 +1380,7 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
                     hisse_n += 1; bist_bos += 0 if bist else 1
             ad_temiz += 1 if temiz else 0
             satir.append([f, ray, temiz, k["ad"], bist, ihr, k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], round(k["agirlik"], 4), d,
-                          k.get("kaynak", "kap"), "true" if liste_tam else "false"])
+                          k.get("kaynak", "kap"), "true" if liste_tam else "false", satir_turu, gun or ""])
         bilgi.update(hisse=hisse_n, yabanci=yabanci_n, bistBos=bist_bos, adTemiz=ad_temiz)
         return "yayimlandi", "", satir, bilgi
     if sebep.startswith("şart 3: TEFAS"):
@@ -1408,9 +1470,9 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     ky_yol = os.path.join(veri, "icerik_kuyruk.json"); ky = json_oku(ky_yol, {})
     for f, d in list(ky.items()):            # eski kova adlarini ve 'ozel fon' varsayimini temizle
         if d.get("durum") == "hata" and d.get("sebep") == "ayrıştırma hatası: ":   # butce bitince yanlis yazilan kayitlar (08.09.2026)
-            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
+            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}
         if d.get("durum") == "kapsamDisi":
-            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}
+            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}
     rows = tefas_dagilim_yukle(veri, arsiv); evren = bist_evren_yukle(veri); byf_yukle(veri); sapma_sebepleri_yukle(veri)
     kd_yol2 = os.path.join(veri, "kosu_durumu.json")
     kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol2, kdur)
@@ -1460,9 +1522,9 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum="kapsam_disi", sebep=f"son {KAPSAM_AY} ayda portföy dağılım raporu yok (tek tek sorgulandı)", ay=hedef, tarih=bit)
                 kova["kapsam_disi"].append(f); continue
             rap_ay = rapor_ayi("", x["publishDate"])          # yayim tarihinin onceki ayi; PDF'ten kesinlesir
-            if d.get("son") and d["son"] >= rap_ay and d.get("surum", 1) >= AYRISTIRICI_SURUM:
-                # elde olan liste en yeni raporun kendisi
-                ky[f]["durum"] = "yayimlandi" if d.get("son") == hedef else "rapor_yok_bu_ay"
+            if not yeniden_islenmeli(d, x, rap_ay):
+                # elde olan liste en yeni raporun kendisi (ayni bildirim); ayni ay icin yeniden yayimlanan rapor yeniden islenir (M59)
+                ky[f]["durum"] = "yayimlandi" if d.get("son") >= hedef else "rapor_yok_bu_ay"
                 ky[f]["sebep"] = "" if d.get("son") == hedef else f"bu ayın raporu yok; son rapor {d['son']}"
                 kova[ky[f]["durum"]].append(f); continue
             (yeniden_l if d.get("son") and d["son"] >= rap_ay else yeni_l).append((f, x, d, rap_ay))
@@ -1484,12 +1546,13 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 yeni_fon[0] += 1
             if durum == "yayimlandi":
                 yazilan += satir
-                ky[f] = dict(son=ray, durum="yayimlandi" if ray == hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
-                             sebep="" if ray == hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
+                ky[f] = dict(son=ray, durum="yayimlandi" if ray >= hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
+                             bildirim=x.get("disclosureIndex"), yayim=x.get("publishDate"), gunEsleme=bilgi.get("gunEsleme"),
+                             sebep="" if ray >= hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
                 kova[ky[f]["durum"]].append(f)
                 ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi.get("sapmaSebebi", ""), bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), "true" if bilgi.get("listeTam", True) else "false", bilgi.get("eksikKalem", ""), bilgi["sicSinanan"], bilgi["sicHata"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])
             else:
-                ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum=durum, sebep=sebep, ay=ray, tarih=bit)
+                ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum=durum, sebep=sebep, ay=ray, tarih=bit, bildirim=x.get("disclosureIndex"), yayim=x.get("publishDate"))
                 kova[durum].append(f)
                 if durum == "hata":
                     hata.append((f, ray, sebep))
@@ -1518,7 +1581,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     for f in kunye:
         d = ky.get(f, {})
         if not d.get("durum"):
-            ky[f] = dict(**{k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir")}, durum="kuyrukta", sebep="sırası gelmedi", tarih=bit)
+            ky[f] = dict(**{k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}, durum="kuyrukta", sebep="sırası gelmedi", tarih=bit)
     json_yaz(ky_yol, ky)
     sayim = defaultdict(int)
     for f in kunye:
