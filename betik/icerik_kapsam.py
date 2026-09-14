@@ -29,6 +29,17 @@ def icerik_oku(arsiv, son_n=2):
     return L
 
 
+def son_ay_satirlari(satirlar):
+    """Her fonun yalnızca en yeni raporunun satırları (raporTarihi en büyük olan). Aylık dosyalar birlikte okununca aynı fon iki ayda
+    da bulunur ve toplamlar iki kez sayılırdı."""
+    son = {}
+    for r in satirlar:
+        ay = r.get("raporTarihi") or ""
+        if ay > son.get(r["fonKodu"], ""):
+            son[r["fonKodu"]] = ay
+    return [r for r in satirlar if (r.get("raporTarihi") or "") == son.get(r["fonKodu"])]
+
+
 def icerik_tazeligi(arsiv, fonlar=(), bugun=None, esik=ICERIK_YAS_ESIK_GUN, satirlar=None):
     """Dönüş: dict(dosya, veri_gunu (arşivin en yeni günü), yas, esik, fon{kod: dict(veri_gunu, yas, ay)}, eksik[kod], eski[kod],
     olculemedi, fon_sayisi, sebep)."""
@@ -65,7 +76,7 @@ def kurucu_ihracci(satirlar, fon_kurucu, sermaye=None, kurucular=None):
     satırları net toplanır (negatif satır dahil). Yalnızca hisse satırları (bistKodu dolu). sermaye: {bistKodu: paySayisi} verilirse
     oran = nominal / paySayisi, yoksa None. Dönüş: TL'ye göre azalan liste [dict(kurucu, bistKodu, nominal, tl, fonlar, oran)]."""
     top = {}
-    for r in satirlar:
+    for r in son_ay_satirlari(satirlar):
         kod = (r.get("bistKodu") or "").strip(); kur = fon_kurucu.get(r.get("fonKodu"))
         if not kod or not kur or (kurucular and kur not in kurucular):
             continue

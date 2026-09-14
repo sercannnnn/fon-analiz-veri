@@ -73,6 +73,10 @@ def test_m59_kurucu_duzeyinde_ihracci():
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),
          dict(fonKodu="F1", bistKodu="", nominal="1", rayicDeger="1"), dict(fonKodu="F1", bistKodu="XXX", nominal="9", rayicDeger="9")]
     kur = {"F1": "K1", "F2": "K1", "F3": "K2"}
+    for r in S:
+        r["raporTarihi"] = "2026-09"
+    S.append(dict(fonKodu="F1", bistKodu="MNS", nominal="99999999", rayicDeger="1", raporTarihi="2026-08"))   # eski ay: sayılmaz
+    assert len(icerik_kapsam.son_ay_satirlari(S)) == len(S) - 1
     out = icerik_kapsam.kurucu_ihracci(S, kur, sermaye={"MNS": 40_000_000})
     k1 = next(d for d in out if d["kurucu"] == "K1" and d["bistKodu"] == "MNS")
     assert k1["nominal"] == 17124756 - 11500000 + 1000000 and k1["fonlar"] == ["F1", "F2"] and abs(k1["oran"] - k1["nominal"] / 40e6) < 1e-12

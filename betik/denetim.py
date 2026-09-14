@@ -719,12 +719,12 @@ def sinama_bakis(L, rapor, klasor, tarih, icerik_yol, isimler, bildirilen):
     if not icerik_yol:
         rapor.append("Fon içerik arşivi (fon_icerik_YYYY-MM.csv.gz) bulunamadı; bakış geçirgen maruziyet hesaplanamadı. [kayıt]")
         rapor.append(""); return {"durum": "olculemedi"}
-    ic = icerik_yukle(icerik_yol)
+    import icerik_kapsam
+    ic = icerik_kapsam.son_ay_satirlari(icerik_kapsam.icerik_oku(os.path.dirname(icerik_yol)))   # M59: son iki aylik dosya, her fonun en yeni raporu
     listeler = {}
     for r in ic:
         listeler.setdefault(r["fonKodu"], []).append(r)
     # M59: icerik tazeligi; eski ya da tutulan fon arsivde yoksa bolum olculemedi (kural 14), sayilar yine yazilir
-    import icerik_kapsam
     tutulan_fon = sorted({v["kod"] for v in poz.values() if not (v.get("tip") or "").lower().startswith("hisse")})
     tz = icerik_kapsam.icerik_tazeligi(os.path.dirname(icerik_yol), tutulan_fon, bugun=date.fromisoformat(tarih) if tarih else None, satirlar=ic)
     rapor.append(f"İçerik tazeliği (M59): arşivin en yeni veri günü {tz['veri_gunu'] or 'yok'} ({tz['yas'] if tz['yas'] is not None else '-'} gün; eşik {tz['esik']} gün, varsayım); "
