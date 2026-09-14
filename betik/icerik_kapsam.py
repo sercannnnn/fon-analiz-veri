@@ -12,7 +12,8 @@ burada toplanır. Sermayeye oran için ihraççının pay sayısı gerekir (`ser
 import csv, glob, gzip, io, os
 from datetime import date, timedelta
 
-ICERIK_YAS_ESIK_GUN = 45   # varsayım (kullanıcı onayı bekliyor): aylık rapor + yayım gecikmesi; aşılırsa bir ay atlanmış demektir
+ICERIK_YAS_ESIK_GUN = 45   # kullanıcı kabulü 15 Eylül 2026 (58 numaralı not)
+TEK_KARSI_TARAF_SINIR = 20.0   # puan; kural metni bölüm 5, tek ihraççı sınırı (bizim kuralımız; serbest fonlar mevzuatta muaf, M62)   # varsayım (kullanıcı onayı bekliyor): aylık rapor + yayım gecikmesi; aşılırsa bir ay atlanmış demektir
 
 
 def _ay_sonu(ay):
@@ -69,6 +70,36 @@ def icerik_tazeligi(arsiv, fonlar=(), bugun=None, esik=ICERIK_YAS_ESIK_GUN, sati
         f"arşivin en yeni günü {en_yeni} ({yas(en_yeni)} gün, eşik {esik})" if en_yeni and (yas(en_yeni) or 0) > esik else "") if s))
     return dict(dosya=os.path.basename(dosyalar[-1]) if dosyalar else None, veri_gunu=en_yeni, yas=(yas(en_yeni) if en_yeni else None), esik=esik,
                 fon=fon, eksik=eksik, eski=eski, olculemedi=olculemedi, fon_sayisi=len(gun), sebep=sebep)
+
+
+def fon_ihracci_ilk(satirlar, fonlar, n=3):
+    """M62: her fon için en yüksek n NET ihraççı ağırlığı (aynı ISIN ya da BIST kodunun satırları toplanır, negatif satır dahil; yalnızca
+    en yeni rapor). Dönüş: {fonKodu: [dict(kod, agirlik(puan), veri_gunu)]}; arşivde olmayan fon sözlükte yoktur."""
+    son = son_ay_satirlari(satirlar)
+    top = {}
+    for r in son:
+        f = r.get("fonKodu")
+        if f not in fonlar:
+            continue
+        kod = (r.get("bistKodu") or r.get("isin") or "").strip()
+        if not kod:
+            continue
+        try:
+            a = float(r.get("agirlik") or 0)
+        except ValueError:
+            continue
+        d = top.setdefault(f, {})
+        e = d.setdefault(kod, dict(kod=kod, agirlik=0.0, veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None, ay=r.get("raporTarihi")))
+        e["agirlik"] += a
+    out = {}
+    for f, d in top.items():
+        L = sorted(d.values(), key=lambda e: -e["agirlik"])[:n]
+        for e in L:
+            e["agirlik"] = round(e["agirlik"], 2)
+            if not e["veri_gunu"]:
+                e["veri_gunu"] = (_ay_sonu(e["ay"]).isoformat() if e.get("ay") and len(e["ay"]) == 7 else None)
+        out[f] = L
+    return out
 
 
 def kurucu_ihracci(satirlar, fon_kurucu, sermaye=None, kurucular=None):

@@ -68,6 +68,20 @@ def test_m59_icerik_tazeligi_ve_olculemedi():
     assert icerik_kapsam.icerik_tazeligi("", ["AAA"], bugun=date(2026, 9, 15), satirlar=[])["olculemedi"]
 
 
+def test_m62_fon_ihracci_ilk_net_ve_sinir():
+    S = [dict(fonKodu="F1", bistKodu="AAA", isin="TRA", agirlik="21.79", veriGunu="2026-09-01", raporTarihi="2026-08"),
+         dict(fonKodu="F1", bistKodu="AAA", isin="TRA", agirlik="-1.5", veriGunu="2026-09-01", raporTarihi="2026-08"),
+         dict(fonKodu="F1", bistKodu="BBB", isin="TRB", agirlik="20.37", veriGunu="2026-09-01", raporTarihi="2026-08"),
+         dict(fonKodu="F1", bistKodu="CCC", isin="TRC", agirlik="5", veriGunu="2026-09-01", raporTarihi="2026-08"),
+         dict(fonKodu="F1", bistKodu="DDD", isin="TRD", agirlik="4", veriGunu="2026-09-01", raporTarihi="2026-08"),
+         dict(fonKodu="F1", bistKodu="ZZZ", isin="TRZ", agirlik="99", veriGunu="", raporTarihi="2026-07"),      # eski ay: sayılmaz
+         dict(fonKodu="F2", bistKodu="", isin="TRYTRPY00036", agirlik="14.01", veriGunu="", raporTarihi="2026-09")]
+    o = icerik_kapsam.fon_ihracci_ilk(S, ["F1", "F2", "F9"], n=3)
+    assert [x["kod"] for x in o["F1"]] == ["BBB", "AAA", "CCC"] and o["F1"][1]["agirlik"] == 20.29 and o["F1"][0]["veri_gunu"] == "2026-09-01"   # AAA net 21,79 − 1,5
+    assert o["F2"][0]["kod"] == "TRYTRPY00036" and o["F2"][0]["veri_gunu"] == "2026-09-30" and "F9" not in o
+    assert icerik_kapsam.TEK_KARSI_TARAF_SINIR == 20.0 and o["F1"][0]["agirlik"] > 20.0 and o["F1"][1]["agirlik"] > 20.0
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),

@@ -357,54 +357,112 @@ PARK_SEANS = 20                         # sıralama ölçüsü: son 20 seans get
 PARK_GECIKME_SEANS = 1                  # fonun son fiyatı evrenin son gününden en çok bu kadar seans geride olabilir (08.15 çekiminin bilinen eksiği)
 
 
-def park_fonu_sec(d, kunye, dislama=(), disla_yol=None):
+PARK_MEVCUT_RISK_ESIT_KABUL = False   # kullanıcı kuralı (15 Eylül 2026): mevcut park fonu ancak en az onun kadar kazandıran ve DAHA AZ riskli aday varsa
+                                      # değişir; True yapılırsa eşit risk de kabul edilir (risk 1 taban olduğu için eşitlik kabulü kullanıcı kararıdır)
+
+
+def park_fonu_sec(d, kunye, dislama=(), disla_yol=None, mevcut=None):
     """Park fonu sabit kod değil ölçüttür (39 numaralı not): kategori PARK_KATEGORILER, risk değeri PARK_RISK_ARALIGI içinde (sıfır
     ve boş kabul edilmez), büyüklük PARK_ASGARI_BUYUKLUK üstünde, kimlik arızası / çöküş / kırılma / kesinti / değer kaybı kaydı olan
     fon ve park_disla.txt listesindekiler dışarıda; kalanlar arasında son PARK_SEANS seans getirisi en yüksek olan seçilir, her gün yeniden.
-    d: tarih, fonKodu, fiyat, portfoyBuyukluk çerçevesi; kunye: fonKodu, kategori, riskDegeri çerçevesi; dislama: dışlanan kod kümesi.
-    Dönüş: dict(kod, kategori, risk, buyukluk, getiri20, aday, sira{kod: sıra}, gerekce, elenen{sebep: sayı}); aday yoksa kod None ve sebep."""
+    M61 (58 numaralı not): getiri ORTAK pencerede ölçülür: evrenin son tam kapsamlı günü (kapsam.son_tam_gun) pencerenin sonu, PARK_SEANS
+    seans öncesi başıdır; tam güne yetişemeyen fon aday değildir (sebep tam_gun). M60: risk değeri boş olup öbür şartları geçen fonlar
+    adıyla `risk_olculemedi` listesinde döner (kural 14: ölçülemeyen geçmiş sayılmaz, ama sessizce de elenmez).
+    Kullanıcı kuralı (15 Eylül 2026): `mevcut` (tutulan park fonu) verilirse ölçütün ilk sırası ancak mevcuttan az kazandırmıyor VE daha az
+    riskliyse (PARK_MEVCUT_RISK_ESIT_KABUL) seçilir; yoksa mevcut kalır ve fark yazılır.
+    d: tarih, fonKodu, fiyat, portfoyBuyukluk çerçevesi (fiyatı sıfır satırlar kapsam ölçümüne girer); kunye: fonKodu, kategori, riskDegeri.
+    Dönüş: dict(kod (seçilen), ilk (ölçütün ilk sırası), kategori, risk, buyukluk, getiri20, pencere(bas, bit), aday, sira, adaylar, gerekce,
+    elenen{sebep: sayı}, neden{kod: sebep}, risk_olculemedi[list], mevcut{...} ya da None, karar); aday yoksa kod None ve sebep."""
     import pandas as pd
+    import kapsam as _kapsam
     elle = set()
     if disla_yol and os.path.exists(disla_yol):
         elle = {s.strip().split()[0] for s in open(disla_yol, encoding="utf-8") if s.strip() and not s.startswith("#")}
     k = kunye[["fonKodu", "kategori", "riskDegeri"]].drop_duplicates("fonKodu").set_index("fonKodu")
+    tam = _kapsam.son_tam_gun(d[["tarih", "fonKodu", "fiyat"]])
     d = d[d["fiyat"] > 0].sort_values(["fonKodu", "tarih"])
+    if tam is not None:
+        d = d[d["tarih"] <= tam]
     gunler = sorted(d["tarih"].unique())
     if len(gunler) <= PARK_SEANS:
-        return dict(kod=None, sebep=f"evrende {len(gunler)} seans var, {PARK_SEANS + 1} gerekir", aday=0, elenen={})
-    esik_gun = gunler[-1 - PARK_GECIKME_SEANS]
-    elenen = {"kategori": 0, "risk": 0, "buyukluk": 0, "dislama": 0, "seans": 0}
-    neden = {}      # M57: kod -> eleme sebebi (bekleyen defter kaydının yeniden doğrulanması bunu yazar); bütün şartlar sınanır, ilk sebepte durulmaz
-    adaylar = []
+        return dict(kod=None, sebep=f"evrende {len(gunler)} seans var, {PARK_SEANS + 1} gerekir", aday=0, elenen={}, neden={}, sira={}, adaylar=[], risk_olculemedi=[], mevcut=None, karar="")
+    bit_gun = gunler[-1]; bas_gun = gunler[-1 - PARK_SEANS]
+    pencere = (str(bas_gun)[:10], str(bit_gun)[:10])
+    elenen = {"kategori": 0, "risk": 0, "buyukluk": 0, "dislama": 0, "seans": 0, "tam_gun": 0}
+    neden = {}      # M57: kod -> eleme sebebi; bütün şartlar sınanır, ilk sebepte durulmaz
+    adaylar, risk_olculemedi, olcum = [], [], {}
     for kod, g in d.groupby("fonKodu"):
         kat = k["kategori"].get(kod); risk = k["riskDegeri"].get(kod)
-        p = g["fiyat"].to_numpy(float); b = float(g["portfoyBuyukluk"].iloc[-1] or 0)
-        seb = []
+        fiy = dict(zip(g["tarih"], g["fiyat"].astype(float))); b = float(g["portfoyBuyukluk"].iloc[-1] or 0)
+        son_f = fiy.get(bit_gun)
+        bas_adaylar = [t for t in fiy if t <= bas_gun]
+        bas_f = fiy[max(bas_adaylar)] if bas_adaylar else None
+        getiri = (son_f / bas_f - 1) if (son_f and bas_f) else None
+        olcum[kod] = dict(getiri20=getiri, buyukluk=b, risk=risk)
+        seb = []; risk_bos = risk is None or pd.isna(risk)
         if kat not in PARK_KATEGORILER:
             seb.append(f"kategori {kat or 'boş'} park kategorisi değil")
-        if risk is None or pd.isna(risk) or not (PARK_RISK_ARALIGI[0] <= float(risk) <= PARK_RISK_ARALIGI[1]):
-            seb.append("risk değeri " + ("boş" if risk is None or pd.isna(risk) else str(int(risk))) + f" (ölçüt {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]})")
+        if risk_bos or not (PARK_RISK_ARALIGI[0] <= float(risk) <= PARK_RISK_ARALIGI[1]):
+            seb.append("risk değeri " + ("boş (ölçülemedi)" if risk_bos else str(int(risk))) + f" (ölçüt {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]})")
         if kod in dislama or kod in elle:
             seb.append("dışlama listesinde (arıza/çöküş/kırılma/kesinti/değer kaybı ya da park_disla.txt)")
-        if len(p) <= PARK_SEANS or g["tarih"].iloc[-1] < esik_gun:
-            seb.append(f"seans yetersiz ya da fiyatı geride ({len(p)} seans, son {str(g['tarih'].iloc[-1])[:10]})")
+        if son_f is None:
+            seb.append(f"tam güne yetişemedi (evrenin son tam günü {pencere[1]}, fonun son fiyatı {str(g['tarih'].iloc[-1])[:10]}; kısmi gün)")
+        elif bas_f is None:
+            seb.append(f"seans yetersiz ({len(fiy)} seans, pencere başı {pencere[0]} öncesi fiyat yok)")
         if b < PARK_ASGARI_BUYUKLUK:
             seb.append(f"büyüklük {b / 1e9:.2f} milyar TL (taban {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar)")
         if seb:
             neden[kod] = "; ".join(seb)
             anahtar = ("kategori" if "kategori" in seb[0] else "risk" if seb[0].startswith("risk") else "dislama" if "dışlama" in seb[0]
-                       else "seans" if seb[0].startswith("seans") else "buyukluk")
-            elenen[anahtar] += 1; continue
-        adaylar.append(dict(kod=kod, kategori=kat, risk=int(risk), buyukluk=b, getiri20=p[-1] / p[-1 - PARK_SEANS] - 1, sonGun=str(g["tarih"].iloc[-1])[:10]))
+                       else "tam_gun" if seb[0].startswith("tam güne") else "seans" if seb[0].startswith("seans") else "buyukluk")
+            elenen[anahtar] += 1
+            if len(seb) == 1 and risk_bos:      # M60: yalnızca risk hanesi boş; adıyla raporlanır
+                risk_olculemedi.append(dict(kod=kod, kategori=kat, buyukluk=b, getiri20=getiri))
+            continue
+        adaylar.append(dict(kod=kod, kategori=kat, risk=int(risk), buyukluk=b, getiri20=getiri, sonGun=str(g["tarih"].iloc[-1])[:10]))
+    risk_olculemedi.sort(key=lambda a: -(a["getiri20"] or -9))
     if not adaylar:
-        return dict(kod=None, sebep="dört şartı geçen fon yok", aday=0, elenen=elenen, neden=neden, sira={}, adaylar=[])
+        return dict(kod=None, sebep="dört şartı geçen fon yok", aday=0, elenen=elenen, neden=neden, sira={}, adaylar=[], pencere=pencere,
+                    risk_olculemedi=risk_olculemedi, mevcut=None, karar="")
     adaylar.sort(key=lambda a: -a["getiri20"])
-    s = adaylar[0]
-    gerekce = (f"{s['kod']} ({s['kategori']}, risk {s['risk']}, {s['buyukluk'] / 1e9:.1f} milyar TL, {PARK_SEANS} seans {_yuzde(s['getiri20'])}); "
+    ilk = adaylar[0]; s = ilk; karar = ""; mev = None
+    if mevcut:
+        m_ad = next((a for a in adaylar if a["kod"] == mevcut), None)
+        o = olcum.get(mevcut) or {}
+        mev = dict(kod=mevcut, getiri20=o.get("getiri20"), risk=(None if o.get("risk") is None or pd.isna(o.get("risk")) else int(o["risk"])),
+                   sira=next((i + 1 for i, a in enumerate(adaylar) if a["kod"] == mevcut), None), aday=m_ad is not None, neden=neden.get(mevcut, ""))
+        if m_ad is None:
+            karar = f"mevcut {mevcut} ölçütten elendi ({neden.get(mevcut, 'evrende yok')}); ölçütün ilk sırası {ilk['kod']} seçildi"
+        elif ilk["kod"] == mevcut:
+            karar = f"mevcut {mevcut} ölçütün ilk sırası, kalır"
+        else:
+            daha_az_riskli = (ilk["risk"] <= m_ad["risk"]) if PARK_MEVCUT_RISK_ESIT_KABUL else (ilk["risk"] < m_ad["risk"])
+            uygun = [a for a in adaylar if a["getiri20"] >= m_ad["getiri20"] and ((a["risk"] <= m_ad["risk"]) if PARK_MEVCUT_RISK_ESIT_KABUL else (a["risk"] < m_ad["risk"]))]
+            if uygun:
+                s = uygun[0]
+                karar = (f"{s['kod']} seçildi: en az {mevcut} kadar kazandırıyor ({_yuzde(s['getiri20'], 2)} ≥ {_yuzde(m_ad['getiri20'], 2)}) ve daha az riskli "
+                         f"(risk {s['risk']} < {m_ad['risk']}); kural 15 Eylül 2026, kullanıcı")
+            else:
+                s = m_ad
+                karar = (f"mevcut {mevcut} kalır: en az onun kadar kazandıran ({_yuzde(m_ad['getiri20'], 2)}) ve daha az riskli (risk < {m_ad['risk']}) aday yok; "
+                         f"ölçütün ilk sırası {ilk['kod']} ({_yuzde(ilk['getiri20'], 2)}, risk {ilk['risk']}), fark {_yuzde(ilk['getiri20'] - m_ad['getiri20'], 2)}; kural 15 Eylül 2026, kullanıcı")
+    gerekce = (f"{s['kod']} ({s['kategori']}, risk {s['risk']}, {s['buyukluk'] / 1e9:.1f} milyar TL, {PARK_SEANS} seans {_yuzde(s['getiri20'])}, pencere {pencere[0]} → {pencere[1]}); "
                f"{len(adaylar)} aday; ölçüt: kategori {', '.join(PARK_KATEGORILER)}, risk {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]}, "
-               f"büyüklük ≥ {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar TL (varsayım), arıza/çöküş/kırılma/kesinti/değer kaybı ve park_disla.txt dışarıda")
-    return dict(kod=s["kod"], kategori=s["kategori"], risk=s["risk"], buyukluk=s["buyukluk"], getiri20=s["getiri20"], aday=len(adaylar),
-                sira={a["kod"]: i + 1 for i, a in enumerate(adaylar)}, adaylar=adaylar[:5], gerekce=gerekce, elenen=elenen, neden=neden)
+               f"büyüklük ≥ {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar TL (varsayım), arıza/çöküş/kırılma/kesinti/değer kaybı ve park_disla.txt dışarıda, ortak pencere (M61)")
+    return dict(kod=s["kod"], ilk=ilk["kod"], kategori=s["kategori"], risk=s["risk"], buyukluk=s["buyukluk"], getiri20=s["getiri20"], pencere=pencere, aday=len(adaylar),
+                sira={a["kod"]: i + 1 for i, a in enumerate(adaylar)}, adaylar=adaylar[:5], gerekce=gerekce, elenen=elenen, neden=neden,
+                risk_olculemedi=risk_olculemedi, mevcut=mev, karar=karar)
+
+
+def park_eleme_satiri(p):
+    """M60: park ölçütünün eleme sayacı brifingde her sabah; risk hanesi boş olup öbür şartları geçen fonlar adıyla (ölçülemedi, elenmedi)."""
+    e = p.get("elenen") or {}
+    ro = p.get("risk_olculemedi") or []
+    return (f"Park ölçütü eleme sayacı (M60): kategori dışı {e.get('kategori', 0)}, risk hanesi boş ya da aralık dışı {e.get('risk', 0)}, "
+            f"büyüklük {e.get('buyukluk', 0)}, dışlama {e.get('dislama', 0)}, seans {e.get('seans', 0)}, tam güne yetişemeyen {e.get('tam_gun', 0)}. "
+            + (f"Risk değeri ÖLÇÜLEMEDİ ama öbür şartları geçen {len(ro)} fon (kaynak: TEFAS künyesi boş; KAP künyesi ve KAP fon sayfası risk taşımaz): "
+               + ", ".join(f"{a['kod']} {_yuzde(a['getiri20']) if a['getiri20'] is not None else '-'} {a['buyukluk'] / 1e9:.1f} mrd" for a in ro[:6]) + "." if ro else ""))
 
 
 # ---------------------------------------------------------------- kural sürümü ve bekleyen defter kaydı (M57, kural 24; 53 numaralı not, 14 Eylül 2026)
