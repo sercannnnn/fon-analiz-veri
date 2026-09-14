@@ -507,7 +507,10 @@ def _tarih_coz(s, bugun):
 
 
 def _sebep(k):
+    """`beklemeSebebi` sadeleştirilmiş; alan yoksa kalem adı 'Ödeme' ile başlıyorsa ödeme sayılır (eski kayıtlar için yedek, sözleşme alanı beklemeSebebi)."""
     s = str(k.get("beklemeSebebi") or "").strip().lower()
+    if not s and str(k.get("kalem") or "").strip().lower().startswith(("ödeme", "odeme")):
+        s = "odeme"
     return s.replace("ö", "o").replace("ı", "i").replace("ş", "s").replace("ç", "c").replace("ü", "u").replace("ğ", "g")
 
 

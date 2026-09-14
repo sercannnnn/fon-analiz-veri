@@ -122,10 +122,11 @@ def test_m58_atil_nakit_uc_tutar():
              dict(kalem="Ödeme: kira", tutar=500000, beklemeSebebi="ödeme", odemeTarihi="2026-09-20"),
              dict(kalem="Park", tutar=200000, beklemeSebebi="park", fon="PNU"),
              dict(kalem="SSS satışı", tutar=2499789, valor="16.09"),
+             dict(kalem="Ödeme: kart", tutar=100000, valor="18.09"),      # beklemeSebebi yok, kalem adıyla ödeme sayılır
              dict(kalem="Tutarsız", tutar=None)]
     poz = {"k-QQQ": dict(kod="QQQ", deger=1000000, kurum="Kurum B", durum="ACIK"), "k-RRR": dict(kod="RRR", deger=5, durum="ACIK")}
     n = oneri.nakit_ayir(nakit, poz, dict(kod="PNU", getiri20=0.04), bugun, kategori={"QQQ": "Para Piyasası", "RRR": "Hisse"})
-    assert n["odeme_toplam"] == 500000 and n["odeme"][0]["tarih"] == "2026-09-20"
+    assert n["odeme_toplam"] == 600000 and n["odeme"][0]["tarih"] == "2026-09-20" and n["odeme"][1]["tarih"] == "18.09"
     assert n["park_toplam"] == 1200000 and {x["fon"] for x in n["park"]} == {"PNU", "QQQ"}
     assert n["atil_toplam"] == 3371000 and n["atil"][0]["kurum"] == "Kurum A" and n["atil"][0]["gun"] == 4
     assert n["beklenen_giris"] and n["bos"] == 1
