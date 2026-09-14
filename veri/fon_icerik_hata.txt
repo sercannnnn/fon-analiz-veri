@@ -51,7 +51,6 @@ KRH	2026-08	ek PDF yok
 KUB	2026-08	satır içi: 1/18 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 LLA	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.39 puan, 0,05 üstü
 MGE	2026-08	ek PDF yok
-MGH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.87 puan, 0,05 üstü
 MJG	2026-08	şart 2: 2 satıra birden çok ISIN atandı (CH0183135992 SIVR US0032641088)
 MJH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.40 puan, 0,05 üstü
 MJK	2026-08	ek PDF yok
@@ -77,3 +76,5 @@ NZH	2026-08	satır içi: 1/26 satırda yüzde sütunu rayiç / toplam ile tutmuy
 OHI	2026-08	ek PDF yok
 OME	2026-08	ek PDF yok
 OPB	2026-08	şart 2: 2 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Borsa Y.Fonu Türk APLIB AK POR)
+OPL	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: BORSA YATIRIM FONU OPK30- OSMA)
+OSF	2026-08	ek PDF yok
