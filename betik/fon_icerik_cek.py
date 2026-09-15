@@ -1382,7 +1382,7 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
         # (sebep listesine girmez, olcumdur). Kural 14: olculemeyen tarih olcumu iptal etmez. 0,14 ve 0,31 puanlik iki rapor ayni kuralla yayimlanir.
         g2, t2, sp2 = tefas_gun_esle(rows, f, ray, x["publishDate"], kayit, gruplar, evren, ay_ici=True)
         if g2 and sp2 is not None and sp2 < sp:
-            gun, tefas_son, sp = g2, t2, sp2
+            gun, tefas_son, sp, ray = g2, t2, sp2, g2[:7]      # veri gunu en kucuk sapmali gun; rapor ayi o gunun ayi
         ok, sebep, sapma_sebebi = True, "", "veri_gunu_yaklasik"
         eslesme = f"yaklaşık ({sp:.2f})"
     ek, eksik_kalem = tefas_tamamla(kayit, tefas_son)       # gecen fonda da uygulanir: eksik kalem tasiyan her fon ayni sekilde (09.09.2026 karari)

@@ -191,8 +191,8 @@ def kurucu_grubu_payi(satirlar, fonlar, fon_kurucu, grup_tablo=None):
             if eslesir(r.get("kiymetAdiHam") or ""):
                 o["ust_sinir"] += a          # ham adda grup adı: üst sınıra girer (M68 tanımı)
                 o["kalemler"]["(ham) " + (r.get("kiymetAdiHam") or "")[:30]] = o["kalemler"].get("(ham) " + (r.get("kiymetAdiHam") or "")[:30], 0.0) + a
-            elif not any(p in _norm(tur) for p in IHRACCI_OLMAYAN_TURLER):
-                o["olculemeyen"] += a        # M69: adsız satır "grup değil" değil "bilinmiyor"; yapısı gereği ihraççı olmayan türler düşülür
+            elif a > 0 and not any(p in _norm(tur) for p in IHRACCI_OLMAYAN_TURLER):
+                o["olculemeyen"] += a        # M69 (negatif satır, takas bekleyen satış, bilinmezliğe girmez): adsız satır "grup değil" değil "bilinmiyor"; yapısı gereği ihraççı olmayan türler düşülür
                 o["olculemeyen_tur"][tur or "türsüz"] = o["olculemeyen_tur"].get(tur or "türsüz", 0.0) + a
     for f, o in out.items():
         o["kesin"] = round(o["kesin"], 2)
