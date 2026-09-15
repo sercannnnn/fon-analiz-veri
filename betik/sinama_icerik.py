@@ -170,7 +170,7 @@ def test_68_yeniden_degerleme_ve_cikis_suresi():
     o = icerik_kapsam.yeniden_degerle(S, ["F1"], fiy, buyukluk={"F1": 16_000_000_000.0})["F1"]
     a = o["satirlar"][0]
     assert a["kod"] == "AAA" and a["nominal"] == 900000 and a["deger"] == 1.8e9 and a["agirlik_rapor"] == 15.76
-    assert abs(o["fpd_rapor"] - 1e10) < 1e4 and abs(o["toplam_guncel"] - (1e10 + 1.8e9 - 1.576e9)) < 1e4      # yalnızca fiyat değişimi taşınır
+    assert abs(o["fpd_rapor"] - 1e10) < 2e6 and abs(o["toplam_guncel"] - (1e10 + 1.8e9 - 1.576e9)) < 2e6      # yalnızca fiyat değişimi taşınır (ağırlık iki ondalık: %0,02 pay)
     assert abs(a["agirlik_guncel"] - 1.8e9 / o["toplam_guncel"] * 100) < 0.01 and 17.5 < a["agirlik_guncel"] < 17.7
     assert abs(a["cikis_gun"] - 1.8e9 / (1e9 * icerik_kapsam.KATILIM_ORANI)) < 1e-9
     b = o["satirlar"][1]
