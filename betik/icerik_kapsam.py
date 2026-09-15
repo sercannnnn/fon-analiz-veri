@@ -378,12 +378,17 @@ def cikis_gunu(deger, hacim_ortanca, katilim=KATILIM_ORANI):
     return deger / (hacim_ortanca * katilim)
 
 
+AKIS_UYARI_ORAN = 0.10   # TEFAS büyüklüğü rapor toplamından bu orandan fazla sapıyorsa "alım satım yok" varsayımı zayıftır, satır bunu yazar (varsayım)
+
+
 def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5):
-    """68 numaralı not, bölüm 3: rapor günü nominal pay adedi × bugünkü fiyat = bugünkü pozisyon değeri; güncel ağırlık = değer / fonun güncel
-    toplam değeri (TEFAS büyüklüğü). Alım satım olmadığı VARSAYIMI açıkça yazılır. Fiyatı olmayan satır rapor ağırlığını korur ve
-    fiyatsız paya girer. Yalnızca hisse satırları (bistKodu dolu), aynı kodun satırları net toplanır; en yeni rapor.
-    Dönüş: {fon: dict(veri_gunu, fiyat_tarihi, satirlar[list of dict(kod, nominal, agirlik_rapor, agirlik_guncel, deger, fiyat, hacim_ortanca, cikis_gun, fiyatsiz)],
-    fiyatsiz_pay, olculen_pay_rapor, olculen_pay_guncel, hisse_sayisi, fiyatli_sayi)}."""
+    """68 numaralı not, bölüm 3: rapor günü nominal pay adedi × bugünkü ham kapanış = bugünkü pozisyon değeri. Güncel ağırlık = değer / fonun
+    yalnızca FİYAT değişimiyle taşınmış toplam değeri: rapor toplam değeri (satırların rayiç / ağırlık oranından, FPD) + Σ(bugünkü değer − rapor
+    rayici). Alım satım ve akış olmadığı VARSAYIMI açıkça yazılır; TEFAS'ın bugünkü büyüklüğü ayrı verilir ve rapor toplamından AKIS_UYARI_ORAN
+    ötesinde sapıyorsa `akis_uyari` işaretlenir (payda olarak kullanılmaz: yeni para raporda yoktur, kullanılsaydı ağırlıklar yapay düşerdi).
+    Fiyatı olmayan satır rapor ağırlığını korur ve fiyatsız paya girer. Yalnızca hisse satırları (bistKodu dolu), aynı kodun satırları net toplanır.
+    Dönüş: {fon: dict(veri_gunu, fiyat_tarihi, satirlar[...], fiyatsiz_pay, olculen_pay_rapor, olculen_pay_guncel, hisse_sayisi, fiyatli_sayi,
+    fpd_rapor, toplam_guncel, buyukluk (TEFAS), akis_orani, akis_uyari)}."""
     son = son_ay_satirlari(satirlar); buyukluk = buyukluk or {}
     top = {}
     for r in son:
@@ -391,33 +396,41 @@ def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5):
         if f not in fonlar or not kod:
             continue
         try:
-            a = float(r.get("agirlik") or 0); nom = float(r.get("nominal") or 0)
+            a = float(r.get("agirlik") or 0); nom = float(r.get("nominal") or 0); ray = float(r.get("rayicDeger") or 0)
         except ValueError:
             continue
-        d = top.setdefault(f, dict(veri_gunu=(r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None), kod={}))
-        e = d["kod"].setdefault(kod, dict(kod=kod, nominal=0.0, agirlik_rapor=0.0))
-        e["nominal"] += nom; e["agirlik_rapor"] += a
+        d = top.setdefault(f, dict(veri_gunu=(r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None), kod={}, fpd=[]))
+        e = d["kod"].setdefault(kod, dict(kod=kod, nominal=0.0, agirlik_rapor=0.0, rayic=0.0))
+        e["nominal"] += nom; e["agirlik_rapor"] += a; e["rayic"] += ray
+        if a > 0.05 and ray > 0:
+            d["fpd"].append(ray / a * 100.0)
     out = {}
     for f, d in top.items():
+        fpd = sorted(d["fpd"])[len(d["fpd"]) // 2] if d["fpd"] else None
         b = float(buyukluk.get(f) or 0)
-        L, fiyatsiz, olc_r, olc_g, tarih = [], 0.0, 0.0, 0.0, None
+        L, fiyatsiz, tarih, fark = [], 0.0, None, 0.0
         for e in d["kod"].values():
             p = fiyat.get(e["kod"])
             if p and e["nominal"] > 0:
                 deger = e["nominal"] * p["kapanis"]
-                e.update(fiyat=p["kapanis"], fiyat_tarihi=p["tarih"], deger=deger, hacim_ortanca=p.get("hacim_ortanca"),
-                         cikis_gun=cikis_gunu(deger, p.get("hacim_ortanca")), agirlik_guncel=(deger / b * 100.0 if b > 0 else None), fiyatsiz=False)
-                olc_r += e["agirlik_rapor"]; olc_g += (e["agirlik_guncel"] or 0.0); tarih = max(tarih or "", p["tarih"])
+                e.update(fiyat=p["kapanis"], fiyat_tarihi=p["tarih"], deger=deger, hacim_ortanca=p.get("hacim_ortanca"), cikis_gun=cikis_gunu(deger, p.get("hacim_ortanca")), fiyatsiz=False)
+                fark += deger - e["rayic"]; tarih = max(tarih or "", p["tarih"])
             else:
                 e.update(fiyat=None, fiyat_tarihi=None, deger=None, hacim_ortanca=None, cikis_gun=None, agirlik_guncel=None, fiyatsiz=True)
                 fiyatsiz += max(e["agirlik_rapor"], 0.0)
-            e["agirlik_rapor"] = round(e["agirlik_rapor"], 2)
-            if e["agirlik_guncel"] is not None:
-                e["agirlik_guncel"] = round(e["agirlik_guncel"], 2)
             L.append(e)
+        toplam = (fpd + fark) if fpd else None
+        olc_r, olc_g = 0.0, 0.0
+        for e in L:
+            if not e["fiyatsiz"]:
+                e["agirlik_guncel"] = round(e["deger"] / toplam * 100.0, 2) if toplam else None
+                olc_r += e["agirlik_rapor"]; olc_g += (e["agirlik_guncel"] or 0.0)
+            e["agirlik_rapor"] = round(e["agirlik_rapor"], 2)
         L.sort(key=lambda e: -(e["agirlik_guncel"] if e["agirlik_guncel"] is not None else e["agirlik_rapor"]))
+        akis = (b / fpd - 1.0) if (fpd and b > 0) else None
         out[f] = dict(veri_gunu=d["veri_gunu"], fiyat_tarihi=tarih, satirlar=L, fiyatsiz_pay=round(fiyatsiz, 2), olculen_pay_rapor=round(olc_r, 2),
-                      olculen_pay_guncel=round(olc_g, 2), hisse_sayisi=len(L), fiyatli_sayi=sum(1 for e in L if not e["fiyatsiz"]), buyukluk=b or None)
+                      olculen_pay_guncel=round(olc_g, 2), hisse_sayisi=len(L), fiyatli_sayi=sum(1 for e in L if not e["fiyatsiz"]),
+                      fpd_rapor=fpd, toplam_guncel=toplam, buyukluk=b or None, akis_orani=akis, akis_uyari=(akis is not None and abs(akis) > AKIS_UYARI_ORAN))
     return out
 
 

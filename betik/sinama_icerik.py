@@ -161,19 +161,23 @@ def test_m68_kurucu_grubu_payi_ve_banka_grubu():
 
 
 def test_68_yeniden_degerleme_ve_cikis_suresi():
-    S = [dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="1000000", agirlik="16.76", raporTarihi="2026-09", veriGunu="2026-09-07"),
-         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="-100000", agirlik="-1.0", raporTarihi="2026-09", veriGunu="2026-09-07"),   # net 900.000
-         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="BBB", isin="TRB", nominal="5000", agirlik="5.0", raporTarihi="2026-09", veriGunu="2026-09-07"),         # fiyatsız
-         dict(fonKodu="F1", tur="VIOP Nakit Teminatı", bistKodu="", isin="", nominal="1", agirlik="20", raporTarihi="2026-09", veriGunu="2026-09-07")]
+    # rapor: FPD 10 mrd; AAA net 900.000 pay, rayiç 1,576 mrd (%15,76), rapor fiyatı 1.751; bugün 2.000 → değer 1,8 mrd
+    S = [dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="1000000", rayicDeger="1751111111", agirlik="17.51", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="-100000", rayicDeger="-175111111", agirlik="-1.75", raporTarihi="2026-09", veriGunu="2026-09-07"),   # net 900.000
+         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="BBB", isin="TRB", nominal="5000", rayicDeger="500000000", agirlik="5.0", raporTarihi="2026-09", veriGunu="2026-09-07"),         # fiyatsız
+         dict(fonKodu="F1", tur="VIOP Nakit Teminatı", bistKodu="", isin="", nominal="1", rayicDeger="2000000000", agirlik="20", raporTarihi="2026-09", veriGunu="2026-09-07")]
     fiy = {"AAA": dict(tarih="2026-09-14", kapanis=2000.0, hacim_ortanca=1_000_000_000.0, seans=20)}
-    o = icerik_kapsam.yeniden_degerle(S, ["F1"], fiy, buyukluk={"F1": 10_000_000_000.0})["F1"]
+    o = icerik_kapsam.yeniden_degerle(S, ["F1"], fiy, buyukluk={"F1": 16_000_000_000.0})["F1"]
     a = o["satirlar"][0]
-    assert a["kod"] == "AAA" and a["nominal"] == 900000 and a["deger"] == 1.8e9 and a["agirlik_guncel"] == 18.0 and a["agirlik_rapor"] == 15.76
+    assert a["kod"] == "AAA" and a["nominal"] == 900000 and a["deger"] == 1.8e9 and a["agirlik_rapor"] == 15.76
+    assert abs(o["fpd_rapor"] - 1e10) < 1e4 and abs(o["toplam_guncel"] - (1e10 + 1.8e9 - 1.576e9)) < 1e4      # yalnızca fiyat değişimi taşınır
+    assert abs(a["agirlik_guncel"] - 1.8e9 / o["toplam_guncel"] * 100) < 0.01 and 17.5 < a["agirlik_guncel"] < 17.7
     assert abs(a["cikis_gun"] - 1.8e9 / (1e9 * icerik_kapsam.KATILIM_ORANI)) < 1e-9
     b = o["satirlar"][1]
-    assert b["kod"] == "BBB" and b["fiyatsiz"] and b["cikis_gun"] is None and o["fiyatsiz_pay"] == 5.0 and o["olculen_pay_guncel"] == 18.0 and o["olculen_pay_rapor"] == 15.76
+    assert b["kod"] == "BBB" and b["fiyatsiz"] and b["cikis_gun"] is None and o["fiyatsiz_pay"] == 5.0 and o["olculen_pay_rapor"] == 15.76
+    assert o["akis_uyari"] and abs(o["akis_orani"] - 0.6) < 1e-6      # TEFAS 16 mrd, rapor 10 mrd: yeni para, varsayım zayıf; payda olarak kullanılmaz
     assert icerik_kapsam.cikis_gunu(100.0, None) is None and icerik_kapsam.cikis_gunu(100.0, 0) is None
-    assert icerik_kapsam.yeniden_degerle(S, ["F1"], fiy)["F1"]["satirlar"][0]["agirlik_guncel"] is None      # büyüklük yoksa güncel ağırlık ölçülemedi
+    assert not icerik_kapsam.yeniden_degerle(S, ["F1"], fiy)["F1"]["akis_uyari"]
 
 
 def test_68_temel_oranlar_ve_dort_ceyrek():
