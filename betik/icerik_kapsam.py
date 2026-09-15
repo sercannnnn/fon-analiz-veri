@@ -13,7 +13,13 @@ import csv, glob, gzip, io, os
 from datetime import date, timedelta
 
 ICERIK_YAS_ESIK_GUN = 45   # kullanıcı kabulü 15 Eylül 2026 (58 numaralı not)
-REPO_TURLER = {"T.REPO", "REPO", "TERS REPO"}   # repo satırının karşı tarafı ihraççı değil repo tarafıdır; teminat kıymeti ihraççı maruziyeti sayılmaz (M62)
+# M67 (62 numaralı not): teminatlı para piyasası işlemi sınıfı; ihraççı ölçüsünün dışında kalır, kendi satırında dayanağının sınıfı ve ihraççısıyla raporlanır
+TEMINATLI_PP_TURLER = {"T.REPO", "REPO", "TERS REPO", "G.DİĞER VARLIKLAR TERS REPO", "TAAHHÜT SÖZLEŞMESİ SATIŞ", "TAAHHÜT SÖZLEŞMESİ ALIŞ",
+                       "TAAHHÜT SÖZLEŞMESİ", "TPP", "BPP", "KATILIM HESABI"}
+REPO_TURLER = TEMINATLI_PP_TURLER      # eski ad
+KARSI_TARAF_SABIT = {"TPP": "Takasbank para piyasası (merkezi karşı taraf; piyasa kuralı, raporda yazmaz)",
+                     "BPP": "Borsa İstanbul para piyasası (Takasbank merkezi karşı taraf; piyasa kuralı, raporda yazmaz)"}
+KAMU_IHRACCILAR = ("HAZİNE", "HAZINE", "T.C. HAZİNE", "TCMB", "MERKEZ BANKASI")   # tek ihraççı sınırından muaf, ağırlığı yine yazılır (62 numaralı not)
 TEK_KARSI_TARAF_SINIR = 20.0   # puan; kural metni bölüm 5, tek ihraççı sınırı (bizim kuralımız; serbest fonlar mevzuatta muaf, M62)   # varsayım (kullanıcı onayı bekliyor): aylık rapor + yayım gecikmesi; aşılırsa bir ay atlanmış demektir
 
 
@@ -73,24 +79,54 @@ def icerik_tazeligi(arsiv, fonlar=(), bugun=None, esik=ICERIK_YAS_ESIK_GUN, sati
                 fon=fon, eksik=eksik, eski=eski, olculemedi=olculemedi, fon_sayisi=len(gun), sebep=sebep)
 
 
+def _norm(s):
+    return (s or "").upper().replace("İ", "I").replace("Ş", "S").replace("Ğ", "G").replace("Ü", "U").replace("Ö", "O").replace("Ç", "C")
+
+
+def kamu_mu(isin, ihracci=""):
+    """Hazine ve TCMB: DİBS (TRT…), Hazine kira sertifikası (TRD + rakam), adı Hazine/TCMB olan satır."""
+    i = (isin or "").upper()
+    if i.startswith("TRT") or (i.startswith("TRD") and len(i) > 3 and i[3].isdigit()):
+        return True
+    return any(_norm(k) in _norm(ihracci) for k in KAMU_IHRACCILAR)
+
+
+def _tur_teminatli(tur):
+    return _norm(tur).strip() in {_norm(x) for x in TEMINATLI_PP_TURLER}
+
+
 def fon_ihracci_ilk(satirlar, fonlar, n=3):
     """M62: her fon için en yüksek n NET ihraççı ağırlığı (aynı ISIN ya da BIST kodunun satırları toplanır, negatif satır dahil; yalnızca
-    en yeni rapor; repo satırları REPO_TURLER dışarıda). Dönüş: {fonKodu: [dict(kod, agirlik(puan), veri_gunu)]}; arşivde olmayan fon sözlükte yoktur."""
+    en yeni rapor; teminatlı para piyasası işlemleri TEMINATLI_PP_TURLER dışarıda). Anahtar: BIST kodu, yoksa ISIN, yoksa ihraççı adı
+    (mevduat ve katılım hesabı: banka). Kamu ihraççı (kamu_mu) `muaf` işaretiyle döner, ağırlığı yine yazılır. Adsız ağırlık (anahtarı olmayan
+    satırlar) fon başına `adsiz` alanında sözlüğün `_adsiz` girdisinde; fonun ölçüsü ancak adsız pay küçükse tamdır ("kısmen ölçüldü", düzeltme 3).
+    Dönüş: {fonKodu: [dict(kod, agirlik(puan), veri_gunu, muaf, ihracci)]} ve {fonKodu: adsız puan} çifti için fon_ihracci_ilk_adsiz."""
+    return _fon_ihracci(satirlar, fonlar, n)[0]
+
+
+def fon_ihracci_ilk_adsiz(satirlar, fonlar):
+    """{fonKodu: adsız (anahtarsız) ağırlık, puan}; teminatlı para piyasası satırları hariç."""
+    return _fon_ihracci(satirlar, fonlar, 3)[1]
+
+
+def _fon_ihracci(satirlar, fonlar, n):
     son = son_ay_satirlari(satirlar)
-    top = {}
+    top, adsiz = {}, {}
     for r in son:
         f = r.get("fonKodu")
-        if f not in fonlar or (r.get("tur") or "").strip().upper() in REPO_TURLER:
-            continue
-        kod = (r.get("bistKodu") or r.get("isin") or "").strip()
-        if not kod:
+        if f not in fonlar or _tur_teminatli(r.get("tur")):
             continue
         try:
             a = float(r.get("agirlik") or 0)
         except ValueError:
             continue
+        ih = (r.get("ihracci") or "").strip()
+        kod = (r.get("bistKodu") or r.get("isin") or ih).strip()
+        if not kod:
+            adsiz[f] = adsiz.get(f, 0.0) + a; continue
         d = top.setdefault(f, {})
-        e = d.setdefault(kod, dict(kod=kod, agirlik=0.0, veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None, ay=r.get("raporTarihi")))
+        e = d.setdefault(kod, dict(kod=kod, agirlik=0.0, veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None, ay=r.get("raporTarihi"),
+                                   muaf=kamu_mu(r.get("isin"), ih), ihracci=ih))
         e["agirlik"] += a
     out = {}
     for f, d in top.items():
@@ -100,7 +136,7 @@ def fon_ihracci_ilk(satirlar, fonlar, n=3):
             if not e["veri_gunu"]:
                 e["veri_gunu"] = (_ay_sonu(e["ay"]).isoformat() if e.get("ay") and len(e["ay"]) == 7 else None)
         out[f] = L
-    return out
+    return out, {f: round(v, 2) for f, v in adsiz.items()}
 
 
 TEMINAT_SINIFI = (("TRT", "Hazine"), ("TRD", "kira sertifikası"), ("TRF", "finansman bonosu"), ("TRS", "özel sektör tahvili"),
@@ -117,7 +153,15 @@ def teminat_sinifi(isin, bist=""):
     return "diğer"
 
 
-def repo_ozeti(satirlar, fonlar):
+def repo_ozeti(satirlar, fonlar, grup_adlari=()):
+    """M65 ve M67: teminatlı para piyasası işlemleri (TEMINATLI_PP_TURLER) fon başına: toplam, tür dağılımı, dayanağın sınıf dağılımı, en büyük tek
+    dayanak, Hazine dışı oran, dayanağın ihraççısına göre toplam (ilk üç; `ihracci` sütunu, M66) ve kurucu grubu adı geçen dayanak toplamı
+    (grup_adlari: kurucu grup tablosundaki adlar). Karşı taraf: repo ve taahhüt satırında rapor ad taşımaz (borsa sözleşme numarası) → 'ölçülemedi';
+    TPP ve BPP için piyasa kuralı (KARSI_TARAF_SABIT); katılım hesabında karşı taraf ihraççı sütunundaki bankadır."""
+    return _repo_ozeti(satirlar, fonlar, grup_adlari)
+
+
+def _repo_ozeti(satirlar, fonlar, grup_adlari=()):
     """M65 (60 numaralı not): repo satırları ihraççı ölçüsünden çıkarılınca sıfıra dönmesin; fon başına ters repo toplamı, teminatın sınıf
     dağılımı, en büyük tek teminat ve Hazine dışı teminat oranı. Karşı taraf: rapor karşı taraf adı taşımaz (borsa sözleşme numarası taşır),
     bu yüzden 'raporda yok, ölçülemedi' (kural 14). Yalnızca en yeni rapor. Dönüş: {fonKodu: dict(toplam, sinif{ad: puan}, en_buyuk(kod, puan),
@@ -126,25 +170,40 @@ def repo_ozeti(satirlar, fonlar):
     out = {}
     for r in son:
         f = r.get("fonKodu")
-        if f not in fonlar or (r.get("tur") or "").strip().upper() not in REPO_TURLER:
+        if f not in fonlar or not _tur_teminatli(r.get("tur")):
             continue
         try:
             a = float(r.get("agirlik") or 0)
         except ValueError:
             continue
-        o = out.setdefault(f, dict(toplam=0.0, sinif={}, teminat={}, satir=0, karsi_taraf="raporda yok, ölçülemedi",
+        tur = (r.get("tur") or "").strip()
+        o = out.setdefault(f, dict(toplam=0.0, tur={}, sinif={}, teminat={}, ihracci={}, grup=0.0, satir=0, karsi_taraf={},
                                    veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None))
         kod = (r.get("bistKodu") or r.get("isin") or "").strip() or "kodsuz"
-        s = teminat_sinifi(r.get("isin") or "", r.get("bistKodu") or "")
+        ih = (r.get("ihracci") or "").strip()
+        s = "Hazine" if kamu_mu(r.get("isin"), ih) else teminat_sinifi(r.get("isin") or "", r.get("bistKodu") or "")
+        if _norm(tur) == "KATILIM HESABI":
+            s = "katılım hesabı (teminatsız, banka)"
         o["toplam"] += a; o["satir"] += 1
+        o["tur"][tur] = o["tur"].get(tur, 0.0) + a
         o["sinif"][s] = o["sinif"].get(s, 0.0) + a
         o["teminat"][kod] = o["teminat"].get(kod, 0.0) + a
+        if ih:
+            o["ihracci"][ih] = o["ihracci"].get(ih, 0.0) + a
+            if any(_norm(g) in _norm(ih) for g in grup_adlari if g):
+                o["grup"] += a
+        kt = KARSI_TARAF_SABIT.get(_norm(tur)) or (f"{ih} (banka)" if _norm(tur) == "KATILIM HESABI" and ih else "raporda yok, ölçülemedi")
+        o["karsi_taraf"][kt] = o["karsi_taraf"].get(kt, 0.0) + a
     for f, o in out.items():
         o["toplam"] = round(o["toplam"], 2)
+        o["tur"] = {k: round(v, 2) for k, v in sorted(o["tur"].items(), key=lambda kv: -kv[1])}
         o["sinif"] = {k: round(v, 2) for k, v in sorted(o["sinif"].items(), key=lambda kv: -kv[1])}
         eb = max(o["teminat"].items(), key=lambda kv: kv[1]) if o["teminat"] else None
         o["en_buyuk"] = (eb[0], round(eb[1], 2)) if eb else None
         o["hazine_disi"] = round(o["toplam"] - o["sinif"].get("Hazine", 0.0), 2)
+        o["ihracci"] = [(k, round(v, 2)) for k, v in sorted(o["ihracci"].items(), key=lambda kv: -kv[1])[:3]]
+        o["grup"] = round(o["grup"], 2)
+        o["karsi_taraf"] = {k: round(v, 2) for k, v in sorted(o["karsi_taraf"].items(), key=lambda kv: -kv[1])}
         del o["teminat"]
     return out
 

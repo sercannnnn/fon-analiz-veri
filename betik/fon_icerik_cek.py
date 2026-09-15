@@ -42,7 +42,8 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 9     # 9 (M59, 15 Eylul 2026): sarilan satir ustteki kiymete, ad ve ihracci dolu, satirTuru ve veriGunu sutunlari, yayim penceresinde TEFAS gunu eslesmesi
+AYRISTIRICI_SURUM = 10    # 10 (M66, 15 Eylul 2026): ihracci sutunu bos satirda (mevduat, katilim hesabi, repo) ad sutunundan yedeklenir; esleşmeyen veri gunu yayimi engellemez
+# 9 (M59, 15 Eylul 2026): sarilan satir ustteki kiymete, ad ve ihracci dolu, satirTuru ve veriGunu sutunlari, yayim penceresinde TEFAS gunu eslesmesi
 # artinca kuyruk, eski surumle yayimlanmis fonlari kalan butceyle, gunlere yayarak yeniden isler (Talimat 11)
 # Talimat 11: gunluk butcenin en az %60'i listesi olmayan fonlara. Uygulama: yeni fonlar once ve butcenin tamamina kadar islenir,
 # eski surumle yayimlanmis fonlar kalan butceyle ve gunlere yayilarak yeniden islenir.
@@ -1090,6 +1091,14 @@ def kimlik_ve_ad(k, evren):
     # kurali 22.137 satiri bos birakiyordu. Satir kirilmasi kelime icinde kalabilir ('ELEKTRON İK'); kimlik bistKodu ve ISIN'dir,
     # ad temizligi yapilmaz (Talimat 8). Hisse satirinda ihracci sirketin kendisidir.
     temiz_ad = re.sub(r"\s+", " ", k["ihracciHam"]).strip() if re.search(r"[A-Za-zÇĞİÖŞÜçğıöşü]{2}", k["ihracciHam"]) else ""
+    if not temiz_ad:
+        # M66 (62 numarali not): mevduat, katilim hesabi ve bazi repo satirlarinda banka adi ihracci sutununun solunda, ad sutunundadir
+        # ("T.C. ZİRAAT BANKASI A.Ş."); ISIN, kod, tur ve sayi disindaki kelimeler ihracci sayilir
+        atla = {norm(k.get("kod") or ""), norm(k.get("tur") or "")} | {norm(x) for x in PARA_GENIS}
+        kel = [w for w in (k.get("ad") or "").split() if not ISIN_RE.match(w) and not SAYI_RE.match(w) and not TARIH_RE.match(w) and norm(w) not in atla]
+        aday = re.sub(r"\s+", " ", " ".join(kel)).strip()
+        if re.search(r"[A-Za-zÇĞİÖŞÜçğıöşü]{3}", aday):
+            temiz_ad = aday
     return bist, temiz_ad, temiz_ad
 
 
@@ -1360,6 +1369,11 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
             gun, tefas_son, ray, eslesme = g2, t2, g2[:7], ("ay içi" if ay_ici else "yayım penceresi")
             ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
     ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
+    if not ok and eslesme != "ay sonu" and sp is not None and sp <= SAPMA_UST and sebep.startswith("sapma sebebi atanmamış"):
+        # 62 numarali not: tarihi yaklasik eslesen rapor (ay ici ya da yayim penceresi) hata kovasina atilmaz; yayimlanir, veri gunu bos kalir,
+        # sapma sebebi 'veri_gunu_eslesmedi' (sebep listesine girmez, olcumdur). Kural 14: olculemeyen tarih olcumu iptal etmez.
+        ok, sebep, sapma_sebebi = True, "", "veri_gunu_eslesmedi"
+        gun = None; eslesme = "eşleşmedi"
     ek, eksik_kalem = tefas_tamamla(kayit, tefas_son)       # gecen fonda da uygulanir: eksik kalem tasiyan her fon ayni sekilde (09.09.2026 karari)
     if ek:
         kayit = kayit + ek

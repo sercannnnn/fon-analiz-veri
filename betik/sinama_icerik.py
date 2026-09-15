@@ -83,6 +83,28 @@ def test_m62_fon_ihracci_ilk_net_ve_sinir():
     assert icerik_kapsam.TEK_KARSI_TARAF_SINIR == 20.0 and o["F1"][0]["agirlik"] > 20.0 and o["F1"][1]["agirlik"] > 20.0
 
 
+def test_m66_m67_teminatli_pp_sinifi_kamu_muafiyeti_kismen_olculdu():
+    S = [dict(fonKodu="K1", tur="Taahhüt Sözleşmesi Satış", isin="TRD090828T17", bistKodu="", ihracci="HAZINE", agirlik="99.36", raporTarihi="2026-08", veriGunu="2026-09-01"),
+         dict(fonKodu="K1", tur="Kira Sertifikası", isin="TRDEVKSE2671", bistKodu="", ihracci="EMLAK KATILIM", agirlik="0.64", raporTarihi="2026-08", veriGunu="2026-09-01"),
+         dict(fonKodu="P1", tur="MEVDUAT", isin="", bistKodu="", ihracci="T.C. ZİRAAT BANKASI A.Ş.", agirlik="30.76", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="P1", tur="TPP", isin="", bistKodu="", ihracci="", agirlik="42.61", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="P1", tur="Özel Sektör", isin="TRFA1CPK2627", bistKodu="", ihracci="", agirlik="2.59", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="P1", tur="Bono", isin="", bistKodu="", ihracci="", agirlik="5.0", raporTarihi="2026-09", veriGunu="2026-09-07"),      # adsız: kısmen ölçüldü
+         dict(fonKodu="T1", tur="T.REPO", isin="TREDSTF00012", bistKodu="DSTKF", ihracci="DESTEK FAKTORIN G", agirlik="25.45", raporTarihi="2026-08", veriGunu="2026-09-01"),
+         dict(fonKodu="T1", tur="T.REPO", isin="TRDTERVK2618", bistKodu="", ihracci="TERA VARLIK KİRALAMA A.Ş.", agirlik="4.02", raporTarihi="2026-08", veriGunu="2026-09-01"),
+         dict(fonKodu="T1", tur="T.REPO", isin="TRT061228T16", bistKodu="", ihracci="HAZINE", agirlik="13.9", raporTarihi="2026-08", veriGunu="2026-09-01")]
+    # taahhüt sözleşmesi ihraççı ölçüsünün dışında (M67); KHP benzeri fonun tek ihraççısı Hazine muaf ama yazılır
+    ilk = icerik_kapsam.fon_ihracci_ilk(S, ["K1", "P1", "T1"], n=3)
+    assert [x["kod"] for x in ilk["K1"]] == ["TRDEVKSE2671"] and "T1" not in ilk
+    assert ilk["P1"][0]["kod"] == "T.C. ZİRAAT BANKASI A.Ş." and ilk["P1"][0]["agirlik"] == 30.76 and not ilk["P1"][0]["muaf"]   # mevduat: banka anahtar (M66)
+    assert icerik_kapsam.fon_ihracci_ilk_adsiz(S, ["P1", "K1"]) == {"P1": 5.0}                                                  # TPP sayılmaz, adsız bono sayılır
+    assert icerik_kapsam.kamu_mu("TRD090828T17") and icerik_kapsam.kamu_mu("TRT061228T16") and not icerik_kapsam.kamu_mu("TRDTERVK2618") and icerik_kapsam.kamu_mu("", "T.C. HAZİNE")
+    ro = icerik_kapsam.repo_ozeti(S, ["K1", "P1", "T1"], grup_adlari={"TERA PORTFÖY", "TERA YATIRIM", "TERA VARLIK"})
+    assert ro["K1"]["sinif"] == {"Hazine": 99.36} and ro["K1"]["tur"] == {"Taahhüt Sözleşmesi Satış": 99.36} and "ölçülemedi" in list(ro["K1"]["karsi_taraf"])[0]
+    assert ro["P1"]["toplam"] == 42.61 and "Takasbank" in list(ro["P1"]["karsi_taraf"])[0]
+    assert ro["T1"]["ihracci"][0] == ("DESTEK FAKTORIN G", 25.45) and ro["T1"]["grup"] == 4.02 and ro["T1"]["hazine_disi"] == 29.47
+
+
 def test_m65_repo_ozeti_teminat_sinifi_ve_karsi_taraf():
     S = [dict(fonKodu="P1", tur="T.REPO", isin="TREDSTF00012", bistKodu="DSTKF", agirlik="0.05", raporTarihi="2026-08", veriGunu="2026-09-01")] * 3
     S = [dict(x) for x in S] + [dict(fonKodu="P1", tur="T.REPO", isin="TRT061228T16", bistKodu="", agirlik="4.13", raporTarihi="2026-08", veriGunu="2026-09-01"),
@@ -92,7 +114,7 @@ def test_m65_repo_ozeti_teminat_sinifi_ve_karsi_taraf():
     o = icerik_kapsam.repo_ozeti(S, ["P1", "P2", "P9"])
     assert list(o) == ["P1"] and o["P1"]["satir"] == 5 and abs(o["P1"]["toplam"] - 8.35) < 1e-9
     assert o["P1"]["sinif"] == {"Hazine": 4.13, "kira sertifikası": 4.07, "hisse": 0.15} and o["P1"]["en_buyuk"] == ("TRT061228T16", 4.13)
-    assert abs(o["P1"]["hazine_disi"] - 4.22) < 1e-9 and "ölçülemedi" in o["P1"]["karsi_taraf"]
+    assert abs(o["P1"]["hazine_disi"] - 4.22) < 1e-9 and "ölçülemedi" in list(o["P1"]["karsi_taraf"])[0]
     assert icerik_kapsam.teminat_sinifi("XS3290494775") == "eurobond" and icerik_kapsam.teminat_sinifi("TRYTALP00036") == "yatırım fonu" and icerik_kapsam.teminat_sinifi("ZZ") == "diğer"
 
 
