@@ -5,8 +5,8 @@
   "gecenKurucu": 50,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 4,
-  "istek": 9,
+  "islenen": 1,
+  "istek": 3,
   "kapsamOrani": 0.5884,
   "kapsamPay": 662,
   "kapsamPayda": 1125,
@@ -26,16 +26,16 @@
   },
   "listeEksikBuTur": 0,
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
-  "parkOncelik": 4,
+  "parkOncelik": 1,
   "raporYokKurucu": 3,
-  "satirBuTur": 270,
+  "satirBuTur": 0,
   "sinananKurucu": [],
   "sinavSurumu": 2,
   "taninmayanKurucu": 11,
   "tarih": "2026-09-15",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 3,
-  "yeniFon": 1,
-  "yenidenIslenen": 2
+  "yayimlandiBuTur": 0,
+  "yeniFon": 0,
+  "yenidenIslenen": 0
  }
 }
