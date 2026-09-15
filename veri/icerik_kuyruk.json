@@ -5780,7 +5780,9 @@
   "surum": 14,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
-  "toplamTablosu": {},
+  "toplamTablosu": {
+   "olculemez": "garanti"
+  },
   "yayim": "04.09.2026 18:13:59"
  },
  "GZG": {
