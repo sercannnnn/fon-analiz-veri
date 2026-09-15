@@ -6297,7 +6297,7 @@
   "sebep": "",
   "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 9,
+  "surum": 10,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-07",
   "yayim": "09.09.2026 17:12:22"
@@ -8504,7 +8504,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 9,
+  "surum": 10,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
   "yayim": "02.09.2026 18:22:33"
@@ -11776,7 +11776,7 @@
   "sebep": "",
   "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 9,
+  "surum": 10,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-07",
   "yayim": "09.09.2026 18:26:47"
@@ -12058,12 +12058,17 @@
   "tarih": "2026-09-14"
  },
  "PSE": {
-  "ay": "2026-09",
   "bildirim": 1661053,
-  "durum": "hata",
-  "sebep": "sapma sebebi atanmamış: TEFAS sapması 0.31 puan, 0,05 üstü",
+  "durum": "yayimlandi",
+  "gunEsleme": "eşleşmedi",
+  "sapma": 0.31,
+  "satir": 258,
+  "sebep": "",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
+  "surum": 10,
   "tarih": "2026-09-15",
+  "tefasGun": null,
   "yayim": "09.09.2026 16:57:33"
  },
  "PSG": {
@@ -13539,11 +13544,18 @@
   "tarih": "2026-09-14"
  },
  "TI1": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "bildirim": 1657932,
+  "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "sapma": 0.0,
+  "satir": 486,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "03.09.2026 12:47:27"
  },
  "TI2": {
   "durum": "kuyrukta",
@@ -13601,11 +13613,18 @@
   "tarih": "2026-09-14"
  },
  "TIV": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "bildirim": 1657933,
+  "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "sapma": 0.0,
+  "satir": 188,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "03.09.2026 12:47:27"
  },
  "TJB": {
   "ay": "2026-08",
@@ -13869,11 +13888,18 @@
   "tarih": "2026-09-14"
  },
  "TP2": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "bildirim": 1657110,
+  "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "sapma": 0.0,
+  "satir": 971,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "02.09.2026 11:02:16"
  },
  "TPC": {
   "durum": "kuyrukta",
@@ -14524,11 +14550,14 @@
   "tarih": "2026-09-08"
  },
  "YBR": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "ay": "2026-08",
+  "bildirim": 1659961,
+  "durum": "duzen_taninmadi",
+  "sebep": "düzen tanınmadı",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "tarih": "2026-09-15",
+  "yayim": "08.09.2026 11:51:42"
  },
  "YBS": {
   "durum": "duzen_taninmadi",

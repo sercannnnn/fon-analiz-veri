@@ -1048,7 +1048,6 @@ PRV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PRY	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PSB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-PSE	hata	sapma sebebi atanmamış: TEFAS sapması 0.31 puan, 0,05 üstü
 PSG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSH	kuyrukta	sırası gelmedi
 PSL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
@@ -1295,7 +1294,6 @@ THO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TI1	kuyrukta	sırası gelmedi
 TI2	kuyrukta	sırası gelmedi
 TI3	kuyrukta	sırası gelmedi
 TI4	kuyrukta	sırası gelmedi
@@ -1304,7 +1302,6 @@ TI7	kuyrukta	sırası gelmedi
 TIE	kuyrukta	sırası gelmedi
 TIL	kuyrukta	sırası gelmedi
 TIP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TIV	kuyrukta	sırası gelmedi
 TJB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TJF	kuyrukta	sırası gelmedi
 TJI	kuyrukta	sırası gelmedi
@@ -1343,7 +1340,6 @@ TO8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOT	kuyrukta	sırası gelmedi
 TP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TP2	kuyrukta	sırası gelmedi
 TPC	kuyrukta	sırası gelmedi
 TPE	kuyrukta	sırası gelmedi
 TPF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
@@ -1450,7 +1446,7 @@ YBE	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YBP	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
-YBR	kuyrukta	sırası gelmedi
+YBR	duzen_taninmadi	düzen tanınmadı
 YBS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YCG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YCH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
