@@ -214,6 +214,11 @@ def test_m70_portfoy_gunu_ima_edilen_fiyattan():
     g, oy, n, aday = F.portfoy_gunu_oyla(K, kap)
     assert g == "2026-09-04" and oy == 4 and n == 4                     # CCC iki güne oy verir, DDD tek; 04.09 dördü de
     assert F.portfoy_gunu_oyla(K[:2], kap)[0] is None                  # iki oy yetmez (asgari 3)
+    F.ISIN_KOD["TREXAMPL0001"] = "XMPL"
+    assert F.isinden_kod("TRAAKBNK91N6", {"AKBNK"}) == "AKBNK" and F.isinden_kod("TREXAMPL0001", set()) == "XMPL" and F.isinden_kod("TREZZZZZ0001", {"AKBNK"}) == ""
+    assert F.HISSE_TUR.search(F.norm("A.PAY")) and F.HISSE_TUR.search("Hisse Türk") and not F.HISSE_TUR.search(F.norm("Kira Sertifikası"))
+    kap2 = dict(kap, AKBNK={"2026-09-04": 60.0}); K2 = [dict(kod="TRAAKBNK91N6", isin="TRAAKBNK91N6", tur="A.PAY", nominal=10, rayic=600.0)]
+    assert F.portfoy_gunu_oyla(K2 * 3, kap2, {"AKBNK"})[0] == "2026-09-04"     # Garanti: ISIN'den kod
     assert F.tefas_izleyen_gun({("2026-09-04", "F"): {"a": 1}, ("2026-09-07", "F"): {"a": 2}}, "F", "2026-09-04")[0] == "2026-09-07"
     assert F.onceki_is_gunu("2026-09-07") == "2026-09-04" and F.onceki_is_gunu("2026-09-01") == "2026-08-31"
     S = [dict(fonKodu="F1", raporTarihi="2026-09", veriGunu="2026-08-20", agirlik="1"),     # etiketi yeni, verisi eski

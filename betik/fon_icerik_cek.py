@@ -42,7 +42,8 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 12    # 12 (M70, 72 numarali not): veriGunu = ima edilen fiyatla tarihlenen PORTFOY GUNU (TEFAS gunu degil), raporBasligi sutunu
+AYRISTIRICI_SURUM = 13    # 13 (72 numarali not): Garanti duzeninde hisse turu 'A.PAY', BIST kodu ISIN'den (TRA kurali ve arsiv haritasi); bos rapor onceki bildirime duser
+# 12 (M70, 72 numarali not): veriGunu = ima edilen fiyatla tarihlenen PORTFOY GUNU (TEFAS gunu degil), raporBasligi sutunu
 # 11 (64 numarali not): fonbul duzeninde ihracci sutunu bos satirda satir metni ad olur (Takasbank para piyasasi, katilma hesabi)
 # 10 (M66, 15 Eylul 2026): ihracci sutunu bos satirda (mevduat, katilim hesabi, repo) ad sutunundan yedeklenir; esleşmeyen veri gunu yayimi engellemez
 # 9 (M59, 15 Eylul 2026): sarilan satir ustteki kiymete, ad ve ihracci dolu, satirTuru ve veriGunu sutunlari, yayim penceresinde TEFAS gunu eslesmesi
@@ -651,8 +652,12 @@ def portfoy_gunu_oyla(kayit, kapanis, evren=None):
     PORTFOY_GUNU_TOLERANS icinde aranir, en cok oy alan gun portfoy gunudur. Donus: (gun ya da None, oy, toplam_oy_veren, adaylar)."""
     oy = defaultdict(int); n = 0
     for k in kayit:
+        if not k.get("tur") or not HISSE_TUR.search(norm(k["tur"])) or re.search(r"YABANCI", norm(k["tur"])):
+            continue
         kod = (k.get("kod") or "").upper().split(".")[0]
-        if not kod or kod not in kapanis or not k.get("tur") or not HISSE_TUR.search(norm(k["tur"])) or re.search(r"YABANCI", norm(k["tur"])):
+        if kod not in kapanis:
+            kod = isinden_kod(k.get("isin") or k.get("kod"), evren)
+        if not kod or kod not in kapanis:
             continue
         nom, ray = k.get("nominal"), k.get("rayic")
         if not nom or not ray or nom <= 0 or ray <= 0:
@@ -1137,7 +1142,28 @@ def bist_evren_yukle(veri):
     return ev
 
 
-HISSE_TUR = re.compile(r"HISSE|ODUNC", re.I)
+HISSE_TUR = re.compile(r"HISSE|ODUNC|^A\.PAY|(^|\s)PAY(\s|$)", re.I)   # Garanti duzeni hisse turunu 'A.PAY' yazar (72 numarali not)
+ISIN_KOD = {}          # ISIN -> BIST kodu; arsivden (isin ve bistKodu dolu satirlar) ve TRA kuralindan (TRAAKBNK91N6 -> AKBNK)
+
+
+def isin_kod_haritasi(arsiv, evren):
+    """Arsivdeki satirlardan ISIN -> BIST kodu haritasi (72 numarali not): Garanti duzeni hisse satirinda kod yerine ISIN yazar."""
+    h = {}
+    for f in sorted(glob.glob(os.path.join(arsiv or "", "fon_icerik_20??-??.csv.gz")))[-2:]:
+        for s in gz_oku(f):
+            if len(s) > 6 and s[4] and s[6] and (not evren or s[4] in evren):
+                h[s[6]] = s[4]
+    ISIN_KOD.update(h)
+    return h
+
+
+def isinden_kod(isin, evren):
+    i = (isin or "").upper()
+    if i in ISIN_KOD:
+        return ISIN_KOD[i]
+    if i.startswith("TRA") and len(i) >= 8 and (not evren or i[3:8] in evren):
+        return i[3:8]
+    return ""
 KISA_STOP = {"VE", "A.S.", "A.Ş.", "T.A.S.", "T.A.Ş.", "LTD", "STI", "ŞTİ", "SAN", "TIC", "TİC", "GYO", "BK", "KR", "AG", "SA", "NV", "PLC", "INC", "CO", "LLC", "AŞ", "AS"}
 
 
@@ -1151,7 +1177,7 @@ def kimlik_ve_ad(k, evren):
             bist = k["kod"].upper().split(".")[0]      # 'AKBNK.E' (Ziraat, Garanti) -> AKBNK
         else:
             aday = [t for t in re.findall(r"\b[A-Z0-9]{4,6}\b", k["ad"]) if t in evren]
-            bist = aday[0] if len(set(aday)) == 1 else ""
+            bist = aday[0] if len(set(aday)) == 1 else (isinden_kod(k.get("isin") or k.get("kod"), evren) or "")   # Garanti: kod sutunu ISIN'dir
     # M59: ad ve ihracci, ihracci sutununun sarilan satirlariyla birlestirilmis metnidir; onceki 'yalnizca tek satirdan okunan ad'
     # kurali 22.137 satiri bos birakiyordu. Satir kirilmasi kelime icinde kalabilir ('ELEKTRON İK'); kimlik bistKodu ve ISIN'dir,
     # ad temizligi yapilmaz (Talimat 8). Hisse satirinda ihracci sirketin kendisidir.
@@ -1616,6 +1642,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}
     rows = tefas_dagilim_yukle(veri, arsiv); evren = bist_evren_yukle(veri); byf_yukle(veri); sapma_sebepleri_yukle(veri)
     HISSE_KAPANIS.update(hisse_kapanis_yukle(arsiv))       # M70: portfoy gunu oylamasi
+    isin_kod_haritasi(arsiv, evren)                         # 72 numarali not: Garanti duzeni ISIN -> kod
     kd_yol2 = os.path.join(veri, "kosu_durumu.json")
     kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol2, kdur)
     bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
@@ -1680,6 +1707,14 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 yeniden_islenen[0] += 1
             try:
                 durum, sebep, satir, bilgi = rapor_isle(f, x, kunye, kd, rows, evren, hedef)
+                if durum == "duzen_taninmadi" and sebep == "kıymet satırı yok" and ISTEK.sayi < ISTEK.butce - 3:
+                    # 72 numarali not: yayimcinin en yeni bildirimi kiymet tablosu tasimiyorsa (fon sepetinin haftalik raporu) bir onceki bildirim denenir
+                    onceki = [y for y in raporlar([kunye[f]["fundOid"]], bas, bit) if y.get("disclosureIndex") != x.get("disclosureIndex")]
+                    if onceki:
+                        x2 = sorted(onceki, key=lambda y: _tarih(y["publishDate"]))[-1]
+                        durum, sebep, satir, bilgi = rapor_isle(f, x2, kunye, kd, rows, evren, hedef)
+                        if durum == "yayimlandi":
+                            x = x2
             except ButceBitti:
                 raise
             except Ertelendi as e:
