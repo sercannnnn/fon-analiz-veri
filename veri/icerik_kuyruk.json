@@ -6289,15 +6289,18 @@
   "tefasGun": "2026-09-01"
  },
  "HKJ": {
+  "bildirim": 1661083,
   "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
   "sapma": 0.0,
-  "satir": 127,
+  "satir": 107,
   "sebep": "",
-  "son": "2026-08",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 7,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "surum": 9,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
+  "yayim": "09.09.2026 17:12:22"
  },
  "HKM": {
   "durum": "yayimlandi",
@@ -8493,11 +8496,18 @@
   "tefasGun": "2026-09-01"
  },
  "KHP": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "bildirim": 1657537,
+  "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "sapma": 0.0,
+  "satir": 83,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 9,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "02.09.2026 18:22:33"
  },
  "KHT": {
   "ay": "2026-08",
@@ -11758,10 +11768,18 @@
   "tarih": "2026-09-08"
  },
  "PKV": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (standart) ayrıştırılamıyor",
+  "bildirim": 1661275,
+  "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
+  "sapma": 0.0,
+  "satir": 80,
+  "sebep": "",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 9,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
+  "yayim": "09.09.2026 18:26:47"
  },
  "PKZ": {
   "durum": "duzen_taninmadi",
@@ -12040,10 +12058,13 @@
   "tarih": "2026-09-14"
  },
  "PSE": {
-  "durum": "duzen_taninmadi",
-  "sebep": "kurucu düzeni (fonbul) ayrıştırılamıyor",
+  "ay": "2026-09",
+  "bildirim": 1661053,
+  "durum": "beklemede",
+  "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "tarih": "2026-09-15",
+  "yayim": "09.09.2026 16:57:33"
  },
  "PSG": {
   "ay": "2026-08",

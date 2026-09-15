@@ -667,7 +667,6 @@ KGM	kuyrukta	sırası gelmedi
 KH1	kuyrukta	sırası gelmedi
 KHD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KHF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-KHP	kuyrukta	sırası gelmedi
 KHT	hata	sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü
 KHU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 KIK	kuyrukta	sırası gelmedi
@@ -1004,7 +1003,6 @@ PKP	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PKR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PKT	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 PKU	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
-PKV	duzen_taninmadi	kurucu düzeni (standart) ayrıştırılamıyor
 PKZ	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PLA	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 PLR	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
@@ -1050,7 +1048,7 @@ PRV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PRY	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PSB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-PSE	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
+PSE	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 PSG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSH	kuyrukta	sırası gelmedi
 PSL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
