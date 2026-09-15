@@ -3,21 +3,42 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-14T05:15:10Z",
- "sonGun": "2026-09-14",
- "toplamKayit": 14259,
- "sonGunKayit": 2037,
- "sonGunFiyatsiz": 603,
- "sonGunDagilimSatir": 999,
- "tamKapsamliSonGun": "2026-09-11",
- "kimlikSapmaSayisi": 12,
+ "cekimZamaniUtc": "2026-09-15T05:15:11Z",
+ "sonGun": "2026-09-15",
+ "toplamKayit": 14260,
+ "sonGunKayit": 2034,
+ "sonGunFiyatsiz": 584,
+ "sonGunDagilimSatir": 869,
+ "tamKapsamliSonGun": "2026-09-14",
+ "kimlikSapmaSayisi": 14,
  "kimlikSapanlar": [
   {
-   "tarih": "2026-09-14",
+   "tarih": "2026-09-15",
+   "fonKodu": "FCK",
+   "payXfiyat": 289749563.09,
+   "buyukluk": 388717671.26,
+   "tolerans": 80.65
+  },
+  {
+   "tarih": "2026-09-15",
    "fonKodu": "FS1",
-   "payXfiyat": 134426540.93,
-   "buyukluk": 134173500.87,
-   "tolerans": 43.64
+   "payXfiyat": 134611205.58,
+   "buyukluk": 133561107.11,
+   "tolerans": 43.56
+  },
+  {
+   "tarih": "2026-09-15",
+   "fonKodu": "FS5",
+   "payXfiyat": 59890841.59,
+   "buyukluk": 57576570.15,
+   "tolerans": 12.69
+  },
+  {
+   "tarih": "2026-09-15",
+   "fonKodu": "ZBD",
+   "payXfiyat": 954684588.69,
+   "buyukluk": 954684596.24,
+   "tolerans": 0.7
   },
   {
    "tarih": "2026-09-14",
@@ -88,23 +109,9 @@
    "payXfiyat": 936232286.05,
    "buyukluk": 936232293.59,
    "tolerans": 0.7
-  },
-  {
-   "tarih": "2026-09-04",
-   "fonKodu": "ZBD",
-   "payXfiyat": 934078431.19,
-   "buyukluk": 934078439.31,
-   "tolerans": 0.7
   }
  ],
  "gunler": {
-  "2026-09-04": {
-   "kayit": 2035,
-   "gecerli": 2028,
-   "dagilim": 2028,
-   "fiyatsiz": 7,
-   "tam": true
-  },
   "2026-09-07": {
    "kayit": 2035,
    "gecerli": 2028,
@@ -141,10 +148,17 @@
    "tam": true
   },
   "2026-09-14": {
-   "kayit": 2037,
-   "gecerli": 1434,
-   "dagilim": 999,
-   "fiyatsiz": 603,
+   "kayit": 2039,
+   "gecerli": 2032,
+   "dagilim": 2030,
+   "fiyatsiz": 7,
+   "tam": true
+  },
+  "2026-09-15": {
+   "kayit": 2034,
+   "gecerli": 1450,
+   "dagilim": 869,
+   "fiyatsiz": 584,
    "tam": false
   }
  },
