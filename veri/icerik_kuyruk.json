@@ -4162,15 +4162,18 @@
   "tarih": "2026-09-08"
  },
  "FSU": {
+  "bildirim": 1657114,
   "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
   "sapma": 0.0,
   "satir": 33,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 7,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "02.09.2026 11:02:16"
  },
  "FSV": {
   "ay": "2026-08",
@@ -13720,22 +13723,32 @@
   "tarih": "2026-09-14"
  },
  "TLV": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
-  "son": "2026-08",
-  "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
- },
- "TLY": {
+  "bildirim": 1657115,
   "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
   "sapma": 0.0,
-  "satir": 295,
+  "satir": 30,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 3,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "02.09.2026 11:02:16"
+ },
+ "TLY": {
+  "bildirim": 1661170,
+  "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
+  "sapma": 0.0,
+  "satir": 286,
+  "sebep": "",
+  "son": "2026-09",
+  "sonRaporAy": "2026-08",
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
+  "yayim": "09.09.2026 18:00:07"
  },
  "TLZ": {
   "durum": "duzen_taninmadi",
@@ -13769,11 +13782,18 @@
   "tarih": "2026-09-14"
  },
  "TMM": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
-  "son": "2026-08",
+  "bildirim": 1661173,
+  "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
+  "sapma": 0.0,
+  "satir": 17,
+  "sebep": "",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 10,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
+  "yayim": "09.09.2026 18:00:07"
  },
  "TMR": {
   "ay": "2026-08",
@@ -13988,11 +14008,14 @@
   "tarih": "2026-09-14"
  },
  "TRU": {
-  "durum": "kuyrukta",
-  "sebep": "sırası gelmedi",
+  "ay": "2026-08",
+  "bildirim": 1661172,
+  "durum": "hata",
+  "sebep": "sapma sebebi atanmamış: TEFAS sapması 0.76 puan, 0,05 üstü",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "tarih": "2026-09-15",
+  "yayim": "09.09.2026 18:00:07"
  },
  "TRZ": {
   "ay": "2026-08",

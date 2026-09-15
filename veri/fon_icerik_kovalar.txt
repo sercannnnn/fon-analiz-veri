@@ -1317,13 +1317,11 @@ TLH	kuyrukta	sırası gelmedi
 TLK	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 TLT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TLU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TLV	kuyrukta	sırası gelmedi
 TLZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 TMA	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
 TMC	kuyrukta	sırası gelmedi
 TMG	kuyrukta	sırası gelmedi
 TMH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TMM	kuyrukta	sırası gelmedi
 TMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMU	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
@@ -1354,7 +1352,7 @@ TRJ	kuyrukta	sırası gelmedi
 TRN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TRO	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TRR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TRU	kuyrukta	sırası gelmedi
+TRU	hata	sapma sebebi atanmamış: TEFAS sapması 0.76 puan, 0,05 üstü
 TRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TSI	kuyrukta	sırası gelmedi
 TSP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
