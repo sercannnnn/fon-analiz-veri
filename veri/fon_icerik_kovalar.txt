@@ -317,7 +317,6 @@ FSG	sinif_farki	şart 3: para_piyasasi satırlarda 3.50, TEFAS 1.70
 FSH	sinif_farki	şart 3: para_piyasasi satırlarda 0.63, TEFAS 2.17
 FSK	sinif_farki	şart 3: para_piyasasi satırlarda 24.91, TEFAS 19.82
 FSM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FSR	sinif_farki	şart 3: borclanma satırlarda 82.29, TEFAS 85.17
 FSV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -429,6 +428,7 @@ GYN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GYR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+GZE	duzen_taninmadi	kıymet satırı yok
 GZM	sinif_farki	şart 3: hisse_toplam satırlarda 50.01, TEFAS 48.76
 GZO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GZU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)

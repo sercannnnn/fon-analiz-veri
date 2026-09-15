@@ -5,8 +5,8 @@
   "gecenKurucu": 50,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 11,
-  "istek": 23,
+  "islenen": 8,
+  "istek": 17,
   "kapsamOrani": 0.5884,
   "kapsamPay": 662,
   "kapsamPayda": 1125,
@@ -15,27 +15,27 @@
   "kovalar": {
    "beklemede": 25,
    "duzen_bekliyor": 28,
-   "duzen_taninmadi": 402,
+   "duzen_taninmadi": 403,
    "ertelendi": 1,
    "hata": 89,
    "kapsam_disi": 826,
    "kuyrukta": 204,
    "listesi_var": 515,
    "rapor_yok_bu_ay": 11,
-   "sinif_farki": 45
+   "sinif_farki": 44
   },
   "listeEksikBuTur": 0,
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "parkOncelik": 4,
   "raporYokKurucu": 3,
-  "satirBuTur": 1899,
+  "satirBuTur": 2294,
   "sinananKurucu": [],
   "sinavSurumu": 2,
   "taninmayanKurucu": 11,
   "tarih": "2026-09-15",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 11,
+  "yayimlandiBuTur": 7,
   "yeniFon": 0,
-  "yenidenIslenen": 11
+  "yenidenIslenen": 8
  }
 }

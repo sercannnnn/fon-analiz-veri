@@ -3165,15 +3165,21 @@
   "tarih": "2026-09-14"
  },
  "DZM": {
+  "bildirim": 1662712,
   "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
+  "gunOy": "",
+  "portfoyGunu": "2026-09-11",
+  "raporBasligi": "2026-08",
   "sapma": 0.0,
-  "satir": 58,
+  "satir": 52,
   "sebep": "",
-  "son": "2026-08",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 7,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "surum": 12,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-14",
+  "yayim": "15.09.2026 10:11:02"
  },
  "DZP": {
   "ay": "2026-08",
@@ -4157,12 +4163,21 @@
   "tefasGun": "2026-09-01"
  },
  "FSR": {
-  "ay": "2026-08",
-  "durum": "sinif_farki",
-  "sebep": "şart 3: borclanma satırlarda 82.29, TEFAS 85.17",
-  "son": "2026-08",
+  "bildirim": 1660518,
+  "durum": "yayimlandi",
+  "gunEsleme": "yayım penceresi",
+  "gunOy": "",
+  "portfoyGunu": "2026-09-07",
+  "raporBasligi": "2026-08",
+  "sapma": 0.0,
+  "satir": 12,
+  "sebep": "",
+  "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "tarih": "2026-09-08"
+  "surum": 12,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-08",
+  "yayim": "08.09.2026 21:32:16"
  },
  "FSU": {
   "bildirim": 1657114,
@@ -4719,15 +4734,21 @@
   "tarih": "2026-09-14"
  },
  "GHS": {
+  "bildirim": 1659656,
   "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "gunOy": "",
+  "portfoyGunu": "2026-08-31",
+  "raporBasligi": "2026-08",
   "sapma": 0.0,
   "satir": 258,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 7,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "surum": 12,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "07.09.2026 17:57:01"
  },
  "GID": {
   "durum": "yayimlandi",
@@ -5459,15 +5480,21 @@
   "tarih": "2026-09-14"
  },
  "GTL": {
+  "bildirim": 1659660,
   "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "gunOy": "",
+  "portfoyGunu": "2026-08-31",
+  "raporBasligi": "2026-08",
   "sapma": 0.01,
   "satir": 1040,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 7,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "surum": 12,
+  "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
+  "yayim": "07.09.2026 17:57:01"
  },
  "GTM": {
   "durum": "yayimlandi",
@@ -5685,15 +5712,14 @@
   "tarih": "2026-09-14"
  },
  "GZE": {
-  "durum": "yayimlandi",
-  "sapma": 0.01,
-  "satir": 41,
-  "sebep": "",
+  "ay": "2026-08",
+  "bildirim": 1661350,
+  "durum": "duzen_taninmadi",
+  "sebep": "kıymet satırı yok",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 7,
-  "tarih": "2026-09-08",
-  "tefasGun": "2026-09-01"
+  "tarih": "2026-09-15",
+  "yayim": "09.09.2026 20:25:09"
  },
  "GZG": {
   "durum": "yayimlandi",
@@ -12078,15 +12104,18 @@
  "PSE": {
   "bildirim": 1661053,
   "durum": "yayimlandi",
-  "gunEsleme": "eşleşmedi",
+  "gunEsleme": "yaklaşık (0.31)",
+  "gunOy": "",
+  "portfoyGunu": "2026-09-03",
+  "raporBasligi": "2026-09",
   "sapma": 0.31,
   "satir": 258,
   "sebep": "",
   "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 11,
+  "surum": 12,
   "tarih": "2026-09-15",
-  "tefasGun": null,
+  "tefasGun": "2026-09-04",
   "yayim": "09.09.2026 16:57:33"
  },
  "PSG": {
@@ -13572,12 +13601,15 @@
   "bildirim": 1657932,
   "durum": "yayimlandi",
   "gunEsleme": "ay sonu",
+  "gunOy": "",
+  "portfoyGunu": "2026-08-31",
+  "raporBasligi": "2026-08",
   "sapma": 0.0,
   "satir": 486,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 10,
+  "surum": 12,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
   "yayim": "03.09.2026 12:47:27"
@@ -13641,12 +13673,15 @@
   "bildirim": 1657933,
   "durum": "yayimlandi",
   "gunEsleme": "ay sonu",
+  "gunOy": "",
+  "portfoyGunu": "2026-08-31",
+  "raporBasligi": "2026-08",
   "sapma": 0.0,
   "satir": 188,
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 10,
+  "surum": 12,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
   "yayim": "03.09.2026 12:47:27"
