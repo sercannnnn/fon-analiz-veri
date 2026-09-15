@@ -652,6 +652,62 @@ def kaldirac_ozeti(ky, fonlar, vadeli=None, duzen=None):
     return out
 
 
+GRUP_HACIM_PAYI_ESIK = 0.10   # M75 (80 numaralı not, varsayım): kurucu grubunun bir kâğıttaki net alım ya da satımı pencerede borsada dönen hacmin %10'unu aşarsa kalın
+
+
+def hisse_hacim_toplami(arsiv, bas, bit, son_n=3):
+    """Fiyat arşivinden (arsiv/hisse_YYYY-MM.csv.gz, son son_n dosya) kod -> bas < tarih <= bit aralığındaki TL hacim toplamı. İki rapor günü arasında
+    borsada dönen toplam hacim; alım ve satım tarafını birlikte sayar."""
+    out = {}
+    for f in sorted(glob.glob(os.path.join(arsiv or "", "hisse_20??-??.csv.gz")))[-son_n:]:
+        with gzip.open(f, "rt", encoding="utf-8", newline="") as h:
+            for r in csv.DictReader(h):
+                t = (r.get("tarih") or "")[:10]
+                if bas < t <= bit:
+                    try:
+                        out[r["hisse"]] = out.get(r["hisse"], 0.0) + float(r.get("hacim") or 0)
+                    except ValueError:
+                        pass
+    return out
+
+
+def grup_pay_degisimi(satirlar, fon_kurucu, kurucu, fiyat=None, hacim_toplam=None):
+    """M75 (80 numaralı not): kurucu grubunun bütün fonlarında aynı kâğıdın net pay değişimi, TL karşılığı ve iki rapor günü arasında borsada
+    dönen toplam hacme oranı; aynı kâğıtta hem alan hem satan kardeş fon varsa ters yön ve kesişen hacim (alım ile satımın küçüğü).
+    fon_kurucu: {fon: kurucu}; fonlar arşivdeki bütün fonlardır, tutulanlarla sınırlı değil. Aynı rapor çifti (önceki, yeni) olan fonlar bir
+    pencerede toplanır; farklı çiftler ayrı pencere. hacim_toplam: callable(bas, bit) -> {kod: TL} ya da None (oran ölçülemedi).
+    Dönüş: [dict(onceki, yeni, fonlar, kagitlar=[dict(kod, net_pay, net_tl, alan, satan, alim_tl, satim_tl, hacim, oran, esik_asti, ters_yon, kesisen_tl)])]."""
+    fonlar = sorted(f for f in {r.get("fonKodu") for r in satirlar} if fon_kurucu.get(f) == kurucu)
+    pdg = pay_degisimi(satirlar, fonlar, fiyat)
+    pencereler = {}
+    for f, r in pdg.items():
+        if r.get("olculemedi"):
+            continue
+        pencereler.setdefault((r["onceki"], r["yeni"]), {})[f] = r["satirlar"]
+    out = []
+    for (bas, bit), fonlar_p in sorted(pencereler.items()):
+        hac = hacim_toplam(bas, bit) if hacim_toplam else None
+        K = {}
+        for f, S in fonlar_p.items():
+            for e in S:
+                if not e.get("hisse"):
+                    continue
+                g = K.setdefault(e["kod"], dict(kod=e["kod"], net_pay=0.0, net_tl=0.0, alan={}, satan={}, alim_tl=0.0, satim_tl=0.0))
+                g["net_pay"] += e["fark"]; g["net_tl"] += (e["deger"] or 0.0)
+                if e["fark"] > 0:
+                    g["alan"][f] = e["fark"]; g["alim_tl"] += (e["deger"] or 0.0)
+                else:
+                    g["satan"][f] = e["fark"]; g["satim_tl"] += -(e["deger"] or 0.0)
+        for g in K.values():
+            h = (hac or {}).get(g["kod"]) if hac is not None else None
+            g["hacim"] = h; g["oran"] = (abs(g["net_tl"]) / h) if h else None
+            g["esik_asti"] = bool(g["oran"] is not None and g["oran"] > GRUP_HACIM_PAYI_ESIK)
+            g["ters_yon"] = bool(g["alan"] and g["satan"]); g["kesisen_tl"] = min(g["alim_tl"], g["satim_tl"]) if g["ters_yon"] else 0.0
+        out.append(dict(onceki=bas, yeni=bit, fonlar=sorted(fonlar_p), hacim_var=hac is not None,
+                        kagitlar=sorted(K.values(), key=lambda g: -abs(g["net_tl"]))))
+    return out
+
+
 def sermaye_yukle(yol):
     """03 Veri/Künye/odenmis_sermaye.csv: bistKodu,paySayisi,kaynak (kullanıcı ya da Chat yazar); yoksa boş."""
     if not yol or not os.path.exists(yol):

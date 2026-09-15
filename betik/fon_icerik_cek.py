@@ -1770,7 +1770,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 yazilan += satir
                 ky[f] = dict(son=ray, durum="yayimlandi" if ray >= hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
                              bildirim=x.get("disclosureIndex"), yayim=x.get("publishDate"), gunEsleme=bilgi.get("gunEsleme"), portfoyGunu=bilgi.get("portfoyGunu"), gunOy=bilgi.get("gunOy"), raporBasligi=bilgi.get("raporBasligi"),
-                             toplamTablosu=bilgi.get("toplamTablosu") or {},
+                             toplamTablosu=bilgi.get("toplamTablosu") or {}, duzen=bilgi.get("duzen"),   # 78 numaralı not: düzen kayıtta (kaldıraç kalıcı ölçülemez kararı)
                              sebep="" if ray >= hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
                 kova[ky[f]["durum"]].append(f)
                 ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi.get("sapmaSebebi", ""), bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), "true" if bilgi.get("listeTam", True) else "false", bilgi.get("eksikKalem", ""), bilgi["sicSinanan"], bilgi["sicHata"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])

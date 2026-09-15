@@ -6,7 +6,7 @@
 Kanıtlar: sarılan satır üstteki kıymete atanır (Tera'da devam satırı alttaki kıymete yapışıyordu); negatif nominalli satır aynı
 kıymetin pozitif satırıyla net okunur (satirTuru); aynı ay için yeniden yayımlanan rapor yeniden işlenir; içerik tazeliği eşiği
 aşınca ya da tutulan fon arşivde yokken ölçülemedi; kurucu düzeyinde ihraççı toplamı net ve fon bazında."""
-import os, sys, tempfile, gzip
+import os, sys, tempfile, gzip, json
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import icerik_kapsam
@@ -304,6 +304,26 @@ def test_m74_pay_degisimi_yon_ve_hacim_gunu():
     assert o["F2"]["olculemedi"] == "önceki rapor arşivde yok" and o["F2"]["satirlar"] == []
 
 
+def test_m75_grup_pay_degisimi_ve_ters_yon():
+    """80 numaralı not: kurucunun bütün fonlarında aynı kâğıdın net değişimi, borsa hacmine oranı (eşik kalın), kardeş fon ters yön ve kesişen hacim."""
+    def r(f, kod, nom, ray, ay, gun):
+        return dict(fonKodu=f, bistKodu=kod, nominal=str(nom), rayicDeger=str(ray), raporTarihi=ay, veriGunu=gun)
+    S = [r("F1", "AAA", 100, 1000, "2026-08", ""), r("F1", "BBB", 10, 100, "2026-08", ""), r("F2", "AAA", 200, 2000, "2026-08", ""),
+         r("F1", "AAA", 400, 4000, "2026-09", "2026-09-04"), r("F1", "BBB", 20, 200, "2026-09", "2026-09-04"), r("F2", "AAA", 100, 1000, "2026-09", "2026-09-04"),
+         r("F3", "AAA", 5, 50, "2026-09", "2026-09-04"), r("F3", "AAA", 9, 90, "2026-09", "2026-09-07"), r("X1", "AAA", 1, 10, "2026-08", ""), r("X1", "AAA", 99, 990, "2026-09", "2026-09-04")]
+    fiyat = {"AAA": dict(hacim_ortanca=1e4), "BBB": dict(hacim_ortanca=1e4)}
+    kur = {"F1": "K", "F2": "K", "F3": "K", "X1": "BAŞKA"}
+    hac = {("2026-08-31", "2026-09-04"): {"AAA": 10000.0, "BBB": 1e6}}
+    P = icerik_kapsam.grup_pay_degisimi(S, kur, "K", fiyat, hacim_toplam=lambda b0, b1: hac.get((b0, b1), {}))
+    assert [(p["onceki"], p["yeni"], p["fonlar"]) for p in P] == [("2026-08-31", "2026-09-04", ["F1", "F2"]), ("2026-09-04", "2026-09-07", ["F3"])]
+    a = {g["kod"]: g for g in P[0]["kagitlar"]}["AAA"]
+    assert a["net_pay"] == 200 and a["net_tl"] == 2000 and a["alan"] == {"F1": 300} and a["satan"] == {"F2": -100} and a["alim_tl"] == 3000 and a["satim_tl"] == 1000
+    assert a["ters_yon"] and a["kesisen_tl"] == 1000 and a["hacim"] == 10000 and abs(a["oran"] - 0.2) < 1e-9 and a["esik_asti"]
+    b = {g["kod"]: g for g in P[0]["kagitlar"]}["BBB"]
+    assert not b["ters_yon"] and b["kesisen_tl"] == 0 and not b["esik_asti"] and P[0]["kagitlar"][0]["kod"] == "AAA"
+    assert P[1]["kagitlar"][0]["net_pay"] == 4 and P[1]["kagitlar"][0]["oran"] is None
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),
@@ -319,6 +339,41 @@ def test_m59_kurucu_duzeyinde_ihracci():
     assert out[0] is k1 and next(d for d in out if d["kurucu"] == "K2")["oran"] is not None
     assert icerik_kapsam.kurucu_ihracci(S, kur)[0]["oran"] is None                       # sermaye yoksa oran ölçülemedi
     assert all(d["kurucu"] == "K2" for d in icerik_kapsam.kurucu_ihracci(S, kur, kurucular={"K2"}))
+
+
+def test_kuyruk_turu_duman():
+    """80 numaralı not, bölüm 1: sınanmayan yol ölçülmeyen ölçüdür. Kuyruk turu ağa çıkmadan, tek fonluk sahte raporla koşar: kuyruk kaydı
+    yazılıyor mu, alanları yerinde mi (satir, surum, duzen, toplamTablosu, bildirim, portfoyGunu), arşiv dosyası ve koşu durumu üretiliyor mu.
+    79 numaralı nottaki hata (kayıt sözlüğünün satır sonu yorumuyla kesilmesi, satir KeyError) bu sınamada yakalanırdı."""
+    if F is None:
+        return
+    d = tempfile.mkdtemp(); veri = os.path.join(d, "veri"); arsiv = os.path.join(d, "arsiv"); os.makedirs(veri)
+    json.dump({"K": dict(gecti=True, sinavSurumu=F.SINAV_SURUM, sonuc="gecti", duzen="standart")}, open(os.path.join(veri, "kurucu_duzen.json"), "w", encoding="utf-8"))
+    kunye = {"F1": dict(fonKodu="F1", kurucu="K", fundOid="o1", fonTipi="YF", durum="faal", fonAdi="F1 FONU")}
+    hedef = F.hedef_ay(date.today())
+    x = dict(disclosureIndex=123, publishDate="05." + hedef[5:7] + "." + hedef[:4] + " 10:00:00", subject="Portföy Dağılım Raporu")
+    # yayım günü hedef ayın içinde olursa rapor ayı bir önceki ay olur; bir sonraki ayın 5'i verilir
+    yy, aa = int(hedef[:4]), int(hedef[5:7]); aa2, yy2 = (aa + 1, yy) if aa < 12 else (1, yy + 1)
+    x["publishDate"] = f"05.{aa2:02d}.{yy2} 10:00:00"
+    satir = [["F1", hedef, "AAA A.Ş.", "AAA A.Ş.", "AAA", "AAA A.Ş.", "TRAAAA00001", "Hisse Türk", "100", "1000", "100.0", "standart", "kap", "true", "pozisyon", hedef + "-04", hedef]]
+    bilgi = dict(ray=hedef, duzen="standart", gun=hedef + "-07", gunEsleme="portföy günü oy 3/3", portfoyGunu=hedef + "-04", gunOy="3/3", raporBasligi=hedef, sapma=0.0, sapmaSebebi="",
+                 toplamTablosu=dict(fpd=1000.0, borc=-10.0, nav=990.0), tefasToplam=100.0, raporIci=0.0, listeTam=True, eksikKalem="", satir=1, toplam=100.0,
+                 sicSinanan=1, sicHata=0, hisse=1, yabanci=0, bistBos=0, adTemiz=1)
+    eski = {k: getattr(F, k) for k in ("kurucu_sinavi", "son_raporlar", "raporlar", "rapor_isle")}
+    try:
+        F.kurucu_sinavi = lambda *a, **k: ([], {})
+        F.son_raporlar = lambda oids, bas, bit: {"F1": x}
+        F.raporlar = lambda *a, **k: [x]
+        F.rapor_isle = lambda f, x_, *a, **k: ("yayimlandi", "", satir, bilgi)
+        durum, ozet = F.kuyruk_turu(kunye, veri, arsiv)
+    finally:
+        for k, v in eski.items():
+            setattr(F, k, v)
+    ky = json.load(open(os.path.join(veri, "icerik_kuyruk.json"), encoding="utf-8"))["F1"]
+    assert ky["durum"] == "yayimlandi" and ky["satir"] == 1 and ky["surum"] == F.AYRISTIRICI_SURUM and ky["duzen"] == "standart"
+    assert ky["toplamTablosu"]["nav"] == 990.0 and ky["bildirim"] == 123 and ky["portfoyGunu"] == hedef + "-04" and ky["son"] == hedef
+    assert durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 1 and durum["satirBuTur"] == 1
+    assert os.path.exists(os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")) and os.path.exists(os.path.join(veri, "fon_icerik_ozet.csv"))
 
 
 if __name__ == "__main__":
