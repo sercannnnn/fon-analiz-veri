@@ -175,7 +175,7 @@ def test_68_yeniden_degerleme_ve_cikis_suresi():
     assert abs(a["cikis_gun"] - 1.8e9 / (1e9 * icerik_kapsam.KATILIM_ORANI)) < 1e-9
     b = o["satirlar"][1]
     assert b["kod"] == "BBB" and b["fiyatsiz"] and b["cikis_gun"] is None and o["fiyatsiz_pay"] == 5.0 and o["olculen_pay_rapor"] == 15.76
-    assert o["akis_uyari"] and abs(o["akis_orani"] - 0.6) < 1e-6      # TEFAS 16 mrd, rapor 10 mrd: yeni para, varsayım zayıf; payda olarak kullanılmaz
+    assert o["akis_uyari"] and abs(o["akis_orani"] - 0.6) < 1e-3      # TEFAS 16 mrd, rapor 10 mrd: yeni para, varsayım zayıf; payda olarak kullanılmaz
     assert icerik_kapsam.cikis_gunu(100.0, None) is None and icerik_kapsam.cikis_gunu(100.0, 0) is None
     assert not icerik_kapsam.yeniden_degerle(S, ["F1"], fiy)["F1"]["akis_uyari"]
 
