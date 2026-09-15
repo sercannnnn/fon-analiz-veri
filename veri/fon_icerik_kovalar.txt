@@ -1287,7 +1287,6 @@ TGT	duzen_taninmadi	kurucu düzeni (garanti) ayrıştırılamıyor
 TGV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TGZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
-THF	hata	sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü
 THG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1352,7 +1351,6 @@ TRJ	kuyrukta	sırası gelmedi
 TRN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TRO	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TRR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TRU	hata	sapma sebebi atanmamış: TEFAS sapması 0.76 puan, 0,05 üstü
 TRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TSI	kuyrukta	sırası gelmedi
 TSP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1444,7 +1442,7 @@ YBE	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YBP	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
-YBR	duzen_taninmadi	düzen tanınmadı
+YBR	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 YBS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YCG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YCH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor

@@ -15,12 +15,12 @@
   "kovalar": {
    "beklemede": 25,
    "duzen_bekliyor": 28,
-   "duzen_taninmadi": 403,
+   "duzen_taninmadi": 402,
    "ertelendi": 1,
-   "hata": 91,
-   "kapsam_disi": 825,
+   "hata": 89,
+   "kapsam_disi": 826,
    "kuyrukta": 204,
-   "listesi_var": 513,
+   "listesi_var": 515,
    "rapor_yok_bu_ay": 11,
    "sinif_farki": 45
   },
@@ -28,13 +28,13 @@
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "parkOncelik": 0,
   "raporYokKurucu": 3,
-  "satirBuTur": 0,
+  "satirBuTur": 173,
   "sinananKurucu": [],
   "sinavSurumu": 2,
   "taninmayanKurucu": 11,
   "tarih": "2026-09-15",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 0,
+  "yayimlandiBuTur": 2,
   "yeniFon": 0,
   "yenidenIslenen": 3
  }

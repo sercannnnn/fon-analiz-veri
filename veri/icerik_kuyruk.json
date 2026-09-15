@@ -13501,13 +13501,17 @@
   "tarih": "2026-09-08"
  },
  "THF": {
-  "ay": "2026-08",
   "bildirim": 1657113,
-  "durum": "hata",
-  "sebep": "sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü",
+  "durum": "yayimlandi",
+  "gunEsleme": "yaklaşık (0.14)",
+  "sapma": 0.14,
+  "satir": 163,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
+  "surum": 11,
   "tarih": "2026-09-15",
+  "tefasGun": "2026-09-01",
   "yayim": "02.09.2026 11:02:16"
  },
  "THG": {
@@ -14008,13 +14012,17 @@
   "tarih": "2026-09-14"
  },
  "TRU": {
-  "ay": "2026-08",
   "bildirim": 1661172,
-  "durum": "hata",
-  "sebep": "sapma sebebi atanmamış: TEFAS sapması 0.76 puan, 0,05 üstü",
+  "durum": "yayimlandi",
+  "gunEsleme": "yaklaşık (0.00)",
+  "sapma": 0.0,
+  "satir": 10,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
+  "surum": 11,
   "tarih": "2026-09-15",
+  "tefasGun": "2026-09-07",
   "yayim": "09.09.2026 18:00:07"
  },
  "TRZ": {
@@ -14575,8 +14583,8 @@
  "YBR": {
   "ay": "2026-08",
   "bildirim": 1662804,
-  "durum": "duzen_taninmadi",
-  "sebep": "düzen tanınmadı",
+  "durum": "kapsam_disi",
+  "sebep": "düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-15",

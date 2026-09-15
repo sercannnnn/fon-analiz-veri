@@ -1,4 +1,4 @@
 fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,sapmaSebebi,tefasSinifToplami,raporIciTutarsizlik,listeTam,eksikKalem,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
-THF,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,163,100.0,2026-09-01,0.14,,100.0,,,,126,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-TRU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-01,0.76,,100.0,,,,4,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.76 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-YBR,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,bilinmiyor,0,,,,,,,,,,,,,,,duzen_taninmadi,düzen tanınmadı,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+THF,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,163,100.0,2026-09-01,0.14,veri_gunu_yaklasik,100.0,,true,,126,0,125,0,0,128,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TRU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,10,100.0,2026-09-07,0.0,veri_gunu_yaklasik,100.0,,true,,4,0,0,0,0,9,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+YBR,2026-08,İŞ PORTFÖY YÖNETİMİ A.Ş.,goruntu,0,,,,,,,,,,,,,,,kapsam_disi,"düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
