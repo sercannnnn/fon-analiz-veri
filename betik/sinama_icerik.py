@@ -201,6 +201,33 @@ def test_68_temel_oranlar_ve_dort_ceyrek():
     assert k["paySayisi"] == 100.0 and k["netKar4C"] == 90.0 and k["netBorc"] == 150.0 and k["favok4C"] == 100.0 + 13.0 and "varsayım" in k["paySayisiKaynak"]
 
 
+def test_m70_portfoy_gunu_ima_edilen_fiyattan():
+    """72 numaralı not: hisse satırının rayiç / nominal değeri fiyat arşivinde oy verir; en çok oy alan gün portföy günüdür (en az 3 oy ve yarıdan fazla).
+    Seçim veriGunu ile (70 numaralı not); yayımcı etiketi yanıltsa da veri günü kazanır."""
+    if F is None:
+        return
+    kap = {"AAA": {"2026-09-03": 100.0, "2026-09-04": 102.0, "2026-09-07": 105.0}, "BBB": {"2026-09-03": 50.0, "2026-09-04": 51.0, "2026-09-07": 53.0},
+           "CCC": {"2026-09-04": 10.0, "2026-09-07": 10.0}, "DDD": {"2026-09-04": 7.0}}
+    K = [dict(kod="AAA", tur="Hisse Türk", nominal=1000, rayic=102000.0), dict(kod="BBB", tur="Hisse Türk", nominal=10, rayic=510.0),
+         dict(kod="CCC", tur="Hisse Türk", nominal=5, rayic=50.0), dict(kod="DDD", tur="Hisse Türk", nominal=1, rayic=7.0),
+         dict(kod="EEE", tur="Hisse Türk", nominal=1, rayic=1.0), dict(kod="TRT1", tur="Devlet Tahvili", nominal=1, rayic=1.0)]
+    g, oy, n, aday = F.portfoy_gunu_oyla(K, kap)
+    assert g == "2026-09-04" and oy == 4 and n == 4                     # CCC iki güne oy verir, DDD tek; 04.09 dördü de
+    assert F.portfoy_gunu_oyla(K[:2], kap)[0] is None                  # iki oy yetmez (asgari 3)
+    assert F.tefas_izleyen_gun({("2026-09-04", "F"): {"a": 1}, ("2026-09-07", "F"): {"a": 2}}, "F", "2026-09-04")[0] == "2026-09-07"
+    assert F.onceki_is_gunu("2026-09-07") == "2026-09-04" and F.onceki_is_gunu("2026-09-01") == "2026-08-31"
+    S = [dict(fonKodu="F1", raporTarihi="2026-09", veriGunu="2026-08-20", agirlik="1"),     # etiketi yeni, verisi eski
+         dict(fonKodu="F1", raporTarihi="2026-08", veriGunu="2026-08-31", agirlik="2")]     # etiketi eski, verisi yeni: bu seçilir
+    assert [r["agirlik"] for r in icerik_kapsam.son_ay_satirlari(S)] == ["2"]
+    assert icerik_kapsam.akis_durumu(0.05) == "tam" and icerik_kapsam.akis_durumu(0.2) == "varsayım zayıf" and icerik_kapsam.akis_durumu(0.88).startswith("ölçülemedi") and icerik_kapsam.akis_durumu(None) == "ölçülemedi"
+    tb = dict(paySayisi=100.0, ozkaynak=500.0, netKar4C=50.0, netBorc=None, favok4C=None, donenVarlik=None, kvYukumluluk=None, donem="2026-06", grup="UFRS", kaynak="x")
+    o = icerik_kapsam.temel_oranlar(tb, 10.0)
+    assert o["pd_dd"] == 2.0 and o["fk"] == 20.0 and o["okk"] == 0.1 and o["cari"].startswith("anlamsız") and o["netborc_favok"].startswith("anlamsız")
+    import temel_cek as T
+    k = T.ayikla([dict(itemDescTr="XVI. ÖZKAYNAKLAR", value1="500"), dict(itemDescTr="16.1 Ödenmiş Sermaye", value1="100"), dict(itemDescTr="XX. DÖNEM NET KAR/ZARARI", value1="30")])
+    assert k["ozkaynak"][0] == 500.0 and k["odenmisSermaye"][0] == 100.0 and k["netKar"][0] == 30.0
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),

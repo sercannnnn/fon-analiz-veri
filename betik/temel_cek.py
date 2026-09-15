@@ -19,7 +19,7 @@ ALANLAR = ["bistKodu", "paySayisi", "paySayisiKaynak", "ozkaynak", "netKar4C", "
 # kalem -> açıklama başlangıçları (İş Yatırım Türkçe açıklaması); banka tablosunda (UFRS) adlar farklıdır
 KALEM = {"ozkaynak": ["Özkaynaklar", "ÖZKAYNAKLAR", "Toplam Özkaynaklar"], "donenVarlik": ["Dönen Varlıklar"], "kvYukumluluk": ["Kısa Vadeli Yükümlülükler"],
          "nakit": ["Nakit ve Nakit Benzerleri"], "borcKV": ["Kısa Vadeli Borçlanmalar", "Finansal Borçlar"], "borcUV": ["Uzun Vadeli Borçlanmalar"],
-         "netKar": ["Dönem Net Kar/Zararı", "DÖNEM NET KARI", "Net Dönem Karı", "Dönem Karı (Zararı)", "Ana Ortaklık Payları"],
+         "netKar": ["Dönem Net Kar/Zararı", "DÖNEM NET KARI", "Net Dönem Karı", "Dönem Karı (Zararı)", "Ana Ortaklık Payları", "DÖNEM NET KAR/ZARARI", "NET DÖNEM KARI/ZARARI", "Dönem Net Karı"],
          "faaliyetKari": ["Esas Faaliyet Karı", "ESAS FAALİYET KARI", "Faaliyet Karı"], "amortisman": ["Amortisman"], "odenmisSermaye": ["Ödenmiş Sermaye"]}
 AKIS = {"netKar", "faaliyetKari", "amortisman"}     # son dört çeyrek toplamı hesaplanır
 
@@ -60,11 +60,15 @@ def _sayi(x):
         return None
 
 
+import re as _re
+NUMARA = _re.compile(r"^[IVXLC]+\.\s*|^\d+(\.\d+)*\.?\s*")   # banka tablosu (UFRS): "XVI. ÖZKAYNAKLAR", "16.1 Ödenmiş Sermaye"
+
+
 def ayikla(v):
-    """Tablo satırlarından kalem -> [dönem1, dönem2, dönem3, dönem4] değerleri."""
+    """Tablo satırlarından kalem -> [dönem1, dönem2, dönem3, dönem4] değerleri. Numara önekleri atılır (banka tablosu)."""
     out = {}
     for x in v:
-        desc = (x.get("itemDescTr") or "").strip()
+        desc = NUMARA.sub("", (x.get("itemDescTr") or "").strip())
         for k, adlar in KALEM.items():
             if k not in out and any(desc.lower().startswith(a.lower()) for a in adlar):
                 out[k] = [_sayi(x.get(f"value{i}")) for i in range(1, 5)]

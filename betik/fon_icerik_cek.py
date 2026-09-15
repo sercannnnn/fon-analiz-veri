@@ -42,7 +42,8 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 11    # 11 (64 numarali not): fonbul duzeninde ihracci sutunu bos satirda satir metni ad olur (Takasbank para piyasasi, katilma hesabi)
+AYRISTIRICI_SURUM = 12    # 12 (M70, 72 numarali not): veriGunu = ima edilen fiyatla tarihlenen PORTFOY GUNU (TEFAS gunu degil), raporBasligi sutunu
+# 11 (64 numarali not): fonbul duzeninde ihracci sutunu bos satirda satir metni ad olur (Takasbank para piyasasi, katilma hesabi)
 # 10 (M66, 15 Eylul 2026): ihracci sutunu bos satirda (mevduat, katilim hesabi, repo) ad sutunundan yedeklenir; esleşmeyen veri gunu yayimi engellemez
 # 9 (M59, 15 Eylul 2026): sarilan satir ustteki kiymete, ad ve ihracci dolu, satirTuru ve veriGunu sutunlari, yayim penceresinde TEFAS gunu eslesmesi
 # artinca kuyruk, eski surumle yayimlanmis fonlari kalan butceyle, gunlere yayarak yeniden isler (Talimat 11)
@@ -62,6 +63,7 @@ def tefas_sinif_toplami(tefas_son):
         return None
     return round(sum(float(v or 0) for k, v in tefas_son.items() if k not in ("tarih", "fonKodu")), 2)
 SAPMA_SEBEPLERI = {}
+HISSE_KAPANIS = {}     # M70: kod -> {tarih: ham kapanis}; kuyruk_turu doldurur
 
 
 def sapma_sebepleri_yukle(veri):
@@ -137,7 +139,8 @@ def rapor_ici_fark(kayit, gruplar):
 # Gunluk dosya (fon_icerik_son.csv) yalnizca o gunun turunu tasir; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz.
 # kiymetAdi yalnizca tek satirdan okunan (sarilmamis) adlarda doludur; sarilan ad kiymetAdiHam'da ham durur.
 ICERIK_ALAN = ["fonKodu", "raporTarihi", "kiymetAdi", "kiymetAdiHam", "bistKodu", "ihracci", "isin", "tur", "nominal", "rayicDeger", "agirlik", "kurucuDuzeni", "kaynak", "listeTam",
-               "satirTuru", "veriGunu"]   # M59: satirTuru pozisyon | negatif_eslesen | negatif_tek; veriGunu raporun eslestigi TEFAS dagilim gunu (portfoy bir is gunu oncesine ait)
+               "satirTuru", "veriGunu", "raporBasligi"]   # M59: satirTuru pozisyon | negatif_eslesen | negatif_tek. M70 (surum 12): veriGunu PORTFOY GUNU (hisse satirlarinin
+                                                          # rayic/nominal fiyatinin fiyat arsivinde oy verdigi gun; hisse satiri yoksa TEFAS eslesen gunun bir is gunu oncesi); raporBasligi yayimcinin ay etiketi
 # kaynak: kap (raporun satiri) ya da tefas_kalan (raporun yazmadigi kalem, tutari TEFAS'tan; kirilimi bilinmiyor).
 # listeTam: fonun listesinde tefas_kalan satiri varsa false; olcum tarafi (icerik_olcu.py) o fonda yogunlasma, ortusme, ilk on hesaplamaz.
 OZET_ALAN = ["fonKodu", "raporTarihi", "kurucu", "kurucuDuzeni", "satir", "agirlikToplam", "tefasGun", "tefasSapma", "sapmaSebebi", "tefasSinifToplami", "raporIciTutarsizlik", "listeTam", "eksikKalem", "satirIciSinanan", "satirIciHata", "hisseSatir", "yabanciHisseSatir", "bistKoduBos", "adTemiz", "durum", "sebep", "not"]
@@ -619,6 +622,66 @@ def tefas_gun_esle(rows, f, ay, yayim, kayit, gruplar, evren, ay_ici=False):
         if sp is not None and (enb is None or sp <= enb[2]):   # esitlikte yayima en yakin gun
             enb = (t, rows[(t, f)], sp)
     return enb if enb and enb[2] <= SAPMA_ESIK else (None, None, None)
+
+
+def hisse_kapanis_yukle(arsiv, son_n=2):
+    """arsiv/hisse_YYYY-MM.csv.gz (son son_n dosya): kod -> {tarih: ham kapanis}. M70 portfoy gunu oylamasi icin."""
+    out = defaultdict(dict)
+    for f in sorted(glob.glob(os.path.join(arsiv or "", "hisse_20??-??.csv.gz")))[-son_n:]:
+        try:
+            with gzip.open(f, "rt", encoding="utf-8", newline="") as h:
+                for r in csv.DictReader(h):
+                    try:
+                        k = float(r.get("kapanisHam") or 0)
+                    except ValueError:
+                        continue
+                    if k > 0:
+                        out[r["hisse"]][r["tarih"][:10]] = k
+        except Exception:
+            continue
+    return out
+
+
+PORTFOY_GUNU_TOLERANS = 0.005   # ima edilen fiyat (rayic / nominal) ile arsiv kapanisi arasindaki azami goreli fark
+PORTFOY_GUNU_ASGARI_OY = 3      # gunu kabul etmek icin en az bu kadar kiymet ayni gune oy vermeli ve oylarin yarisindan fazlasi o gune dusmeli
+
+
+def portfoy_gunu_oyla(kayit, kapanis, evren=None):
+    """M70 (72 numarali not): her hisse satirinin rayic / nominal degeri fonun o kiymeti degerledigi fiyattir; fiyat arsivinde
+    PORTFOY_GUNU_TOLERANS icinde aranir, en cok oy alan gun portfoy gunudur. Donus: (gun ya da None, oy, toplam_oy_veren, adaylar)."""
+    oy = defaultdict(int); n = 0
+    for k in kayit:
+        kod = (k.get("kod") or "").upper().split(".")[0]
+        if not kod or kod not in kapanis or not k.get("tur") or not HISSE_TUR.search(norm(k["tur"])) or re.search(r"YABANCI", norm(k["tur"])):
+            continue
+        nom, ray = k.get("nominal"), k.get("rayic")
+        if not nom or not ray or nom <= 0 or ray <= 0:
+            continue
+        p = ray / nom; n += 1
+        for t, c in kapanis[kod].items():
+            if abs(c - p) / p <= PORTFOY_GUNU_TOLERANS:
+                oy[t] += 1
+    if not oy:
+        return None, 0, n, []
+    sira = sorted(oy.items(), key=lambda kv: (-kv[1], kv[0]))
+    g, o = sira[0]
+    if o >= PORTFOY_GUNU_ASGARI_OY and o * 2 > n:
+        return g, o, n, sira[:3]
+    return None, o, n, sira[:3]
+
+
+def tefas_izleyen_gun(rows, f, gun):
+    """Portfoy gununden sonraki ilk TEFAS dagilim gunu (dagilim T gunu T-1 portfoyunu yansitir)."""
+    adaylar = sorted(t for (t, k) in rows if k == f and t > gun)
+    return (adaylar[0], rows[(adaylar[0], f)]) if adaylar else (None, None)
+
+
+def onceki_is_gunu(t):
+    """ISO tarih -> bir is gunu oncesi (hafta sonu atlanir; resmi tatil bilinmez)."""
+    d = datetime.strptime(t, "%Y-%m-%d").date() - timedelta(days=1)
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d.isoformat()
 
 
 def yeniden_islenmeli(d, x, rap_ay, surum=None):
@@ -1315,6 +1378,8 @@ def arsive_isle(arsiv, yazilan):
                 s = s + ["kap", "true"]        # eski sema (12 sutun) kaynak=kap, listeTam=true
             if len(s) == 14:
                 s = s + ["", ""]               # M59: satirTuru, veriGunu bilinmiyor
+            if len(s) == 16:
+                s = s + [""]                   # M70: raporBasligi
             return s
         birlesik = [_tamamla(s) for s in gz_oku(yol) if s[0] not in yeni] + L
         birlesik.sort(key=lambda s: (s[0], s[7], s[6], s[3]))
@@ -1365,18 +1430,25 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
         return "duzen_taninmadi", f"düzen {d} için ayrıştırıcı yok", [], dict(ray=ray, duzen=d)
     kayit, gruplar = AYRISTIRICILAR[d](pdf)
     byf_duzelt(kayit, kunye, evren)
-    gun, tefas_son = tefas_ertesi_gun(rows, f, ray)
+    rapor_basligi = ray
+    # M70: portfoy gunu ima edilen fiyattan; TEFAS karsilastirma gunu onu izleyen ilk dagilim gunu
+    pg, oy, oy_n, oy_adaylar = portfoy_gunu_oyla(kayit, HISSE_KAPANIS or {}, evren)
+    if pg:
+        gun, tefas_son = tefas_izleyen_gun(rows, f, pg); ray = pg[:7]; eslesme = f"portföy günü oy {oy}/{oy_n}"
+    else:
+        gun, tefas_son = tefas_ertesi_gun(rows, f, ray); eslesme = "ay sonu"
     rapor_ici = rapor_ici_fark(kayit, gruplar)              # raporun kendi acigi, tamamlamadan once
     ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
-    eslesme = "ay sonu"
-    if not ok and sebep.startswith("şart 3") and x.get("publishDate"):
+    if not ok and sebep.startswith("şart 3") and x.get("publishDate") and not pg:
         ay_ici = gun is None                                   # izleyen gun yok: rapor yayim ayina ait ay ici rapor olabilir
         g2, t2, sp2 = tefas_gun_esle(rows, f, ray, x["publishDate"], kayit, gruplar, evren, ay_ici=ay_ici)   # M59: yayim penceresindeki TEFAS gunu
         if g2:
             gun, tefas_son, ray, eslesme = g2, t2, g2[:7], ("ay içi" if ay_ici else "yayım penceresi")
             ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
     ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
-    if not ok and sp is not None and sp <= SAPMA_UST and sebep.startswith("sapma sebebi atanmamış") and x.get("publishDate"):
+    if not ok and sp is not None and sp <= SAPMA_UST and sebep.startswith("sapma sebebi atanmamış") and x.get("publishDate") and pg:
+        ok, sebep, sapma_sebebi = True, "", "veri_gunu_yaklasik"       # portfoy gunu kesin, dagilim sapmasi 1,00 altinda: yayimlanir
+    elif not ok and sp is not None and sp <= SAPMA_UST and sebep.startswith("sapma sebebi atanmamış") and x.get("publishDate"):
         # 66 numarali not (bolum 3): yayim kurali sapmanin buyuklugune bakar, takvim kalibina degil. Sapma SAPMA_UST altinda ise fon
         # yayimlanir; veri gunu en kucuk sapmali gundur (ay sonu dahil butun gunler denenir), satir sapmayi tasir, sebep 'veri_gunu_yaklasik'
         # (sebep listesine girmez, olcumdur). Kural 14: olculemeyen tarih olcumu iptal etmez. 0,14 ve 0,31 puanlik iki rapor ayni kuralla yayimlanir.
@@ -1392,7 +1464,8 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
         ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
     liste_tam = not any(k.get("kaynak") == "tefas_kalan" for k in kayit)
     sic_s, sic_h = satir_ici_denetim(kayit)
-    bilgi = dict(ray=ray, duzen=d, gun=gun, gunEsleme=eslesme, sapma=sp, sapmaSebebi=sapma_sebebi, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici, listeTam=liste_tam, eksikKalem=eksik_kalem, satir=len(kayit),
+    portfoy_gunu = pg or (onceki_is_gunu(gun) if gun else None)
+    bilgi = dict(ray=ray, duzen=d, gun=gun, gunEsleme=eslesme, portfoyGunu=portfoy_gunu, gunOy=(f"{oy}/{oy_n}" if oy_n else ""), raporBasligi=rapor_basligi, sapma=sp, sapmaSebebi=sapma_sebebi, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici, listeTam=liste_tam, eksikKalem=eksik_kalem, satir=len(kayit),
                  toplam=round(sum(k["agirlik"] for k in kayit), 2) if kayit else "", sicSinanan=sic_s, sicHata=sic_h)
     pdf = None; gruplar = None; gc.collect()
     if ok:
@@ -1407,7 +1480,7 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
                     hisse_n += 1; bist_bos += 0 if bist else 1
             ad_temiz += 1 if temiz else 0
             satir.append([f, ray, temiz, k["ad"], bist, ihr, k["isin"], k["tur"] or "", k["nominal"] if k["nominal"] is not None else "", k["rayic"], round(k["agirlik"], 4), d,
-                          k.get("kaynak", "kap"), "true" if liste_tam else "false", satir_turu, gun or ""])
+                          k.get("kaynak", "kap"), "true" if liste_tam else "false", satir_turu, portfoy_gunu or "", rapor_basligi or ""])
         bilgi.update(hisse=hisse_n, yabanci=yabanci_n, bistBos=bist_bos, adTemiz=ad_temiz)
         return "yayimlandi", "", satir, bilgi
     if sebep.startswith("şart 3: TEFAS"):
@@ -1542,6 +1615,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
         if d.get("durum") == "kapsamDisi":
             ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}
     rows = tefas_dagilim_yukle(veri, arsiv); evren = bist_evren_yukle(veri); byf_yukle(veri); sapma_sebepleri_yukle(veri)
+    HISSE_KAPANIS.update(hisse_kapanis_yukle(arsiv))       # M70: portfoy gunu oylamasi
     kd_yol2 = os.path.join(veri, "kosu_durumu.json")
     kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol2, kdur)
     bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
@@ -1618,7 +1692,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             if durum == "yayimlandi":
                 yazilan += satir
                 ky[f] = dict(son=ray, durum="yayimlandi" if ray >= hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
-                             bildirim=x.get("disclosureIndex"), yayim=x.get("publishDate"), gunEsleme=bilgi.get("gunEsleme"),
+                             bildirim=x.get("disclosureIndex"), yayim=x.get("publishDate"), gunEsleme=bilgi.get("gunEsleme"), portfoyGunu=bilgi.get("portfoyGunu"), gunOy=bilgi.get("gunOy"), raporBasligi=bilgi.get("raporBasligi"),
                              sebep="" if ray >= hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
                 kova[ky[f]["durum"]].append(f)
                 ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi.get("sapmaSebebi", ""), bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), "true" if bilgi.get("listeTam", True) else "false", bilgi.get("eksikKalem", ""), bilgi["sicSinanan"], bilgi["sicHata"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])

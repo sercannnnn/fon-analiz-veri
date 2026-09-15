@@ -37,15 +37,24 @@ def icerik_oku(arsiv, son_n=2):
     return L
 
 
+def _veri_anahtari(r):
+    """Satırın veri günü: veriGunu doluysa o, yoksa rapor ayının son günü (70 numaralı not: seçim veriGunu ile; yayımcı etiketi yanıltabilir)."""
+    vg = (r.get("veriGunu") or "").strip()[:10]
+    if vg:
+        return vg
+    ay = (r.get("raporTarihi") or "")[:7]
+    return _ay_sonu(ay).isoformat() if len(ay) == 7 and ay[4] == "-" else ""
+
+
 def son_ay_satirlari(satirlar):
-    """Her fonun yalnızca en yeni raporunun satırları (raporTarihi en büyük olan). Aylık dosyalar birlikte okununca aynı fon iki ayda
-    da bulunur ve toplamlar iki kez sayılırdı."""
+    """Her fonun yalnızca en yeni raporunun satırları; seçim veri gününe göre (veriGunu, yoksa rapor ayının son günü). Aylık dosyalar
+    birlikte okununca aynı fon iki ayda da bulunur ve toplamlar iki kez sayılırdı."""
     son = {}
     for r in satirlar:
-        ay = r.get("raporTarihi") or ""
-        if ay > son.get(r["fonKodu"], ""):
-            son[r["fonKodu"]] = ay
-    return [r for r in satirlar if (r.get("raporTarihi") or "") == son.get(r["fonKodu"])]
+        k = _veri_anahtari(r)
+        if k > son.get(r["fonKodu"], ""):
+            son[r["fonKodu"]] = k
+    return [r for r in satirlar if _veri_anahtari(r) == son.get(r["fonKodu"])]
 
 
 def icerik_tazeligi(arsiv, fonlar=(), bugun=None, esik=ICERIK_YAS_ESIK_GUN, satirlar=None):
@@ -378,10 +387,19 @@ def cikis_gunu(deger, hacim_ortanca, katilim=KATILIM_ORANI):
     return deger / (hacim_ortanca * katilim)
 
 
-AKIS_UYARI_ORAN = 0.10   # TEFAS büyüklüğü rapor toplamından bu orandan fazla sapıyorsa "alım satım yok" varsayımı zayıftır, satır bunu yazar (varsayım)
+AKIS_UYARI_ORAN = 0.10        # 72 numaralı not: TEFAS büyüklüğü portföy günündeki büyüklükten bu orandan fazla değiştiyse "varsayım zayıf" (varsayım)
+AKIS_OLCULEMEDI_ORAN = 0.25   # bu oranın üstünde yoğunlaşma ve grup payı kapı için "ölçülemedi"; ham rapor ağırlığı yine yazılır (varsayım)
+ARTIK_ORAN = 0.10             # M71: rapor satır toplamı / portföy günü TEFAS büyüklüğü bu orandan fazla sapıyorsa artık açıktır, sayılar geçicidir
 
 
-def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5):
+def akis_durumu(oran):
+    if oran is None:
+        return "ölçülemedi"
+    a = abs(oran)
+    return "ölçülemedi (akış)" if a > AKIS_OLCULEMEDI_ORAN else "varsayım zayıf" if a > AKIS_UYARI_ORAN else "tam"
+
+
+def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5, buyukluk_gun=None):
     """68 numaralı not, bölüm 3: rapor günü nominal pay adedi × bugünkü ham kapanış = bugünkü pozisyon değeri. Güncel ağırlık = değer / fonun
     yalnızca FİYAT değişimiyle taşınmış toplam değeri: rapor toplam değeri (satırların rayiç / ağırlık oranından, FPD) + Σ(bugünkü değer − rapor
     rayici). Alım satım ve akış olmadığı VARSAYIMI açıkça yazılır; TEFAS'ın bugünkü büyüklüğü ayrı verilir ve rapor toplamından AKIS_UYARI_ORAN
@@ -427,10 +445,14 @@ def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5):
                 olc_r += e["agirlik_rapor"]; olc_g += (e["agirlik_guncel"] or 0.0)
             e["agirlik_rapor"] = round(e["agirlik_rapor"], 2)
         L.sort(key=lambda e: -(e["agirlik_guncel"] if e["agirlik_guncel"] is not None else e["agirlik_rapor"]))
-        akis = (b / fpd - 1.0) if (fpd and b > 0) else None
+        # 72 numaralı not: akış = TEFAS bugün / TEFAS portföy günü (rapor toplamına değil; rapor toplamı ile TEFAS'ın farkı ayrı bir artıktır, M71)
+        bg = float((buyukluk_gun or {}).get(f) or 0)
+        akis = (b / bg - 1.0) if (bg > 0 and b > 0) else ((b / fpd - 1.0) if (fpd and b > 0) else None)
+        artik = (fpd / bg) if (fpd and bg > 0) else None
         out[f] = dict(veri_gunu=d["veri_gunu"], fiyat_tarihi=tarih, satirlar=L, fiyatsiz_pay=round(fiyatsiz, 2), olculen_pay_rapor=round(olc_r, 2),
                       olculen_pay_guncel=round(olc_g, 2), hisse_sayisi=len(L), fiyatli_sayi=sum(1 for e in L if not e["fiyatsiz"]),
-                      fpd_rapor=fpd, toplam_guncel=toplam, buyukluk=b or None, akis_orani=akis, akis_uyari=(akis is not None and abs(akis) > AKIS_UYARI_ORAN))
+                      fpd_rapor=fpd, toplam_guncel=toplam, buyukluk=b or None, buyukluk_gun=bg or None, akis_orani=akis, akis_durumu=akis_durumu(akis),
+                      akis_uyari=(akis is not None and abs(akis) > AKIS_UYARI_ORAN), artik_orani=artik, artik_acik=(artik is not None and abs(artik - 1.0) > ARTIK_ORAN))
     return out
 
 
@@ -460,6 +482,15 @@ def temel_oranlar(t, kapanis):
         return dict(pd_dd=None, fk=None, netborc_favok=None, okk=None, cari=None, piyasa_degeri=None, donem=None, not_="ölçülemedi (temel veri yok)")
     ps, oz, nk, nb, fv, dv, kv = (t.get(k) for k in ("paySayisi", "ozkaynak", "netKar4C", "netBorc", "favok4C", "donenVarlik", "kvYukumluluk"))
     pd_ = ps * kapanis if ps else None
+    if (t.get("grup") or "") != "XI_29" and t.get("grup"):
+        # 72 numaralı not: banka, faktoring ve sigorta bilançosunda net borç ve cari oran anlamsızdır (borç hammaddedir); boş değil "anlamsız"
+        def oran2(pay, payda, anlamsiz):
+            if pay is None or payda is None:
+                return None
+            return "anlamsız" if anlamsiz(payda) else pay / payda
+        return dict(piyasa_degeri=pd_, pd_dd=oran2(pd_, oz, lambda x: x <= 0), fk=oran2(pd_, nk, lambda x: x <= 0),
+                    netborc_favok="anlamsız (finansal kuruluş bilançosu)", cari="anlamsız (finansal kuruluş bilançosu)",
+                    okk=oran2(nk, oz, lambda x: x <= 0), donem=t.get("donem"), not_=(t.get("kaynak") or ""))
     def oran(pay, payda, anlamsiz):
         if pay is None or payda is None:
             return None
