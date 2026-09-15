@@ -91,17 +91,94 @@ def kamu_mu(isin, ihracci=""):
     return any(_norm(k) in _norm(ihracci) for k in KAMU_IHRACCILAR)
 
 
+TEMINATLI_PP_PARCALARI = ("REPO", "TAAHHUT SOZLESMESI", "TPP", "BPP", "PARA PIYASASI", "KATILMA HESAP", "KATILIM HESABI")   # fonbul: "U) PARA PİYASASI", "M) KATILMA HESAPLARI"
+
+
 def _tur_teminatli(tur):
-    return _norm(tur).strip() in {_norm(x) for x in TEMINATLI_PP_TURLER}
+    n = _norm(tur).strip()
+    return n in {_norm(x) for x in TEMINATLI_PP_TURLER} or any(p in n for p in TEMINATLI_PP_PARCALARI)
 
 
-def fon_ihracci_ilk(satirlar, fonlar, n=3):
+def _katilim_mu(tur):
+    n = _norm(tur)
+    return "KATILIM HESABI" in n or "KATILMA HESAP" in n
+
+
+def _pp_mu(tur):
+    n = _norm(tur)
+    return n in ("TPP", "BPP") or "PARA PIYASASI" in n
+
+
+def banka_grup_yukle(yol):
+    """banka_grup.json: {grup adı: [ad parçaları]}; ihraççı adında parça geçen banka o gruba sayılır (Ziraat Bankası ile Ziraat Katılım aynı
+    karşı taraftır; 64 numaralı not). Kamuya açık şirket yapısıdır; dosya yoksa boş."""
+    if not yol or not os.path.exists(yol):
+        return {}
+    try:
+        import json
+        return {k: v for k, v in json.load(open(yol, encoding="utf-8")).items() if not k.startswith("_")}
+    except Exception:
+        return {}
+
+
+def banka_grubu(ad, tablo):
+    n = _norm(ad)
+    for grup, parcalar in (tablo or {}).items():
+        if any(_norm(p) in n for p in parcalar if p):
+            return grup
+    return None
+
+
+GENEL_KOK = {"PORTFOY", "YATIRIM", "MENKUL", "FON", "FONU", "GLOBAL", "CAPITAL", "GOLDEN", "TURK", "TURKIYE", "ATLAS", "HEDEF"}
+
+
+def kurucu_grubu_payi(satirlar, fonlar, fon_kurucu, grup_tablo=None):
+    """M68 (64 numaralı not): tutulan fonun kurucu grubuna maruziyeti = kurucu grubunun adı geçen BÜTÜN satırların toplamı, satırın türü ne
+    olursa olsun (hisse, tahvil, kira sertifikası, repo dayanağı, kurucunun kendi fonları). Eşleşme: kurucu grup tablosundaki adlar (kurucu_grup.json)
+    ve kurucunun kök kelimesi (ilk kelime, dört harften uzun, genel kelime değil) kelime başında; ihraççı alanı doluysa kesin, boşsa ham addan
+    üst sınır. Dönüş: {fonKodu: dict(kesin, ust_sinir, kalemler[(ad, puan)], adsiz_satir, veri_gunu)}."""
+    import re
+    son = son_ay_satirlari(satirlar)
+    out = {}
+    for r in son:
+        f = r.get("fonKodu")
+        if f not in fonlar:
+            continue
+        kur = fon_kurucu.get(f) or ""
+        adlar = set(x for x in (grup_tablo or {}).get(kur, [kur]) if x)
+        kok = (kur.split() or [""])[0]
+        kok_re = re.compile(r"(?<![A-ZÇĞİÖŞÜ0-9])" + re.escape(_norm(kok)) + r"(?![A-ZÇĞİÖŞÜ0-9])") if len(kok) >= 4 and _norm(kok) not in GENEL_KOK else None
+        def eslesir(metin):
+            n = _norm(metin)
+            return any(_norm(a) in n for a in adlar) or bool(kok_re and kok_re.search(n))
+        try:
+            a = float(r.get("agirlik") or 0)
+        except ValueError:
+            continue
+        o = out.setdefault(f, dict(kesin=0.0, ust_sinir=0.0, kalemler={}, adsiz_satir=0, veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None))
+        ih = (r.get("ihracci") or "").strip()
+        if ih:
+            if eslesir(ih):
+                o["kesin"] += a; o["ust_sinir"] += a
+                o["kalemler"][ih] = o["kalemler"].get(ih, 0.0) + a
+        else:
+            o["adsiz_satir"] += 1
+            if eslesir(r.get("kiymetAdiHam") or ""):
+                o["ust_sinir"] += a
+                o["kalemler"]["(ham) " + (r.get("kiymetAdiHam") or "")[:30]] = o["kalemler"].get("(ham) " + (r.get("kiymetAdiHam") or "")[:30], 0.0) + a
+    for f, o in out.items():
+        o["kesin"] = round(o["kesin"], 2); o["ust_sinir"] = round(o["ust_sinir"], 2)
+        o["kalemler"] = sorted(((k, round(v, 2)) for k, v in o["kalemler"].items()), key=lambda kv: -kv[1])[:4]
+    return out
+
+
+def fon_ihracci_ilk(satirlar, fonlar, n=3, banka_grup=None):
     """M62: her fon için en yüksek n NET ihraççı ağırlığı (aynı ISIN ya da BIST kodunun satırları toplanır, negatif satır dahil; yalnızca
     en yeni rapor; teminatlı para piyasası işlemleri TEMINATLI_PP_TURLER dışarıda). Anahtar: BIST kodu, yoksa ISIN, yoksa ihraççı adı
     (mevduat ve katılım hesabı: banka). Kamu ihraççı (kamu_mu) `muaf` işaretiyle döner, ağırlığı yine yazılır. Adsız ağırlık (anahtarı olmayan
     satırlar) fon başına `adsiz` alanında sözlüğün `_adsiz` girdisinde; fonun ölçüsü ancak adsız pay küçükse tamdır ("kısmen ölçüldü", düzeltme 3).
     Dönüş: {fonKodu: [dict(kod, agirlik(puan), veri_gunu, muaf, ihracci)]} ve {fonKodu: adsız puan} çifti için fon_ihracci_ilk_adsiz."""
-    return _fon_ihracci(satirlar, fonlar, n)[0]
+    return _fon_ihracci(satirlar, fonlar, n, banka_grup)[0]
 
 
 def fon_ihracci_ilk_adsiz(satirlar, fonlar):
@@ -109,7 +186,7 @@ def fon_ihracci_ilk_adsiz(satirlar, fonlar):
     return _fon_ihracci(satirlar, fonlar, 3)[1]
 
 
-def _fon_ihracci(satirlar, fonlar, n):
+def _fon_ihracci(satirlar, fonlar, n, banka_grup=None):
     son = son_ay_satirlari(satirlar)
     top, adsiz = {}, {}
     for r in son:
@@ -121,7 +198,8 @@ def _fon_ihracci(satirlar, fonlar, n):
         except ValueError:
             continue
         ih = (r.get("ihracci") or "").strip()
-        kod = (r.get("bistKodu") or r.get("isin") or ih).strip()
+        bg = banka_grubu(ih, banka_grup) if ih and not (r.get("bistKodu") or r.get("isin")) else None   # mevduat: banka grubu tek karşı taraf (64 numaralı not)
+        kod = (bg or r.get("bistKodu") or r.get("isin") or ih).strip()
         if not kod:
             adsiz[f] = adsiz.get(f, 0.0) + a; continue
         d = top.setdefault(f, {})
@@ -182,7 +260,7 @@ def _repo_ozeti(satirlar, fonlar, grup_adlari=()):
         kod = (r.get("bistKodu") or r.get("isin") or "").strip() or "kodsuz"
         ih = (r.get("ihracci") or "").strip()
         s = "Hazine" if kamu_mu(r.get("isin"), ih) else teminat_sinifi(r.get("isin") or "", r.get("bistKodu") or "")
-        if _norm(tur) == "KATILIM HESABI":
+        if _katilim_mu(tur):
             s = "katılım hesabı (teminatsız, banka)"
         o["toplam"] += a; o["satir"] += 1
         o["tur"][tur] = o["tur"].get(tur, 0.0) + a
@@ -192,7 +270,8 @@ def _repo_ozeti(satirlar, fonlar, grup_adlari=()):
             o["ihracci"][ih] = o["ihracci"].get(ih, 0.0) + a
             if any(_norm(g) in _norm(ih) for g in grup_adlari if g):
                 o["grup"] += a
-        kt = KARSI_TARAF_SABIT.get(_norm(tur)) or (f"{ih} (banka)" if _norm(tur) == "KATILIM HESABI" and ih else "raporda yok, ölçülemedi")
+        kt = (KARSI_TARAF_SABIT.get(_norm(tur)) or (KARSI_TARAF_SABIT["TPP"] if _pp_mu(tur) else None)
+              or (f"{ih} (banka)" if _katilim_mu(tur) and ih else "raporda yok, ölçülemedi"))
         o["karsi_taraf"][kt] = o["karsi_taraf"].get(kt, 0.0) + a
     for f, o in out.items():
         o["toplam"] = round(o["toplam"], 2)

@@ -42,7 +42,8 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 10    # 10 (M66, 15 Eylul 2026): ihracci sutunu bos satirda (mevduat, katilim hesabi, repo) ad sutunundan yedeklenir; esleşmeyen veri gunu yayimi engellemez
+AYRISTIRICI_SURUM = 11    # 11 (64 numarali not): fonbul duzeninde ihracci sutunu bos satirda satir metni ad olur (Takasbank para piyasasi, katilma hesabi)
+# 10 (M66, 15 Eylul 2026): ihracci sutunu bos satirda (mevduat, katilim hesabi, repo) ad sutunundan yedeklenir; esleşmeyen veri gunu yayimi engellemez
 # 9 (M59, 15 Eylul 2026): sarilan satir ustteki kiymete, ad ve ihracci dolu, satirTuru ve veriGunu sutunlari, yayim penceresinde TEFAS gunu eslesmesi
 # artinca kuyruk, eski surumle yayimlanmis fonlari kalan butceyle, gunlere yayarak yeniden isler (Talimat 11)
 # Talimat 11: gunluk butcenin en az %60'i listesi olmayan fonlara. Uygulama: yeni fonlar once ve butcenin tamamina kadar islenir,
@@ -938,7 +939,8 @@ def fonbul_kiymetler(pdf_bayt):
                     yz = sayi(pct[-1]["text"].replace("%", ""))
                     if "%" not in pct[-1]["text"] and yz is not None and abs(yz) < 1.0:
                         yz = yz * 100.0
-                    kayit.append(dict(sayfa=pi, ad=" ".join(ih), isin=isinler[0] if isinler else "", isinSayi=len(set(isinler)),
+                    ad_yedek = " ".join(w["text"] for w in r if _ad_token(w) and not SAYI_RE.match(w["text"].replace("%", "")))   # 64 numarali not: kodsuz para piyasasi ve katilma hesabi satirlari
+                    kayit.append(dict(sayfa=pi, ad=" ".join(ih) or ad_yedek, isin=isinler[0] if isinler else "", isinSayi=len(set(isinler)),
                                       nominal=sayi(nom[-1]["text"]) if nom else None, rayic=sayi(deg[-1]["text"]), agirlik=None,
                                       yuzdeOkunan=yz, tur=tur, anahtar=tur[:2], kod=ilk if r[0]["x0"] < kal["ihracci_x0"] else "",
                                       ihracciHam=" ".join(ih), ihracciSatir=1 if ih else 0))

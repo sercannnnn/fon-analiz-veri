@@ -127,6 +127,29 @@ def test_m60_park_aday_kumesi_kuyruk_onceligi():
     assert F.park_aday_kumesi("", kun, gun) == {"A", "D"}          # A son gün 6 mrd (önceki gün değil), B küçük, C kategori dışı, D tabanda
 
 
+def test_m68_kurucu_grubu_payi_ve_banka_grubu():
+    S = [dict(fonKodu="F1", tur="Hisse Türk", isin="TRETERA00013", bistKodu="TERA", ihracci="TERA YATIRIM MENKUL DEĞERLER A.Ş.", agirlik="5.29", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="Kira Sertifikası", isin="TRDTERVK2618", bistKodu="", ihracci="TERA VARLIK KİRALAMA A.Ş.", agirlik="6.26", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="T.REPO", isin="TRDTERVK2618", bistKodu="", ihracci="TERA VARLIK KİRALAMA A.Ş.", agirlik="4.02", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="Y.Fonu Türk", isin="TRYTRPY00140", bistKodu="", ihracci="TERA PORTFÖY YÖNETİMİ A.Ş.", agirlik="1.46", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="Hisse Türk", isin="TRAMEDIT0001", bistKodu="MDTRA", ihracci="MEDİTERA TIBBİ A.Ş.", agirlik="3.0", raporTarihi="2026-09", veriGunu="2026-09-07"),   # MEDİTERA: TERA değil
+         dict(fonKodu="F1", tur="Hisse Türk", isin="", bistKodu="", ihracci="", kiymetAdiHam="TRHOL TERA FİNANSAL YATIRIMLA", agirlik="2.0", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="Hisse Türk", isin="TRAAKBNK91N6", bistKodu="AKBNK", ihracci="AKBANK T.A.Ş.", agirlik="10", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F2", tur="MEVDUAT", isin="", bistKodu="", ihracci="ZİRAAT BANKASI A.Ş.", agirlik="30.76", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F2", tur="KATILIM HESABI", isin="", bistKodu="", ihracci="ZİRAAT KATILIM BANKASI A.Ş.", agirlik="5", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F2", tur="MEVDUAT", isin="", bistKodu="", ihracci="TÜRKİYE VAKIFLAR BANKASI T.A.O.", agirlik="19.82", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F2", tur="U) PARA PİYASASI", isin="", bistKodu="", ihracci="Takasbank Para Piyasası- BIAS", agirlik="40", raporTarihi="2026-09", veriGunu="2026-09-07")]
+    grup = {"TERA PORTFÖY": ["TERA FİNANS", "TERA FİNANSAL", "TERA GRUBU", "TERA PORTFÖY", "TERA YATIRIM"]}
+    o = icerik_kapsam.kurucu_grubu_payi(S, ["F1", "F2"], {"F1": "TERA PORTFÖY", "F2": "PARDUS PORTFÖY"}, grup_tablo=grup)
+    assert abs(o["F1"]["kesin"] - 17.03) < 1e-9 and abs(o["F1"]["ust_sinir"] - 19.03) < 1e-9 and o["F1"]["adsiz_satir"] == 1   # MEDİTERA ve AKBANK sayılmaz, Tera Varlık kök kelimeyle sayılır
+    assert o["F2"]["kesin"] == 0.0
+    bg = {"ZİRAAT": ["ZİRAAT BANKASI", "ZİRAAT KATILIM"], "VAKIF": ["VAKIFLAR BANKASI", "VAKIF KATILIM"]}
+    ilk = icerik_kapsam.fon_ihracci_ilk(S, ["F2"], n=3, banka_grup=bg)
+    assert ilk["F2"][0]["kod"] == "ZİRAAT" and ilk["F2"][0]["agirlik"] == 30.76 and ilk["F2"][1]["kod"] == "VAKIF"     # katılım hesabı teminatlı sınıfta, mevduat banka grubuyla
+    ro = icerik_kapsam.repo_ozeti(S, ["F2"])
+    assert ro["F2"]["toplam"] == 45.0 and any("Takasbank" in k for k in ro["F2"]["karsi_taraf"]) and any("(banka)" in k for k in ro["F2"]["karsi_taraf"])
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),
