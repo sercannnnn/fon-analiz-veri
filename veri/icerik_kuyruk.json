@@ -2675,8 +2675,8 @@
  "DOH": {
   "bildirim": 1661174,
   "durum": "yayimlandi",
-  "gunEsleme": "portföy günü oy 54/55",
-  "gunOy": "54/55",
+  "gunEsleme": "portföy günü oy 55/56",
+  "gunOy": "55/56",
   "portfoyGunu": "2026-09-04",
   "raporBasligi": "2026-08",
   "sapma": 0.0,
@@ -2684,7 +2684,7 @@
   "sebep": "",
   "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 12,
+  "surum": 13,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-07",
   "yayim": "09.09.2026 18:00:07"
@@ -4736,8 +4736,8 @@
  "GHS": {
   "bildirim": 1659656,
   "durum": "yayimlandi",
-  "gunEsleme": "ay sonu",
-  "gunOy": "",
+  "gunEsleme": "portföy günü oy 255/255",
+  "gunOy": "255/255",
   "portfoyGunu": "2026-08-31",
   "raporBasligi": "2026-08",
   "sapma": 0.0,
@@ -4745,7 +4745,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 12,
+  "surum": 13,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
   "yayim": "07.09.2026 17:57:01"
@@ -5491,7 +5491,7 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 12,
+  "surum": 13,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
   "yayim": "07.09.2026 17:57:01"
@@ -5712,14 +5712,21 @@
   "tarih": "2026-09-14"
  },
  "GZE": {
-  "ay": "2026-08",
-  "bildirim": 1661350,
-  "durum": "duzen_taninmadi",
-  "sebep": "kıymet satırı yok",
+  "bildirim": 1659147,
+  "durum": "yayimlandi",
+  "gunEsleme": "ay sonu",
+  "gunOy": "",
+  "portfoyGunu": "2026-08-31",
+  "raporBasligi": "2026-08",
+  "sapma": 0.01,
+  "satir": 41,
+  "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
+  "surum": 13,
   "tarih": "2026-09-15",
-  "yayim": "09.09.2026 20:25:09"
+  "tefasGun": "2026-09-01",
+  "yayim": "04.09.2026 18:13:59"
  },
  "GZG": {
   "durum": "yayimlandi",
