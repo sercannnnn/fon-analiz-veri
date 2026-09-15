@@ -42,7 +42,8 @@ AY_AD = {"OCAK": 1, "SUBAT": 2, "MART": 3, "NISAN": 4, "MAYIS": 5, "HAZIRAN": 6,
 SINAV_SURUM = 2           # kurucu sinavi yontemi: kiymet tablosu + kapi, TEFAS ertesi gun (Talimat 7)
 SINAV_PAYI = 0.6          # gunluk butcenin sinava ayrilan payi
 KAPSAM_AY = 6             # kapsam_disi karari: son 6 ayda hic rapor yok
-AYRISTIRICI_SURUM = 13    # 13 (72 numarali not): Garanti duzeninde hisse turu 'A.PAY', BIST kodu ISIN'den (TRA kurali ve arsiv haritasi); bos rapor onceki bildirime duser
+AYRISTIRICI_SURUM = 14    # 14 (M71, M72; 74 numarali not): raporun fon toplam degeri tablosu (NAV, alacaklar, borclar) kuyruk kaydinda
+# 13 (72 numarali not): Garanti duzeninde hisse turu 'A.PAY', BIST kodu ISIN'den (TRA kurali ve arsiv haritasi); bos rapor onceki bildirime duser
 # 12 (M70, 72 numarali not): veriGunu = ima edilen fiyatla tarihlenen PORTFOY GUNU (TEFAS gunu degil), raporBasligi sutunu
 # 11 (64 numarali not): fonbul duzeninde ihracci sutunu bos satirda satir metni ad olur (Takasbank para piyasasi, katilma hesabi)
 # 10 (M66, 15 Eylul 2026): ihracci sutunu bos satirda (mevduat, katilim hesabi, repo) ad sutunundan yedeklenir; esleşmeyen veri gunu yayimi engellemez
@@ -687,6 +688,45 @@ def onceki_is_gunu(t):
     while d.weekday() >= 5:
         d -= timedelta(days=1)
     return d.isoformat()
+
+
+TOPLAM_TABLOSU_SATIR = {"fpd": r"A-\)\s*FON PORTFÖY DEĞERİ", "hazir": r"B-\)\s*HAZIR DEĞERLER", "alacak": r"C-\)\s*ALACAKLAR", "diger": r"D-\)\s*DİĞER VARLIKLAR",
+                        "borc": r"E-\)\s*BORÇLAR", "ihtiyat": r"F-\)\s*İHTİYAT", "nav": r"^\s*FON TOPLAM DEĞERİ"}
+
+
+def toplam_tablosu_metinden(metin):
+    """M71 (74 numarali not): standart duzenin 'IV-FON TOPLAM DEGERI TABLOSU' bolumu: A) fon portfoy degeri, B) hazir degerler, C) alacaklar,
+    D) diger varliklar, E) borclar, F) ihtiyat, FON TOPLAM DEGERI (net varlik degeri). Varlik / NAV artigi burada acikca yazilidir: borclar.
+    Sayfa 1'deki 'Toplam Deger/Net Varlik Degeri' ve 'Katilma Payi Sayisi' da okunur. Donus: dict(TL degerler, yuzdeler, kaldirac = -borc/nav) ya da {}."""
+    out = {}
+    for ln in (metin or "").splitlines():
+        for ad, des in TOPLAM_TABLOSU_SATIR.items():
+            if ad not in out and re.search(des, ln, re.I):
+                say = re.findall(r"-?\d{1,3}(?:\.\d{3})*(?:,\d+)?", ln.split(")", 1)[-1] if ")" in ln[:6] else ln)
+                say = [s for s in say if "," in s or "." in s]
+                if say:
+                    out[ad] = sayi(say[0]); out[ad + "Yuzde"] = sayi(say[1]) if len(say) > 1 else None
+        m = re.search(r"Toplam Değer/Net Varlık Değeri\s*:\s*([0-9.]+,\d+)", ln)
+        if m:
+            out["navSayfa1"] = sayi(m.group(1))
+        m = re.search(r"Katılma Payı Sayısı\s*:\s*([0-9.]+,\d+)", ln)
+        if m:
+            out["paySayisi"] = sayi(m.group(1))
+    if out.get("nav") and out.get("borc") is not None:
+        out["kaldirac"] = round(-out["borc"] / out["nav"], 4)
+    if out.get("nav") and out.get("fpd"):
+        out["fpdNav"] = round(out["fpd"] / out["nav"], 4)
+    return out
+
+
+def toplam_tablosu(pdf_bayt):
+    """Standart duzende raporun butun sayfalarinin metninden toplam degeri tablosu; diger duzenlerde bos."""
+    try:
+        with pdfplumber.open(io.BytesIO(pdf_bayt)) as p:
+            metin = "\n".join((pg.extract_text() or "") for pg in p.pages)
+    except Exception:
+        return {}
+    return toplam_tablosu_metinden(metin)
 
 
 def yeniden_islenmeli(d, x, rap_ay, surum=None):
@@ -1456,6 +1496,7 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
         return "duzen_taninmadi", f"düzen {d} için ayrıştırıcı yok", [], dict(ray=ray, duzen=d)
     kayit, gruplar = AYRISTIRICILAR[d](pdf)
     byf_duzelt(kayit, kunye, evren)
+    toplam_tab = toplam_tablosu(pdf) if d in ("standart", "standart-genis") else {}
     rapor_basligi = ray
     # M70: portfoy gunu ima edilen fiyattan; TEFAS karsilastirma gunu onu izleyen ilk dagilim gunu
     pg, oy, oy_n, oy_adaylar = portfoy_gunu_oyla(kayit, HISSE_KAPANIS or {}, evren)
@@ -1491,7 +1532,8 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
     liste_tam = not any(k.get("kaynak") == "tefas_kalan" for k in kayit)
     sic_s, sic_h = satir_ici_denetim(kayit)
     portfoy_gunu = pg or (onceki_is_gunu(gun) if gun else None)
-    bilgi = dict(ray=ray, duzen=d, gun=gun, gunEsleme=eslesme, portfoyGunu=portfoy_gunu, gunOy=(f"{oy}/{oy_n}" if oy_n else ""), raporBasligi=rapor_basligi, sapma=sp, sapmaSebebi=sapma_sebebi, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici, listeTam=liste_tam, eksikKalem=eksik_kalem, satir=len(kayit),
+    bilgi = dict(ray=ray, duzen=d, gun=gun, gunEsleme=eslesme, portfoyGunu=portfoy_gunu, gunOy=(f"{oy}/{oy_n}" if oy_n else ""), raporBasligi=rapor_basligi, sapma=sp, sapmaSebebi=sapma_sebebi,
+                 toplamTablosu={k: toplam_tab.get(k) for k in ("fpd", "hazir", "alacak", "diger", "borc", "ihtiyat", "nav", "navSayfa1", "paySayisi", "kaldirac", "fpdNav")} if toplam_tab else {}, tefasToplam=tefas_sinif_toplami(tefas_son), raporIci=rapor_ici, listeTam=liste_tam, eksikKalem=eksik_kalem, satir=len(kayit),
                  toplam=round(sum(k["agirlik"] for k in kayit), 2) if kayit else "", sicSinanan=sic_s, sicHata=sic_h)
     pdf = None; gruplar = None; gc.collect()
     if ok:
@@ -1637,9 +1679,9 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     ky_yol = os.path.join(veri, "icerik_kuyruk.json"); ky = json_oku(ky_yol, {})
     for f, d in list(ky.items()):            # eski kova adlarini ve 'ozel fon' varsayimini temizle
         if d.get("durum") == "hata" and d.get("sebep") == "ayrıştırma hatası: ":   # butce bitince yanlis yazilan kayitlar (08.09.2026)
-            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}
+            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme", "portfoyGunu", "gunOy", "raporBasligi", "toplamTablosu")}
         if d.get("durum") == "kapsamDisi":
-            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}
+            ky[f] = {k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme", "portfoyGunu", "gunOy", "raporBasligi", "toplamTablosu")}
     rows = tefas_dagilim_yukle(veri, arsiv); evren = bist_evren_yukle(veri); byf_yukle(veri); sapma_sebepleri_yukle(veri)
     HISSE_KAPANIS.update(hisse_kapanis_yukle(arsiv))       # M70: portfoy gunu oylamasi
     isin_kod_haritasi(arsiv, evren)                         # 72 numarali not: Garanti duzeni ISIN -> kod
@@ -1728,6 +1770,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 yazilan += satir
                 ky[f] = dict(son=ray, durum="yayimlandi" if ray >= hedef else "rapor_yok_bu_ay", sapma=bilgi["sapma"], tefasGun=bilgi["gun"], satir=bilgi["satir"], surum=AYRISTIRICI_SURUM, tarih=bit,
                              bildirim=x.get("disclosureIndex"), yayim=x.get("publishDate"), gunEsleme=bilgi.get("gunEsleme"), portfoyGunu=bilgi.get("portfoyGunu"), gunOy=bilgi.get("gunOy"), raporBasligi=bilgi.get("raporBasligi"),
+                             toplamTablosu=bilgi.get("toplamTablosu") or {},
                              sebep="" if ray >= hedef else f"bu ayın raporu yok; son rapor {ray} kullanıldı")
                 kova[ky[f]["durum"]].append(f)
                 ozet.append([f, ray, kur, bilgi["duzen"], bilgi["satir"], bilgi["toplam"], bilgi["gun"] or "", bilgi["sapma"], bilgi.get("sapmaSebebi", ""), bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), "true" if bilgi.get("listeTam", True) else "false", bilgi.get("eksikKalem", ""), bilgi["sicSinanan"], bilgi["sicHata"], bilgi["hisse"], bilgi["yabanci"], bilgi["bistBos"], bilgi["adTemiz"], "yayimlandi", "", OZET_NOT])
@@ -1765,7 +1808,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     for f in kunye:
         d = ky.get(f, {})
         if not d.get("durum"):
-            ky[f] = dict(**{k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme")}, durum="kuyrukta", sebep="sırası gelmedi", tarih=bit)
+            ky[f] = dict(**{k: v for k, v in d.items() if k in ("son", "surum", "sapma", "tefasGun", "satir", "bildirim", "yayim", "gunEsleme", "portfoyGunu", "gunOy", "raporBasligi", "toplamTablosu")}, durum="kuyrukta", sebep="sırası gelmedi", tarih=bit)
     json_yaz(ky_yol, ky)
     sayim = defaultdict(int)
     for f in kunye:

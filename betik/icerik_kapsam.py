@@ -389,7 +389,50 @@ def cikis_gunu(deger, hacim_ortanca, katilim=KATILIM_ORANI):
 
 AKIS_UYARI_ORAN = 0.10        # 72 numaralı not: TEFAS büyüklüğü portföy günündeki büyüklükten bu orandan fazla değiştiyse "varsayım zayıf" (varsayım)
 AKIS_OLCULEMEDI_ORAN = 0.25   # bu oranın üstünde yoğunlaşma ve grup payı kapı için "ölçülemedi"; ham rapor ağırlığı yine yazılır (varsayım)
-ARTIK_ORAN = 0.10             # M71: rapor satır toplamı / portföy günü TEFAS büyüklüğü bu orandan fazla sapıyorsa artık açıktır, sayılar geçicidir
+ARTIK_ORAN = 0.05             # 74 numaralı not: varlık / net varlık değeri 1,05'i aşarsa "kaldıraç ya da ölçüm hatası"; raporun toplam değeri tablosu borçları yazıyorsa artık kapalı, kaldıraç ölçülmüştür
+VADELI_TURLER = ("UZUN", "KISA")   # M72: vadeli işlem sözleşmesi satırları (notional); toplam değere girmez, ayrı maruziyet satırında yazılır
+
+
+def _vadeli_mi(tur):
+    return _norm(tur).strip() in VADELI_TURLER
+
+
+def agirlik_tabani(satirlar):
+    """M72 (74 numaralı not): fon toplamı = ağırlığı olan satırlarda rayiç / ağırlık × 100'ün ağırlıkla ağırlıklandırılmış ortancası; vadeli işlem
+    satırları (ağırlığı sıfır, rayici notional) girmez. Dönüş: (taban TL ya da None, %15'ten fazla sapan satır sayısı)."""
+    L = []
+    for r in satirlar:
+        if _vadeli_mi(r.get("tur")):
+            continue
+        try:
+            a = float(r.get("agirlik") or 0); ray = float(r.get("rayicDeger") or 0)
+        except ValueError:
+            continue
+        if a > 0.05 and ray > 0:
+            L.append((ray / a * 100.0, a))
+    if not L:
+        return None, 0
+    L.sort(); top = sum(w for _, w in L); acc = 0.0; taban = L[-1][0]
+    for v, w in L:
+        acc += w
+        if acc >= top / 2:
+            taban = v; break
+    return taban, sum(1 for v, _ in L if abs(v / taban - 1.0) > 0.15)
+
+
+def vadeli_islem_maruziyeti(satirlar, fonlar):
+    """M72: fon başına vadeli işlem sözleşmesi notional toplamı (Uzun, Kısa satırlarının rayici) ve ağırlık tabanına oranı. Dönüş {fon: dict(uzun, kisa, notional, oran, satir)}."""
+    son = son_ay_satirlari(satirlar); out = {}
+    for f in fonlar:
+        S = [r for r in son if r.get("fonKodu") == f]
+        if not S:
+            continue
+        uz = sum(float(r.get("rayicDeger") or 0) for r in S if _norm(r.get("tur")) == "UZUN")
+        ks = sum(float(r.get("rayicDeger") or 0) for r in S if _norm(r.get("tur")) == "KISA")
+        taban, _ = agirlik_tabani(S)
+        if uz or ks:
+            out[f] = dict(uzun=uz, kisa=ks, notional=uz + ks, oran=((uz + ks) / taban if taban else None), satir=sum(1 for r in S if _vadeli_mi(r.get("tur"))))
+    return out
 
 
 def akis_durumu(oran):
@@ -408,23 +451,24 @@ def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5, buyukluk_gun=No
     Dönüş: {fon: dict(veri_gunu, fiyat_tarihi, satirlar[...], fiyatsiz_pay, olculen_pay_rapor, olculen_pay_guncel, hisse_sayisi, fiyatli_sayi,
     fpd_rapor, toplam_guncel, buyukluk (TEFAS), akis_orani, akis_uyari)}."""
     son = son_ay_satirlari(satirlar); buyukluk = buyukluk or {}
-    top = {}
+    top = {}; fon_satir = {}
     for r in son:
-        f = r.get("fonKodu"); kod = (r.get("bistKodu") or "").strip()
-        if f not in fonlar or not kod:
+        f = r.get("fonKodu")
+        if f in fonlar:
+            fon_satir.setdefault(f, []).append(r)
+        kod = (r.get("bistKodu") or "").strip()
+        if f not in fonlar or not kod or _vadeli_mi(r.get("tur")):
             continue
         try:
             a = float(r.get("agirlik") or 0); nom = float(r.get("nominal") or 0); ray = float(r.get("rayicDeger") or 0)
         except ValueError:
             continue
-        d = top.setdefault(f, dict(veri_gunu=(r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None), kod={}, fpd=[]))
+        d = top.setdefault(f, dict(veri_gunu=(r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None), kod={}))
         e = d["kod"].setdefault(kod, dict(kod=kod, nominal=0.0, agirlik_rapor=0.0, rayic=0.0))
         e["nominal"] += nom; e["agirlik_rapor"] += a; e["rayic"] += ray
-        if a > 0.05 and ray > 0:
-            d["fpd"].append(ray / a * 100.0)
     out = {}
     for f, d in top.items():
-        fpd = sorted(d["fpd"])[len(d["fpd"]) // 2] if d["fpd"] else None
+        fpd, sapan = agirlik_tabani(fon_satir.get(f, []))      # M72: agirlik tabani, vadeli satirlar disarida
         b = float(buyukluk.get(f) or 0)
         L, fiyatsiz, tarih, fark = [], 0.0, None, 0.0
         for e in d["kod"].values():
@@ -448,10 +492,10 @@ def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5, buyukluk_gun=No
         # 72 numaralı not: akış = TEFAS bugün / TEFAS portföy günü (rapor toplamına değil; rapor toplamı ile TEFAS'ın farkı ayrı bir artıktır, M71)
         bg = float((buyukluk_gun or {}).get(f) or 0)
         akis = (b / bg - 1.0) if (bg > 0 and b > 0) else ((b / fpd - 1.0) if (fpd and b > 0) else None)
-        artik = (fpd / bg) if (fpd and bg > 0) else None
+        artik = (fpd / bg) if (fpd and bg > 0) else None      # varlik / net varlik degeri (NAV = portfoy gununu izleyen TEFAS gununun buyuklugu)
         out[f] = dict(veri_gunu=d["veri_gunu"], fiyat_tarihi=tarih, satirlar=L, fiyatsiz_pay=round(fiyatsiz, 2), olculen_pay_rapor=round(olc_r, 2),
                       olculen_pay_guncel=round(olc_g, 2), hisse_sayisi=len(L), fiyatli_sayi=sum(1 for e in L if not e["fiyatsiz"]),
-                      fpd_rapor=fpd, toplam_guncel=toplam, buyukluk=b or None, buyukluk_gun=bg or None, akis_orani=akis, akis_durumu=akis_durumu(akis),
+                      fpd_rapor=fpd, taban_sapan=sapan, toplam_guncel=toplam, buyukluk=b or None, buyukluk_gun=bg or None, akis_orani=akis, akis_durumu=akis_durumu(akis),
                       akis_uyari=(akis is not None and abs(akis) > AKIS_UYARI_ORAN), artik_orani=artik, artik_acik=(artik is not None and abs(artik - 1.0) > ARTIK_ORAN))
     return out
 

@@ -233,6 +233,36 @@ def test_m70_portfoy_gunu_ima_edilen_fiyattan():
     assert k["ozkaynak"][0] == 500.0 and k["odenmisSermaye"][0] == 100.0 and k["netKar"][0] == 30.0
 
 
+def test_m71_m72_toplam_tablosu_agirlik_tabani_vadeli():
+    S = [dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="100", rayicDeger="1000", agirlik="10.0", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="BBB", isin="TRB", nominal="100", rayicDeger="2000", agirlik="20.0", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", tur="VIOP Nakit Teminatı", bistKodu="", isin="", nominal="1", rayicDeger="7000", agirlik="70.0", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", tur="Uzun", bistKodu="", isin="", nominal="10", rayicDeger="1715", agirlik="0", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", tur="Kısa", bistKodu="", isin="", nominal="1", rayicDeger="300", agirlik="", raporTarihi="2026-09", veriGunu="2026-09-04")]
+    taban, sapan = icerik_kapsam.agirlik_tabani(S)
+    assert taban == 10000.0 and sapan == 0                                                    # vadeli satırlar (notional 2015) tabana girmez
+    v = icerik_kapsam.vadeli_islem_maruziyeti(S, ["F1"])["F1"]
+    assert v["uzun"] == 1715.0 and v["kisa"] == 300.0 and v["notional"] == 2015.0 and abs(v["oran"] - 0.2015) < 1e-9 and v["satir"] == 2
+    o = icerik_kapsam.yeniden_degerle(S, ["F1"], {"AAA": dict(tarih="2026-09-14", kapanis=11.0, hacim_ortanca=1e6, seans=20)}, buyukluk={"F1": 12000.0}, buyukluk_gun={"F1": 8000.0})["F1"]
+    assert o["fpd_rapor"] == 10000.0 and o["hisse_sayisi"] == 2 and abs(o["artik_orani"] - 1.25) < 1e-9 and o["artik_acik"]
+    if F is None:
+        return
+    m = """IV-FON TOPLAM DEĞERİ TABLOSU
+A-)FON PORTFÖY DEĞERİ 28.280.728.111,73 126,19 %
+B-)HAZIR DEĞERLER 14.728.489,91 0,07 %
+C-)ALACAKLAR 1.273.546.984,79 5,68 %
+D-)DİĞER VARLIKLAR 0,00 0,00 %
+E-)BORÇLAR -7.157.619.913,86 -31,94 %
+F-)İHTİYAT 0,00 0,00 %
+FON TOPLAM DEĞERİ 22.411.383.672,57 100,00 %
+D-)Toplam Değer/Net Varlık Değeri : 22.411.383.672,57
+E-) Katılma Payı Sayısı : 9.205.100.303,000"""
+    t = F.toplam_tablosu_metinden(m)
+    assert abs(t["fpd"] - 28280728111.73) < 0.01 and abs(t["borc"] + 7157619913.86) < 0.01 and abs(t["nav"] - 22411383672.57) < 0.01
+    assert abs(t["fpdYuzde"] - 126.19) < 1e-9 and abs(t["kaldirac"] - 0.3194) < 1e-4 and abs(t["fpdNav"] - 1.2619) < 1e-4 and t["paySayisi"] == 9205100303.0 and t["navSayfa1"] == t["nav"]
+    assert F.toplam_tablosu_metinden("hiçbir şey") == {}
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),
