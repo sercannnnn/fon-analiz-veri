@@ -103,6 +103,52 @@ def fon_ihracci_ilk(satirlar, fonlar, n=3):
     return out
 
 
+TEMINAT_SINIFI = (("TRT", "Hazine"), ("TRD", "kira sertifikası"), ("TRF", "finansman bonosu"), ("TRS", "özel sektör tahvili"),
+                  ("TRP", "VDMK ya da ipotekli"), ("TRY", "yatırım fonu"), ("TRA", "hisse"), ("TRE", "hisse"), ("XS", "eurobond"))
+
+
+def teminat_sinifi(isin, bist=""):
+    """Teminat kıymetinin sınıfı ISIN önekinden (Türkiye ISIN yapısı); BIST kodu doluysa hisse."""
+    if bist:
+        return "hisse"
+    for onek, ad in TEMINAT_SINIFI:
+        if (isin or "").upper().startswith(onek):
+            return ad
+    return "diğer"
+
+
+def repo_ozeti(satirlar, fonlar):
+    """M65 (60 numaralı not): repo satırları ihraççı ölçüsünden çıkarılınca sıfıra dönmesin; fon başına ters repo toplamı, teminatın sınıf
+    dağılımı, en büyük tek teminat ve Hazine dışı teminat oranı. Karşı taraf: rapor karşı taraf adı taşımaz (borsa sözleşme numarası taşır),
+    bu yüzden 'raporda yok, ölçülemedi' (kural 14). Yalnızca en yeni rapor. Dönüş: {fonKodu: dict(toplam, sinif{ad: puan}, en_buyuk(kod, puan),
+    hazine_disi, satir, karsi_taraf, veri_gunu)}; repo satırı olmayan fon sözlükte yoktur."""
+    son = son_ay_satirlari(satirlar)
+    out = {}
+    for r in son:
+        f = r.get("fonKodu")
+        if f not in fonlar or (r.get("tur") or "").strip().upper() not in REPO_TURLER:
+            continue
+        try:
+            a = float(r.get("agirlik") or 0)
+        except ValueError:
+            continue
+        o = out.setdefault(f, dict(toplam=0.0, sinif={}, teminat={}, satir=0, karsi_taraf="raporda yok, ölçülemedi",
+                                   veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None))
+        kod = (r.get("bistKodu") or r.get("isin") or "").strip() or "kodsuz"
+        s = teminat_sinifi(r.get("isin") or "", r.get("bistKodu") or "")
+        o["toplam"] += a; o["satir"] += 1
+        o["sinif"][s] = o["sinif"].get(s, 0.0) + a
+        o["teminat"][kod] = o["teminat"].get(kod, 0.0) + a
+    for f, o in out.items():
+        o["toplam"] = round(o["toplam"], 2)
+        o["sinif"] = {k: round(v, 2) for k, v in sorted(o["sinif"].items(), key=lambda kv: -kv[1])}
+        eb = max(o["teminat"].items(), key=lambda kv: kv[1]) if o["teminat"] else None
+        o["en_buyuk"] = (eb[0], round(eb[1], 2)) if eb else None
+        o["hazine_disi"] = round(o["toplam"] - o["sinif"].get("Hazine", 0.0), 2)
+        del o["teminat"]
+    return out
+
+
 def kurucu_ihracci(satirlar, fon_kurucu, sermaye=None, kurucular=None):
     """Kurucunun bütün fonlarıyla bir ihraççıda tuttuğu toplam: nominal (pay adedi) ve TL, fon listesiyle; aynı fonun aynı kıymetteki
     satırları net toplanır (negatif satır dahil). Yalnızca hisse satırları (bistKodu dolu). sermaye: {bistKodu: paySayisi} verilirse

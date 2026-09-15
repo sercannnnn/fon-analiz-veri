@@ -83,6 +83,28 @@ def test_m62_fon_ihracci_ilk_net_ve_sinir():
     assert icerik_kapsam.TEK_KARSI_TARAF_SINIR == 20.0 and o["F1"][0]["agirlik"] > 20.0 and o["F1"][1]["agirlik"] > 20.0
 
 
+def test_m65_repo_ozeti_teminat_sinifi_ve_karsi_taraf():
+    S = [dict(fonKodu="P1", tur="T.REPO", isin="TREDSTF00012", bistKodu="DSTKF", agirlik="0.05", raporTarihi="2026-08", veriGunu="2026-09-01")] * 3
+    S = [dict(x) for x in S] + [dict(fonKodu="P1", tur="T.REPO", isin="TRT061228T16", bistKodu="", agirlik="4.13", raporTarihi="2026-08", veriGunu="2026-09-01"),
+                                dict(fonKodu="P1", tur="T.REPO", isin="TRDTERVK2618", bistKodu="", agirlik="4.07", raporTarihi="2026-08", veriGunu="2026-09-01"),
+                                dict(fonKodu="P1", tur="Hisse Türk", isin="TRAXXX", bistKodu="XXX", agirlik="10", raporTarihi="2026-08", veriGunu="2026-09-01"),
+                                dict(fonKodu="P2", tur="Bono", isin="TRF1", bistKodu="", agirlik="10", raporTarihi="2026-08", veriGunu="")]
+    o = icerik_kapsam.repo_ozeti(S, ["P1", "P2", "P9"])
+    assert list(o) == ["P1"] and o["P1"]["satir"] == 5 and abs(o["P1"]["toplam"] - 8.35) < 1e-9
+    assert o["P1"]["sinif"] == {"Hazine": 4.13, "kira sertifikası": 4.07, "hisse": 0.15} and o["P1"]["en_buyuk"] == ("TRT061228T16", 4.13)
+    assert abs(o["P1"]["hazine_disi"] - 4.22) < 1e-9 and "ölçülemedi" in o["P1"]["karsi_taraf"]
+    assert icerik_kapsam.teminat_sinifi("XS3290494775") == "eurobond" and icerik_kapsam.teminat_sinifi("TRYTALP00036") == "yatırım fonu" and icerik_kapsam.teminat_sinifi("ZZ") == "diğer"
+
+
+def test_m60_park_aday_kumesi_kuyruk_onceligi():
+    if F is None:
+        return
+    kun = [dict(fonKodu="A", kategori="Para Piyasası"), dict(fonKodu="B", kategori="Para Piyasası"), dict(fonKodu="C", kategori="Hisse Senedi"), dict(fonKodu="D", kategori="Kısa Vadeli Borçlanma")]
+    gun = [dict(fonKodu="A", tarih="2026-09-11", portfoyBuyukluk="6e9"), dict(fonKodu="A", tarih="2026-09-10", portfoyBuyukluk="1e9"),
+           dict(fonKodu="B", tarih="2026-09-11", portfoyBuyukluk="1e9"), dict(fonKodu="C", tarih="2026-09-11", portfoyBuyukluk="9e9"), dict(fonKodu="D", tarih="2026-09-11", portfoyBuyukluk="5e9")]
+    assert F.park_aday_kumesi("", kun, gun) == {"A", "D"}          # A son gün 6 mrd (önceki gün değil), B küçük, C kategori dışı, D tabanda
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),

@@ -354,7 +354,7 @@ PARK_KATEGORILER = ("Para Piyasası", "Kısa Vadeli Borçlanma")   # hisse, serb
 PARK_RISK_ARALIGI = (1, 3)              # künyedeki riskDegeri; sıfır ve boş kabul edilmez (2.033 fonun 1.091'inde bildirilmemiş)
 PARK_ASGARI_BUYUKLUK = 5_000_000_000.0  # TL; "görece büyük" için varsayım (Chat 39), adlı sabit, değiştirilebilir
 PARK_SEANS = 20                         # sıralama ölçüsü: son 20 seans getirisi
-PARK_GECIKME_SEANS = 1                  # fonun son fiyatı evrenin son gününden en çok bu kadar seans geride olabilir (08.15 çekiminin bilinen eksiği)
+# PARK_GECIKME_SEANS kaldırıldı (60 numaralı not): pencere evrenin son tam gününde biter, tam güne yetişemeyen fon aday değildir (M61)
 
 
 PARK_MEVCUT_RISK_ESIT_KABUL = False   # kullanıcı kuralı (15 Eylül 2026): mevcut park fonu ancak en az onun kadar kazandıran ve DAHA AZ riskli aday varsa

@@ -1462,6 +1462,32 @@ def kurucu_sinavi(kunye, kd, rows, evren, hedef, bas, bit, sinav_butce, kurucu_f
 kd_yol_global = ""
 
 
+def park_aday_kumesi(veri, kunye_rows=None, gunluk_rows=None):
+    """M60/M64 sarti (60 numarali not): icerik kuyrugunda park aday kumesi once gelir. Kume kamuya acik olcutle kurulur: park kategorisi
+    (oneri.PARK_KATEGORILER) ve buyukluk tabani (oneri.PARK_ASGARI_BUYUKLUK); kaynak veri/kunye_tam.csv ve veri/son_gunluk.csv (son gun).
+    Portfoy bilgisi tasimaz. Donus: fon kodu kumesi."""
+    try:
+        from oneri import PARK_KATEGORILER, PARK_ASGARI_BUYUKLUK
+    except Exception:
+        PARK_KATEGORILER, PARK_ASGARI_BUYUKLUK = ("Para Piyasası", "Kısa Vadeli Borçlanma"), 5_000_000_000.0
+    if kunye_rows is None:
+        yol = os.path.join(veri, "kunye_tam.csv")
+        kunye_rows = list(csv.DictReader(open(yol, encoding="utf-8"))) if os.path.exists(yol) else []
+    if gunluk_rows is None:
+        yol = os.path.join(veri, "son_gunluk.csv")
+        gunluk_rows = list(csv.DictReader(open(yol, encoding="utf-8"))) if os.path.exists(yol) else []
+    buy, gun = {}, {}
+    for r in gunluk_rows:
+        f = r.get("fonKodu"); tg = str(r.get("tarih") or "")
+        try:
+            b = float(r.get("portfoyBuyukluk") or 0)
+        except ValueError:
+            continue
+        if f and tg >= gun.get(f, "") and b > 0:
+            gun[f] = tg; buy[f] = b
+    return {r["fonKodu"] for r in kunye_rows if r.get("kategori") in PARK_KATEGORILER and buy.get(r.get("fonKodu"), 0) >= PARK_ASGARI_BUYUKLUK}
+
+
 def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     global kd_yol_global
     bugun = date.today(); hedef = hedef_ay(bugun)
@@ -1491,7 +1517,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
 
     yazilan, ozet, hata = [], [], []
     kova = defaultdict(list)
-    islenen = 0; yeni_fon, yeniden_islenen = [0], [0]
+    islenen = 0; yeni_fon, yeniden_islenen, park_oncelik = [0], [0], [0]
     fonlar = [f for f, s_ in sorted(kunye.items()) if (not kurucu_filtre or s_["kurucu"] == kurucu_filtre) and (not fon_filtre or f in fon_filtre)]
     # ---- kurucu durumuna gore dagit
     sorgulanacak = []
@@ -1528,6 +1554,9 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 ky[f]["sebep"] = "" if d.get("son") == hedef else f"bu ayın raporu yok; son rapor {d['son']}"
                 kova[ky[f]["durum"]].append(f); continue
             (yeniden_l if d.get("son") and d["son"] >= rap_ay else yeni_l).append((f, x, d, rap_ay))
+        onc = park_aday_kumesi(veri)                          # M60/M64: park aday kumesi once (60 numarali not)
+        yeni_l.sort(key=lambda q: q[0] not in onc); yeniden_l.sort(key=lambda q: q[0] not in onc)
+        park_oncelik[0] = sum(1 for q in yeni_l + yeniden_l if q[0] in onc)
         for f, x, d, rap_ay in yeni_l + yeniden_l:
             kur = kunye[f]["kurucu"]; yeniden = bool(d.get("son") and d["son"] >= rap_ay)   # yeni fonlar listede once; butce onlara gider
             islenen += 1
@@ -1600,7 +1629,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     json_yaz(ky_yol, ky)
     durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi" if kova_toplami == toplam_fon else "denklesmedi",
                  sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
-                 islenen=islenen, yeniFon=yeni_fon[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 islenen=islenen, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
                  kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
                  kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
                  kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
