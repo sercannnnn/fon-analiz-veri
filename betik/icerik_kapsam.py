@@ -73,7 +73,7 @@ def icerik_tazeligi(arsiv, fonlar=(), bugun=None, esik=ICERIK_YAS_ESIK_GUN, sati
             gun[r["fonKodu"]] = vg
     def yas(vg):
         try:
-            return (bugun - date.fromisoformat(vg)).days
+            return max(0, (bugun - date.fromisoformat(vg)).days)   # veri günü boş satır rapor ayının sonuna düşer; ay bitmemişse yaş sıfır sayılır, eksi olmaz
         except ValueError:
             return None
     en_yeni = max(gun.values()) if gun else None
