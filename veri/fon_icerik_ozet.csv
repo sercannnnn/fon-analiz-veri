@@ -1,2 +1,2 @@
 fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,sapmaSebebi,tefasSinifToplami,raporIciTutarsizlik,listeTam,eksikKalem,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
-PSE,2026-09,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,258,99.32,,,,,175987671.78,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+PSE,2026-09,ATLAS PORTFÖY YÖNETİMİ A.Ş.,fonbul,258,99.32,2026-09-04,0.31,,100.0,175987671.78,,,0,0,,,,,hata,"sapma sebebi atanmamış: TEFAS sapması 0.31 puan, 0,05 üstü",gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz

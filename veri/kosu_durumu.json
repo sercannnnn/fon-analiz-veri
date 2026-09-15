@@ -13,11 +13,11 @@
   "kapsamTanimi": "pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
   "kovaToplami": 2146,
   "kovalar": {
-   "beklemede": 26,
+   "beklemede": 25,
    "duzen_bekliyor": 28,
    "duzen_taninmadi": 402,
    "ertelendi": 1,
-   "hata": 90,
+   "hata": 91,
    "kapsam_disi": 825,
    "kuyrukta": 211,
    "listesi_var": 507,

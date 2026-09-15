@@ -1048,7 +1048,7 @@ PRV	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 PRY	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PSB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-PSE	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
+PSE	hata	sapma sebebi atanmamış: TEFAS sapması 0.31 puan, 0,05 üstü
 PSG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PSH	kuyrukta	sırası gelmedi
 PSL	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor

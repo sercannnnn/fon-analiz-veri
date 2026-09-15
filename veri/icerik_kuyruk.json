@@ -12060,8 +12060,8 @@
  "PSE": {
   "ay": "2026-09",
   "bildirim": 1661053,
-  "durum": "beklemede",
-  "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "durum": "hata",
+  "sebep": "sapma sebebi atanmamış: TEFAS sapması 0.31 puan, 0,05 üstü",
   "sonRaporAy": "2026-08",
   "tarih": "2026-09-15",
   "yayim": "09.09.2026 16:57:33"
