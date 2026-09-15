@@ -388,6 +388,11 @@ def park_fonu_sec(d, kunye, dislama=(), disla_yol=None, mevcut=None):
         return dict(kod=None, sebep=f"evrende {len(gunler)} seans var, {PARK_SEANS + 1} gerekir", aday=0, elenen={}, neden={}, sira={}, adaylar=[], risk_olculemedi=[], mevcut=None, karar="")
     bit_gun = gunler[-1]; bas_gun = gunler[-1 - PARK_SEANS]
     pencere = (str(bas_gun)[:10], str(bit_gun)[:10])
+    try:
+        import icerik_kapsam as _ik
+        pencere_piyasa = (_ik.piyasa_gunu(pencere[0]), _ik.piyasa_gunu(pencere[1]))   # M73: TEFAS günü bir önceki işlem gününün kapanışıdır
+    except Exception:
+        pencere_piyasa = (None, None)
     elenen = {"kategori": 0, "risk": 0, "buyukluk": 0, "dislama": 0, "seans": 0, "tam_gun": 0}
     neden = {}      # M57: kod -> eleme sebebi; bütün şartlar sınanır, ilk sebepte durulmaz
     adaylar, risk_olculemedi, olcum = [], [], {}
@@ -447,10 +452,10 @@ def park_fonu_sec(d, kunye, dislama=(), disla_yol=None, mevcut=None):
                 s = m_ad
                 karar = (f"mevcut {mevcut} kalır: en az onun kadar kazandıran ({_yuzde(m_ad['getiri20'], 2)}) ve daha az riskli (risk < {m_ad['risk']}) aday yok; "
                          f"ölçütün ilk sırası {ilk['kod']} ({_yuzde(ilk['getiri20'], 2)}, risk {ilk['risk']}), fark {_yuzde(ilk['getiri20'] - m_ad['getiri20'], 2)}; kural 15 Eylül 2026, kullanıcı")
-    gerekce = (f"{s['kod']} ({s['kategori']}, risk {s['risk']}, {s['buyukluk'] / 1e9:.1f} milyar TL, {PARK_SEANS} seans {_yuzde(s['getiri20'])}, pencere {pencere[0]} → {pencere[1]}); "
+    gerekce = (f"{s['kod']} ({s['kategori']}, risk {s['risk']}, {s['buyukluk'] / 1e9:.1f} milyar TL, {PARK_SEANS} seans {_yuzde(s['getiri20'])}, pencere piyasa günü {pencere_piyasa[0]} → {pencere_piyasa[1]}, TEFAS günü {pencere[0]} → {pencere[1]}); "
                f"{len(adaylar)} aday; ölçüt: kategori {', '.join(PARK_KATEGORILER)}, risk {PARK_RISK_ARALIGI[0]}-{PARK_RISK_ARALIGI[1]}, "
                f"büyüklük ≥ {PARK_ASGARI_BUYUKLUK / 1e9:.0f} milyar TL (varsayım), arıza/çöküş/kırılma/kesinti/değer kaybı ve park_disla.txt dışarıda, ortak pencere (M61)")
-    return dict(kod=s["kod"], ilk=ilk["kod"], kategori=s["kategori"], risk=s["risk"], buyukluk=s["buyukluk"], getiri20=s["getiri20"], pencere=pencere, aday=len(adaylar),
+    return dict(kod=s["kod"], ilk=ilk["kod"], kategori=s["kategori"], risk=s["risk"], buyukluk=s["buyukluk"], getiri20=s["getiri20"], pencere=pencere, pencere_piyasa=pencere_piyasa, aday=len(adaylar),
                 sira={a["kod"]: i + 1 for i, a in enumerate(adaylar)}, adaylar=adaylar[:5], gerekce=gerekce, elenen=elenen, neden=neden,
                 risk_olculemedi=risk_olculemedi, mevcut=mev, karar=karar)
 

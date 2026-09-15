@@ -263,6 +263,17 @@ E-) Katılma Payı Sayısı : 9.205.100.303,000"""
     assert F.toplam_tablosu_metinden("hiçbir şey") == {}
 
 
+def test_m73_piyasa_gunu_ve_kaldirac_ozeti():
+    assert icerik_kapsam.piyasa_gunu("2026-09-07") == "2026-09-04" and icerik_kapsam.piyasa_gunu("2026-09-01") == "2026-08-31" and icerik_kapsam.piyasa_gunu("x") is None
+    ky = {"F1": dict(portfoyGunu="2026-09-04", duzen="standart", toplamTablosu=dict(fpd=28.28e9, borc=-7.16e9, nav=22.41e9)),
+          "F2": dict(portfoyGunu="2026-08-31", durum="yayimlandi", surum=14, toplamTablosu={}), "F4": dict(durum="yayimlandi", surum=12)}
+    v = {"F1": dict(notional=1.0e9)}
+    o = icerik_kapsam.kaldirac_ozeti(ky, ["F1", "F2", "F3", "F4"], vadeli=v)
+    assert abs(o["F1"]["fpd_nav"] - 1.262) < 1e-3 and abs(o["F1"]["borc_nav"] - 0.3195) < 1e-3 and abs(o["F1"]["vadeli_nav"] - 1.0 / 22.41) < 1e-4 and not o["F1"]["olculemedi"]
+    assert o["F2"]["olculemedi"] and "taşımıyor" in o["F2"]["sebep"] and o["F3"]["olculemedi"] and "kuyruk kaydı yok" in o["F3"]["sebep"]
+    assert o["F4"]["olculemedi"] and "sürüm 12" in o["F4"]["sebep"]
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),

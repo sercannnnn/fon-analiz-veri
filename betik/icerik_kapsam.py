@@ -545,6 +545,47 @@ def temel_oranlar(t, kapanis):
                 okk=oran(nk, oz, lambda x: x <= 0), cari=oran(dv, kv, lambda x: x <= 0), donem=t.get("donem"), not_=(t.get("kaynak") or ""))
 
 
+# ---------------------------------------------------------------- piyasa günü (M73, 76 numaralı not)
+def piyasa_gunu(tefas_gunu):
+    """TEFAS'ın T günü fiyatı ve büyüklüğü T eksi bir işlem gününün kapanışını yansıtır (76 numaralı not: fon fiyatı ile XU100 korelasyonu eş günde
+    sıfır, endeksin bir gün öncesiyle güçlü). Dönüş: TEFAS gününden bir önceki hafta içi gün, ISO. Resmî tatil bilinmez; takvim.RESMI_KAPANIS
+    olan yerde takvim kullanılmalıdır. Pencere etiketleri kullanıcıya piyasa günüyle yazılır, hesaplar TEFAS serisinde kalır."""
+    try:
+        d = date.fromisoformat(str(tefas_gunu)[:10]) - timedelta(days=1)
+    except ValueError:
+        return None
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d.isoformat()
+
+
+TOPLAM_TABLOSU_SURUM = 14   # fon_icerik_cek.AYRISTIRICI_SURUM: toplam tablosunun kuyruk kaydına girdiği ilk sürüm
+
+
+def kaldirac_ozeti(ky, fonlar, vadeli=None):
+    """76 numaralı not, bölüm 3: tutulan her fon için rapordan okunan portföy değeri / NAV, borçlar / NAV ve vadeli işlem maruziyeti / NAV.
+    ky: içerik kuyruğu kaydı ({fon: {toplamTablosu: {...}}}); vadeli: vadeli_islem_maruziyeti çıktısı. Tablosu olmayan düzende 'ölçülemedi',
+    'kaldıraç yok' denmez. Dönüş: {fon: dict(fpd_nav, borc_nav, vadeli_nav, nav, portfoy_gunu, olculemedi, sebep)}."""
+    out = {}
+    for f in fonlar:
+        r = (ky or {}).get(f) or {}; tt = r.get("toplamTablosu") or {}
+        if not tt.get("nav"):
+            if not r:
+                sebep = "kuyruk kaydı yok"
+            elif r.get("durum") != "yayimlandi":
+                sebep = "kuyruk kaydı " + str(r.get("durum"))
+            elif (r.get("surum") or 0) < TOPLAM_TABLOSU_SURUM:
+                sebep = "kayıt sürüm " + str(r.get("surum")) + ", toplam tablosu sürüm " + str(TOPLAM_TABLOSU_SURUM) + " ile okunur, yeniden işlenince ölçülür"
+            else:
+                sebep = "raporun düzeni toplam değeri tablosunu taşımıyor"
+            out[f] = dict(fpd_nav=None, borc_nav=None, vadeli_nav=None, nav=None, portfoy_gunu=r.get("portfoyGunu"), olculemedi=True, sebep=sebep)
+            continue
+        nav = float(tt["nav"]); v = (vadeli or {}).get(f) or {}
+        out[f] = dict(fpd_nav=(float(tt["fpd"]) / nav if tt.get("fpd") else None), borc_nav=(-float(tt["borc"]) / nav if tt.get("borc") is not None else None),
+                      vadeli_nav=((v.get("notional") or 0.0) / nav), nav=nav, portfoy_gunu=r.get("portfoyGunu"), olculemedi=False, sebep="")
+    return out
+
+
 def sermaye_yukle(yol):
     """03 Veri/Künye/odenmis_sermaye.csv: bistKodu,paySayisi,kaynak (kullanıcı ya da Chat yazar); yoksa boş."""
     if not yol or not os.path.exists(yol):

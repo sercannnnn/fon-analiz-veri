@@ -245,6 +245,15 @@ def kunye_yukle(klasor=None):
     return {}
 
 
+def _piyasa_gunu(t):
+    """M73 (76 numaralı not): TEFAS'ın T günü kaydı T-1 işlem gününün kapanışıdır; olay tarihi ile fiyat tarihi eşleştirilirken piyasa günü kullanılır."""
+    try:
+        import icerik_kapsam
+        return icerik_kapsam.piyasa_gunu(t)
+    except Exception:
+        return None
+
+
 def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None, kunye=None):
     """Arşivdeki son `seans` günde her fonun kimlik farkını (pay × fiyat − büyüklük; tolerans pay × 0,5e-6 + 0,01 TL) ölçer ve
     fonları sınıflar (30 numaralı not, madde 1): kalıcı (günlerin en az KALICI_ORAN'ında sapan), epizodik (tek seans sapan, komşu
@@ -290,12 +299,12 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None, kunye=N
                 continue
             for alan, v0, v1 in (("buyukluk", hs[g0][2], hs[g1][2]), ("payXfiyat", hs[g0][0] * hs[g0][1], hs[g1][0] * hs[g1][1])):
                 if v0 > 0 and v1 > 0 and (v1 / v0 >= SEVIYE_KIRILMA_KAT or v0 / v1 >= SEVIYE_KIRILMA_KAT):
-                    kirilmalar.append(dict(fonKodu=kod, tarih=g1, alan=alan, oran=round(v1 / v0, 6), onceki=round(v0, 2), sonraki=round(v1, 2)))
+                    kirilmalar.append(dict(fonKodu=kod, tarih=g1, piyasaGunu=_piyasa_gunu(g1), alan=alan, oran=round(v1 / v0, 6), onceki=round(v0, 2), sonraki=round(v1, 2)))
             if hs[g0][2] > 0 and hs[g1][2] / hs[g0][2] <= 1 - COKUS_ORAN:
                 sonrasi = [hs[x][2] for x in gs if x > g0]
                 kalici = all(v <= COKUS_KALICI_ORAN * hs[g0][2] for v in sonrasi)   # pencere boyunca geri dönmedi: tasfiye, sıçrama değil
                 if kalici:
-                    cokusler.setdefault(kod, []).append(dict(tarih=g1, oran=round(hs[g1][2] / hs[g0][2], 6), onceki=round(hs[g0][2], 2), sonraki=round(hs[g1][2], 2),
+                    cokusler.setdefault(kod, []).append(dict(tarih=g1, piyasaGunu=_piyasa_gunu(g1), oran=round(hs[g1][2] / hs[g0][2], 6), onceki=round(hs[g0][2], 2), sonraki=round(hs[g1][2], 2),
                                                              sonraSeans=len(sonrasi), kesin=len(sonrasi) >= COKUS_KESIN_SEANS))
     # M43: raporlamayı kesen fon; kimlik süzgeci (fiyat > 0, pay > 0) bu hâli görünmez kılar, ayrı ölçülür
     kesenler = []
@@ -324,7 +333,7 @@ def kimlik_taramasi(seans=KIMLIK_TARAMA_SEANS, son_gun=None, arsiv=None, kunye=N
                 continue
             for alan, v0, v1 in (("buyukluk", hs[g0][2], hs[g1][2]), ("fiyat", hs[g0][1], hs[g1][1])):
                 if v0 > 0 and v1 / v0 < 1 - ANI_DUSUS_ORAN:
-                    ani.append(dict(fonKodu=kod, tarih=g1, alan=alan, oran=round(v1 / v0 - 1, 4), onceki=round(v0, 6 if alan == "fiyat" else 2), sonraki=round(v1, 6 if alan == "fiyat" else 2)))
+                    ani.append(dict(fonKodu=kod, tarih=g1, piyasaGunu=_piyasa_gunu(g1), alan=alan, oran=round(v1 / v0 - 1, 4), onceki=round(v0, 6 if alan == "fiyat" else 2), sonraki=round(v1, 6 if alan == "fiyat" else 2)))
     getiri20, kat_getiri = {}, {}
     for kod, hs in ham.items():
         gs = sorted(hs)
