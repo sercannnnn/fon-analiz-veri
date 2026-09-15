@@ -602,7 +602,7 @@ def satir_turleri(kayit):
     return ["pozisyon" if (k.get("agirlik") or 0) >= 0 else ("negatif_eslesen" if anahtar(k) in pozitif else "negatif_tek") for k in kayit]
 
 
-def tefas_gun_esle(rows, f, ay, yayim, kayit, gruplar, evren):
+def tefas_gun_esle(rows, f, ay, yayim, kayit, gruplar, evren, ay_ici=False):
     """M59: rapor ay sonu portfoyunu yansitmiyorsa ay sonundan yayim tarihine kadarki TEFAS gunleri denenir. Kanit: Tera'nin bir hisse fonu icin
     'Agustos-2026' basligiyla 9 Eylul'de yayimlanan ikinci rapor 4 Eylul portfoyudur (alis tarihleri 02-04/09), TEFAS'in 7 Eylul
     dagilimiyla sifir sapma. En kucuk sapma SAPMA_ESIK icindeyse o gun alinir. Donus: (gun, tefas satiri, sapma) ya da (None, None, None)."""
@@ -611,9 +611,10 @@ def tefas_gun_esle(rows, f, ay, yayim, kayit, gruplar, evren):
     except ValueError:
         return None, None, None
     enb = None
-    for t in sorted(t for (t, k) in rows if k == f and t > ay + "-31" and t <= bit):
+    alt = (ay + "-00") if ay_ici else (ay + "-31")     # ay_ici: rapor ayi yayim ayiyla ayni (ay ici rapor, Atlas PSE 'Eylul-2026'); ayin gunleri denenir
+    for t in sorted(t for (t, k) in rows if k == f and t > alt and t <= bit):
         _, _, sp = kapi(kayit, gruplar, rows[(t, f)], evren)
-        if sp is not None and (enb is None or sp < enb[2]):
+        if sp is not None and (enb is None or sp <= enb[2]):   # esitlikte yayima en yakin gun
             enb = (t, rows[(t, f)], sp)
     return enb if enb and enb[2] <= SAPMA_ESIK else (None, None, None)
 
@@ -1353,9 +1354,10 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
     ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
     eslesme = "ay sonu"
     if not ok and sebep.startswith("şart 3") and x.get("publishDate"):
-        g2, t2, sp2 = tefas_gun_esle(rows, f, ray, x["publishDate"], kayit, gruplar, evren)   # M59: yayim penceresindeki TEFAS gunu
+        ay_ici = gun is None                                   # izleyen gun yok: rapor yayim ayina ait ay ici rapor olabilir
+        g2, t2, sp2 = tefas_gun_esle(rows, f, ray, x["publishDate"], kayit, gruplar, evren, ay_ici=ay_ici)   # M59: yayim penceresindeki TEFAS gunu
         if g2:
-            gun, tefas_son, ray, eslesme = g2, t2, g2[:7], "yayım penceresi"
+            gun, tefas_son, ray, eslesme = g2, t2, g2[:7], ("ay içi" if ay_ici else "yayım penceresi")
             ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
     ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
     ek, eksik_kalem = tefas_tamamla(kayit, tefas_son)       # gecen fonda da uygulanir: eksik kalem tasiyan her fon ayni sekilde (09.09.2026 karari)
