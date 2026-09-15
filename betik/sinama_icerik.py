@@ -243,6 +243,7 @@ def test_m71_m72_toplam_tablosu_agirlik_tabani_vadeli():
     assert taban == 10000.0 and sapan == 0                                                    # vadeli satırlar (notional 2015) tabana girmez
     v = icerik_kapsam.vadeli_islem_maruziyeti(S, ["F1"])["F1"]
     assert v["uzun"] == 1715.0 and v["kisa"] == 300.0 and v["notional"] == 2015.0 and abs(v["oran"] - 0.2015) < 1e-9 and v["satir"] == 2
+    assert v["brut"] == 2015.0 and v["net"] == 1415.0                                        # 78 numaralı not: yön ayrımı
     o = icerik_kapsam.yeniden_degerle(S, ["F1"], {"AAA": dict(tarih="2026-09-14", kapanis=11.0, hacim_ortanca=1e6, seans=20)}, buyukluk={"F1": 12000.0}, buyukluk_gun={"F1": 8000.0})["F1"]
     assert o["fpd_rapor"] == 10000.0 and o["hisse_sayisi"] == 2 and abs(o["artik_orani"] - 1.25) < 1e-9 and o["artik_acik"]
     if F is None:
@@ -272,6 +273,35 @@ def test_m73_piyasa_gunu_ve_kaldirac_ozeti():
     assert abs(o["F1"]["fpd_nav"] - 1.262) < 1e-3 and abs(o["F1"]["borc_nav"] - 0.3195) < 1e-3 and abs(o["F1"]["vadeli_nav"] - 1.0 / 22.41) < 1e-4 and not o["F1"]["olculemedi"]
     assert o["F2"]["olculemedi"] and "taşımıyor" in o["F2"]["sebep"] and o["F3"]["olculemedi"] and "kuyruk kaydı yok" in o["F3"]["sebep"]
     assert o["F4"]["olculemedi"] and "sürüm 12" in o["F4"]["sebep"]
+    ky["F5"] = dict(durum="yayimlandi", surum=14, duzen="garanti", toplamTablosu={"olculemez": "garanti"})
+    o5 = icerik_kapsam.kaldirac_ozeti(ky, ["F5"])["F5"]
+    assert o5["olculemedi"] and o5["kalici"] and o5["sebep"].startswith("KALICI ÖLÇÜLEMEZ") and "garanti" in o5["sebep"]
+    ky["F6"] = dict(durum="yayimlandi", surum=14, toplamTablosu={})                      # eski kayıt işaretsiz: düzen arşiv satırından
+    assert icerik_kapsam.kaldirac_ozeti(ky, ["F6"], duzen={"F6": "yapikredi"})["F6"]["kalici"]
+    assert not icerik_kapsam.kaldirac_ozeti(ky, ["F6"], duzen={"F6": "standart"})["F6"]["kalici"]
+    v2 = {"F1": dict(uzun=0.5e9, kisa=0.3e9, brut=0.8e9, net=0.2e9)}
+    o1 = icerik_kapsam.kaldirac_ozeti(ky, ["F1"], vadeli=v2)["F1"]
+    assert abs(o1["vadeli_nav"] - 0.8 / 22.41) < 1e-6 and abs(o1["vadeli_net_nav"] - 0.2 / 22.41) < 1e-6 and abs(o1["vadeli_kisa_nav"] - 0.3 / 22.41) < 1e-6
+
+
+def test_m74_pay_degisimi_yon_ve_hacim_gunu():
+    """78 numaralı not, bölüm 3: aynı kâğıdın raporlar arası net pay adedi, TL değeri ve günlük hacme oranı; bir günlük hacmi aşan alım kalın."""
+    S = [dict(fonKodu="F1", bistKodu="AAA", nominal="500000", rayicDeger="1000000000", raporTarihi="2026-08", veriGunu=""),
+         dict(fonKodu="F1", bistKodu="BBB", nominal="100", rayicDeger="1000", raporTarihi="2026-08", veriGunu=""),
+         dict(fonKodu="F1", bistKodu="", isin="TRECCC00001", nominal="50", rayicDeger="500", raporTarihi="2026-08", veriGunu=""),
+         dict(fonKodu="F3", bistKodu="CCC", isin="TRECCC00001", nominal="1", rayicDeger="10", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", bistKodu="AAA", nominal="1300000", rayicDeger="3000000000", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", bistKodu="AAA", nominal="740804", rayicDeger="1709547692", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F1", bistKodu="BBB", nominal="100", rayicDeger="1100", raporTarihi="2026-09", veriGunu="2026-09-04"),
+         dict(fonKodu="F2", bistKodu="AAA", nominal="10", rayicDeger="100", raporTarihi="2026-09", veriGunu="2026-09-04")]
+    fiyat = {"AAA": dict(hacim_ortanca=2.5e9), "BBB": dict(hacim_ortanca=1e6), "CCC": dict(hacim_ortanca=1e2)}
+    o = icerik_kapsam.pay_degisimi(S, ["F1", "F2"], fiyat)
+    assert o["F1"]["onceki"] == "2026-08-31" and o["F1"]["yeni"] == "2026-09-04" and not o["F1"]["olculemedi"]
+    r = {e["kod"]: e for e in o["F1"]["satirlar"]}
+    assert set(r) == {"AAA", "CCC"} and r["AAA"]["onceki"] == 500000 and r["AAA"]["yeni"] == 2040804 and r["AAA"]["fark"] == 1540804
+    assert abs(r["AAA"]["oran"] - 3.0816) < 1e-3 and abs(r["AAA"]["deger"] - 1540804 * (4709547692 / 2040804)) < 1 and r["AAA"]["hacim_gun"] > 1 and r["AAA"]["esik_asti"]
+    assert r["CCC"]["fark"] == -50 and r["CCC"]["deger"] == -500 and r["CCC"]["esik_asti"] and o["F1"]["satirlar"][0]["kod"] == "AAA"
+    assert o["F2"]["olculemedi"] == "önceki rapor arşivde yok" and o["F2"]["satirlar"] == []
 
 
 def test_m59_kurucu_duzeyinde_ihracci():

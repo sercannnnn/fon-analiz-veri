@@ -113,6 +113,29 @@ def test_m57_bekleyen_kayit_kural_surumuyle_dogrulanir():
     assert "defter değiştirilmedi" in sat[0]
 
 
+def test_78_olay_etki_olcusu():
+    """78 numaralı not, bölüm 2: olayın piyasa gününden sonraki ilk TEFAS günü taban, beş TEFAS günü pencere; getiri, pay adedi, kategori sırası ve ortancası."""
+    import pandas as pd
+    gun = ["2026-09-08", "2026-09-09", "2026-09-10", "2026-09-11", "2026-09-14"]
+    fiy = {"P1": [1.00, 1.01, 1.02, 1.03, 1.04], "P2": [1.00, 1.00, 1.00, 1.00, 1.00], "P3": [1.00, 1.01, 1.02, 1.02, 1.02], "H1": [10, 9, 8, 8, 8]}
+    pay = {"P1": [100, 100, 100, 95, 90], "P2": [100, 100, 100, 100, 100], "P3": [100, 100, 100, 101, 102], "H1": [10, 10, 10, 10, 10]}
+    d = pd.DataFrame([dict(tarih=g, fonKodu=f, fiyat=fiy[f][i], tedPaySayisi=pay[f][i]) for f in fiy for i, g in enumerate(gun)])
+    kat = {"P1": "Para Piyasası", "P2": "Para Piyasası", "P3": "Para Piyasası", "H1": "Hisse Senedi"}
+    kur = {"P1": "A PORTFÖY", "P2": "B PORTFÖY", "P3": "B PORTFÖY", "H1": "A PORTFÖY"}
+    o = oneri.olay_etkisi(d, kat, kur, "A PORTFÖY", "2026-09-09")           # olay 9 Eylül: taban TEFAS 10 Eylül (9 Eylül kapanışı), bitiş son gün
+    assert o["bas"] == "2026-09-10" and o["bit"] == "2026-09-14" and o["gun"] == 2 and o["piyasa_bas"] == "2026-09-09" and o["piyasa_bit"] == "2026-09-11"
+    r = {e["fon"]: e for e in o["fonlar"]}
+    assert set(r) == {"P1", "H1"} and abs(r["P1"]["getiri"] - (1.04 / 1.02 - 1)) < 1e-9 and abs(r["P1"]["pay"] - (-0.10)) < 1e-9
+    assert r["P1"]["sira"] == 1 and r["P1"]["n"] == 3 and abs(r["P1"]["kat_getiri"] - 0.0) < 1e-9 and abs(r["P1"]["kat_pay"] - 0.0) < 1e-9
+    assert r["H1"]["sira"] == 1 and r["H1"]["n"] == 1 and o["fonlar"][0]["fon"] == "P1"       # en çok pay kaybeden önce
+    s = oneri.olay_satiri(o, "A PORTFÖY", "ÖRNEK A.Ş.: kontrol devri")
+    assert s.startswith("**") is False and "**P1 getiri" in s and "sıra 1/3" in s and "piyasa günü 2026-09-09 → 2026-09-11" in s and "H1 getiri" in s and "**H1" not in s
+    assert oneri.olay_etkisi(d, kat, kur, "A PORTFÖY", "2026-09-14")["olculemedi"]
+    d2 = d.copy(); d2.loc[(d2.fonKodu == "H1") & (d2.tarih == "2026-09-14"), "fiyat"] = 0      # kısmi gün: H1 bitiş günü fiyatsız (kural 15)
+    o2 = oneri.olay_etkisi(d2, kat, kur, "A PORTFÖY", "2026-09-09"); h = {e["fon"]: e for e in o2["fonlar"]}["H1"]
+    assert h["bit_fon"] == "2026-09-11" and abs(h["getiri"] - 0.0) < 1e-9 and h["sira"] is None and "son fiyat 2026-09-11" in oneri.olay_satiri(o2, "A PORTFÖY")
+
+
 def test_m58_atil_nakit_uc_tutar():
     """Kural 16 genişletmesi: ödemeye bağlı, park edilmiş, atıl; atıl satır tutar, kurum, gün ve günlük maliyet (park getirisi / 20) taşır;
     valörü gelmemiş satış geliri atıl değil; tutarı boş kalem ölçülemedi sayılır."""

@@ -29,6 +29,9 @@ def test_haber_kapisi_tek_giris():
          dict(id=3, sirket="BAŞKA A.Ş.", konu="Özel Durum Açıklaması (Genel)", ozet="Ornek Grubu ile birleşme görüşmeleri", metin="", metinDurumu="tam", fon="")]
     r = K.haber_kapisi(b, _liste(), ["ÖRNEK PORTFÖY"], kurucu_grup=GRUP)
     assert r["elenen"] == 2 and r["haber"]["ÖRNEK PORTFÖY"] is False and {v["id"] for v in r["k1"]} == {2, 3}
+    assert r["olay_gunu"]["ÖRNEK PORTFÖY"] is None                      # 78 numaralı not: yayım günü olmayan bildirimde olay günü yok
+    b2 = [dict(b[1], tarih="2026-09-09T10:00:00"), dict(b[2], tarih="2026-09-11T10:00:00")]
+    assert K.haber_kapisi(b2, _liste(), ["ÖRNEK PORTFÖY"], kurucu_grup=GRUP)["olay_gunu"]["ÖRNEK PORTFÖY"] == "2026-09-09"
     b3 = [dict(id=5, sirket="ÖRNEK FİNANS A.Ş.", konu="Özel Durum Açıklaması (Genel)", ozet="konkordato", metin="", metinDurumu="eksik", fon="")]
     r3 = K.haber_kapisi(b3, _liste(), ["ÖRNEK PORTFÖY"], kurucu_grup={"ÖRNEK PORTFÖY": ["ORNEK PORTFOY", "ORNEK FINANS"]})
     assert r3["haber"]["ÖRNEK PORTFÖY"] is None and len(r3["engelleyici"]) == 1

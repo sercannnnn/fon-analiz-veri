@@ -361,6 +361,75 @@ PARK_MEVCUT_RISK_ESIT_KABUL = False   # kullanıcı kuralı (15 Eylül 2026): me
                                       # değişir; True yapılırsa eşit risk de kabul edilir (risk 1 taban olduğu için eşitlik kabulü kullanıcı kararıdır)
 
 
+OLAY_PENCERE_GUN = 5   # 78 numaralı not, bölüm 2: olay etki ölçüsü olayın piyasa gününden sonraki beş piyasa günü boyunca her sabah yenilenir
+
+
+def olay_etkisi(d, kategori, kurucu_map, kurucu, olay_gunu, pencere=OLAY_PENCERE_GUN):
+    """Olay etki ölçüsü (78 numaralı not, bölüm 2). d: tarih, fonKodu, fiyat, tedPaySayisi; kategori ve kurucu_map: fon -> ad; olay_gunu: KAP
+    yayım günü (piyasa günü D, ISO). Taban TEFAS günü D'den sonraki ilk TEFAS günü (D kapanışı, M73), bitiş taban artı `pencere` TEFAS günü ya da
+    son gün. Kurucunun her fonu için getiri, pay adedi değişimi, kategorideki getiri sırası; kategori ortancaları aynı pencerede. İşlev yalnızca
+    ölçer; yorum kuralı kural metnindedir (fiyat iyi ve pay adedi kötü kapıyı kapatır, ikisi iyi kapıyı açmaz: kapı devir riskini ölçer)."""
+    import pandas as pd
+    x = d[d.fiyat > 0][["tarih", "fonKodu", "fiyat", "tedPaySayisi"]].copy(); x["tarih"] = pd.to_datetime(x.tarih)
+    D = pd.Timestamp(olay_gunu); sonra = [g for g in sorted(x.tarih.unique()) if g > D]
+    if not sonra:
+        return dict(olay_gunu=olay_gunu, fonlar=[], olculemedi="olaydan sonra TEFAS günü yok")
+    bas = sonra[0]; bit = sonra[min(pencere, len(sonra) - 1)]
+    a = x[x.tarih == bas].drop_duplicates("fonKodu").set_index("fonKodu"); b = x[x.tarih == bit].drop_duplicates("fonKodu").set_index("fonKodu")
+    ort = a.index.intersection(b.index)
+    g = b.loc[ort, "fiyat"] / a.loc[ort, "fiyat"] - 1
+    p = (b.loc[ort, "tedPaySayisi"] / a.loc[ort, "tedPaySayisi"] - 1).replace([float("inf"), -float("inf")], float("nan"))
+    kat = pd.Series({f: kategori.get(f) for f in ort}, dtype=object)
+    out = []
+    kur_fon = sorted(f for f in a.index if kurucu_map.get(f) == kurucu)
+    for f in kur_fon:
+        k = kat.get(f) if f in ort else kategori.get(f); ayni = list(kat[kat == k].index) if k else []
+        gk = g.loc[ayni] if ayni else g.iloc[0:0]; pk = p.loc[ayni].dropna() if ayni else p.iloc[0:0]
+        if f in ort:
+            gf, pf, bit_f = float(g[f]), (None if pd.isna(p[f]) else float(p[f])), None
+        else:
+            # bitiş günü fonun fiyatı yok (kısmi kapsamlı gün, kural 15): fonun kendi son fiyatlı günü alınır ve yazılır; sıra ortak günde ölçülemez
+            xf = x[(x.fonKodu == f) & (x.tarih > bas) & (x.tarih <= bit)].sort_values("tarih")
+            if xf.empty:
+                out.append(dict(fon=f, kategori=k, getiri=None, pay=None, sira=None, n=len(ayni), kat_getiri=(float(gk.median()) if ayni else None),
+                                kat_pay=(float(pk.median()) if len(pk) else None), bit_fon=None)); continue
+            son = xf.iloc[-1]; gf = float(son.fiyat / a.loc[f, "fiyat"] - 1)
+            pf = (float(son.tedPaySayisi / a.loc[f, "tedPaySayisi"] - 1) if a.loc[f, "tedPaySayisi"] else None); bit_f = son.tarih.date().isoformat()
+        out.append(dict(fon=f, kategori=k, getiri=gf, pay=pf, sira=((int((gk > gf).sum()) + 1) if (ayni and f in ort) else None), n=len(ayni),
+                        kat_getiri=(float(gk.median()) if ayni else None), kat_pay=(float(pk.median()) if len(pk) else None), bit_fon=bit_f))
+    out.sort(key=lambda e: (e["pay"] if e["pay"] is not None else 0.0, e["fon"]))
+    try:
+        import icerik_kapsam as _ik
+        pb, pe = _ik.piyasa_gunu(bas.date().isoformat()), _ik.piyasa_gunu(bit.date().isoformat())
+    except Exception:
+        pb, pe = None, None
+    return dict(olay_gunu=olay_gunu, bas=bas.date().isoformat(), bit=bit.date().isoformat(), piyasa_bas=pb, piyasa_bit=pe,
+                gun=sum(1 for g_ in sonra if g_ <= bit) - 1, fonlar=out, olculemedi="")
+
+
+def olay_satiri(o, kurucu, sebep="", en_fazla=6):
+    """Brifing satırı: olay, pencere piyasa günüyle, fon başına getiri / kategori ortancası / sıra ve pay adedi / ortanca; fiyat iyi ve pay adedi
+    kötü olan fon kalın. Yalnızca ölçüm; kapının kararı olay listesindedir."""
+    def _y(x):
+        return "-" if x is None else (("+" if x >= 0 else "-") + f"%{abs(x) * 100:.2f}".replace(".", ","))
+    if o.get("olculemedi"):
+        return f"Olay etki ölçüsü ({kurucu}, olay {o.get('olay_gunu')}): ölçülemedi ({o['olculemedi']})."
+    parca = []
+    for e in o["fonlar"][:en_fazla]:
+        if e["getiri"] is None:
+            parca.append(f"{e['fon']} pencerede fiyatı yok, ölçülemedi"); continue
+        kotu = (e["kat_getiri"] is not None and e["getiri"] > e["kat_getiri"] and e["pay"] is not None and e["kat_pay"] is not None and e["pay"] < e["kat_pay"])
+        ek = f" (son fiyat {e['bit_fon']}, bitiş günü fiyatsız, sıra ölçülemedi)" if e.get("bit_fon") else ""
+        s = (f"{e['fon']} getiri {_y(e['getiri'])} (kategori ortancası {_y(e['kat_getiri'])}, sıra {e['sira']}/{e['n']}), pay adedi {_y(e['pay'])} (ortanca {_y(e['kat_pay'])})"
+             if e["sira"] else f"{e['fon']} getiri {_y(e['getiri'])} (kategori ortancası {_y(e['kat_getiri'])}), pay adedi {_y(e['pay'])} (ortanca {_y(e['kat_pay'])}){ek}")
+        parca.append(f"**{s}**" if kotu else s)
+    kalan = len(o["fonlar"]) - en_fazla
+    return (f"Olay etki ölçüsü (78 numaralı not, bölüm 2; yalnızca ölçüm, karar olay listesinde): {kurucu}, olay {o['olay_gunu']}"
+            + (f" ({sebep})" if sebep else "") + f", pencere piyasa günü {o['piyasa_bas']} → {o['piyasa_bit']} (TEFAS {o['bas']} → {o['bit']}, {o['gun']}/{OLAY_PENCERE_GUN} gün): "
+            + ("; ".join(parca) if parca else "kurucunun fonu evrende yok") + (f"; {kalan} fon daha" if kalan > 0 else "")
+            + ". Yorum kuralı: fiyat iyi, pay adedi kötü kapıyı kapatır (kalın); ikisi birlikte iyi kapıyı açmaz, kapı devir riskini ölçer.")
+
+
 def park_fonu_sec(d, kunye, dislama=(), disla_yol=None, mevcut=None):
     """Park fonu sabit kod değil ölçüttür (39 numaralı not): kategori PARK_KATEGORILER, risk değeri PARK_RISK_ARALIGI içinde (sıfır
     ve boş kabul edilmez), büyüklük PARK_ASGARI_BUYUKLUK üstünde, kimlik arızası / çöküş / kırılma / kesinti / değer kaybı kaydı olan

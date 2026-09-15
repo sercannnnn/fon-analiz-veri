@@ -305,15 +305,17 @@ def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True
     kapatan = [v for v in k1 if v["kapatan"]]                       # M55: kapatan olay tasiyan birinci kademe vurus
     kap_bos = [v for v in k1 if v["kap_bos"] and not v["kapatan"]]   # M55: icerigi okunamayan kap bildirimi
     bilgi = [v for v in k1 if not v["kapatan"] and not v["kap_bos"]] # kapatmaz, brifingde bilgi satiri (kardes fon tasfiyesi dahil)
-    haber, sebep = {}, {}
+    haber, sebep, olay_gunu = {}, {}, {}   # olay_gunu: kurucuyu kapatan en erken bildirimin yayım günü (78 numaralı not, olay etki ölçüsü)
     for k in kurucular:
         anahtar = {sadelestir(g) for g in kurucu_grup.get(k, [k])}
         vur = [v for v in kapatan if set(v["eslesen"]) & anahtar]
         kamu_fonlar = {v["fon"] or v["sirket"] for v in tasfiye_kamu if set(v["eslesen"]) & anahtar}
         if vur:
             haber[k] = False; sebep[k] = "; ".join(f"{v['sirket']}: {', '.join(v['kapatan'])}" for v in vur[:3])
+            olay_gunu[k] = min((str(v.get("tarih") or ""))[:10] for v in vur) or None
         elif len(kamu_fonlar) >= TASFIYE_KURUCU_ESIK:
             haber[k] = False; sebep[k] = f"{TASFIYE_PENCERE_GUN} günde {len(kamu_fonlar)} kamuya açık fon tasfiyesi (eşik {TASFIYE_KURUCU_ESIK}); yönetici işareti"
+            olay_gunu[k] = min((str(v.get("tarih") or ""))[:10] for v in tasfiye_kamu if set(v["eslesen"]) & anahtar) or None
         elif any(any(a in sadelestir(b.get("sirket") or "") for a in anahtar) for b in eng):
             haber[k] = None; sebep[k] = "gövdesi çekilemeyen kapatan konulu bildirim"   # engelleyici eksik: govde okunana kadar olculemedi
         elif any(set(v["eslesen"]) & anahtar for v in kap_bos):
@@ -328,7 +330,7 @@ def haber_kapisi(bildirimler, liste, kurucular, kurucu_grup=None, govde_var=True
             + (f"; gövdesi çekilemeyen {b_(len(eng))} engelleyici bildirim (haber kapısı o kurucularda ölçülemedi)" if eng else "")
             + (f"; gövdesi çekilemeyen {b_(eksik_diger)} rutin dışı bildirim, tarama eksiktir" if eksik_diger else "")
             + ("" if govde_var else "; gövde metni çekilmemiş, tarama özet ve konu üzerinden"))
-    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus), kapatan=kapatan, bilgi=bilgi, kap_bos=kap_bos, sebep=sebep,
+    return dict(haber=haber, notu=notu, k1=k1, engelleyici=eng, elenen=len(rutin), eslesme=len(vurus), kapatan=kapatan, bilgi=bilgi, kap_bos=kap_bos, sebep=sebep, olay_gunu=olay_gunu,
                 fon_kapali=sorted(fon_kapali), tasfiye_ozel=len(tasfiye_ozel), tasfiye_kamu=len(tasfiye_kamu))
 
 

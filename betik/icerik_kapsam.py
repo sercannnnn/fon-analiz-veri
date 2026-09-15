@@ -431,7 +431,8 @@ def vadeli_islem_maruziyeti(satirlar, fonlar):
         ks = sum(float(r.get("rayicDeger") or 0) for r in S if _norm(r.get("tur")) == "KISA")
         taban, _ = agirlik_tabani(S)
         if uz or ks:
-            out[f] = dict(uzun=uz, kisa=ks, notional=uz + ks, oran=((uz + ks) / taban if taban else None), satir=sum(1 for r in S if _vadeli_mi(r.get("tur"))))
+            # 78 numaralı not, bölüm 4: yön ayrımı; brüt = uzun + kısa (maruziyet), net = uzun − kısa (yönlü bahis; korunma nete sıfıra yakın düşer)
+            out[f] = dict(uzun=uz, kisa=ks, notional=uz + ks, brut=uz + ks, net=uz - ks, oran=((uz + ks) / taban if taban else None), satir=sum(1 for r in S if _vadeli_mi(r.get("tur"))))
     return out
 
 
@@ -560,12 +561,71 @@ def piyasa_gunu(tefas_gunu):
 
 
 TOPLAM_TABLOSU_SURUM = 14   # fon_icerik_cek.AYRISTIRICI_SURUM: toplam tablosunun kuyruk kaydına girdiği ilk sürüm
+TOPLAM_TABLOSU_DUZENLER = ("standart", "standart-genis")   # "IV-FON TOPLAM DEĞERİ TABLOSU" yalnızca bu düzenlerde; garanti, yapikredi, fonbul, ziraat taşımaz
+PAY_DEGISIM_HACIM_ESIK_GUN = 1.0   # M74 (78 numaralı not, varsayım): tek raporda bir günlük ortanca hacmi aşan alım ya da satım kalın basılır
 
 
-def kaldirac_ozeti(ky, fonlar, vadeli=None):
+def rapor_gecmisi(satirlar, fon):
+    """Fonun arşivdeki raporları eskiden yeniye: [(veri anahtarı, satırlar)]. Anahtar veri günü, yoksa rapor ayının son günü (_veri_anahtari)."""
+    g = {}
+    for r in satirlar:
+        if r.get("fonKodu") == fon:
+            g.setdefault(_veri_anahtari(r), []).append(r)
+    return sorted(g.items())
+
+
+def pay_degisimi(satirlar, fonlar, fiyat=None):
+    """M74 (78 numaralı not, bölüm 3): yoğunlaşmanın yönü. Tutulan her fon için aynı kâğıdın (bistKodu, yoksa ISIN) bir önceki rapordaki net pay
+    adedi ile son rapordaki net pay adedi (negatif satırlar takas bekleyen satıştır, net okunur). Değişimin TL değeri son raporun ima edilen
+    fiyatıyla (rayiç / nominal; kâğıt son raporda yoksa önceki raporun fiyatı); hacim günü = |değer| / kâğıdın ortanca günlük TL hacmi (fiyat
+    arşivi, HACIM_SEANS). Eşik PAY_DEGISIM_HACIM_ESIK_GUN. Dönüş {fon: dict(onceki, yeni, satirlar=[dict(kod, onceki, yeni, fark, oran, deger,
+    hacim_gun, esik_asti, hisse)], olculemedi)}. Önceki rapor arşivde yoksa ölçülemedi; ölçü rapor günleri arasındaki net değişimdir, ara alım
+    satımı görmez."""
+    fiyat = fiyat or {}; out = {}
+    # eski sürüm satırları yalnızca ISIN taşır, yenileri BIST kodu; aynı kâğıt iki raporda farklı anahtarla görünmesin diye ISIN -> kod haritası arşivin tamamından
+    isin_kod = {}
+    for r in satirlar:
+        if r.get("bistKodu") and r.get("isin"):
+            isin_kod.setdefault(r["isin"], r["bistKodu"])
+    def _top(S):
+        n, p = {}, {}
+        for r in S:
+            kod = r.get("bistKodu") or isin_kod.get(r.get("isin") or "") or r.get("isin")
+            if not kod:
+                continue
+            try:
+                nom = float(r.get("nominal") or 0); ray = float(r.get("rayicDeger") or 0)
+            except ValueError:
+                continue
+            n[kod] = n.get(kod, 0.0) + nom
+            if nom > 0 and ray > 0:
+                p[kod] = ray / nom
+        return n, p
+    for f in fonlar:
+        R = rapor_gecmisi(satirlar, f)
+        if len(R) < 2:
+            out[f] = dict(onceki=None, yeni=(R[-1][0] if R else None), satirlar=[], olculemedi=("önceki rapor arşivde yok" if R else "rapor yok")); continue
+        (k0, S0), (k1, S1) = R[-2], R[-1]
+        n0, p0 = _top(S0); n1, p1 = _top(S1); L = []
+        for kod in set(n0) | set(n1):
+            a, b = n0.get(kod, 0.0), n1.get(kod, 0.0); fark = b - a
+            if abs(fark) < 0.5:
+                continue
+            fy = p1.get(kod) or p0.get(kod); deger = fark * fy if fy else None
+            h = (fiyat.get(kod) or {}).get("hacim_ortanca")
+            hg = (abs(deger) / h) if (deger is not None and h) else None
+            L.append(dict(kod=kod, onceki=a, yeni=b, fark=fark, oran=(fark / a if a else None), deger=deger, hacim_gun=hg,
+                          esik_asti=bool(hg is not None and hg > PAY_DEGISIM_HACIM_ESIK_GUN), hisse=kod in fiyat))
+        L.sort(key=lambda e: -abs(e["deger"] or 0))
+        out[f] = dict(onceki=k0, yeni=k1, satirlar=L, olculemedi="")
+    return out
+
+
+def kaldirac_ozeti(ky, fonlar, vadeli=None, duzen=None):
     """76 numaralı not, bölüm 3: tutulan her fon için rapordan okunan portföy değeri / NAV, borçlar / NAV ve vadeli işlem maruziyeti / NAV.
     ky: içerik kuyruğu kaydı ({fon: {toplamTablosu: {...}}}); vadeli: vadeli_islem_maruziyeti çıktısı. Tablosu olmayan düzende 'ölçülemedi',
-    'kaldıraç yok' denmez. Dönüş: {fon: dict(fpd_nav, borc_nav, vadeli_nav, nav, portfoy_gunu, olculemedi, sebep)}."""
+    'kaldıraç yok' denmez. duzen: {fon: kurucu düzeni} (arşiv satırlarının kurucuDuzeni alanı; tablosuz düzen kalıcı ölçülemez).
+    Dönüş: {fon: dict(fpd_nav, borc_nav, vadeli_nav (brüt), vadeli_uzun_nav, vadeli_kisa_nav, vadeli_net_nav, nav, portfoy_gunu, olculemedi, kalici, sebep)}."""
     out = {}
     for f in fonlar:
         r = (ky or {}).get(f) or {}; tt = r.get("toplamTablosu") or {}
@@ -574,15 +634,21 @@ def kaldirac_ozeti(ky, fonlar, vadeli=None):
                 sebep = "kuyruk kaydı yok"
             elif r.get("durum") != "yayimlandi":
                 sebep = "kuyruk kaydı " + str(r.get("durum"))
+            elif (dz := (tt.get("olculemez") or r.get("duzen") or (duzen or {}).get(f))) and dz not in TOPLAM_TABLOSU_DUZENLER:
+                # 78 numaralı not, bölüm 4: düzen tabloyu hiç taşımaz; kuyruk kaydı bunu işaretler (olculemez), eski kayıtta düzen arşiv satırının
+                # kurucuDuzeni alanından (duzen=); her gün yeniden denenmez (kural 14: yok sayılmaz, yazılır)
+                sebep = "KALICI ÖLÇÜLEMEZ: " + str(dz) + " düzeni toplam değeri tablosu taşımaz; kaldıraç bu fonda hiçbir zaman rapordan okunamaz"
             elif (r.get("surum") or 0) < TOPLAM_TABLOSU_SURUM:
                 sebep = "kayıt sürüm " + str(r.get("surum")) + ", toplam tablosu sürüm " + str(TOPLAM_TABLOSU_SURUM) + " ile okunur, yeniden işlenince ölçülür"
             else:
                 sebep = "raporun düzeni toplam değeri tablosunu taşımıyor"
-            out[f] = dict(fpd_nav=None, borc_nav=None, vadeli_nav=None, nav=None, portfoy_gunu=r.get("portfoyGunu"), olculemedi=True, sebep=sebep)
+            out[f] = dict(fpd_nav=None, borc_nav=None, vadeli_nav=None, vadeli_uzun_nav=None, vadeli_kisa_nav=None, vadeli_net_nav=None, nav=None,
+                          portfoy_gunu=r.get("portfoyGunu"), olculemedi=True, kalici=sebep.startswith("KALICI"), sebep=sebep)
             continue
         nav = float(tt["nav"]); v = (vadeli or {}).get(f) or {}
         out[f] = dict(fpd_nav=(float(tt["fpd"]) / nav if tt.get("fpd") else None), borc_nav=(-float(tt["borc"]) / nav if tt.get("borc") is not None else None),
-                      vadeli_nav=((v.get("notional") or 0.0) / nav), nav=nav, portfoy_gunu=r.get("portfoyGunu"), olculemedi=False, sebep="")
+                      vadeli_nav=((v.get("brut") or v.get("notional") or 0.0) / nav), vadeli_uzun_nav=((v.get("uzun") or 0.0) / nav), vadeli_kisa_nav=((v.get("kisa") or 0.0) / nav),
+                      vadeli_net_nav=(((v.get("uzun") or 0.0) - (v.get("kisa") or 0.0)) / nav), nav=nav, portfoy_gunu=r.get("portfoyGunu"), olculemedi=False, kalici=False, sebep="")
     return out
 
 
