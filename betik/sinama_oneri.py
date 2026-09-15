@@ -136,6 +136,28 @@ def test_78_olay_etki_olcusu():
     assert h["bit_fon"] == "2026-09-11" and abs(h["getiri"] - 0.0) < 1e-9 and h["sira"] is None and "son fiyat 2026-09-11" in oneri.olay_satiri(o2, "A PORTFÖY")
 
 
+def test_82_varsayimlar_listesi_kodla_ayni():
+    """82 numaralı not: varsayım sabitlerinin tek listesi; her kayıt yaşadığı modülde bulunur, değer koddan okunur, tablo elle yazılmaz."""
+    import varsayimlar
+    K = varsayimlar.kayitlar()
+    assert len(K) >= 25 and all((k["modul"] is None) == (k["deger"] is None) for k in K)
+    assert next(k for k in K if k["sabit"] == "PARK_ASGARI_BUYUKLUK")["deger"] == oneri.PARK_ASGARI_BUYUKLUK
+    assert next(k for k in K if k["sabit"] == "OLAY_PENCERE_GUN")["deger"] == oneri.OLAY_PENCERE_GUN
+    assert {k["durum"] for k in K} <= {"onaylı", "bekliyor", "kodda yok"} and all(k["onay"] for k in K if k["durum"] == "onaylı")
+    bek = varsayimlar.bekleyenler(); assert bek and all(k["durum"] != "onaylı" for k in bek)
+    m = "\n".join(varsayimlar.metin()); assert "`oneri.PARK_ASGARI_BUYUKLUK`" in m and "kodda yok" in m and str(len(K)) in m
+
+
+def test_82_atil_maliyet_ozeti():
+    """82 numaralı not: atıl nakdin günlük ve birikmiş maliyeti; tarihsiz kalem birikmişe girmez, tutarı yazılır."""
+    n = dict(atil=[dict(tutar=1000.0, tarih="2026-09-08"), dict(tutar=500.0, tarih="2026-09-10"), dict(tutar=200.0, tarih=None)], atil_toplam=1700.0, gunluk_getiri=0.01, gunluk_maliyet=17.0, park_kod="P")
+    g = [date(2026, 9, d) for d in (7, 8, 9, 10, 11, 14)]
+    o = oneri.atil_maliyet_ozeti(n, g)
+    assert o["toplam"] == 1700 and o["gunluk"] == 17 and o["seans_azami"] == 4 and o["tarihsiz_tutar"] == 200 and o["kalem"] == 3
+    assert abs(o["birikmis"] - (1000 * 0.01 * 4 + 500 * 0.01 * 2)) < 1e-9
+    assert oneri.atil_maliyet_ozeti(dict(atil=[], atil_toplam=0, gunluk_getiri=None), g)["birikmis"] is None
+
+
 def test_m58_atil_nakit_uc_tutar():
     """Kural 16 genişletmesi: ödemeye bağlı, park edilmiş, atıl; atıl satır tutar, kurum, gün ve günlük maliyet (park getirisi / 20) taşır;
     valörü gelmemiş satış geliri atıl değil; tutarı boş kalem ölçülemedi sayılır."""

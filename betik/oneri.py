@@ -684,6 +684,22 @@ def nakit_ayir(nakit_listesi, pozisyonlar=None, park=None, bugun=None, kategori=
                 gunluk_getiri=gg, gunluk_maliyet=(at * gg if gg is not None else None), park_kod=park.get("kod"))
 
 
+def atil_maliyet_ozeti(n, gunler):
+    """82 numaralı not: atıl nakdin günlük ve birikmiş maliyeti. gunler: TEFAS günleri (date, artan). Her tarihli kalem için seans = kalemin
+    tarihinden sonraki TEFAS günü sayısı, birikmiş = tutar × park günlük getirisi × seans. Tarihsiz kalemin birikmişi ölçülemedi (tutarı yazılır).
+    Dönüş dict(toplam, gunluk, birikmis, seans_azami, tarihsiz_tutar, kalem)."""
+    gg = n.get("gunluk_getiri"); gunler = sorted(gunler or [])
+    out = dict(toplam=float(n.get("atil_toplam") or 0), gunluk=n.get("gunluk_maliyet"), birikmis=(0.0 if gg is not None else None), seans_azami=0, tarihsiz_tutar=0.0, kalem=len(n.get("atil") or []))
+    for x in n.get("atil") or []:
+        if not x.get("tarih"):
+            out["tarihsiz_tutar"] += float(x["tutar"]); continue
+        t = date.fromisoformat(str(x["tarih"])[:10]); seans = sum(1 for g in gunler if g > t)
+        out["seans_azami"] = max(out["seans_azami"], seans)
+        if gg is not None:
+            out["birikmis"] += float(x["tutar"]) * gg * seans
+    return out
+
+
 def nakit_satirlari(n, kaynak=None):
     """Brifingin nakit ve ödeme takvimi satırları (M58)."""
     L = [f"Nakit ve ödeme takvimi (kural 16, M58; kaynak {kaynak or 'emir defteri nakit koleksiyonu'}): "
