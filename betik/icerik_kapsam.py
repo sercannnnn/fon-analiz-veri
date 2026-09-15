@@ -421,6 +421,42 @@ def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5):
     return out
 
 
+def temel_yukle(yol):
+    """veri/temel_veri.csv (temel_cek.py): {bistKodu: dict(...sayılar float ya da None...)}."""
+    if not yol or not os.path.exists(yol):
+        return {}
+    out = {}
+    for r in csv.DictReader(open(yol, encoding="utf-8")):
+        d = {}
+        for k, v in r.items():
+            if k in ("bistKodu", "paySayisiKaynak", "donem", "grup", "kaynak", "olcumTarihi"):
+                d[k] = v
+            else:
+                try:
+                    d[k] = float(v) if v not in ("", None) else None
+                except ValueError:
+                    d[k] = None
+        out[r["bistKodu"]] = d
+    return out
+
+
+def temel_oranlar(t, kapanis):
+    """68 numaralı not, bölüm 4: PD/DD, F/K, net borç/FAVÖK, özkaynak kârlılığı, cari oran. Negatif özkaynak, negatif kâr ve sıfır FAVÖK
+    'anlamsız'; veri yoksa 'ölçülemedi' (None). Dönüş: dict(pd_dd, fk, netborc_favok, okk, cari, piyasa_degeri, donem, not)."""
+    if not t or kapanis is None:
+        return dict(pd_dd=None, fk=None, netborc_favok=None, okk=None, cari=None, piyasa_degeri=None, donem=None, not_="ölçülemedi (temel veri yok)")
+    ps, oz, nk, nb, fv, dv, kv = (t.get(k) for k in ("paySayisi", "ozkaynak", "netKar4C", "netBorc", "favok4C", "donenVarlik", "kvYukumluluk"))
+    pd_ = ps * kapanis if ps else None
+    def oran(pay, payda, anlamsiz):
+        if pay is None or payda is None:
+            return None
+        if anlamsiz(payda):
+            return "anlamsız"
+        return pay / payda
+    return dict(piyasa_degeri=pd_, pd_dd=oran(pd_, oz, lambda x: x <= 0), fk=oran(pd_, nk, lambda x: x <= 0), netborc_favok=oran(nb, fv, lambda x: x <= 0),
+                okk=oran(nk, oz, lambda x: x <= 0), cari=oran(dv, kv, lambda x: x <= 0), donem=t.get("donem"), not_=(t.get("kaynak") or ""))
+
+
 def sermaye_yukle(yol):
     """03 Veri/Künye/odenmis_sermaye.csv: bistKodu,paySayisi,kaynak (kullanıcı ya da Chat yazar); yoksa boş."""
     if not yol or not os.path.exists(yol):

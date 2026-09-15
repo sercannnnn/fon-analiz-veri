@@ -176,6 +176,27 @@ def test_68_yeniden_degerleme_ve_cikis_suresi():
     assert icerik_kapsam.yeniden_degerle(S, ["F1"], fiy)["F1"]["satirlar"][0]["agirlik_guncel"] is None      # büyüklük yoksa güncel ağırlık ölçülemedi
 
 
+def test_68_temel_oranlar_ve_dort_ceyrek():
+    t = dict(paySayisi=100.0, ozkaynak=500.0, netKar4C=50.0, netBorc=150.0, favok4C=75.0, donenVarlik=300.0, kvYukumluluk=200.0, donem="2026-06", kaynak="x")
+    o = icerik_kapsam.temel_oranlar(t, 10.0)
+    assert o["piyasa_degeri"] == 1000.0 and o["pd_dd"] == 2.0 and o["fk"] == 20.0 and o["netborc_favok"] == 2.0 and o["okk"] == 0.1 and o["cari"] == 1.5
+    o2 = icerik_kapsam.temel_oranlar(dict(t, ozkaynak=-5.0, netKar4C=-1.0, favok4C=0.0), 10.0)
+    assert o2["pd_dd"] == "anlamsız" and o2["fk"] == "anlamsız" and o2["netborc_favok"] == "anlamsız" and o2["okk"] == "anlamsız"
+    assert icerik_kapsam.temel_oranlar(None, 10.0)["pd_dd"] is None and icerik_kapsam.temel_oranlar(dict(t, paySayisi=None), 10.0)["fk"] is None
+    try:
+        import temel_cek as T
+    except Exception:
+        return
+    from datetime import date
+    dl = T.donemler(date(2026, 9, 15)); assert dl == [(2026, 6), (2025, 12), (2025, 6), (2025, 9)]
+    assert T.dort_ceyrek([30.0, 100.0, 40.0, 70.0], dl) == 90.0 and T.dort_ceyrek([30.0, None, 40.0, 70.0], dl) is None
+    assert T.dort_ceyrek([120.0, 100.0, 40.0, 70.0], T.donemler(date(2026, 3, 1))) == 120.0     # yıl sonu: doğrudan
+    k = T.kayit("XXX", [dict(itemDescTr="Özkaynaklar", value1="500"), dict(itemDescTr="Ödenmiş Sermaye", value1="100"), dict(itemDescTr="Dönem Net Kar/Zararı", value1="30", value2="100", value3="40"),
+                        dict(itemDescTr="Nakit ve Nakit Benzerleri", value1="20"), dict(itemDescTr="Kısa Vadeli Borçlanmalar", value1="50"), dict(itemDescTr="Uzun Vadeli Borçlanmalar", value1="120"),
+                        dict(itemDescTr="Esas Faaliyet Karı", value1="45", value2="90", value3="35"), dict(itemDescTr="Amortisman Giderleri", value1="-5", value2="-12", value3="-4")], "XI_29", dl, date(2026, 9, 15))
+    assert k["paySayisi"] == 100.0 and k["netKar4C"] == 90.0 and k["netBorc"] == 150.0 and k["favok4C"] == 100.0 + 13.0 and "varsayım" in k["paySayisiKaynak"]
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),
