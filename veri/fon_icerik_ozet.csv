@@ -1,5 +1,10 @@
 fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,sapmaSebebi,tefasSinifToplami,raporIciTutarsizlik,listeTam,eksikKalem,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
-GTL,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,1040,100.0,2026-09-01,0.01,,99.99,-0.27,true,,610,0,0,0,0,1040,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TP2,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,971,100.0,2026-09-01,0.0,,100.0,,true,,56,0,0,0,0,968,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
 DOH,2026-09,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,68,100.0,2026-09-07,0.0,,100.0,,true,,66,0,62,0,0,67,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+FSU,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,33,100.0,2026-09-01,0.0,,100.0,,true,,30,0,17,0,0,32,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
 GHS,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,258,100.0,2026-09-01,0.0,,100.0,0.0,true,,255,0,255,0,0,258,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-GZE,2026-08,GARANTİ PORTFÖY YÖNETİMİ A.Ş.,garanti,41,100.0,2026-09-01,0.01,,100.0,0.01,true,,7,0,0,0,0,41,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+THF,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,163,100.0,2026-09-01,0.14,veri_gunu_yaklasik,100.0,,true,,126,0,125,0,0,128,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TLV,2026-08,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,30,100.0,2026-09-01,0.0,,100.0,,true,,7,0,0,0,0,30,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TLY,2026-09,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,286,100.0,2026-09-07,0.0,,100.0,,true,,66,0,54,0,0,73,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TMM,2026-09,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,17,100.0,2026-09-07,0.0,,100.0,,true,,6,0,1,2,0,17,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TMV,2026-09,TERA PORTFÖY YÖNETİMİ A.Ş.,standart,81,100.0,2026-09-07,0.0,,100.0,,true,,62,0,60,0,0,66,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
