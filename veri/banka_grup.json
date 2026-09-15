@@ -1,0 +1,129 @@
+{
+ "_not": "Banka grubu tek karşı taraf sayılır (64 numaralı not, M68 dönemi). Ad parçaları ihraççı alanında aranır, büyük-küçük harf ve Türkçe karakter duyarsız. Kamuya açık şirket yapısıdır.",
+ "ZİRAAT": [
+  "ZİRAAT BANKASI",
+  "ZİRAAT KATILIM",
+  "T.C. ZİRAAT"
+ ],
+ "VAKIF": [
+  "VAKIFLAR BANKASI",
+  "VAKIF KATILIM",
+  "VAKIFBANK"
+ ],
+ "HALK": [
+  "HALK BANKASI",
+  "HALKBANK"
+ ],
+ "KUVEYT TÜRK": [
+  "KUVEYT TÜRK",
+  "KUVEYT TURK",
+  "KT PORTFÖY"
+ ],
+ "TÜRKİYE FİNANS": [
+  "TÜRKİYE FİNANS KATILIM"
+ ],
+ "ALBARAKA": [
+  "ALBARAKA"
+ ],
+ "EMLAK KATILIM": [
+  "EMLAK KATILIM"
+ ],
+ "AKBANK": [
+  "AKBANK"
+ ],
+ "GARANTİ": [
+  "GARANTİ BANKASI",
+  "GARANTİ BBVA"
+ ],
+ "İŞ BANKASI": [
+  "İŞ BANKASI",
+  "TÜRKİYE İŞ BANKASI",
+  "İŞBANK"
+ ],
+ "YAPI KREDİ": [
+  "YAPI VE KREDİ",
+  "YAPI KREDİ",
+  "YAPI KREDI"
+ ],
+ "QNB": [
+  "QNB FİNANSBANK",
+  "QNB BANK",
+  "QNB"
+ ],
+ "DENİZBANK": [
+  "DENİZBANK",
+  "DENIZBANK"
+ ],
+ "TEB": [
+  "TÜRK EKONOMİ BANKASI",
+  "TEB"
+ ],
+ "ŞEKERBANK": [
+  "ŞEKERBANK"
+ ],
+ "FİBABANKA": [
+  "FİBABANKA",
+  "FIBABANKA"
+ ],
+ "ODEA": [
+  "ODEA BANK",
+  "ODEABANK"
+ ],
+ "ING": [
+  "ING BANK"
+ ],
+ "HSBC": [
+  "HSBC"
+ ],
+ "ANADOLUBANK": [
+  "ANADOLUBANK"
+ ],
+ "TURKLAND": [
+  "TURKLAND"
+ ],
+ "BURGAN": [
+  "BURGAN"
+ ],
+ "ALTERNATİF": [
+  "ALTERNATİF BANK",
+  "ALTERNATIFBANK"
+ ],
+ "ICBC": [
+  "ICBC"
+ ],
+ "TERA": [
+  "TERA YATIRIM BANKASI"
+ ],
+ "MİSYON": [
+  "MİSYON YATIRIM BANKASI",
+  "MISYON YATIRIM BANKASI"
+ ],
+ "GOLDEN GLOBAL": [
+  "GOLDEN GLOBAL YATIRIM BANKASI"
+ ],
+ "Q YATIRIM": [
+  "Q YATIRIM BANKASI"
+ ],
+ "AKTİF": [
+  "AKTİF YATIRIM BANKASI",
+  "AKTIF YATIRIM BANKASI"
+ ],
+ "D YATIRIM": [
+  "D YATIRIM BANKASI"
+ ],
+ "NUROL": [
+  "NUROL YATIRIM BANKASI"
+ ],
+ "PASHA": [
+  "PASHA YATIRIM BANKASI"
+ ],
+ "GSD": [
+  "GSD YATIRIM BANKASI"
+ ],
+ "DİLER": [
+  "DİLER YATIRIM BANKASI"
+ ],
+ "TÜRK KATILIM": [
+  "TÜRK KATILIM BANKASI"
+ ]
+}

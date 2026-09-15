@@ -1,12 +1,12 @@
 {
  "icerik": {
-  "ayristiriciSurum": 10,
+  "ayristiriciSurum": 11,
   "durum": "tamamlandi",
   "gecenKurucu": 50,
   "h429": 0,
   "hedefAy": "2026-08",
-  "islenen": 6,
-  "istek": 13,
+  "islenen": 1,
+  "istek": 3,
   "kapsamOrani": 0.5884,
   "kapsamPay": 662,
   "kapsamPayda": 1125,
@@ -26,16 +26,16 @@
   },
   "listeEksikBuTur": 0,
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
-  "parkOncelik": 0,
+  "parkOncelik": 1,
   "raporYokKurucu": 3,
-  "satirBuTur": 366,
+  "satirBuTur": 258,
   "sinananKurucu": [],
   "sinavSurumu": 2,
   "taninmayanKurucu": 11,
   "tarih": "2026-09-15",
   "toplamFon": 2146,
-  "yayimlandiBuTur": 4,
+  "yayimlandiBuTur": 1,
   "yeniFon": 0,
-  "yenidenIslenen": 6
+  "yenidenIslenen": 1
  }
 }
