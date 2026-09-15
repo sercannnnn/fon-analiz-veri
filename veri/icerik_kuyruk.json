@@ -3189,9 +3189,22 @@
   "sebep": "",
   "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 12,
+  "surum": 14,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-14",
+  "toplamTablosu": {
+   "alacak": 0.0,
+   "borc": -81316477.45,
+   "diger": 0.0,
+   "fpd": 11197998232.87,
+   "fpdNav": 1.0051,
+   "hazir": 24738320.71,
+   "ihtiyat": 0.0,
+   "kaldirac": 0.0073,
+   "nav": 11141420076.13,
+   "navSayfa1": 11141420076.13,
+   "paySayisi": 126979200.0
+  },
   "yayim": "15.09.2026 10:11:02"
  },
  "DZP": {
@@ -4187,9 +4200,22 @@
   "sebep": "",
   "son": "2026-09",
   "sonRaporAy": "2026-08",
-  "surum": 12,
+  "surum": 14,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-08",
+  "toplamTablosu": {
+   "alacak": 0.56,
+   "borc": -9068807.49,
+   "diger": 0.0,
+   "fpd": 4994193950.56,
+   "fpdNav": 0.9851,
+   "hazir": 84452280.7,
+   "ihtiyat": 0.0,
+   "kaldirac": 0.0018,
+   "nav": 5069577424.33,
+   "navSayfa1": 5069577424.33,
+   "paySayisi": 105272132.0
+  },
   "yayim": "08.09.2026 21:32:16"
  },
  "FSU": {
@@ -5518,9 +5544,10 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 13,
+  "surum": 14,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
+  "toplamTablosu": {},
   "yayim": "07.09.2026 17:57:01"
  },
  "GTM": {
@@ -5750,9 +5777,10 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 13,
+  "surum": 14,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
+  "toplamTablosu": {},
   "yayim": "04.09.2026 18:13:59"
  },
  "GZG": {
@@ -13656,9 +13684,22 @@
   "sebep": "",
   "son": "2026-08",
   "sonRaporAy": "2026-08",
-  "surum": 12,
+  "surum": 14,
   "tarih": "2026-09-15",
   "tefasGun": "2026-09-01",
+  "toplamTablosu": {
+   "alacak": 0.0,
+   "borc": -850390227.67,
+   "diger": 0.0,
+   "fpd": 223160419568.67,
+   "fpdNav": 1.0035,
+   "hazir": 68275439.0,
+   "ihtiyat": 0.0,
+   "kaldirac": 0.0038,
+   "nav": 222378304780.0,
+   "navSayfa1": 222378304780.0,
+   "paySayisi": 131895874.65
+  },
   "yayim": "03.09.2026 12:47:27"
  },
  "TI2": {
