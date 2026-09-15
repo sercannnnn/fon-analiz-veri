@@ -160,6 +160,22 @@ def test_m68_kurucu_grubu_payi_ve_banka_grubu():
     assert ro["F2"]["toplam"] == 45.0 and any("Takasbank" in k for k in ro["F2"]["karsi_taraf"]) and any("(banka)" in k for k in ro["F2"]["karsi_taraf"])
 
 
+def test_68_yeniden_degerleme_ve_cikis_suresi():
+    S = [dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="1000000", agirlik="16.76", raporTarihi="2026-09", veriGunu="2026-09-07"),
+         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="AAA", isin="TRA", nominal="-100000", agirlik="-1.0", raporTarihi="2026-09", veriGunu="2026-09-07"),   # net 900.000
+         dict(fonKodu="F1", tur="Hisse Türk", bistKodu="BBB", isin="TRB", nominal="5000", agirlik="5.0", raporTarihi="2026-09", veriGunu="2026-09-07"),         # fiyatsız
+         dict(fonKodu="F1", tur="VIOP Nakit Teminatı", bistKodu="", isin="", nominal="1", agirlik="20", raporTarihi="2026-09", veriGunu="2026-09-07")]
+    fiy = {"AAA": dict(tarih="2026-09-14", kapanis=2000.0, hacim_ortanca=1_000_000_000.0, seans=20)}
+    o = icerik_kapsam.yeniden_degerle(S, ["F1"], fiy, buyukluk={"F1": 10_000_000_000.0})["F1"]
+    a = o["satirlar"][0]
+    assert a["kod"] == "AAA" and a["nominal"] == 900000 and a["deger"] == 1.8e9 and a["agirlik_guncel"] == 18.0 and a["agirlik_rapor"] == 15.76
+    assert abs(a["cikis_gun"] - 1.8e9 / (1e9 * icerik_kapsam.KATILIM_ORANI)) < 1e-9
+    b = o["satirlar"][1]
+    assert b["kod"] == "BBB" and b["fiyatsiz"] and b["cikis_gun"] is None and o["fiyatsiz_pay"] == 5.0 and o["olculen_pay_guncel"] == 18.0 and o["olculen_pay_rapor"] == 15.76
+    assert icerik_kapsam.cikis_gunu(100.0, None) is None and icerik_kapsam.cikis_gunu(100.0, 0) is None
+    assert icerik_kapsam.yeniden_degerle(S, ["F1"], fiy)["F1"]["satirlar"][0]["agirlik_guncel"] is None      # büyüklük yoksa güncel ağırlık ölçülemedi
+
+
 def test_m59_kurucu_duzeyinde_ihracci():
     S = [dict(fonKodu="F1", bistKodu="MNS", nominal="17124756", rayicDeger="566829423.6"), dict(fonKodu="F1", bistKodu="MNS", nominal="-11500000", rayicDeger="-380000000"),
          dict(fonKodu="F2", bistKodu="MNS", nominal="1000000", rayicDeger="33100000"), dict(fonKodu="F3", bistKodu="MNS", nominal="5", rayicDeger="100"),

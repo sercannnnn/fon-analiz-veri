@@ -342,6 +342,85 @@ def kurucu_ihracci(satirlar, fon_kurucu, sermaye=None, kurucular=None):
     return sorted(out, key=lambda d: -d["tl"])
 
 
+# ---------------------------------------------------------------- hisse katmanı (68 numaralı not, 15 Eylül 2026)
+KATILIM_ORANI = 0.20        # varsayım (kullanıcı onayı bekliyor): günlük hacmin bu payı fiyatı bozmadan alınabilir
+CIKIS_UYARI_GUN = 5.0       # varsayım
+CIKIS_AYKIRI_GUN = 20.0     # varsayım
+HACIM_SEANS = 20            # ortanca günlük hacim penceresi
+
+
+def hisse_fiyat_yukle(arsiv, seans=HACIM_SEANS, son_n=2):
+    """arsiv/hisse_YYYY-MM.csv.gz (son son_n dosya): kod -> dict(tarih, kapanis (ham, TL), hacim_ortanca (son `seans` seansın TL hacmi ortancası),
+    seans). Ham kapanış kullanılır: nominal pay adedi × bugünkü fiyat = pozisyon değeri; düzeltilmiş kapanış sermaye artırımlarını taşır."""
+    seri = {}
+    for f in sorted(glob.glob(os.path.join(arsiv or "", "hisse_20??-??.csv.gz")))[-son_n:]:
+        with gzip.open(f, "rt", encoding="utf-8", newline="") as h:
+            for r in csv.DictReader(h):
+                try:
+                    k = float(r.get("kapanisHam") or 0); v = float(r.get("hacim") or 0)
+                except ValueError:
+                    continue
+                if k > 0:
+                    seri.setdefault(r["hisse"], []).append((r["tarih"][:10], k, v))
+    out = {}
+    for kod, L in seri.items():
+        L.sort()
+        son = L[-seans:]
+        hac = sorted(v for _, _, v in son if v > 0)
+        out[kod] = dict(tarih=L[-1][0], kapanis=L[-1][1], hacim_ortanca=(hac[len(hac) // 2] if hac else None), seans=len(son))
+    return out
+
+
+def cikis_gunu(deger, hacim_ortanca, katilim=KATILIM_ORANI):
+    """Pozisyonun çıkış süresi, gün: değer / (ortanca günlük hacim × katılım oranı); hacim yoksa None (ölçülemedi, sıfır değil)."""
+    if not hacim_ortanca or hacim_ortanca <= 0 or deger is None:
+        return None
+    return deger / (hacim_ortanca * katilim)
+
+
+def yeniden_degerle(satirlar, fonlar, fiyat, buyukluk=None, n=5):
+    """68 numaralı not, bölüm 3: rapor günü nominal pay adedi × bugünkü fiyat = bugünkü pozisyon değeri; güncel ağırlık = değer / fonun güncel
+    toplam değeri (TEFAS büyüklüğü). Alım satım olmadığı VARSAYIMI açıkça yazılır. Fiyatı olmayan satır rapor ağırlığını korur ve
+    fiyatsız paya girer. Yalnızca hisse satırları (bistKodu dolu), aynı kodun satırları net toplanır; en yeni rapor.
+    Dönüş: {fon: dict(veri_gunu, fiyat_tarihi, satirlar[list of dict(kod, nominal, agirlik_rapor, agirlik_guncel, deger, fiyat, hacim_ortanca, cikis_gun, fiyatsiz)],
+    fiyatsiz_pay, olculen_pay_rapor, olculen_pay_guncel, hisse_sayisi, fiyatli_sayi)}."""
+    son = son_ay_satirlari(satirlar); buyukluk = buyukluk or {}
+    top = {}
+    for r in son:
+        f = r.get("fonKodu"); kod = (r.get("bistKodu") or "").strip()
+        if f not in fonlar or not kod:
+            continue
+        try:
+            a = float(r.get("agirlik") or 0); nom = float(r.get("nominal") or 0)
+        except ValueError:
+            continue
+        d = top.setdefault(f, dict(veri_gunu=(r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None), kod={}))
+        e = d["kod"].setdefault(kod, dict(kod=kod, nominal=0.0, agirlik_rapor=0.0))
+        e["nominal"] += nom; e["agirlik_rapor"] += a
+    out = {}
+    for f, d in top.items():
+        b = float(buyukluk.get(f) or 0)
+        L, fiyatsiz, olc_r, olc_g, tarih = [], 0.0, 0.0, 0.0, None
+        for e in d["kod"].values():
+            p = fiyat.get(e["kod"])
+            if p and e["nominal"] > 0:
+                deger = e["nominal"] * p["kapanis"]
+                e.update(fiyat=p["kapanis"], fiyat_tarihi=p["tarih"], deger=deger, hacim_ortanca=p.get("hacim_ortanca"),
+                         cikis_gun=cikis_gunu(deger, p.get("hacim_ortanca")), agirlik_guncel=(deger / b * 100.0 if b > 0 else None), fiyatsiz=False)
+                olc_r += e["agirlik_rapor"]; olc_g += (e["agirlik_guncel"] or 0.0); tarih = max(tarih or "", p["tarih"])
+            else:
+                e.update(fiyat=None, fiyat_tarihi=None, deger=None, hacim_ortanca=None, cikis_gun=None, agirlik_guncel=None, fiyatsiz=True)
+                fiyatsiz += max(e["agirlik_rapor"], 0.0)
+            e["agirlik_rapor"] = round(e["agirlik_rapor"], 2)
+            if e["agirlik_guncel"] is not None:
+                e["agirlik_guncel"] = round(e["agirlik_guncel"], 2)
+            L.append(e)
+        L.sort(key=lambda e: -(e["agirlik_guncel"] if e["agirlik_guncel"] is not None else e["agirlik_rapor"]))
+        out[f] = dict(veri_gunu=d["veri_gunu"], fiyat_tarihi=tarih, satirlar=L, fiyatsiz_pay=round(fiyatsiz, 2), olculen_pay_rapor=round(olc_r, 2),
+                      olculen_pay_guncel=round(olc_g, 2), hisse_sayisi=len(L), fiyatli_sayi=sum(1 for e in L if not e["fiyatsiz"]), buyukluk=b or None)
+    return out
+
+
 def sermaye_yukle(yol):
     """03 Veri/Künye/odenmis_sermaye.csv: bistKodu,paySayisi,kaynak (kullanıcı ya da Chat yazar); yoksa boş."""
     if not yol or not os.path.exists(yol):
