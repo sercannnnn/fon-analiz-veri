@@ -155,7 +155,8 @@ def kurucu_grubu_payi(satirlar, fonlar, fon_kurucu, grup_tablo=None):
             a = float(r.get("agirlik") or 0)
         except ValueError:
             continue
-        o = out.setdefault(f, dict(kesin=0.0, ust_sinir=0.0, kalemler={}, adsiz_satir=0, veri_gunu=(r.get("veriGunu") or "").strip()[:10] or None))
+        vg = (r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None)
+        o = out.setdefault(f, dict(kesin=0.0, ust_sinir=0.0, kalemler={}, adsiz_satir=0, veri_gunu=vg))
         ih = (r.get("ihracci") or "").strip()
         if ih:
             if eslesir(ih):
