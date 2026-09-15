@@ -1,0 +1,2 @@
+THF	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü
+TRU	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.76 puan, 0,05 üstü
