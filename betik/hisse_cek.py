@@ -75,6 +75,22 @@ def arsiv_oku(yol):
             yield s
 
 
+YENI_KOD_GERI_GUN = 400    # arsivde olmayan kod icin geriye dogru doldurma (68 numarali not: en az Temmuz; 20 seans hacim ortancasi ve bir yillik seri)
+
+
+def arsiv_kodlari(arsiv):
+    """Arsivdeki son iki aylik dosyada gecen hisse kodlari."""
+    kodlar = set()
+    for f in sorted(glob.glob(os.path.join(arsiv, "hisse_*.csv.gz")))[-2:]:
+        try:
+            with gzip.open(f, "rt", encoding="utf-8", newline="") as h:
+                for s in csv.DictReader(h):
+                    kodlar.add(s["hisse"])
+        except Exception:
+            continue
+    return kodlar
+
+
 def arsiv_son_tarih(arsiv):
     son = None
     for yol in sorted(glob.glob(os.path.join(arsiv, "hisse_*.csv.gz")))[-1:]:
@@ -113,6 +129,8 @@ def main():
     ap.add_argument("--liste", default=os.path.join(kok, "veri", "bist100.txt"))
     ap.add_argument("--cikti", default=os.path.join(kok, "veri"))
     ap.add_argument("--arsiv", default=os.path.join(kok, "arsiv"))
+    ap.add_argument("--ek", action="append", default=[], help="ek kod listesi dosyasi (tekrarlanabilir): veri/hisse_evren_icerik.txt (fon icerik arsivindeki hisseler, 68 numarali not)")
+    ap.add_argument("--yeni-geri-gun", type=int, default=YENI_KOD_GERI_GUN, help="arsivde satiri olmayan kod icin baslangic: bugun - bu kadar gun")
     ap.add_argument("--bas", help="GG-AA-YYYY; varsayilan: arsivdeki son tarih, yoksa bugun - 3 yil")
     ap.add_argument("--bit", help="GG-AA-YYYY; varsayilan bugun")
     a = ap.parse_args()
@@ -130,13 +148,18 @@ def main():
         bas = ((datetime.strptime(son, "%Y-%m-%d") - timedelta(days=GERI_GUN)).strftime("%d-%m-%Y") if son
                else (bugun - timedelta(days=3 * 365)).strftime("%d-%m-%Y"))
     kodlar = liste_oku(a.liste)
-    print(f"{len(kodlar)} hisse, {bas} .. {bit}", file=sys.stderr)
+    for ek in a.ek:
+        if os.path.exists(ek):
+            kodlar = kodlar + [k for k in liste_oku(ek) if k not in set(kodlar)]
+    arsiv_kodlar = arsiv_kodlari(a.arsiv)
+    yeni_bas = (bugun - timedelta(days=a.yeni_geri_gun)).strftime("%d-%m-%Y")
+    print(f"{len(kodlar)} hisse, {bas} .. {bit}; arsivde olmayan {sum(1 for k in kodlar if k not in arsiv_kodlar)} kod {yeni_bas}'den", file=sys.stderr)
 
     satirlar, hatali, basarili = {}, [], 0
     for i, kod in enumerate(kodlar):
         if i:
             time.sleep(ARA_SANIYE)
-        kayit = cek(kod, bas, bit)
+        kayit = cek(kod, bas if (kod in arsiv_kodlar or a.bas) else yeni_bas, bit)   # 68 numarali not: yeni kod geriye dogru doldurulur
         if kayit is None:
             hatali.append(kod)
             continue

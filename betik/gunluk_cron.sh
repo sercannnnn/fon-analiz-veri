@@ -19,7 +19,7 @@ python3 betik/tefas_cek.py --cikti veri
 find veri -name 'tefas_gunluk_*.csv' -mtime +45 -delete
 find veri -name 'tefas_dagilim_*.csv' -mtime +45 -delete
 # BIST hisse hatti (Is Yatirim). Basarisizsa TEFAS akisini durdurmaz; hata veri/hisse_hata.txt'de.
-python3 betik/hisse_cek.py || echo "uyari: hisse cekimi basarisiz"
+python3 betik/hisse_cek.py --ek veri/hisse_evren_icerik.txt || echo "uyari: hisse cekimi basarisiz"   # 68 numarali not: fiyat arsivi fon icerik evrenine genisler
 
 # ---- Kritik yol once tamamlanir ve depoya gonderilir (11 Eylul 2026): 8 ve 10 Eylul'de KAP kuyrugu bellek sinirinda
 # oldurulunce (cikis 137) 'set -e' betigi o satirda kesti ve TEFAS verisi hic gonderilmedi. Kuyruk artik gondermeden sonra

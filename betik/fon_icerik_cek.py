@@ -1354,6 +1354,11 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
     with pdfplumber.open(io.BytesIO(pdf)) as p:
         t1 = p.pages[0].extract_text() or ""
     d = duzen(t1, pdf); ray = rapor_ayi(t1, x.get("publishDate")) or hedef
+    if d == "bilinmiyor" and not t1.strip():
+        with pdfplumber.open(io.BytesIO(pdf)) as p:
+            metinsiz = all(not (pg.extract_text() or "").strip() for pg in p.pages[:3])
+        if metinsiz:      # 66 numarali not: taranmis goruntu (Is Portfoy'un bir fonu); OCR hatti yazilmaz, fon kapsam disi
+            return "kapsam_disi", "düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi", [], dict(ray=ray, duzen="goruntu")
     if d == "bilinmiyor":
         return "duzen_taninmadi", "düzen tanınmadı", [], dict(ray=ray, duzen=d)
     if d not in AYRISTIRICILAR:
@@ -1371,11 +1376,15 @@ def rapor_isle(f, x, kunye, kd, rows, evren, hedef):
             gun, tefas_son, ray, eslesme = g2, t2, g2[:7], ("ay içi" if ay_ici else "yayım penceresi")
             ok, sebep, sp = kapi(kayit, gruplar, tefas_son, evren)
     ok, sebep, sapma_sebebi = sapma_karari(f, ok, sebep, sp, tefas_son)
-    if not ok and eslesme != "ay sonu" and sp is not None and sp <= SAPMA_UST and sebep.startswith("sapma sebebi atanmamış"):
-        # 62 numarali not: tarihi yaklasik eslesen rapor (ay ici ya da yayim penceresi) hata kovasina atilmaz; yayimlanir, veri gunu bos kalir,
-        # sapma sebebi 'veri_gunu_eslesmedi' (sebep listesine girmez, olcumdur). Kural 14: olculemeyen tarih olcumu iptal etmez.
-        ok, sebep, sapma_sebebi = True, "", "veri_gunu_eslesmedi"
-        gun = None; eslesme = "eşleşmedi"
+    if not ok and sp is not None and sp <= SAPMA_UST and sebep.startswith("sapma sebebi atanmamış") and x.get("publishDate"):
+        # 66 numarali not (bolum 3): yayim kurali sapmanin buyuklugune bakar, takvim kalibina degil. Sapma SAPMA_UST altinda ise fon
+        # yayimlanir; veri gunu en kucuk sapmali gundur (ay sonu dahil butun gunler denenir), satir sapmayi tasir, sebep 'veri_gunu_yaklasik'
+        # (sebep listesine girmez, olcumdur). Kural 14: olculemeyen tarih olcumu iptal etmez. 0,14 ve 0,31 puanlik iki rapor ayni kuralla yayimlanir.
+        g2, t2, sp2 = tefas_gun_esle(rows, f, ray, x["publishDate"], kayit, gruplar, evren, ay_ici=True)
+        if g2 and sp2 is not None and sp2 < sp:
+            gun, tefas_son, sp = g2, t2, sp2
+        ok, sebep, sapma_sebebi = True, "", "veri_gunu_yaklasik"
+        eslesme = f"yaklaşık ({sp:.2f})"
     ek, eksik_kalem = tefas_tamamla(kayit, tefas_son)       # gecen fonda da uygulanir: eksik kalem tasiyan her fon ayni sekilde (09.09.2026 karari)
     if ek:
         kayit = kayit + ek
@@ -1506,6 +1515,21 @@ def park_aday_kumesi(veri, kunye_rows=None, gunluk_rows=None):
     return {r["fonKodu"] for r in kunye_rows if r.get("kategori") in PARK_KATEGORILER and buy.get(r.get("fonKodu"), 0) >= PARK_ASGARI_BUYUKLUK}
 
 
+def hisse_evreni_yaz(veri, arsiv):
+    """68 numarali not: fon icerik arsivindeki (son iki ay) butun BIST kodlari veri/hisse_evren_icerik.txt; hisse_cek.py --ek ile fiyat
+    arsivi bu evrene genisler. Kamuya acik KAP raporlarindan turetilir, portfoy bilgisi tasimaz. Donus: kod sayisi."""
+    kodlar = set()
+    for f in sorted(glob.glob(os.path.join(arsiv, "fon_icerik_20??-??.csv.gz")))[-2:]:
+        for s in gz_oku(f):
+            if len(s) > 4 and s[4] and re.match(r"^[A-Z0-9]{3,6}$", s[4]):
+                kodlar.add(s[4])
+    yol = os.path.join(veri, "hisse_evren_icerik.txt")
+    with open(yol, "w", encoding="utf-8") as fh:
+        fh.write("# fon icerik arsivindeki hisseler (son iki ay), fon_icerik_cek.hisse_evreni_yaz; hisse_cek.py --ek ile fiyat arsivine girer\n")
+        fh.write("\n".join(sorted(kodlar)) + ("\n" if kodlar else ""))
+    return len(kodlar)
+
+
 def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     global kd_yol_global
     bugun = date.today(); hedef = hedef_ay(bugun)
@@ -1623,6 +1647,10 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 fh.write(f"{f}\t{ky[f]['durum']}\t{ky[f].get('sebep', '')}\n")
     if yazilan:
         os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
+    try:
+        hisse_evreni_yaz(veri, arsiv)     # 68 numarali not
+    except Exception as e:
+        print(f"uyari: hisse evreni yazilamadi: {e}", file=sys.stderr)
     json_yaz(ky_yol, ky)
     # ---- kovalar tuketicidir: her faal YF fon tam bir kovada; sirasi gelmeyen 'kuyrukta'
     for f in kunye:

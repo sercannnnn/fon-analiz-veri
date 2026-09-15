@@ -130,6 +130,29 @@ def banka_grubu(ad, tablo):
 
 
 GENEL_KOK = {"PORTFOY", "YATIRIM", "MENKUL", "FON", "FONU", "GLOBAL", "CAPITAL", "GOLDEN", "TURK", "TURKIYE", "ATLAS", "HEDEF"}
+IHRACCI_OLMAYAN_TURLER = ("VIOP", "NAKIT TEMINAT", "DOVIZ", "TPP", "BPP", "PARA PIYASASI", "VADELI ISLEM", "FUTURES", "UZUN", "KISA")   # M69: yapisi geregi ihracci degil
+# 66 numaralı not, bölüm 2 (varsayım, kullanıcı onayı bekliyor): kurucu grubu payı bildirim eşikleri (uyarı, aykırılık), kategoriye göre; fon sepeti muaf ama yazılır
+GRUP_PAYI_ESIK = {"Para Piyasası": (5.0, 10.0), "Kısa Vadeli Borçlanma": (5.0, 10.0), "Borçlanma Araçları": (5.0, 10.0), "Katılım": (5.0, 10.0),
+                  "Kıymetli Madenler": (5.0, 10.0), "Hisse Senedi": (10.0, 15.0), "Değişken": (10.0, 15.0), "Serbest": (25.0, 40.0), "Fon Sepeti": None}
+
+
+def grup_payi_esigi(kategori):
+    """Kategori adı eşik tablosundaki anahtarla başlıyorsa o eşik; bilinmeyen kategori en sıkı eşik (5, 10). Fon sepeti None (muaf)."""
+    k = kategori or ""
+    for ad, esik in GRUP_PAYI_ESIK.items():
+        if k.startswith(ad):
+            return esik
+    return (5.0, 10.0)
+
+
+def grup_payi_durumu(pay, kategori):
+    """'aykırı' | 'uyarı' | 'eşik içinde' | 'muaf (fon sepeti)' | 'ölçülemedi'."""
+    if pay is None:
+        return "ölçülemedi"
+    e = grup_payi_esigi(kategori)
+    if e is None:
+        return "muaf (fon sepeti)"
+    return "aykırı" if pay > e[1] else "uyarı" if pay > e[0] else "eşik içinde"
 
 
 def kurucu_grubu_payi(satirlar, fonlar, fon_kurucu, grup_tablo=None):
@@ -156,19 +179,27 @@ def kurucu_grubu_payi(satirlar, fonlar, fon_kurucu, grup_tablo=None):
         except ValueError:
             continue
         vg = (r.get("veriGunu") or "").strip()[:10] or (_ay_sonu(r.get("raporTarihi") or "").isoformat() if len(r.get("raporTarihi") or "") == 7 else None)
-        o = out.setdefault(f, dict(kesin=0.0, ust_sinir=0.0, kalemler={}, adsiz_satir=0, veri_gunu=vg))
+        o = out.setdefault(f, dict(kesin=0.0, ust_sinir=0.0, olculemeyen=0.0, olculemeyen_tur={}, kalemler={}, adsiz_satir=0, veri_gunu=vg))
         ih = (r.get("ihracci") or "").strip()
         if ih:
             if eslesir(ih):
-                o["kesin"] += a; o["ust_sinir"] += a
+                o["kesin"] += a
                 o["kalemler"][ih] = o["kalemler"].get(ih, 0.0) + a
         else:
             o["adsiz_satir"] += 1
+            tur = (r.get("tur") or "").strip()
             if eslesir(r.get("kiymetAdiHam") or ""):
-                o["ust_sinir"] += a
+                o["ust_sinir"] += a          # ham adda grup adı: üst sınıra girer (M68 tanımı)
                 o["kalemler"]["(ham) " + (r.get("kiymetAdiHam") or "")[:30]] = o["kalemler"].get("(ham) " + (r.get("kiymetAdiHam") or "")[:30], 0.0) + a
+            elif not any(p in _norm(tur) for p in IHRACCI_OLMAYAN_TURLER):
+                o["olculemeyen"] += a        # M69: adsız satır "grup değil" değil "bilinmiyor"; yapısı gereği ihraççı olmayan türler düşülür
+                o["olculemeyen_tur"][tur or "türsüz"] = o["olculemeyen_tur"].get(tur or "türsüz", 0.0) + a
     for f, o in out.items():
-        o["kesin"] = round(o["kesin"], 2); o["ust_sinir"] = round(o["ust_sinir"], 2)
+        o["kesin"] = round(o["kesin"], 2)
+        o["ust_sinir"] = round(o["kesin"] + o["ust_sinir"], 2)                 # ham eşleşen adsız satırlar dahil
+        o["olculemeyen"] = round(o["olculemeyen"], 2)
+        o["en_kotu"] = round(o["ust_sinir"] + o["olculemeyen"], 2)             # M69: kesin + ham + ölçülemeyen
+        o["olculemeyen_tur"] = sorted(((k, round(v, 2)) for k, v in o["olculemeyen_tur"].items()), key=lambda kv: -kv[1])[:3]
         o["kalemler"] = sorted(((k, round(v, 2)) for k, v in o["kalemler"].items()), key=lambda kv: -kv[1])[:4]
     return out
 

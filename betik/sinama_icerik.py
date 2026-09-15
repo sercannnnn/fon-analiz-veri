@@ -142,7 +142,17 @@ def test_m68_kurucu_grubu_payi_ve_banka_grubu():
     grup = {"TERA PORTFÖY": ["TERA FİNANS", "TERA FİNANSAL", "TERA GRUBU", "TERA PORTFÖY", "TERA YATIRIM"]}
     o = icerik_kapsam.kurucu_grubu_payi(S, ["F1", "F2"], {"F1": "TERA PORTFÖY", "F2": "PARDUS PORTFÖY"}, grup_tablo=grup)
     assert abs(o["F1"]["kesin"] - 17.03) < 1e-9 and abs(o["F1"]["ust_sinir"] - 19.03) < 1e-9 and o["F1"]["adsiz_satir"] == 1   # MEDİTERA ve AKBANK sayılmaz, Tera Varlık kök kelimeyle sayılır
+    assert o["F1"]["olculemeyen"] == 0.0 and o["F1"]["en_kotu"] == 19.03
     assert o["F2"]["kesin"] == 0.0
+    # M69: adsız satır "bilinmiyor"dur; yapısı gereği ihraççı olmayan tür (VİOP nakit teminatı) ölçülemeyenden düşülür
+    S2 = S + [dict(fonKodu="F1", tur="Hisse Türk", isin="", bistKodu="", ihracci="", kiymetAdiHam="", agirlik="3.5", raporTarihi="2026-09", veriGunu="2026-09-07"),
+              dict(fonKodu="F1", tur="VIOP Nakit Teminatı", isin="", bistKodu="", ihracci="", kiymetAdiHam="", agirlik="21.55", raporTarihi="2026-09", veriGunu="2026-09-07")]
+    o2 = icerik_kapsam.kurucu_grubu_payi(S2, ["F1"], {"F1": "TERA PORTFÖY"}, grup_tablo=grup)["F1"]
+    assert o2["olculemeyen"] == 3.5 and o2["en_kotu"] == 22.53 and o2["olculemeyen_tur"] == [("Hisse Türk", 3.5)] and o2["adsiz_satir"] == 3
+    # 66 numaralı not: eşikler kategoriye göre (varsayım); fon sepeti muaf
+    assert icerik_kapsam.grup_payi_durumu(30.85, "Para Piyasası") == "aykırı" and icerik_kapsam.grup_payi_durumu(20.89, "Hisse Senedi") == "aykırı"
+    assert icerik_kapsam.grup_payi_durumu(30.08, "Serbest") == "uyarı" and icerik_kapsam.grup_payi_durumu(4.0, "Katılım") == "eşik içinde"
+    assert icerik_kapsam.grup_payi_durumu(60.0, "Fon Sepeti") == "muaf (fon sepeti)" and icerik_kapsam.grup_payi_durumu(None, "Serbest") == "ölçülemedi"
     bg = {"ZİRAAT": ["ZİRAAT BANKASI", "ZİRAAT KATILIM"], "VAKIF": ["VAKIFLAR BANKASI", "VAKIF KATILIM"]}
     ilk = icerik_kapsam.fon_ihracci_ilk(S, ["F2"], n=3, banka_grup=bg)
     assert ilk["F2"][0]["kod"] == "ZİRAAT" and ilk["F2"][0]["agirlik"] == 30.76 and ilk["F2"][1]["kod"] == "VAKIF"     # katılım hesabı teminatlı sınıfta, mevduat banka grubuyla
