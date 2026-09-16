@@ -5,6 +5,7 @@
   "gecenKurucu": 50,
   "h429": 0,
   "hedefAy": "2026-08",
+<<<<<<< HEAD
   "islenen": 1,
   "istek": 3,
   "kapsamOrani": 0.5884,
@@ -21,21 +22,48 @@
    "kapsam_disi": 825,
    "kuyrukta": 211,
    "listesi_var": 507,
+=======
+  "islenen": 162,
+  "istek": 400,
+  "kapsamOrani": 0.5945,
+  "kapsamPay": 670,
+  "kapsamPayda": 1127,
+  "kapsamTanimi": "pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
+  "kovaToplami": 2146,
+  "kovalar": {
+   "beklemede": 29,
+   "duzen_bekliyor": 27,
+   "duzen_taninmadi": 399,
+   "ertelendi": 1,
+   "hata": 88,
+   "kapsam_disi": 823,
+   "kuyrukta": 212,
+   "listesi_var": 534,
+>>>>>>> dbb209f (KAP icerik turu 2026-09-15)
    "rapor_yok_bu_ay": 11,
-   "sinif_farki": 45
+   "sinif_farki": 22
   },
   "listeEksikBuTur": 0,
   "not": "gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz",
   "parkOncelik": 1,
   "raporYokKurucu": 3,
+<<<<<<< HEAD
   "satirBuTur": 0,
+=======
+  "satirBuTur": 1384,
+>>>>>>> dbb209f (KAP icerik turu 2026-09-15)
   "sinananKurucu": [],
   "sinavSurumu": 2,
   "taninmayanKurucu": 11,
   "tarih": "2026-09-15",
   "toplamFon": 2146,
+<<<<<<< HEAD
   "yayimlandiBuTur": 0,
   "yeniFon": 0,
+=======
+  "yayimlandiBuTur": 29,
+  "yeniFon": 29,
+>>>>>>> dbb209f (KAP icerik turu 2026-09-15)
   "yenidenIslenen": 0
  }
 }

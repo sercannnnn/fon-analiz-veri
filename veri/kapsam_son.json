@@ -3,36 +3,15 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-15T05:15:11Z",
- "sonGun": "2026-09-15",
- "toplamKayit": 14260,
- "sonGunKayit": 2034,
- "sonGunFiyatsiz": 584,
- "sonGunDagilimSatir": 869,
- "tamKapsamliSonGun": "2026-09-14",
- "kimlikSapmaSayisi": 14,
+ "cekimZamaniUtc": "2026-09-16T05:15:19Z",
+ "sonGun": "2026-09-16",
+ "toplamKayit": 16303,
+ "sonGunKayit": 2038,
+ "sonGunFiyatsiz": 516,
+ "sonGunDagilimSatir": 942,
+ "tamKapsamliSonGun": "2026-09-15",
+ "kimlikSapmaSayisi": 11,
  "kimlikSapanlar": [
-  {
-   "tarih": "2026-09-15",
-   "fonKodu": "FCK",
-   "payXfiyat": 289749563.09,
-   "buyukluk": 388717671.26,
-   "tolerans": 80.65
-  },
-  {
-   "tarih": "2026-09-15",
-   "fonKodu": "FS1",
-   "payXfiyat": 134611205.58,
-   "buyukluk": 133561107.11,
-   "tolerans": 43.56
-  },
-  {
-   "tarih": "2026-09-15",
-   "fonKodu": "FS5",
-   "payXfiyat": 59890841.59,
-   "buyukluk": 57576570.15,
-   "tolerans": 12.69
-  },
   {
    "tarih": "2026-09-15",
    "fonKodu": "ZBD",
@@ -155,10 +134,17 @@
    "tam": true
   },
   "2026-09-15": {
-   "kayit": 2034,
-   "gecerli": 1450,
-   "dagilim": 869,
-   "fiyatsiz": 584,
+   "kayit": 2039,
+   "gecerli": 2031,
+   "dagilim": 2027,
+   "fiyatsiz": 8,
+   "tam": true
+  },
+  "2026-09-16": {
+   "kayit": 2038,
+   "gecerli": 1522,
+   "dagilim": 942,
+   "fiyatsiz": 516,
    "tam": false
   }
  },
