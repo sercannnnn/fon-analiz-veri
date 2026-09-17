@@ -1,6 +1,4 @@
-GJH	2026-08	şart 1: ağırlık toplamı 596.10
 KAC	2026-07	satır içi: 3/36 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-PSE	2026-09	sapma sebebi atanmamış: TEFAS sapması 0.31 puan, 0,05 üstü
 AC2	2026-08	ek PDF yok
 AC3	2026-08	ek PDF yok
 AC7	2026-08	ek PDF yok
@@ -9,13 +7,13 @@ AP6	2026-08	ek PDF yok
 BDC	2026-08	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BDI	2026-08	ek PDF yok
 BHH	2026-08	ek PDF yok
-BSD	2026-09	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BSD	2026-09	satır içi: 1/19 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BSE	2026-08	ek PDF yok
 BVD	2026-08	satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 CSH	2026-08	ek PDF yok
 DBP	2026-08	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Z30EA ZİRAAT PORTFÖY YÖNETİMİ )
 DHI	2026-08	ek PDF yok
-DNM	2026-08	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+DNM	2026-09	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DPT	2026-08	şart 2: 1 satıra birden çok ISIN atandı (AEFES AGHOL AKBNK AKSA ALGYO A)
 DRA	2025-01	satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DRH	2026-08	ek PDF yok
@@ -24,24 +22,24 @@ EDD	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: GOOGL GOOGLE IN
 ENA	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: GOOGL GOOGLE INC)
 ENS	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: GOOGL GOOGLE INC)
 ESP	2026-08	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
-FBZ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TPYGI.F2 TERA PORTFÖY TRYTRP00)
+FBZ	2026-09	şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TPYGI.F2 TERA PORTFÖY TRYTRP00)
 FFH	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: ISDW iShares MSCI EM IE00B27YC)
 FFP	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.12 puan, 0,05 üstü
 FNO	2026-08	satır içi: 1/42 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GMD	2026-08	şart 1: ağırlık toplamı 78.64
-GRL	2026-08	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+GRL	2026-09	satır içi: 1/4 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GTZ	2026-08	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
 HLA	2026-08	ek PDF yok
 HOA	2026-08	satır içi: 1/48 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 HTJ	2026-08	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: AIRBUS AIRBUS NL0000235190Y GR)
-HTS	2026-08	satır içi: 1/2 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+HTS	2026-09	satır içi: 1/2 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 INV	2026-04	şart 2: 3 satırda ISIN okunamadı (Bono: TRFGKYH92616_Rep. INVEO Tem. Y)
 IOV	2026-07	ek PDF yok
 KDI	2026-08	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 KRH	2026-08	ek PDF yok
 KUB	2026-08	satır içi: 1/18 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 MGE	2026-08	ek PDF yok
-MJH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.40 puan, 0,05 üstü
+MJH	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.87 puan, 0,05 üstü
 MJK	2026-08	ek PDF yok
 MSR	2026-08	ek PDF yok
 NAL	2026-08	ek PDF yok
@@ -57,7 +55,6 @@ NOA	2026-08	ek PDF yok
 NP1	2026-08	ek PDF yok
 NPK	2026-08	ek PDF yok
 NRM	2026-08	ek PDF yok
-NTB	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.11 puan, 0,05 üstü
 NTF	2026-08	ek PDF yok
 NZH	2026-08	satır içi: 1/26 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 OHI	2026-08	ek PDF yok
@@ -70,3 +67,16 @@ PDH	2026-08	ek PDF yok
 PDS	2026-08	ek PDF yok
 PFS	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.08 puan, 0,05 üstü
 PGE	2026-08	ek PDF yok
+PHY	2026-08	ek PDF yok
+PIL	2026-08	sapma sebebi atanmamış: TEFAS sapması 0.34 puan, 0,05 üstü
+PKF	2026-08	şart 2: 1 satırda ISIN okunamadı (A) HİSSE: TC HAZİNE VE MALİYE)
+PKU	2026-08	ek PDF yok
+PMH	2026-08	ek PDF yok
+PO7	2026-08	ek PDF yok
+PO8	2026-08	ek PDF yok
+POB	2026-08	ek PDF yok
+POF	2026-08	ek PDF yok
+POI	2026-08	ek PDF yok
+POU	2026-08	ek PDF yok
+PPO	2026-08	ek PDF yok
+PPU	2026-08	ek PDF yok
