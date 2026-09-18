@@ -1,4 +1,4 @@
-son_cekim_utc=2026-09-17T07:35:45Z
-tefas_gunluk_20260917.csv=18343 satir, son tarih 2026-09-17
-tefas_dagilim_20260917.csv=17053 satir, son tarih 2026-09-17
-hisse_son_gunluk.csv=707 satir, son tarih 2026-09-16
+son_cekim_utc=2026-09-18T06:03:00Z
+tefas_gunluk_20260918.csv=18341 satir, son tarih 2026-09-18
+tefas_dagilim_20260918.csv=17138 satir, son tarih 2026-09-18
+hisse_son_gunluk.csv=707 satir, son tarih 2026-09-17
