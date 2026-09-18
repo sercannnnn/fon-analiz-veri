@@ -80,3 +80,7 @@ POI	2026-08	ek PDF yok
 POU	2026-08	ek PDF yok
 PPO	2026-08	ek PDF yok
 PPU	2026-08	ek PDF yok
+PSR	2026-08	ek PDF yok
+PST	2026-08	ek PDF yok
+PYD	2026-08	ek PDF yok
+PYI	2026-08	ek PDF yok
