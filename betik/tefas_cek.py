@@ -13,7 +13,7 @@ Ciktilar:
   <cikti>/tefas_gunluk_<bit>.csv    tarih,fonKodu,fiyat,kisiSayisi,portfoyBuyukluk,tedPaySayisi
   <cikti>/tefas_dagilim_<bit>.csv   tarih,fonKodu + 56 varlik sinifi agirligi (yuzde)
 """
-import argparse, csv, json, os, sys, time
+import argparse, csv, gzip, json, os, re, sys, time
 from datetime import date, datetime, timedelta, timezone
 import requests
 
@@ -58,23 +58,71 @@ def govde(bas, bit):
 
 BEKLEME = (30, 60, 120, 240)    # denemeler arasi saniye; en kotu durumda uc basina ~8 dk
 
+# 21 EYLUL 2026 SERTLESTIRMESI (M86, gorev dosyasi bolum 2). HTTP 200 basari DEGILDIR: TEFAS hatali govdede de 200 doner ve
+# resultList bos gelir; eski hat bunu "sifir satir" diye yazip gunu sahte sifirla dolduruyordu (15 Eylul). Arizalar ayri sinif ve
+# ayri cikis koduyla: uc yok (404, yeniden denenmez), bicim (yanit beklenen alanlari tasimiyor, yeniden denenmez), bos yanit,
+# cekim (ag). Eksik alana sifir ya da bos yazilmaz: alan yoksa dosya uretilmez.
+CIKIS = dict(uc_yok=2, bicim=3, cekim=4, bos=6, saglik=7)
+TARIH_DESENI = re.compile(r"^\d{4}-\d{2}-\d{2}")   # yanitin tarih alani; biçim degisirse (GG.AA.YYYY gibi) bicim hatasidir
 
-def cek(uc, bas, bit, deneme=5):
-    """Tek aralik icin satirlari dondurur. Hata olursa artan araliklarla bes kez dener
-    (toplam bekleme yaklasik 8 dakika)."""
+
+class UcYok(Exception):
+    """HTTP 404: uc adi degismis ya da kaldirilmis; yeniden denemek anlamsizdir."""
+
+
+class BicimHatasi(Exception):
+    """Yanit beklenen bicimde degil: JSON degil, resultList yok, zorunlu alan yok, tarih deseni tutmuyor."""
+
+
+class BosYanit(Exception):
+    """HTTP 200 ama resultList bos: govde ya da uc degismis olabilir; basari sayilmaz."""
+
+
+def yanit_coz(r, uc, alanlar):
+    """Yanitin sozlesmesini sinar ve satir listesini dondurur. Basari olcutu HTTP kodu degil, icerigin bicimidir."""
+    try:
+        j = r.json()
+    except ValueError:
+        raise BicimHatasi(f"{uc}: yanit JSON degil (ilk 80 karakter: {r.text[:80]!r})")
+    if not isinstance(j, dict) or "resultList" not in j:
+        raise BicimHatasi(f"{uc}: yanitta resultList yok; gelen: {sorted(j)[:8] if isinstance(j, dict) else type(j).__name__}")
+    if j.get("errorMessage"):
+        raise RuntimeError(j["errorMessage"])
+    L = j["resultList"]
+    if not isinstance(L, list):
+        raise BicimHatasi(f"{uc}: resultList liste degil ({type(L).__name__})")
+    if not L:
+        raise BosYanit(f"{uc}: HTTP 200 ama resultList bos; basari sayilmaz")
+    ilk = L[0]
+    eksik = [k for k in alanlar if not isinstance(ilk, dict) or k not in ilk]
+    if eksik:
+        raise BicimHatasi(f"{uc}: zorunlu alan yok {eksik}; gelen alanlar {sorted(ilk)[:14] if isinstance(ilk, dict) else '?'}")
+    if not TARIH_DESENI.match(str(ilk.get("tarih") or "")):
+        raise BicimHatasi(f"{uc}: tarih deseni tutmuyor ({ilk.get('tarih')!r}); beklenen YYYY-AA-GG")
+    return L
+
+
+def cek(uc, bas, bit, alanlar, deneme=5):
+    """Tek aralik icin satirlari dondurur. Ag hatasi ve bos yanitta artan araliklarla bes kez dener (toplam bekleme yaklasik
+    8 dakika); 404 ve bicim hatasi yeniden denenmez, aninda yukari firlatilir."""
+    son = None
     for i in range(deneme):
         try:
             r = requests.post(KOK_UC + uc, json=govde(bas, bit), headers=BASLIK, timeout=180)
+            if r.status_code == 404:
+                raise UcYok(f"{uc}: HTTP 404, uc yok (adi degismis ya da kaldirilmis olabilir)")
             r.raise_for_status()
-            j = r.json()
-            if j.get("errorMessage"):
-                raise RuntimeError(j["errorMessage"])
-            return j.get("resultList") or []
+            return yanit_coz(r, uc, alanlar)
+        except (UcYok, BicimHatasi):
+            raise
         except Exception as e:
+            son = e
             print(f"  deneme {i+1}/{deneme} basarisiz ({uc} {bas}-{bit}): {e}", file=sys.stderr)
             if i < deneme - 1:
                 time.sleep(BEKLEME[min(i, len(BEKLEME) - 1)])
-    raise SystemExit(f"cekim basarisiz: {uc} {bas}-{bit}")
+    if isinstance(son, BosYanit):
+        raise son
+    raise RuntimeError(f"cekim basarisiz: {uc} {bas}-{bit}: {son}")
 
 
 def aylik_parcalar(bas, bit):
@@ -163,17 +211,20 @@ def uc_calistir(ad, bas, bit, cikti):
     satirlar, gorulen = [], set()
     for pb, pe in aylik_parcalar(bas, bit):
         t0 = time.time()
-        parca = cek(uc, pb, pe)
+        parca = cek(uc, pb, pe, alanlar)
         for x in parca:
             anahtar = (x["tarih"], x["fonKodu"])
             if anahtar in gorulen:
                 continue
             gorulen.add(anahtar)
-            satirlar.append([x.get(k) if x.get(k) is not None else "" for k in alanlar])
+            eksik = [k for k in alanlar if k not in x]
+            if eksik:      # alan yoksa sifir ya da bos yazilmaz; dosya uretilmez (M86)
+                raise BicimHatasi(f"{ad}: satirda zorunlu alan yok {eksik} ({x.get('tarih')} {x.get('fonKodu')})")
+            satirlar.append([x[k] if x[k] is not None else "" for k in alanlar])
         print(f"  {ad} {pb}-{pe}: {len(parca):,} satir, {time.time()-t0:.1f} s", file=sys.stderr)
 
     if not satirlar:
-        raise SystemExit(f"{ad}: hic satir gelmedi; rapor uretilmemeli")
+        raise BosYanit(f"{ad}: hic satir gelmedi; dosya uretilmedi")
 
     yol = os.path.join(cikti, dosya.format(bit))
     with open(yol, "w", newline="", encoding="utf-8") as f:
@@ -188,12 +239,58 @@ def uc_calistir(ad, bas, bit, cikti):
     return satirlar
 
 
+SAGLIK_EN_AZ_GUN = 5     # saglik sinamasi: yeni cekimin son gununden en az bu kadar takvim gunu onceki, arsivde de bulunan en yeni gun
+
+
+def arsiv_gunu_oku(arsiv, gun):
+    """arsiv/tefas_YYYY-MM.csv.gz icinden tek gunun satirlari: fonKodu -> (fiyat, tedPaySayisi, portfoyBuyukluk). Dosya yoksa {}."""
+    yol = os.path.join(arsiv or "", f"tefas_{gun[:7]}.csv.gz")
+    out = {}
+    if not os.path.exists(yol):
+        return out
+    with gzip.open(yol, "rt", encoding="utf-8", newline="") as h:
+        for r in csv.DictReader(h):
+            if r.get("tarih", "")[:10] == gun:
+                out[r["fonKodu"]] = (_f(r.get("fiyat")), _f(r.get("tedPaySayisi")), _f(r.get("portfoyBuyukluk")))
+    return out
+
+
+def saglik_sinamasi(satirlar, arsiv, en_az_gun=SAGLIK_EN_AZ_GUN):
+    """Gorev dosyasi bolum 3 (21 Eylul 2026): bilinen bir fonun bilinen bir gunune ait fiyat yeniden uretilebilmeli. Gun: yeni cekimin
+    son gununden en az en_az_gun takvim gunu onceki ve arsivde bulunan en yeni gun; fon: o gun arsivde buyuklugu en yuksek, fiyati pozitif
+    fon (belirlenimci, secim bilgisi tasimaz). Fiyat ve pay adedi arsivdekiyle birebir olmali. Donus dict(durum ok|farkli|olculemedi, ...);
+    'ok' olmadan son_cekim damgasi tazelenmez (gunluk_cron.sh)."""
+    i_t, i_k, i_f, i_p = FIYAT_ALAN.index("tarih"), FIYAT_ALAN.index("fonKodu"), FIYAT_ALAN.index("fiyat"), FIYAT_ALAN.index("tedPaySayisi")
+    gunler = sorted({s_[i_t][:10] for s_ in satirlar})
+    if not gunler:
+        return dict(durum="olculemedi", sebep="yeni cekimde gun yok")
+    son = datetime.strptime(gunler[-1], "%Y-%m-%d").date()
+    adaylar = [g for g in gunler if (son - datetime.strptime(g, "%Y-%m-%d").date()).days >= en_az_gun]
+    for g in reversed(adaylar):
+        ars = arsiv_gunu_oku(arsiv, g)
+        if not ars:
+            continue
+        secim = max(((k, v) for k, v in ars.items() if v[0] and v[0] > 0 and v[2]), key=lambda kv: kv[1][2], default=None)
+        if not secim:
+            continue
+        kod, (a_f, a_p, _) = secim
+        yeni = next((s_ for s_ in satirlar if s_[i_t][:10] == g and s_[i_k] == kod), None)
+        if yeni is None:
+            return dict(durum="farkli", gun=g, fonKodu=kod, sebep="fon yeni cekimde yok", arsivFiyat=a_f)
+        y_f, y_p = _f(yeni[i_f]), _f(yeni[i_p])
+        ayni = (y_f is not None and abs(y_f - a_f) < 1e-9) and (a_p is None or (y_p is not None and abs(y_p - a_p) < 0.5))
+        return dict(durum="ok" if ayni else "farkli", gun=g, fonKodu=kod, arsivFiyat=a_f, yeniFiyat=y_f, arsivPay=a_p, yeniPay=y_p)
+    return dict(durum="olculemedi", sebep=f"arsivde {en_az_gun} gunden eski ortak gun yok ({arsiv})")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bas", help="yyyyMMdd, varsayilan: bugun - 10 gun")
     ap.add_argument("--bit", help="yyyyMMdd, varsayilan: bugun")
     ap.add_argument("--uc", default="hepsi", choices=["fiyat", "dagilim", "hepsi"])
     ap.add_argument("--cikti", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "veri"))
+    ap.add_argument("--arsiv", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "arsiv"), help="saglik sinamasi icin aylik arsiv")
+    ap.add_argument("--saglik", action="store_true", help="bilinen fonun bilinen gununu arsivle karsilastir; farkli ise cikis 7")
     a = ap.parse_args()
 
     bugun = date.today()
@@ -202,13 +299,27 @@ def main():
     os.makedirs(a.cikti, exist_ok=True)
 
     sonuc = {}
-    for ad in (["fiyat", "dagilim"] if a.uc == "hepsi" else [a.uc]):
-        sonuc[ad] = uc_calistir(ad, bas, bit, a.cikti)
+    try:
+        for ad in (["fiyat", "dagilim"] if a.uc == "hepsi" else [a.uc]):
+            sonuc[ad] = uc_calistir(ad, bas, bit, a.cikti)
+    except UcYok as e:
+        print(f"HATA uc_yok: {e}", file=sys.stderr); sys.exit(CIKIS["uc_yok"])
+    except BicimHatasi as e:
+        print(f"HATA bicim: {e}", file=sys.stderr); sys.exit(CIKIS["bicim"])
+    except BosYanit as e:
+        print(f"HATA bos_yanit: {e}", file=sys.stderr); sys.exit(CIKIS["bos"])
+    except Exception as e:
+        print(f"HATA cekim: {e}", file=sys.stderr); sys.exit(CIKIS["cekim"])
     if "fiyat" in sonuc:
         k = kapsam_hesapla(sonuc["fiyat"], sonuc.get("dagilim"), datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
         yol = kapsam_yaz(a.cikti, k)
         print(f"{yol}: son gun {k['sonGun']}, kayit {k['sonGunKayit']:,}, fiyatsiz {k['sonGunFiyatsiz']:,}, "
               f"dagilim {k['sonGunDagilimSatir']:,}, tam kapsamli son gun {k['tamKapsamliSonGun']}, kimlik sapan {k['kimlikSapmaSayisi']}")
+        if a.saglik:
+            s = saglik_sinamasi(sonuc["fiyat"], a.arsiv)
+            print(f"saglik: {s}")
+            if s["durum"] == "farkli":
+                sys.exit(CIKIS["saglik"])
 
 
 if __name__ == "__main__":

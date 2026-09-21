@@ -82,6 +82,30 @@ def gecersiz_fiyat_ayikla(d):
     return d[~gecersiz].copy(), int(gecersiz.sum()), son_gun_fon
 
 
+VERI_YASI_UYARI_IS_GUNU = 2   # ölçü 13 (21 Eylül 2026, varsayım): depodaki en yeni veri günü ile bugün arasındaki iş günü farkı bunu aşarsa uyarı
+
+
+def is_gunu_sayisi(bas, bit):
+    """bas ile bit (date ya da ISO) arasındaki iş günü sayısı: bas hariç, bit dahil; hafta sonu ve doğrulanmış resmî kapanış günleri
+    sayılmaz. Ölçü 13: veri yaşı = is_gunu_sayisi(son veri günü, bugün)."""
+    b = bas if isinstance(bas, date) else date.fromisoformat(str(bas)[:10])
+    e = bit if isinstance(bit, date) else date.fromisoformat(str(bit)[:10])
+    if e <= b:
+        return 0
+    kapali = set()
+    for a, z in RESMI_KAPANIS:
+        a_, z_ = date.fromisoformat(a), date.fromisoformat(z)
+        x = a_ + timedelta(days=1)
+        while x < z_:
+            kapali.add(x); x += timedelta(days=1)
+    n, g = 0, b
+    while g < e:
+        g += timedelta(days=1)
+        if g.weekday() < 5 and g not in kapali:
+            n += 1
+    return n
+
+
 def son_is_gunu(gun):
     """gun (date ya da 'YYYY-AA-GG') tarihine eşit ya da ondan önceki son iş günü: hafta sonu ve doğrulanmış resmî kapanış
     aralığı (RESMI_KAPANIS: son seans ile ilk seans arasındaki günler) atlanır. Köprünün "defter teyit edildi" ölçütü

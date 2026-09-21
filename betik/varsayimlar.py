@@ -33,6 +33,7 @@ KAYITLAR = [
     ("B15", "denetim", "BUYUME_KAT", 46, "bekliyor", "20 seansta pay adedi ya da büyüklük bu katı aşarsa büyüme kaydı", ""),
     ("B16", "kap_izleme", "TASFIYE_KURUCU_ESIK", 52, "bekliyor", "aynı kurucuda pencere içinde bu kadar kamuya açık fon tasfiyesi kurucuyu kapatır", ""),
     ("B16", "kap_izleme", "TASFIYE_PENCERE_GUN", 52, "bekliyor", "tasfiye sayım penceresi (takvim günü)", ""),
+    ("B17", "takvim", "VERI_YASI_UYARI_IS_GUNU", 91, "bekliyor", "ölçü 13: son veri günü ile bugün arasındaki iş günü bunu aşarsa brifing 'veri eski' uyarısı", ""),
     ("O1", "oneri", "PARK_ASGARI_BUYUKLUK", 42, "onaylı", "park fonu asgari büyüklük (TL)", "13 Eylül 2026"),
     ("O2", "oneri", "PARK_MEVCUT_RISK_ESIT_KABUL", 59, "onaylı", "mevcut park fonu ancak en az onun kadar kazandıran ve daha az riskli adayla değişir (eşit risk kabul edilmez)", "15 Eylül 2026"),
     ("O3", "kapilar", "G2_AY", 10, "onaylı", "giriş kapısı 2: en az bu kadar ay ölçülebilir fiyat geçmişi", "12 Eylül 2026"),

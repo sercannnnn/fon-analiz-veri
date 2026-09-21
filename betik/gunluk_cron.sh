@@ -27,6 +27,13 @@ exec 9>"$KILIT"; flock -n 9 || { echo "onceki calisma suruyor, atlandi"; exit 0;
 DEPO="$HOME/fon-analiz"
 cd "$DEPO"
 echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) baslangic ==="
+# 21 EYLUL 2026 (gorev dosyasi, madde 2): yarim kalmis git islemi varsa kosu HEMEN durur. 15 Eylul 06.52 UTC'de gonderim yedegi
+# olan 'git pull --rebase' yarim kaldi, .git/rebase-merge acik kaldi; alti gun boyunca pull ve push sessizce basarisiz oldu,
+# cekimler makinede birikti (M91: sistemin kostugu makinede olcum yapilmadan teshis kesinlestirilmez).
+if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+  echo "HATA git_yarim_islem: .git/rebase-merge ya da .git/rebase-apply var; elle onarim gerekir (git rebase --abort ya da yedek dal), kosu durdu"
+  echo "=== bitis (git_yarim_islem) ==="; exit 5
+fi
 git pull -q --ff-only origin main || echo "uyari: pull basarisiz, yerel kopya ile devam"
 # Yedek calisma: bugunku cekim zaten yapildiysa (son_cekim.txt bugunun tarihini tasiyorsa) atla.
 # --zorla ile bu kontrol devre disi kalir (elle calistirma icin).
@@ -35,9 +42,11 @@ if [ -n "$bugun_bitti" ] && [ "${1:-}" != "--zorla" ]; then echo "bugunku cekim 
 
 # TEFAS cekimi. Kritik istir, ama korumasiz DEGILDIR: hata verirse betik olmez, sonuc kaydedilir ve
 # elde olan neyse gonderilir. Korumasiz birakmak, hatayi depoda gorunmez kilan seydi.
+# Cikis kodlari (M86): 0 temiz, 2 uc yok (404), 3 bicim, 4 ag, 6 bos yanit, 7 saglik sinamasi farkli. Saglik: bilinen fonun
+# bilinen gunu arsivdekiyle birebir yeniden uretilmeli; bu olmadan damga tazelenmez.
 tefas_kod=0
-python3 betik/tefas_cek.py --cikti veri || tefas_kod=$?
-[ "$tefas_kod" -ne 0 ] && echo "uyari: TEFAS cekimi basarisiz, cikis kodu $tefas_kod"
+python3 betik/tefas_cek.py --cikti veri --arsiv arsiv --saglik || tefas_kod=$?
+[ "$tefas_kod" -ne 0 ] && echo "uyari: TEFAS cekimi basarisiz ya da saglik sinamasi gecmedi, cikis kodu $tefas_kod"
 # Eski gunluk dosyalari temizle: 45 gunden eski tefas_gunluk_/tefas_dagilim_ dosyalari
 # (her dosya 10 gunluk pencere tasir; 45 gun yeterli ortusme birakir)
 find veri -name 'tefas_gunluk_*.csv' -mtime +45 -delete
@@ -57,13 +66,15 @@ gonder() {
   # Sabit adli kopyalar: Cowork tarih hesaplamadan hep ayni URL'den okur
   cp "$(ls -t veri/tefas_gunluk_*.csv | head -1)" veri/son_gunluk.csv
   cp "$(ls -t veri/tefas_dagilim_*.csv | head -1)" veri/son_dagilim.csv
-  # TAZELIK YANILTILAMAZ (M85). son_cekim_utc YALNIZCA cekim basariliysa bugune gecer. Cekim basarisizken de
+  # TAZELIK YANILTILAMAZ (M85). son_cekim_utc YALNIZCA cekim ve saglik sinamasi basariliysa bugune gecer. Cekim basarisizken de
   # bu damgayi tazelemek, eski veriyi taze gostermek olurdu; kapsam satiri ve tazelik alarmi buna bakiyor.
   # Her kosu ayrica son_deneme_utc birakir: "makine kostu ama TEFAS vermedi" ile "makine hic kosmadi" ayrilir.
+  # Gonderim basarisiz olursa damga geri alinir (asagida): damga yalnizca depoya ulasan kosunun damgasidir.
+  eski_damga=$(grep -m1 '^son_cekim_utc=' son_cekim.txt 2>/dev/null || echo "son_cekim_utc=bilinmiyor")
   if [ "$tefas_kod" -eq 0 ]; then
     damga="son_cekim_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   else
-    damga=$(grep -m1 '^son_cekim_utc=' son_cekim.txt 2>/dev/null || echo "son_cekim_utc=bilinmiyor")
+    damga="$eski_damga"
   fi
   {
     echo "$damga"
@@ -81,18 +92,36 @@ gonder() {
     git commit -q -m "$1 $(date -u +%Y-%m-%d)"
     # Gonderim iki kez denenir. Yine olmazsa betik OLMEZ: durum kaydedilir, kosu devam eder ve
     # cikis kodu 3 ile biter. Eskiden burada 'set -e' betigi oldururdu ve geriye yalnizca sessizlik kalirdi.
-    if ! git push -q origin main; then
-      if git pull -q --rebase origin main && git push -q origin main; then
-        echo "gonderildi (rebase sonrasi): $(git rev-parse --short HEAD)"
-      else
-        gonderim_kod=3
-        echo "HATA: depoya gonderim basarisiz. En olasi sebep GitHub kimlik belgesinin suresinin dolmasidir."
-        echo "      Kontrol: git -C $DEPO remote -v ; git -C $DEPO push origin main"
-        echo "      Gonderilemeyen yerel isleme: $(git rev-parse --short HEAD)"
-        return 0
-      fi
+    # Yedek yol 'git pull --rebase' yarim kalirsa hemen geri alinir (--abort); acik rebase klasoru sonraki her kosuyu oldururdu (15 Eylul).
+    gonderildi=0
+    if git push -q origin main; then
+      gonderildi=1; echo "gonderildi: $(git rev-parse --short HEAD)"
+    elif git pull -q --rebase origin main && git push -q origin main; then
+      gonderildi=1; echo "gonderildi (rebase sonrasi): $(git rev-parse --short HEAD)"
     else
-      echo "gonderildi: $(git rev-parse --short HEAD)"
+      [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ] && { git rebase --abort 2>/dev/null; echo "uyari: yarim rebase geri alindi"; }
+    fi
+    if [ "$gonderildi" -eq 1 ]; then
+      # Gonderim basarili sayilmaz, olculur: depo ile yerel ileri geri sifir olmali (gorev dosyasi, madde 3).
+      git fetch -q origin main 2>/dev/null
+      ileri=$(git rev-list --count origin/main..HEAD 2>/dev/null || echo "?"); geri=$(git rev-list --count HEAD..origin/main 2>/dev/null || echo "?")
+      if [ "$ileri" != "0" ] || [ "$geri" != "0" ]; then
+        gonderildi=0; echo "HATA: gonderimden sonra depo ile yerel esit degil (yerel ileri $ileri, uzak ileri $geri)"
+      fi
+    fi
+    if [ "$gonderildi" -ne 1 ]; then
+      gonderim_kod=3
+      # Damga geri alinir: depoya ulasmayan kosu taze sayilmaz; boylece 08.50 yedek kosusu atlanmaz ve alarm susmaz.
+      if [ "$damga" != "$eski_damga" ]; then
+        sed -i "1s|^son_cekim_utc=.*|$eski_damga|" son_cekim.txt
+        echo "gonderim=basarisiz $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> son_cekim.txt
+        git add son_cekim.txt; git commit -q --amend --no-edit
+        echo "uyari: son_cekim_utc damgasi geri alindi ($eski_damga)"
+      fi
+      echo "HATA: depoya gonderim basarisiz. Olasi sebepler: GitHub kimlik belgesi, uzak dalin ilerlemesi, yarim git islemi."
+      echo "      Kontrol: git -C $DEPO status -sb ; git -C $DEPO push origin main"
+      echo "      Gonderilemeyen yerel isleme: $(git rev-parse --short HEAD)"
+      return 0
     fi
   fi
 }
@@ -147,7 +176,8 @@ fi
 # KAP kuyrugunun ciktilari ikinci gonderimle gider; basarisiz olsa bile TEFAS verisi coktan depodadir
 gonder "KAP icerik turu"
 echo "=== bitis (tefas=$tefas_kod icerik=$ic_kod gonderim=$gonderim_kod) ==="
-# Cikis kodu cron gunlugunde gorunur: 0 temiz, 3 gonderim basarisiz, 4 TEFAS cekimi basarisiz.
+# Cikis kodu cron gunlugunde gorunur: 0 temiz, 3 gonderim basarisiz, 4 TEFAS cekimi ya da saglik sinamasi basarisiz, 5 yarim git islemi.
+# Kosu ancak uc kosul birden saglaninca temizdir: saglik sinamasi gecti (tefas_kod 0), gonderim basarili, depo ile yerel esit.
 if [ "$gonderim_kod" -ne 0 ]; then exit 3; fi
 if [ "$tefas_kod" -ne 0 ]; then exit 4; fi
 exit 0
