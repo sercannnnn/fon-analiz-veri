@@ -364,8 +364,11 @@ def test_kuyruk_turu_duman():
         return
     d = tempfile.mkdtemp(); veri = os.path.join(d, "veri"); arsiv = os.path.join(d, "arsiv"); os.makedirs(veri)
     json.dump({"K": dict(gecti=True, sinavSurumu=F.SINAV_SURUM, sonuc="gecti", duzen="standart")}, open(os.path.join(veri, "kurucu_duzen.json"), "w", encoding="utf-8"))
-    kunye = {"F1": dict(fonKodu="F1", kurucu="K", fundOid="o1", fonTipi="YF", durum="faal", fonAdi="F1 FONU")}
+    kunye = {"F1": dict(fonKodu="F1", kurucu="K", fundOid="o1", fonTipi="YF", durum="faal", fonAdi="F1 FONU"),
+             "F2": dict(fonKodu="F2", kurucu="K", fundOid="o2", fonTipi="YF", durum="faal", fonAdi="F2 FONU")}
     hedef = F.hedef_ay(date.today())
+    # F2: kuyruk 'yayimlandi' der, arsivde satiri yok -> denetim kurtarma kuyruguna alir; kurtarma normal turdan sonra, ayri butceyle
+    json.dump({"F2": dict(durum="yayimlandi", son=hedef, surum=F.AYRISTIRICI_SURUM, bildirim=99)}, open(os.path.join(veri, "icerik_kuyruk.json"), "w", encoding="utf-8"))
     x = dict(disclosureIndex=123, publishDate="05." + hedef[5:7] + "." + hedef[:4] + " 10:00:00", subject="Portföy Dağılım Raporu")
     # yayım günü hedef ayın içinde olursa rapor ayı bir önceki ay olur; bir sonraki ayın 5'i verilir
     yy, aa = int(hedef[:4]), int(hedef[5:7]); aa2, yy2 = (aa + 1, yy) if aa < 12 else (1, yy + 1)
@@ -377,7 +380,7 @@ def test_kuyruk_turu_duman():
     eski = {k: getattr(F, k) for k in ("kurucu_sinavi", "son_raporlar", "raporlar", "rapor_isle")}
     try:
         F.kurucu_sinavi = lambda *a, **k: ([], {})
-        F.son_raporlar = lambda oids, bas, bit: {"F1": x}
+        F.son_raporlar = lambda oids, bas, bit: {"F1": x, "F2": dict(x, disclosureIndex=124)}
         F.raporlar = lambda *a, **k: [x]
         F.rapor_isle = lambda f, x_, *a, **k: ("yayimlandi", "", satir, bilgi)
         durum, ozet = F.kuyruk_turu(kunye, veri, arsiv)
@@ -387,8 +390,11 @@ def test_kuyruk_turu_duman():
     ky = json.load(open(os.path.join(veri, "icerik_kuyruk.json"), encoding="utf-8"))["F1"]
     assert ky["durum"] == "yayimlandi" and ky["satir"] == 1 and ky["surum"] == F.AYRISTIRICI_SURUM and ky["duzen"] == "standart"
     assert ky["toplamTablosu"]["nav"] == 990.0 and ky["bildirim"] == 123 and ky["portfoyGunu"] == hedef + "-04" and ky["son"] == hedef
-    assert durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 1 and durum["satirBuTur"] == 1 and durum["kuyrukArsivSapmasi"] == 0
+    assert durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 1 and durum["satirBuTur"] == 2 and durum["kuyrukArsivSapmasi"] == 1
     assert durum["kuyrukArsivBekleyen"] == 0 and isinstance(durum["arsivdeKuyruksuz"], dict)
+    ky2 = json.load(open(os.path.join(veri, "icerik_kuyruk.json"), encoding="utf-8"))
+    assert durum["kurtarmaIslenen"] == 1 and durum["kurtarmaButce"] == F.KURTARMA_BUTCE
+    assert ky2["F2"]["durum"] == "yayimlandi" and ky2["F2"]["bildirim"] == 124 and durum["islenen"] == 2
     assert os.path.exists(os.path.join(veri, "kuyruk_arsiv_sapmasi.txt"))
     assert os.path.exists(os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")) and os.path.exists(os.path.join(veri, "fon_icerik_ozet.csv"))
 

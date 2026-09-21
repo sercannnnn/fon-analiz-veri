@@ -1671,7 +1671,8 @@ def hisse_evreni_yaz(veri, arsiv):
     return len(kodlar)
 
 
-YENIDEN_CEKIM_TAVAN = 50   # 22 Eylul 2026 (Chat): kuyruk-arsiv sapmasi tur basina en cok bu kadar fonu yeniden cekim kuyruguna alir; kalani sonraki turlara dagilir
+YENIDEN_CEKIM_TAVAN = 50   # 22 Eylul 2026 (Chat, onayli): kuyruk-arsiv sapmasi tur basina en cok bu kadar fonu kurtarma kuyruguna alir; kalani sonraki turlara dagilir
+KURTARMA_BUTCE = 120       # kurtarma asamasinin KENDI istek butcesi (varsayim): normal turun 400'unden ALMAZ, ona da vermez; eski veriyi kurtarmak icin yeni veri kacirilmaz
 
 
 def kuyruk_arsiv_denetimi(ky, arsiv):
@@ -1775,7 +1776,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             onbellek.update(son_raporlar({kunye[f]["fundOid"] for f in eksik}, bas, bit))
         # Talimat 11: butce bolusumu. Listesi olmayan fonlar (yeni) once ve butcenin tamamina kadar; eski surumle yayimlanmis
         # fonlar (yeniden) kalan butceyle, gunlere yayilarak. Boylece butcenin en az YENI_FON_PAYI'i yeni kapsama gider.
-        yeni_l, yeniden_l = [], []
+        yeni_l, yeniden_l, kurtarma_l = [], [], []
         for f in sorgulanacak:
             x = onbellek.get(f); d = ky.get(f, {})
             if not x:
@@ -1787,11 +1788,15 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 ky[f]["durum"] = "yayimlandi" if d.get("son") >= hedef else "rapor_yok_bu_ay"
                 ky[f]["sebep"] = "" if d.get("son") == hedef else f"bu ayın raporu yok; son rapor {d['son']}"
                 kova[ky[f]["durum"]].append(f); continue
-            (yeniden_l if d.get("son") and d["son"] >= rap_ay else yeni_l).append((f, x, d, rap_ay))
+            if str(d.get("sapma") or "").startswith("kuyruk_arsiv_sapmasi") and not d.get("son"):
+                kurtarma_l.append((f, x, d, rap_ay))          # kuyruk-arsiv sapmasi: ayri asama, ayri butce (22 Eylul 2026, Chat sarti)
+            else:
+                (yeniden_l if d.get("son") and d["son"] >= rap_ay else yeni_l).append((f, x, d, rap_ay))
         onc = park_aday_kumesi(veri)                          # M60/M64: park aday kumesi once (60 numarali not)
         yeni_l.sort(key=lambda q: q[0] not in onc); yeniden_l.sort(key=lambda q: q[0] not in onc)
         park_oncelik[0] = sum(1 for q in yeni_l + yeniden_l if q[0] in onc)
-        for f, x, d, rap_ay in yeni_l + yeniden_l:
+        def _fon_isle(f, x, d, rap_ay):
+            nonlocal islenen, yazilan
             kur = kunye[f]["kurucu"]; yeniden = bool(d.get("son") and d["son"] >= rap_ay)   # yeni fonlar listede once; butce onlara gider
             islenen += 1
             if yeniden:
@@ -1829,10 +1834,25 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 if durum == "hata":
                     hata.append((f, ray, sebep))
                 ozet.append([f, ray, kur, bilgi.get("duzen", "-"), bilgi.get("satir", 0), bilgi.get("toplam", ""), bilgi.get("gun") or "", bilgi.get("sapma") if bilgi.get("sapma") is not None else "", "", bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), "", bilgi.get("eksikKalem", ""), bilgi.get("sicSinanan", ""), bilgi.get("sicHata", ""), "", "", "", "", durum, sebep, OZET_NOT])
+        for f, x, d, rap_ay in yeni_l + yeniden_l:
+            _fon_isle(f, x, d, rap_ay)
     except ButceBitti:
         print(f"günlük istek bütçesi ({ISTEK.butce}) bitti; kuyruk yarın devam eder", file=sys.stderr)
     except Ertelendi as e:
         print(f"listeleme ertelendi: {e}", file=sys.stderr)
+    # ---- Kurtarma asamasi (22 Eylul 2026, Chat sarti): normal tur bittikten SONRA, kendi butcesiyle. Normal turun kotasindan almaz,
+    # ona vermez; buyuk birikimde gunun yeni raporlari yine cekilmis olur. Butce tam KURTARMA_BUTCE istektir (o ana kadar harcanan + tavan).
+    kurtarma_islenen = 0
+    if kurtarma_l:
+        ISTEK.butce = ISTEK.sayi + KURTARMA_BUTCE
+        try:
+            for f, x, d, rap_ay in kurtarma_l:
+                _fon_isle(f, x, d, rap_ay); kurtarma_islenen += 1
+        except ButceBitti:
+            print(f"kurtarma bütçesi ({KURTARMA_BUTCE}) bitti; {len(kurtarma_l) - kurtarma_islenen} fon sonraki turu bekliyor", file=sys.stderr)
+        except Ertelendi as e:
+            print(f"kurtarma ertelendi: {e}", file=sys.stderr)
+        print(f"kurtarma: {kurtarma_islenen}/{len(kurtarma_l)} fon islendi (ayri butce {KURTARMA_BUTCE})", file=sys.stderr)
 
     # ---- ciktilar
     with open(os.path.join(veri, "fon_icerik_son.csv"), "w", newline="", encoding="utf-8") as fh:
@@ -1876,7 +1896,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     json_yaz(ky_yol, ky)
     durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi" if kova_toplami == toplam_fon else "denklesmedi",
                  sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
-                 islenen=islenen, kuyrukArsivSapmasi=len(kuyruk_sapma), kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 islenen=islenen, kuyrukArsivSapmasi=len(kuyruk_sapma), kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz,
+                 kurtarmaIslenen=kurtarma_islenen, kurtarmaButce=KURTARMA_BUTCE, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
                  kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
                  kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
                  kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
