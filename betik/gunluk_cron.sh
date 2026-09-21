@@ -85,6 +85,30 @@ gonder() {
     done
     [ -s veri/hisse_hata.txt ] && echo "hisse_hata=$(tr '\n' ' ' < veri/hisse_hata.txt)"
   } > son_cekim.txt
+  # M92 (Chat, 21 Eylul 2026): isleme adimi, uretilen dosyalar bicim denetiminden gecmeden calismaz. JSON ayristirilabilmeli, metin
+  # dosyasinda cakisma imi olmamali, gzip arsivler acilabilmeli. Gecmezse isleme YAPILMAZ ve kosu cikis 3 ile biter; zincir && ile degil
+  # acik kosulla kurulur (birlestirme betiginin dusup ardindaki islemenin yine de yapildigi 21 Eylul vakasi).
+  if ! python3 - <<'PY'
+import json, glob, gzip, sys
+hata = []
+for p in glob.glob("veri/*.json"):
+    try: json.load(open(p, encoding="utf-8"))
+    except Exception as e: hata.append(f"{p}: JSON degil ({e})")
+for p in glob.glob("veri/*.csv") + glob.glob("veri/*.txt") + ["son_cekim.txt"]:
+    try:
+        if b"<<<<<<<" in open(p, "rb").read(): hata.append(f"{p}: cakisma imi")
+    except FileNotFoundError: pass
+for p in glob.glob("arsiv/*.gz"):
+    try:
+        with gzip.open(p, "rb") as g: g.read(64)
+    except Exception as e: hata.append(f"{p}: gzip acilamadi ({e})")
+if hata:
+    print("BICIM DENETIMI GECMEDI: " + "; ".join(hata[:8]), file=sys.stderr); sys.exit(1)
+print("bicim denetimi gecti")
+PY
+  then
+    gonderim_kod=3; echo "HATA: bicim denetimi gecmedi, isleme yapilmadi (M92)"; return 0
+  fi
   git add -A veri arsiv son_cekim.txt   # veri/hisse_son_gunluk.csv, veri/hisse_hata.txt, arsiv/hisse_*.csv.gz dahil
   if git diff --cached --quiet; then
     echo "degisiklik yok"

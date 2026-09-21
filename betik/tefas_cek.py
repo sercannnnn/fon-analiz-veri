@@ -294,6 +294,7 @@ def sabit_referans_sinamasi(referans_yolu, cek_fn=None):
     if not refler:
         return dict(durum="olculemedi", sebep="referans dosyasi bos", kayitlar=[])
     cek_fn = cek_fn or (lambda g: cek("fonGnlBlgSiraliGetir", g, g, FIYAT_ALAN))
+    # Doğrulama sütunu 'bekliyor' içeren kayıt henüz elle teyit edilmemiştir: farklıysa UYARI, başarısızlık değil (Chat, 21 Eylül 2026).
     out, durum = [], "ok"
     for gun in sorted({r["tarih"][:10] for r in refler}):
         g = gun.replace("-", "")
@@ -312,9 +313,19 @@ def sabit_referans_sinamasi(referans_yolu, cek_fn=None):
             y_f, y_p = (_f(x.get("fiyat")), _f(x.get("tedPaySayisi"))) if x else (None, None)
             r_f, r_p = _f(r.get("fiyat")), _f(r.get("tedPaySayisi"))
             ayni = x is not None and y_f is not None and abs(y_f - r_f) < 1e-9 and (r_p is None or (y_p is not None and abs(y_p - r_p) < 0.5))
-            out.append(dict(fonKodu=r["fonKodu"], gun=gun, durum="ok" if ayni else "farkli", referansFiyat=r_f, gelenFiyat=y_f, referansPay=r_p, gelenPay=y_p))
-            if not ayni:
+            bekliyor = "bekliyor" in (r.get("dogrulama") or "").lower()
+            k_durum = "ok" if ayni else ("uyari" if bekliyor else "farkli")
+            out.append(dict(fonKodu=r["fonKodu"], gun=gun, durum=k_durum, referansFiyat=r_f, gelenFiyat=y_f, referansPay=r_p, gelenPay=y_p, teyit=("bekliyor" if bekliyor else "elle")))
+            if k_durum == "farkli":
                 durum = "farkli"
+            elif k_durum == "uyari" and durum == "ok":
+                durum = "uyari"
+    if durum == "farkli":
+        # Sinir (Chat, 21 Eylul 2026): iki farkli sebep ayni sinyali verir; cekici bozulmus ya da TEFAS kendi kaydini duzeltmis olabilir.
+        print("saglik sabit referans FARKLI: cekicinin bozulmasi ile TEFAS'in kaydi duzeltmesi bu sinamayla AYRILAMAZ; ikinci bir referans "
+              "kaydiyla capraz kontrol gerekir (tek referans kalirsa tek bir TEFAS duzeltmesi hatti kalici durdurur)", file=sys.stderr)
+    elif durum == "uyari":
+        print("saglik sabit referans UYARI: elle teyit edilmemis kayit farkli geldi; teyit gelene kadar basarisizlik sayilmaz", file=sys.stderr)
     return dict(durum=durum, kayitlar=out)
 
 
