@@ -283,6 +283,41 @@ def saglik_sinamasi(satirlar, arsiv, en_az_gun=SAGLIK_EN_AZ_GUN):
     return dict(durum="olculemedi", sebep=f"arsivde {en_az_gun} gunden eski ortak gun yok ({arsiv})")
 
 
+def sabit_referans_sinamasi(referans_yolu, cek_fn=None):
+    """Kendine referans sorunu (21 Eylul 2026, Chat): arsivden secilen hareketli gun surukleyi yakalar ama sistematik bozulmayi yakalamaz;
+    arsiv de ayni hatli kosuyla yazildiysa hatali veri hatali veriyle eslesir. Bu yuzden depoda SABIT, elle dogrulanmis referans kayitlari
+    durur (veri/saglik_referans.csv: fonKodu, tarih, fiyat, tedPaySayisi, kaynak, dogrulama). Her referans gunu TEFAS'tan tek gunluk
+    istekle yeniden cekilir ve kayitla birebir karsilastirilir. Donus dict(durum ok|farkli|olculemedi, kayitlar=[...])."""
+    if not referans_yolu or not os.path.exists(referans_yolu):
+        return dict(durum="olculemedi", sebep=f"referans dosyasi yok ({referans_yolu})", kayitlar=[])
+    refler = [r for r in csv.DictReader(open(referans_yolu, encoding="utf-8")) if r.get("fonKodu") and r.get("tarih")]
+    if not refler:
+        return dict(durum="olculemedi", sebep="referans dosyasi bos", kayitlar=[])
+    cek_fn = cek_fn or (lambda g: cek("fonGnlBlgSiraliGetir", g, g, FIYAT_ALAN))
+    out, durum = [], "ok"
+    for gun in sorted({r["tarih"][:10] for r in refler}):
+        g = gun.replace("-", "")
+        try:
+            satirlar = cek_fn(g)
+        except Exception as e:
+            for r in refler:
+                if r["tarih"][:10] == gun:
+                    out.append(dict(fonKodu=r["fonKodu"], gun=gun, durum="olculemedi", sebep=str(e)[:120]))
+            durum = "farkli" if durum == "farkli" else "olculemedi"
+            continue
+        for r in refler:
+            if r["tarih"][:10] != gun:
+                continue
+            x = next((s_ for s_ in satirlar if s_.get("fonKodu") == r["fonKodu"] and str(s_.get("tarih", ""))[:10] == gun), None)
+            y_f, y_p = (_f(x.get("fiyat")), _f(x.get("tedPaySayisi"))) if x else (None, None)
+            r_f, r_p = _f(r.get("fiyat")), _f(r.get("tedPaySayisi"))
+            ayni = x is not None and y_f is not None and abs(y_f - r_f) < 1e-9 and (r_p is None or (y_p is not None and abs(y_p - r_p) < 0.5))
+            out.append(dict(fonKodu=r["fonKodu"], gun=gun, durum="ok" if ayni else "farkli", referansFiyat=r_f, gelenFiyat=y_f, referansPay=r_p, gelenPay=y_p))
+            if not ayni:
+                durum = "farkli"
+    return dict(durum=durum, kayitlar=out)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bas", help="yyyyMMdd, varsayilan: bugun - 10 gun")
@@ -290,7 +325,8 @@ def main():
     ap.add_argument("--uc", default="hepsi", choices=["fiyat", "dagilim", "hepsi"])
     ap.add_argument("--cikti", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "veri"))
     ap.add_argument("--arsiv", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "arsiv"), help="saglik sinamasi icin aylik arsiv")
-    ap.add_argument("--saglik", action="store_true", help="bilinen fonun bilinen gununu arsivle karsilastir; farkli ise cikis 7")
+    ap.add_argument("--saglik", action="store_true", help="hareketli gun (arsiv) ve sabit referans (saglik_referans.csv) sinamasi; farkli ise cikis 7")
+    ap.add_argument("--referans", default=None, help="sabit referans dosyasi; varsayilan <cikti>/saglik_referans.csv")
     a = ap.parse_args()
 
     bugun = date.today()
@@ -317,8 +353,10 @@ def main():
               f"dagilim {k['sonGunDagilimSatir']:,}, tam kapsamli son gun {k['tamKapsamliSonGun']}, kimlik sapan {k['kimlikSapmaSayisi']}")
         if a.saglik:
             s = saglik_sinamasi(sonuc["fiyat"], a.arsiv)
-            print(f"saglik: {s}")
-            if s["durum"] == "farkli":
+            print(f"saglik hareketli gun: {s}")
+            r = sabit_referans_sinamasi(a.referans or os.path.join(a.cikti, "saglik_referans.csv"))
+            print(f"saglik sabit referans: {r}")
+            if s["durum"] == "farkli" or r["durum"] == "farkli":
                 sys.exit(CIKIS["saglik"])
 
 
