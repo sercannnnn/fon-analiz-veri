@@ -1671,6 +1671,21 @@ def hisse_evreni_yaz(veri, arsiv):
     return len(kodlar)
 
 
+def kuyruk_arsiv_denetimi(ky, arsiv):
+    """22 Eylul 2026 (Chat): kuyruk ile arsiv birbirini tutmuyor ve bunu hicbir sey denetlemiyordu. Kuyruk metin (otomatik birlesir), arsiv
+    ikili (birlesmez); yarim kalan her islem ayni izi birakir: kayit 'yayimlandi' der, satir yoktur, fon bir daha cekilmez (15 Eylul: 29 fon).
+    Kuyrukta yayimlandi isaretli her fon-ay cifti icin arsivde satir aranir. Donus: [(fon, ay)] eksikler. Bir kaydin 'tamam' demesi isin
+    yapildigini gostermez; denetim her kosuda calisir."""
+    var = {}
+    for f, d in ky.items():
+        if d.get("durum") == "yayimlandi" and d.get("son"):
+            ay = str(d["son"])[:7]
+            if ay not in var:
+                yol = os.path.join(arsiv, f"fon_icerik_{ay}.csv.gz")
+                var[ay] = {s[0] for s in gz_oku(yol) if len(s) > 1 and str(s[1])[:7] == ay} if os.path.exists(yol) else set()
+    return sorted((f, str(d["son"])[:7]) for f, d in ky.items() if d.get("durum") == "yayimlandi" and d.get("son") and f not in var.get(str(d["son"])[:7], set()))
+
+
 def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     global kd_yol_global
     bugun = date.today(); hedef = hedef_ay(bugun)
@@ -1685,8 +1700,20 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     rows = tefas_dagilim_yukle(veri, arsiv); evren = bist_evren_yukle(veri); byf_yukle(veri); sapma_sebepleri_yukle(veri)
     HISSE_KAPANIS.update(hisse_kapanis_yukle(arsiv))       # M70: portfoy gunu oylamasi
     isin_kod_haritasi(arsiv, evren)                         # 72 numarali not: Garanti duzeni ISIN -> kod
+    # Kuyruk-arsiv tutarlilik denetimi (22 Eylul 2026): eksik fon-ay ciftleri uyariyla yazilir ve yeniden cekim kuyruguna alinir
+    # ('son' silinir -> yeni fon gibi once islenir; iz 'sapma' alaninda kalir).
+    kuyruk_sapma = kuyruk_arsiv_denetimi(ky, arsiv)
+    with open(os.path.join(veri, "kuyruk_arsiv_sapmasi.txt"), "w", encoding="utf-8") as fh:
+        for f, ay in kuyruk_sapma:
+            fh.write(f"{f}\t{ay}\tkuyruk yayimlandi, arsivde satir yok; yeniden cekim kuyruguna alindi {bugun.isoformat()}\n")
+            d = ky.get(f, {})
+            ky[f] = {k: v for k, v in d.items() if k in ("bildirim", "yayim", "portfoyGunu", "raporBasligi")}
+            ky[f]["sapma"] = f"kuyruk_arsiv_sapmasi {ay}"
+    if kuyruk_sapma:
+        print(f"UYARI kuyruk_arsiv_sapmasi: {len(kuyruk_sapma)} fon-ay kuyrukta yayimlandi ama arsivde yok; yeniden cekim kuyruguna alindi: "
+              + ", ".join(f"{f} {ay}" for f, ay in kuyruk_sapma[:20]) + (" ..." if len(kuyruk_sapma) > 20 else ""), file=sys.stderr)
     kd_yol2 = os.path.join(veri, "kosu_durumu.json")
-    kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi"); json_yaz(kd_yol2, kdur)
+    kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi", kuyrukArsivSapmasi=len(kuyruk_sapma)); json_yaz(kd_yol2, kdur)
     bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
 
     # ---- Asama B: kurucu sinavi (butcenin SINAV_PAYI'na kadar), oncelikli
@@ -1827,7 +1854,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     json_yaz(ky_yol, ky)
     durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi" if kova_toplami == toplam_fon else "denklesmedi",
                  sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
-                 islenen=islenen, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 islenen=islenen, kuyrukArsivSapmasi=len(kuyruk_sapma), yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
                  kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
                  kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
                  kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",

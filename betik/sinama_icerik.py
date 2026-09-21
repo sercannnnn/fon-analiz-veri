@@ -341,6 +341,19 @@ def test_m59_kurucu_duzeyinde_ihracci():
     assert all(d["kurucu"] == "K2" for d in icerik_kapsam.kurucu_ihracci(S, kur, kurucular={"K2"}))
 
 
+def test_kuyruk_arsiv_denetimi():
+    """22 Eylül 2026 (Chat): kuyrukta yayımlandı işaretli her fon-ay çifti arşivde satır taşımalı; taşımayan kuyruk_arsiv_sapmasi ile döner."""
+    if F is None:
+        return
+    d = tempfile.mkdtemp(); ars = os.path.join(d, "arsiv"); os.makedirs(ars)
+    with gzip.open(os.path.join(ars, "fon_icerik_2026-08.csv.gz"), "wt", encoding="utf-8", newline="") as h:
+        h.write("fonKodu,raporTarihi,x\nF1,2026-08,1\nF3,2026-08,1\n")
+    ky = {"F1": dict(durum="yayimlandi", son="2026-08"), "F2": dict(durum="yayimlandi", son="2026-08"), "F3": dict(durum="hata", son="2026-08"),
+          "F4": dict(durum="yayimlandi", son="2026-07"), "F5": dict(durum="kapsam_disi")}
+    assert F.kuyruk_arsiv_denetimi(ky, ars) == [("F2", "2026-08"), ("F4", "2026-07")]      # F2 satırsız, F4'ün ay dosyası yok; F3 yayımlandı değil
+    assert F.kuyruk_arsiv_denetimi({"F1": dict(durum="yayimlandi", son="2026-08")}, ars) == []
+
+
 def test_kuyruk_turu_duman():
     """80 numaralı not, bölüm 1: sınanmayan yol ölçülmeyen ölçüdür. Kuyruk turu ağa çıkmadan, tek fonluk sahte raporla koşar: kuyruk kaydı
     yazılıyor mu, alanları yerinde mi (satir, surum, duzen, toplamTablosu, bildirim, portfoyGunu), arşiv dosyası ve koşu durumu üretiliyor mu.
@@ -372,7 +385,8 @@ def test_kuyruk_turu_duman():
     ky = json.load(open(os.path.join(veri, "icerik_kuyruk.json"), encoding="utf-8"))["F1"]
     assert ky["durum"] == "yayimlandi" and ky["satir"] == 1 and ky["surum"] == F.AYRISTIRICI_SURUM and ky["duzen"] == "standart"
     assert ky["toplamTablosu"]["nav"] == 990.0 and ky["bildirim"] == 123 and ky["portfoyGunu"] == hedef + "-04" and ky["son"] == hedef
-    assert durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 1 and durum["satirBuTur"] == 1
+    assert durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 1 and durum["satirBuTur"] == 1 and durum["kuyrukArsivSapmasi"] == 0
+    assert os.path.exists(os.path.join(veri, "kuyruk_arsiv_sapmasi.txt"))
     assert os.path.exists(os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")) and os.path.exists(os.path.join(veri, "fon_icerik_ozet.csv"))
 
 
