@@ -84,3 +84,4 @@ PSR	2026-08	ek PDF yok
 PST	2026-08	ek PDF yok
 PYD	2026-08	ek PDF yok
 PYI	2026-08	ek PDF yok
+RIK	2026-08	satır içi: 1/64 satırda yüzde sütunu rayiç / toplam ile tutmuyor

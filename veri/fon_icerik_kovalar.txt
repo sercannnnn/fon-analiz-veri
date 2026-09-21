@@ -998,47 +998,21 @@ RE6	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RE7	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RE8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RHD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RIA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RIH	kuyrukta	sırası gelmedi
-RIK	kuyrukta	sırası gelmedi
-RJG	kuyrukta	sırası gelmedi
-RKC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RKH	kuyrukta	sırası gelmedi
+RIK	hata	satır içi: 1/64 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 RKL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RKS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RKV	kuyrukta	sırası gelmedi
-RLH	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RO1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ROD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-ROF	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 ROY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RPC	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RPD	kuyrukta	sırası gelmedi
 RPE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RPG	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RPI	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RPL	kuyrukta	sırası gelmedi
-RPM	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RPN	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RPS	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RPT	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RPU	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-RPX	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RRA	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RRP	kuyrukta	sırası gelmedi
-RS1	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RSF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RSK	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 RSY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RSZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RTA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 RTB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-RTD	kuyrukta	sırası gelmedi
-RTG	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
-RTH	kuyrukta	sırası gelmedi
 RTI	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 RTP	kuyrukta	sırası gelmedi
 RUH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
