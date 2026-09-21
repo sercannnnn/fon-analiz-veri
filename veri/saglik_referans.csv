@@ -1,2 +1,3 @@
 fonKodu,tarih,fiyat,tedPaySayisi,kaynak,dogrulama
-ILH,2026-09-04,4.060362,49634935339.47,tarayici_paneli_gunluk_cek_js_2026-09-05,kaynak ayrimi: tarayici paneli sayfa icinden AYNI API ucunu cagirir (gunluk_cek.js); ekrandan okuma DEGILDIR ve bagimsiz kaynak sayilmaz; TEFAS sitesinden kullanici teyidi bekliyor
+AFT,2026-07-16,0.957471,20335167826,makine_cekimi_arsivi_tefas_2026-07,secim olcutu (22 Eylul 2026): Temmuz; hisse senedi fonu (fiyati duz gitmez); 19.5 milyar TL; kurucusu SPK 2026/60 tasfiye listesinde degil. Kaynak makinenin kendi cekimi, bagimsiz DEGIL; TEFAS sitesinden kullanici teyidi bekliyor
+YAY,2026-09-04,1813.190732,7227428,tarayici_paneli_gunluk_cek_js_2026-09-05,secim olcutu: Eylul; hisse senedi fonu; 13.1 milyar TL; kurucusu tasfiye listesinde degil. Tarayici paneli sayfa icinden AYNI API ucunu cagirir, ekran okuma DEGILDIR, bagimsiz sayilmaz; TEFAS sitesinden kullanici teyidi bekliyor
