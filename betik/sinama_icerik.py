@@ -352,6 +352,8 @@ def test_kuyruk_arsiv_denetimi():
           "F4": dict(durum="yayimlandi", son="2026-07"), "F5": dict(durum="kapsam_disi")}
     assert F.kuyruk_arsiv_denetimi(ky, ars) == [("F2", "2026-08"), ("F4", "2026-07")]      # F2 satırsız, F4'ün ay dosyası yok; F3 yayımlandı değil
     assert F.kuyruk_arsiv_denetimi({"F1": dict(durum="yayimlandi", son="2026-08")}, ars) == []
+    assert F.arsivde_kuyruksuz(ky, ars) == {"2026-08": 1}          # F3 arşivde var, kuyrukta hata: ölçü, uyarı değil
+    assert F.YENIDEN_CEKIM_TAVAN >= 10
 
 
 def test_kuyruk_turu_duman():
@@ -386,6 +388,7 @@ def test_kuyruk_turu_duman():
     assert ky["durum"] == "yayimlandi" and ky["satir"] == 1 and ky["surum"] == F.AYRISTIRICI_SURUM and ky["duzen"] == "standart"
     assert ky["toplamTablosu"]["nav"] == 990.0 and ky["bildirim"] == 123 and ky["portfoyGunu"] == hedef + "-04" and ky["son"] == hedef
     assert durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 1 and durum["satirBuTur"] == 1 and durum["kuyrukArsivSapmasi"] == 0
+    assert durum["kuyrukArsivBekleyen"] == 0 and isinstance(durum["arsivdeKuyruksuz"], dict)
     assert os.path.exists(os.path.join(veri, "kuyruk_arsiv_sapmasi.txt"))
     assert os.path.exists(os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")) and os.path.exists(os.path.join(veri, "fon_icerik_ozet.csv"))
 
