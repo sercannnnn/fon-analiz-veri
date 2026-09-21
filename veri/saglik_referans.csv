@@ -1,2 +1,2 @@
 fonKodu,tarih,fiyat,tedPaySayisi,kaynak,dogrulama
-ILH,2026-09-04,4.060362,49634935339.47,tarayici_cekimi_2026-09-05,5 Eylul 2026 tarayici paneli cekimi (makine cekimiyle satir satir ayni); TEFAS sitesinden kullanici teyidi bekliyor
+ILH,2026-09-04,4.060362,49634935339.47,tarayici_paneli_gunluk_cek_js_2026-09-05,kaynak ayrimi: tarayici paneli sayfa icinden AYNI API ucunu cagirir (gunluk_cek.js); ekrandan okuma DEGILDIR ve bagimsiz kaynak sayilmaz; TEFAS sitesinden kullanici teyidi bekliyor
