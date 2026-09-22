@@ -62,7 +62,13 @@ BEKLEME = (30, 60, 120, 240)    # denemeler arasi saniye; en kotu durumda uc bas
 # resultList bos gelir; eski hat bunu "sifir satir" diye yazip gunu sahte sifirla dolduruyordu (15 Eylul). Arizalar ayri sinif ve
 # ayri cikis koduyla: uc yok (404, yeniden denenmez), bicim (yanit beklenen alanlari tasimiyor, yeniden denenmez), bos yanit,
 # cekim (ag). Eksik alana sifir ya da bos yazilmaz: alan yoksa dosya uretilmez.
-CIKIS = dict(uc_yok=2, bicim=3, cekim=4, bos=6, saglik=7)
+CIKIS = dict(uc_yok=2, bicim=3, cekim=4, bos=6, saglik=7, supheli=8)
+# 22 Eylul 2026 (Chat): gunluk sifir fiyat orani. Sonda olcumu (yayim_sonda.log, 17-22 Eylul): TEFAS gunun fiyatlarini 05.15 UTC'de
+# %25-39 eksik yayimlar, 09.00 UTC'de tamamlar (kalan 14-58 fon bos ya da tasfiyede). Bu yuzden son gun yayim tamamlanmadan "kismi"
+# sayilir, supheli sayilmaz; sicrama kurali onceki gune (tam olmasi gereken gune) ve yayim tamamlandiktan sonraki cekimlerde son gune uygulanir.
+FIYATSIZ_SICRAMA_KAT = 2.0      # oran bir onceki gunun bu katindan fazlaysa sicrama (Chat, 22 Eylul 2026)
+FIYATSIZ_TAM_ORAN = 0.05        # bu oranin altindaki gun tam sayilir (sonda: tamamlanmis gunde %0,7-2,8 kalir)
+TEFAS_YAYIM_TAMAM_UTC = "09:00" # sonda: bu saatten sonra gunun fiyatlari tamamdir; oncesinde son gun kismi
 TARIH_DESENI = re.compile(r"^\d{4}-\d{2}-\d{2}")   # yanitin tarih alani; biçim degisirse (GG.AA.YYYY gibi) bicim hatasidir
 
 
@@ -192,6 +198,55 @@ def kapsam_hesapla(fiyat, dagilim, cekim_zamani):
         tanim=f"tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az {TAM_ORAN} kati ve dagilim satiri da oyle; "
               "kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
     )
+
+
+def fiyatsiz_degerlendir(kapsam, cekim_zamani):
+    """Sifir fiyat orani ve sicrama karari (22 Eylul 2026). Gunler kapsam['gunler'] (kayit, gecerli, fiyatsiz). Son gun T, onceki T1, T2.
+    - T1 (tam olmasi gereken gun): oran(T1) > KAT x oran(T2) ve > TAM_ORAN ise SUPHELI (15 Eylul deseni: sifirlar kalici kaldi).
+    - T: cekim saati yayim tamamlanma saatinden onceyse oran > TAM_ORAN 'kismi' (yayim suruyor, supheli DEGIL); sonraysa T1 ile ayni kural.
+    Donus dict(sonGun, sonGunFiyatsizOran, sonGunDurumu tam|kismi|supheli, oncekiGunDurumu, supheli=[(gun, oran, oncekiOran)])."""
+    g = kapsam.get("gunler") or {}
+    gunler = sorted(g)
+    def oran(t):
+        k = g[t]["kayit"]; return (g[t]["fiyatsiz"] / k) if k else 0.0
+    out = dict(sonGun=gunler[-1] if gunler else None, sonGunFiyatsizOran=(round(oran(gunler[-1]), 4) if gunler else None), sonGunDurumu="olculemedi",
+               oncekiGunDurumu="olculemedi", supheli=[])
+    if len(gunler) >= 3:
+        t2, t1 = gunler[-3], gunler[-2]
+        if oran(t1) > FIYATSIZ_TAM_ORAN and oran(t1) > FIYATSIZ_SICRAMA_KAT * oran(t2):
+            out["oncekiGunDurumu"] = "supheli"; out["supheli"].append((t1, round(oran(t1), 4), round(oran(t2), 4)))
+        else:
+            out["oncekiGunDurumu"] = "tam" if oran(t1) <= FIYATSIZ_TAM_ORAN else "kismi"
+    if len(gunler) >= 2:
+        t1, t = gunler[-2], gunler[-1]
+        saat = str(cekim_zamani)[11:16]
+        if oran(t) <= FIYATSIZ_TAM_ORAN:
+            out["sonGunDurumu"] = "tam"
+        elif saat < TEFAS_YAYIM_TAMAM_UTC:
+            out["sonGunDurumu"] = "kismi"       # yayim suruyor; kural 15 sonraki cekimde uzerine yazar
+        elif oran(t) > FIYATSIZ_SICRAMA_KAT * oran(t1):
+            out["sonGunDurumu"] = "supheli"; out["supheli"].append((t, round(oran(t), 4), round(oran(t1), 4)))
+        else:
+            out["sonGunDurumu"] = "kismi"
+    return out
+
+
+def kurucu_kirilimi(fiyat, gun, cikti):
+    """Supheli gunde fiyatsiz satirlarin kurucu bazinda kirilimi: {kurucu: (fiyatsiz, toplam)}; kunye <cikti>/kunye_tam.csv (fonKodu, kurucu)."""
+    kur = {}
+    yol = os.path.join(cikti, "kunye_tam.csv")
+    if os.path.exists(yol):
+        for r in csv.DictReader(open(yol, encoding="utf-8")):
+            kur[r.get("fonKodu")] = r.get("kurucu") or "bilinmiyor"
+    i_t, i_k, i_f = FIYAT_ALAN.index("tarih"), FIYAT_ALAN.index("fonKodu"), FIYAT_ALAN.index("fiyat")
+    out = {}
+    for s_ in fiyat:
+        if s_[i_t][:10] != gun:
+            continue
+        k = kur.get(s_[i_k], "bilinmiyor"); z, n = out.get(k, (0, 0))
+        f = _f(s_[i_f])
+        out[k] = (z + (0 if (f and f > 0) else 1), n + 1)
+    return dict(sorted(out.items(), key=lambda kv: -kv[1][0]))
 
 
 def kapsam_yaz(cikti, kapsam):
@@ -359,9 +414,14 @@ def main():
         print(f"HATA cekim: {e}", file=sys.stderr); sys.exit(CIKIS["cekim"])
     if "fiyat" in sonuc:
         k = kapsam_hesapla(sonuc["fiyat"], sonuc.get("dagilim"), datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        fz = fiyatsiz_degerlendir(k, k["cekimZamaniUtc"]); k.update(fiyatsiz=fz)
         yol = kapsam_yaz(a.cikti, k)
         print(f"{yol}: son gun {k['sonGun']}, kayit {k['sonGunKayit']:,}, fiyatsiz {k['sonGunFiyatsiz']:,}, "
               f"dagilim {k['sonGunDagilimSatir']:,}, tam kapsamli son gun {k['tamKapsamliSonGun']}, kimlik sapan {k['kimlikSapmaSayisi']}")
+        print(f"fiyatsiz: son gun {fz['sonGun']} oran {fz['sonGunFiyatsizOran']} durum {fz['sonGunDurumu']}, onceki gun {fz['oncekiGunDurumu']}")
+        for gun, o, o1 in fz["supheli"]:
+            print(f"SUPHELI fiyatsiz_oran_sicramasi: {gun} oran {o} (onceki gun {o1}, kat {FIYATSIZ_SICRAMA_KAT}); kurucu kirilimi (fiyatsiz/toplam): "
+                  + ", ".join(f"{kur} {z}/{n}" for kur, (z, n) in list(kurucu_kirilimi(sonuc["fiyat"], gun, a.cikti).items())[:12]), file=sys.stderr)
         if a.saglik:
             s = saglik_sinamasi(sonuc["fiyat"], a.arsiv)
             print(f"saglik hareketli gun: {s}")
@@ -369,6 +429,8 @@ def main():
             print(f"saglik sabit referans: {r}")
             if s["durum"] == "farkli" or r["durum"] == "farkli":
                 sys.exit(CIKIS["saglik"])
+        if fz["supheli"]:
+            sys.exit(CIKIS["supheli"])     # damga tazelenmez (gunluk_cron.sh); veri yine gonderilir, sifir satirlar kural 15 ile olcume girmez
 
 
 if __name__ == "__main__":

@@ -37,13 +37,16 @@ fi
 git pull -q --ff-only origin main || echo "uyari: pull basarisiz, yerel kopya ile devam"
 # Yedek calisma: bugunku cekim zaten yapildiysa (son_cekim.txt bugunun tarihini tasiyorsa) atla.
 # --zorla ile bu kontrol devre disi kalir (elle calistirma icin).
+# 22 Eylul 2026: gunun fiyatlari 05.15 UTC'de kismi (TEFAS 09.00 UTC'de tamamlar, sonda olcumu); yedek kosular (05.50, 09.15 UTC) gun
+# "tam" olana kadar atlamaz, kural 15 ile uzerine yazar. Yalnizca bugunku cekim TAM ise atlanir.
 bugun_bitti=$(grep -o "son_cekim_utc=$(date -u +%Y-%m-%d)" son_cekim.txt 2>/dev/null || true)
-if [ -n "$bugun_bitti" ] && [ "${1:-}" != "--zorla" ]; then echo "bugunku cekim zaten var, atlandi"; exit 0; fi
+bugun_tam=$(grep -o "son_gun_durumu=tam" son_cekim.txt 2>/dev/null || true)
+if [ -n "$bugun_bitti" ] && [ -n "$bugun_tam" ] && [ "${1:-}" != "--zorla" ]; then echo "bugunku cekim tam, atlandi"; exit 0; fi
 
 # TEFAS cekimi. Kritik istir, ama korumasiz DEGILDIR: hata verirse betik olmez, sonuc kaydedilir ve
 # elde olan neyse gonderilir. Korumasiz birakmak, hatayi depoda gorunmez kilan seydi.
-# Cikis kodlari (M86): 0 temiz, 2 uc yok (404), 3 bicim, 4 ag, 6 bos yanit, 7 saglik sinamasi farkli. Saglik: bilinen fonun
-# bilinen gunu arsivdekiyle birebir yeniden uretilmeli; bu olmadan damga tazelenmez.
+# Cikis kodlari (M86): 0 temiz, 2 uc yok (404), 3 bicim, 4 ag, 6 bos yanit, 7 saglik sinamasi farkli, 8 fiyatsiz oran sicramasi (supheli).
+# Saglik: bilinen fonun bilinen gunu arsivdekiyle birebir yeniden uretilmeli; bu olmadan damga tazelenmez. Supheli gunde de tazelenmez.
 tefas_kod=0
 python3 betik/tefas_cek.py --cikti veri --arsiv arsiv --saglik || tefas_kod=$?
 [ "$tefas_kod" -ne 0 ] && echo "uyari: TEFAS cekimi basarisiz ya da saglik sinamasi gecmedi, cikis kodu $tefas_kod"
@@ -80,6 +83,15 @@ gonder() {
     echo "$damga"
     echo "son_deneme_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
     echo "tefas_cekim_cikis=$tefas_kod"
+    # son gunun sifir fiyat orani ve durumu (tam | kismi | supheli): kapsam_son.json'dan; okuyanlar bunu kural 15 ile birlikte okur
+    python3 -c "
+import json
+try:
+    k = json.load(open('veri/kapsam_son.json')).get('fiyatsiz') or {}
+    print('son_gun_fiyatsiz_oran=' + str(k.get('sonGunFiyatsizOran'))); print('son_gun_durumu=' + str(k.get('sonGunDurumu'))); print('onceki_gun_durumu=' + str(k.get('oncekiGunDurumu')))
+except Exception as e:
+    print('son_gun_durumu=olculemedi')
+" 2>/dev/null
     for f in $(ls -t veri/tefas_gunluk_*.csv | head -1) $(ls -t veri/tefas_dagilim_*.csv | head -1) veri/hisse_son_gunluk.csv; do
       [ -f "$f" ] && echo "$(basename "$f")=$(($(wc -l < "$f") - 1)) satir, son tarih $(tail -n +2 "$f" | cut -d, -f1 | sort | tail -1)"
     done
@@ -149,6 +161,9 @@ PY
     fi
   fi
 }
+# 22 Eylul 2026: TEFAS ve hisse verisi KAP taramasindan ONCE gonderilir. KAP govde cekimi (900 sayfa, 2,5 sn) 40 dakikayi bulur ve
+# gonderimi 06.30 UTC'ye itiyordu; bulut brifingi (06.05 UTC) hep bir onceki gunu okuyordu. KAP ciktilari ikinci gonderimle gider.
+gonder "TEFAS cekimi"
 # KAP gunluk bildirim dizini (sirketler + fonlar, iki istek): veri/kap_gunluk.json ve arsiv/kap_YYYY-MM.json.gz.
 # Kamuya acik kayittir; izleme listesiyle eslestirme ozel tarafta yapilir. Basarisizsa akis durmaz.
 python3 betik/kap_gunluk.py --cikti veri --arsiv arsiv || echo "uyari: KAP gunluk dizini alinamadi"
@@ -157,7 +172,7 @@ python3 betik/kap_gunluk.py --cikti veri --arsiv arsiv || echo "uyari: KAP gunlu
 python3 betik/kunye_tam_uret.py --veri veri || echo "uyari: kunye_tam uretilemedi"
 # Kurucu grup tablosu, butun kurucular icin (M54): KAP dizinindeki sirket adlarindan kok kelimeyle ve kamuya acik ek dosyayla; veri/kurucu_grup.json
 python3 betik/kurucu_grup_uret.py --veri veri --arsiv arsiv || echo "uyari: kurucu_grup uretilemedi"   # ek dosya veri/kurucu_grup_ek.json (veri olarak depoda)
-gonder "TEFAS cekimi"
+gonder "KAP dizini ve kunye"
 # Fon yonetim ucreti (giris kapisi 4): KAP genel bilgiler sayfasindan gunde 150 fon, 30 gunde bir yenilenir; veri/fon_ucret.csv
 python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
 # fon yasi, artimli (pazartesi): taramadan sonra acilan fonlar veri/fon_yas.csv'ye girer; kural G2 yalnizca bu dosyayla olculur
@@ -200,7 +215,7 @@ fi
 # KAP kuyrugunun ciktilari ikinci gonderimle gider; basarisiz olsa bile TEFAS verisi coktan depodadir
 gonder "KAP icerik turu"
 echo "=== bitis (tefas=$tefas_kod icerik=$ic_kod gonderim=$gonderim_kod) ==="
-# Cikis kodu cron gunlugunde gorunur: 0 temiz, 3 gonderim basarisiz, 4 TEFAS cekimi ya da saglik sinamasi basarisiz, 5 yarim git islemi.
+# Cikis kodu cron gunlugunde gorunur: 0 temiz, 3 gonderim basarisiz, 4 TEFAS cekimi, saglik sinamasi ya da supheli gun (damga tazelenmedi), 5 yarim git islemi.
 # Kosu ancak uc kosul birden saglaninca temizdir: saglik sinamasi gecti (tefas_kod 0), gonderim basarili, depo ile yerel esit.
 if [ "$gonderim_kod" -ne 0 ]; then exit 3; fi
 if [ "$tefas_kod" -ne 0 ]; then exit 4; fi

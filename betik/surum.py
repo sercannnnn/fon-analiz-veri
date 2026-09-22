@@ -62,3 +62,28 @@ def surum_kontrol(klasor=None, bugun=None, esik=ESIK_IS_GUNU):
 if __name__ == "__main__":
     import sys
     print(json.dumps(surum_kontrol(sys.argv[1] if len(sys.argv) > 1 else None), ensure_ascii=False))
+
+
+def kopya_tazeligi(klasor, uzak="origin", dal="main", zaman_asimi=40):
+    """22 Eylul 2026 (Chat): brifing deponun bayat bir kopyasindan calisip bunu bildirmedi ve kendi arizasini hattin arizasi diye raporladi.
+    Klon tazelenebiliyor mu ve uzak dalin gerisinde mi olculur: git fetch, sonra ileri/geri sayimi. Donus dict(durum guncel|bayat|olculemedi,
+    geri, ileri, sebep, metin). durum 'guncel' degilse brifingin en ustune 'KOPYA TAZELENEMEDI/BAYAT, asagidaki her sey bayat olabilir' yazilir;
+    cagiran isterse brifingi hic uretmez. Ag yoksa 'olculemedi' doner, bu da bayat sayilir (dogrulanamayan tazelik tazelik degildir, M30)."""
+    import subprocess
+    if not klasor or not os.path.isdir(os.path.join(klasor, ".git")):
+        return dict(durum="olculemedi", geri=None, ileri=None, sebep="git klonu degil", metin=f"Depo kopyasi: OLCULEMEDI ({klasor} git klonu degil); asagidaki her sey bayat olabilir")
+    try:
+        r = subprocess.run(["git", "-C", klasor, "fetch", "-q", uzak, dal], capture_output=True, text=True, timeout=zaman_asimi)
+    except Exception as e:
+        return dict(durum="olculemedi", geri=None, ileri=None, sebep=f"fetch: {e}", metin=f"Depo kopyasi: TAZELENEMEDI ({e}); asagidaki her sey bayat olabilir")
+    if r.returncode != 0:
+        return dict(durum="olculemedi", geri=None, ileri=None, sebep=(r.stderr or "").strip()[:120], metin=f"Depo kopyasi: TAZELENEMEDI ({(r.stderr or '').strip()[:80]}); asagidaki her sey bayat olabilir")
+    def _say(a, b):
+        q = subprocess.run(["git", "-C", klasor, "rev-list", "--count", f"{a}..{b}"], capture_output=True, text=True)
+        return int(q.stdout.strip() or 0) if q.returncode == 0 else None
+    geri, ileri = _say("HEAD", f"{uzak}/{dal}"), _say(f"{uzak}/{dal}", "HEAD")
+    if geri is None:
+        return dict(durum="olculemedi", geri=None, ileri=ileri, sebep="rev-list", metin="Depo kopyasi: OLCULEMEDI (rev-list); asagidaki her sey bayat olabilir")
+    if geri > 0:
+        return dict(durum="bayat", geri=geri, ileri=ileri, sebep=f"uzak dal {geri} isleme ileride", metin=f"Depo kopyasi: BAYAT, uzak dal {geri} isleme ileride; asagidaki her sey bayat olabilir, once git pull")
+    return dict(durum="guncel", geri=0, ileri=ileri, sebep="", metin="Depo kopyasi: guncel (uzak dal ile esit)")
