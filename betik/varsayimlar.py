@@ -35,6 +35,7 @@ KAYITLAR = [
     ("B16", "kap_izleme", "TASFIYE_PENCERE_GUN", 52, "bekliyor", "tasfiye sayım penceresi (takvim günü)", ""),
     ("B18", "fon_icerik_cek", "YENIDEN_CEKIM_TAVAN", 99, "onaylı", "kuyruk-arşiv sapmasında tur başına kurtarma kuyruğuna alınan en çok fon; kurtarma normal turdan AYRI bütçeyle koşar (Chat şartı)", "22 Eylül 2026"),
     ("B19", "fon_icerik_cek", "KURTARMA_BUTCE", 101, "onaylı", "kurtarma aşamasının kendi istek bütçesi; normal turun 400'ünden almaz, ona vermez", "22 Eylül 2026"),
+    ("B20", "kapilar", "FIYAT_YASI_ESIK_IS_GUNU", 107, "bekliyor", "kural C: fonun son sıfır dışı fiyatı ölçüm gününden bu kadar iş günü eskiyse çıkış kapıları ölçülemedi (iki tarafta 3)", ""),
     ("B17", "takvim", "VERI_YASI_UYARI_IS_GUNU", 91, "bekliyor", "ölçü 13: son veri günü ile bugün arasındaki iş günü bunu aşarsa brifing 'veri eski' uyarısı", ""),
     ("O1", "oneri", "PARK_ASGARI_BUYUKLUK", 42, "onaylı", "park fonu asgari büyüklük (TL)", "13 Eylül 2026"),
     ("O2", "oneri", "PARK_MEVCUT_RISK_ESIT_KABUL", 59, "onaylı", "mevcut park fonu ancak en az onun kadar kazandıran ve daha az riskli adayla değişir (eşit risk kabul edilmez)", "15 Eylül 2026"),
