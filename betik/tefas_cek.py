@@ -210,7 +210,10 @@ def fiyatsiz_degerlendir(kapsam, cekim_zamani):
     def oran(t):
         k = g[t]["kayit"]; return (g[t]["fiyatsiz"] / k) if k else 0.0
     out = dict(sonGun=gunler[-1] if gunler else None, sonGunFiyatsizOran=(round(oran(gunler[-1]), 4) if gunler else None), sonGunDurumu="olculemedi",
-               oncekiGunDurumu="olculemedi", supheli=[])
+               oncekiGunDurumu="olculemedi", supheli=[],
+               # fiyat bazinda tam son gun: fiyatsiz orani TAM_ORAN altindaki en yeni gun. Kapsamdaki tamKapsamliSonGun (%98 kurali, pencere
+               # azamisine gore, dagilim dahil) daha serttir ve tasfiye fonlari geçerli sayiyi kalici dusurunce gunlerce bir gun geride kalabilir.
+               fiyatTamSonGun=next((t for t in reversed(gunler) if oran(t) <= FIYATSIZ_TAM_ORAN), None))
     if len(gunler) >= 3:
         t2, t1 = gunler[-3], gunler[-2]
         if oran(t1) > FIYATSIZ_TAM_ORAN and oran(t1) > FIYATSIZ_SICRAMA_KAT * oran(t2):

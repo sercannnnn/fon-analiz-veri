@@ -17,12 +17,19 @@
 set -uo pipefail
 
 KILIT="$HOME/.gunluk_cron.lock"
-# Yaslanan kilit kirilir: uc saatten eski kilit dosyasi asili kosu demektir, sonsuza kadar atlamak yerine devam edilir.
-if [ -f "$KILIT" ]; then
+# Kilit once denenir; alinamazsa ve dosya uc saatten eskiyse asili kosu sayilir, kirilir ve bir kez daha denenir (M84a).
+# 22 Eylul 2026: eski sira dosya yasina flock'tan ONCE bakiyordu; bitmis kosunun dosyasi da yaslaniyor, her sabah "kiriliyor" yaziyordu.
+exec 9>"$KILIT"
+if ! flock -n 9; then
   yas=$(( $(date +%s) - $(stat -c %Y "$KILIT" 2>/dev/null || echo 0) ))
-  if [ "$yas" -gt 10800 ]; then echo "uyari: kilit $yas saniyedir duruyor, kiriliyor"; rm -f "$KILIT"; fi
+  if [ "$yas" -gt 10800 ]; then
+    echo "uyari: kilit $yas saniyedir tutuluyor, asili kosu sayildi, kiriliyor"; exec 9>&-; rm -f "$KILIT"; exec 9>"$KILIT"
+    flock -n 9 || { echo "kilit yine alinamadi, atlandi"; exit 0; }
+  else
+    echo "onceki calisma suruyor, atlandi"; exit 0
+  fi
 fi
-exec 9>"$KILIT"; flock -n 9 || { echo "onceki calisma suruyor, atlandi"; exit 0; }
+touch "$KILIT"
 
 DEPO="$HOME/fon-analiz"
 cd "$DEPO"
@@ -73,9 +80,12 @@ gonder() {
   # bu damgayi tazelemek, eski veriyi taze gostermek olurdu; kapsam satiri ve tazelik alarmi buna bakiyor.
   # Her kosu ayrica son_deneme_utc birakir: "makine kostu ama TEFAS vermedi" ile "makine hic kosmadi" ayrilir.
   # Gonderim basarisiz olursa damga geri alinir (asagida): damga yalnizca depoya ulasan kosunun damgasidir.
+  # Damga CEKIM anidir (kapsam_son.json cekimZamaniUtc), gonderim ani degil (22 Eylul 2026: gonder() her cagrida saatini yaziyordu; KAP
+  # turundan sonraki gonderim damgayi 10.14'e tasiyip 09.15 cekimini saklamisti). Okuyanlar "son cekim" derken cekimi kastediyor.
   eski_damga=$(grep -m1 '^son_cekim_utc=' son_cekim.txt 2>/dev/null || echo "son_cekim_utc=bilinmiyor")
   if [ "$tefas_kod" -eq 0 ]; then
-    damga="son_cekim_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    cz=$(python3 -c "import json; print(json.load(open('veri/kapsam_son.json')).get('cekimZamaniUtc') or '')" 2>/dev/null)
+    damga="son_cekim_utc=${cz:-$(date -u +%Y-%m-%dT%H:%M:%SZ)}"
   else
     damga="$eski_damga"
   fi
@@ -89,6 +99,8 @@ import json
 try:
     k = json.load(open('veri/kapsam_son.json')).get('fiyatsiz') or {}
     print('son_gun_fiyatsiz_oran=' + str(k.get('sonGunFiyatsizOran'))); print('son_gun_durumu=' + str(k.get('sonGunDurumu'))); print('onceki_gun_durumu=' + str(k.get('oncekiGunDurumu')))
+    print('fiyat_tam_son_gun=' + str(k.get('fiyatTamSonGun')))
+    print('tam_kapsamli_son_gun=' + str(json.load(open('veri/kapsam_son.json')).get('tamKapsamliSonGun')))
 except Exception as e:
     print('son_gun_durumu=olculemedi')
 " 2>/dev/null
