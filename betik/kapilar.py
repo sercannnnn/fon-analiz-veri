@@ -65,6 +65,22 @@ def _al(o, ad):
     return v
 
 
+FIYAT_YASI_ESIK_IS_GUNU = 3   # 22 Eylül 2026 (Chat kuralı C): sıfırdan farklı son fiyat bu kadar iş gününden eskiyse fonun kapıları ölçülemedi sayılır
+FIYAT_YASI_AD = "sıfır fiyat fiyat değildir: sıfırdan farklı son fiyat eski, kapılar ölçülemedi (kural 15 ve 22 Eylül 2026 kuralı C)"
+
+
+def fiyat_yasi_uygula(kapilar, o):
+    """Kural C: fiyat=0 'o gün yayımlanmadı' demektir, değer değil. Ölçüm sözlüğünde fiyat_yasi (sıfırdan farklı son fiyattan bugüne iş günü)
+    FIYAT_YASI_ESIK_IS_GUNU üstündeyse bütün kapılar 'ölçülemedi' olur, geçilmiş sayılmaz (kural 14). Künye sebebi taşır."""
+    yas = _al(o, "fiyat_yasi")
+    if yas is None or yas <= FIYAT_YASI_ESIK_IS_GUNU:
+        return kapilar
+    for k in kapilar:
+        k["sonuc"] = "olculemedi"; k["tetiklendi"] = None
+        k["kunye"] = f"{k['kunye']}; son fiyat {int(yas)} iş günü eski, {FIYAT_YASI_AD}"
+    return kapilar
+
+
 def _kapi(ad, aile, tetik, deger, esik, kunye, zorunlu=True, acik_ne="tetik", birim="oran"):
     """Tek kapı sözlüğü. acik_ne: 'tetik' (çıkış, hisse: tetiklenince açık) ya da 'sart' (giriş, park: şart sağlanınca açık).
     birim: değerin ve eşiğin biçimi: oran (yüzde olarak yazılır), puan, dilim (0-1), sayi, tl, ay, gun, metin."""
@@ -101,7 +117,7 @@ def cikis_kapilari(o):
     dp = _al(o, "dpay20")
     t = None if dp is None else bool(dp < C6_ITFA)
     k.append(_kapi("C6 pay adedi 20 seansta -%15", "cikis", t, dp, {"oran": C6_ITFA}, KUNYE_OLCUM))
-    return k
+    return fiyat_yasi_uygula(k, o)
 
 
 # ================================================================ giriş kapıları (bölüm 3)

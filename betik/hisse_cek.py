@@ -29,6 +29,8 @@ KAYNAK = {"kapanisDuzeltilmis": "HG_KAPANIS", "kapanisHam": "HGDG_KAPANIS", "hac
 EK_KODLAR = ["TSKB", "ANHYT", "BTCIM"]
 ARA_SANIYE = 1.0               # istekler arasi en az bekleme
 GERI_GUN = 7                   # artimli cekimde arsivdeki son tarihten kac gun geriye gidilir
+PENCERE_GUN = 10               # 22 Eylul 2026: anlik dosya (hisse_son_gunluk.csv) en az bugun - 10 gunu kapsar; pencere arsivin son tarihine gore
+                               # daralip satir sayisini dusuruyordu (3570 -> 3060, 11 Eylul gunu) ve satir gerilemesi denetimini yaniltiyordu
 BEKLEME = (2, 4, 8)            # 429 / 5xx / baglanti hatasinda ustel geri cekilme
 
 
@@ -145,7 +147,7 @@ def main():
         # Son tarihten GERI_GUN geriye: Is Yatirim gunun satirini aksam hisse hisse yayimlar,
         # tek gunluk aralik cogu hissede bos doner ve sahte hata uretir. Geriye gitmek ayrica
         # son gunlerin duzeltilmis kapanislarini tazeler; arsiv tekillestirdigi icin zarar yok.
-        bas = ((datetime.strptime(son, "%Y-%m-%d") - timedelta(days=GERI_GUN)).strftime("%d-%m-%Y") if son
+        bas = (min(datetime.strptime(son, "%Y-%m-%d") - timedelta(days=GERI_GUN), datetime.combine(bugun, datetime.min.time()) - timedelta(days=PENCERE_GUN)).strftime("%d-%m-%Y") if son
                else (bugun - timedelta(days=3 * 365)).strftime("%d-%m-%Y"))
     kodlar = liste_oku(a.liste)
     for ek in a.ek:

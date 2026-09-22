@@ -371,7 +371,10 @@ def sabit_referans_sinamasi(referans_yolu, cek_fn=None):
             y_f, y_p = (_f(x.get("fiyat")), _f(x.get("tedPaySayisi"))) if x else (None, None)
             r_f, r_p = _f(r.get("fiyat")), _f(r.get("tedPaySayisi"))
             ayni = x is not None and y_f is not None and abs(y_f - r_f) < 1e-9 and (r_p is None or (y_p is not None and abs(y_p - r_p) < 0.5))
-            bekliyor = "bekliyor" in (r.get("dogrulama") or "").lower()
+            # teyit sutunu: 'elle' ya da 'teyit' ile baslayan deger elle dogrulanmis demektir; baska her sey bekliyor. 22 Eylul 2026: bayrak serbest
+            # metnin icinden ('bekliyor' gecen) okunuyordu; metindeki virgul CSV sutununu boldu ve iki kayit 'elle' goründu (M94 sinifi).
+            teyit_s = str(r.get("teyit") or "").strip().lower()
+            bekliyor = not (teyit_s.startswith("elle") or teyit_s.startswith("teyit"))
             k_durum = "ok" if ayni else ("uyari" if bekliyor else "farkli")
             out.append(dict(fonKodu=r["fonKodu"], gun=gun, durum=k_durum, referansFiyat=r_f, gelenFiyat=y_f, referansPay=r_p, gelenPay=y_p, teyit=("bekliyor" if bekliyor else "elle")))
             if k_durum == "farkli":

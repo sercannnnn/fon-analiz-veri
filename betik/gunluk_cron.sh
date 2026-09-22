@@ -126,9 +126,26 @@ for p in glob.glob("arsiv/*.gz"):
     try:
         with gzip.open(p, "rb") as g: g.read(64)
     except Exception as e: hata.append(f"{p}: gzip acilamadi ({e})")
+# SATIR GERILEMESI (22 Eylul 2026, Chat): kumulatif arsiv (arsiv/*.gz) bir onceki islemeye gore satir kaybettiyse GONDERILMEZ (hata);
+# anlik pencere dosyalari (veri/*.csv) kuculdugunde uyari yazilir ve son_cekim.txt 'gerileme=' satiri tasir, gonderim surer.
+import subprocess
+def satir(b):
+    if b[:2] == b"\x1f\x8b": b = gzip.decompress(b)
+    return b.count(b"\n")
+uyari = []
+for p in glob.glob("arsiv/*.gz") + glob.glob("veri/*.csv"):
+    r = subprocess.run(["git", "show", "HEAD:" + p], capture_output=True)
+    if r.returncode != 0: continue
+    try: eski, yeni = satir(r.stdout), satir(open(p, "rb").read())
+    except Exception: continue
+    if yeni < eski:
+        (hata if p.startswith("arsiv/") else uyari).append(f"{p}: satir {eski} -> {yeni}")
+if uyari:
+    print("uyari gerileme (anlik dosya, pencere daralmasi olabilir): " + "; ".join(uyari), file=sys.stderr)
+    open("son_cekim.txt", "a", encoding="utf-8").write("gerileme=" + "; ".join(uyari) + "\n")
 if hata:
     print("BICIM DENETIMI GECMEDI: " + "; ".join(hata[:8]), file=sys.stderr); sys.exit(1)
-print("bicim denetimi gecti")
+print("bicim denetimi gecti" + (f" ({len(uyari)} anlik dosyada gerileme uyarisi)" if uyari else ""))
 PY
   then
     gonderim_kod=3; echo "HATA: bicim denetimi gecmedi, isleme yapilmadi (M92)"; return 0
