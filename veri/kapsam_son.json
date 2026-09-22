@@ -3,42 +3,49 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-21T05:15:10Z",
- "sonGun": "2026-09-21",
- "toplamKayit": 14272,
- "sonGunKayit": 2038,
- "sonGunFiyatsiz": 503,
- "sonGunDagilimSatir": 1063,
- "tamKapsamliSonGun": "2026-09-18",
+ "cekimZamaniUtc": "2026-09-22T05:15:12Z",
+ "sonGun": "2026-09-22",
+ "toplamKayit": 14271,
+ "sonGunKayit": 2037,
+ "sonGunFiyatsiz": 494,
+ "sonGunDagilimSatir": 1035,
+ "tamKapsamliSonGun": "2026-09-21",
  "kimlikSapmaSayisi": 11,
  "kimlikSapanlar": [
   {
-   "tarih": "2026-09-21",
+   "tarih": "2026-09-22",
+   "fonKodu": "BTP",
+   "payXfiyat": 885465643.28,
+   "buyukluk": 269041618.29,
+   "tolerans": 718.24
+  },
+  {
+   "tarih": "2026-09-22",
    "fonKodu": "FS1",
-   "payXfiyat": 122290029.12,
-   "buyukluk": 120785561.5,
-   "tolerans": 42.91
+   "payXfiyat": 119874057.93,
+   "buyukluk": 119866918.79,
+   "tolerans": 42.38
   },
   {
-   "tarih": "2026-09-21",
-   "fonKodu": "FS5",
-   "payXfiyat": 55038435.65,
-   "buyukluk": 55726397.55,
-   "tolerans": 12.55
-  },
-  {
-   "tarih": "2026-09-21",
+   "tarih": "2026-09-22",
    "fonKodu": "FS6",
-   "payXfiyat": 269897745.66,
-   "buyukluk": 273584253.4,
-   "tolerans": 69.23
+   "payXfiyat": 268259290.18,
+   "buyukluk": 273851481.88,
+   "tolerans": 68.61
   },
   {
-   "tarih": "2026-09-21",
-   "fonKodu": "GO3",
-   "payXfiyat": 26877945.07,
-   "buyukluk": 26894088.64,
-   "tolerans": 2.8
+   "tarih": "2026-09-22",
+   "fonKodu": "RBP",
+   "payXfiyat": 660765024.29,
+   "buyukluk": 762863963.6,
+   "tolerans": 140.82
+  },
+  {
+   "tarih": "2026-09-22",
+   "fonKodu": "ZBD",
+   "payXfiyat": 935932493.02,
+   "buyukluk": 935932500.68,
+   "tolerans": 0.7
   },
   {
    "tarih": "2026-09-21",
@@ -81,23 +88,9 @@
    "payXfiyat": 959996606.13,
    "buyukluk": 959996613.14,
    "tolerans": 0.7
-  },
-  {
-   "tarih": "2026-09-11",
-   "fonKodu": "ZBD",
-   "payXfiyat": 955704586.67,
-   "buyukluk": 955704594.85,
-   "tolerans": 0.7
   }
  ],
  "gunler": {
-  "2026-09-11": {
-   "kayit": 2039,
-   "gecerli": 2032,
-   "dagilim": 2031,
-   "fiyatsiz": 7,
-   "tam": true
-  },
   "2026-09-14": {
    "kayit": 2039,
    "gecerli": 2032,
@@ -134,10 +127,17 @@
    "tam": true
   },
   "2026-09-21": {
-   "kayit": 2038,
-   "gecerli": 1535,
-   "dagilim": 1063,
-   "fiyatsiz": 503,
+   "kayit": 2039,
+   "gecerli": 2024,
+   "dagilim": 2025,
+   "fiyatsiz": 15,
+   "tam": true
+  },
+  "2026-09-22": {
+   "kayit": 2037,
+   "gecerli": 1543,
+   "dagilim": 1035,
+   "fiyatsiz": 494,
    "tam": false
   }
  },

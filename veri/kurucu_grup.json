@@ -30,7 +30,8 @@
   "ASTRA PORTFÖY"
  ],
  "ATA PORTFÖY": [
-  "ATA PORTFÖY"
+  "ATA PORTFÖY",
+  "ATA YATIRIM"
  ],
  "ATLAS PORTFÖY": [
   "ATLAS PORTFÖY"
@@ -100,7 +101,8 @@
   "HEDEF ARAÇ",
   "HEDEF GİRİŞİM",
   "HEDEF HOLDİNG",
-  "HEDEF PORTFÖY"
+  "HEDEF PORTFÖY",
+  "HEDEF YATIRIM"
  ],
  "HSBC PORTFÖY": [
   "HSBC BANK",
@@ -213,6 +215,9 @@
  "TRIVE PORTFÖY": [
   "TRIVE PORTFÖY"
  ],
+ "TUNA PORTFÖY": [
+  "TUNA PORTFÖY"
+ ],
  "V PORTFÖY": [
   "V PORTFÖY"
  ],
@@ -251,7 +256,8 @@
  ],
  "İSTANBUL PORTFÖY": [
   "İSTANBUL PORTFÖY",
-  "İSTANBUL TAKAS"
+  "İSTANBUL TAKAS",
+  "İSTANBUL VARLIK"
  ],
  "İŞ PORTFÖY": [
   "TÜRKİYE İŞ BANKASI",
