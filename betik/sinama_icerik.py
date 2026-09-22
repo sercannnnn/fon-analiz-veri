@@ -6,7 +6,7 @@
 Kanıtlar: sarılan satır üstteki kıymete atanır (Tera'da devam satırı alttaki kıymete yapışıyordu); negatif nominalli satır aynı
 kıymetin pozitif satırıyla net okunur (satirTuru); aynı ay için yeniden yayımlanan rapor yeniden işlenir; içerik tazeliği eşiği
 aşınca ya da tutulan fon arşivde yokken ölçülemedi; kurucu düzeyinde ihraççı toplamı net ve fon bazında."""
-import os, sys, tempfile, gzip, json
+import os, sys, tempfile, gzip, json, csv
 from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import icerik_kapsam
@@ -397,6 +397,60 @@ def test_kuyruk_turu_duman():
     assert ky2["F2"]["durum"] == "yayimlandi" and ky2["F2"]["bildirim"] == 124 and durum["islenen"] == 2
     assert os.path.exists(os.path.join(veri, "kuyruk_arsiv_sapmasi.txt"))
     assert os.path.exists(os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")) and os.path.exists(os.path.join(veri, "fon_icerik_ozet.csv"))
+
+
+def test_kuyruk_turu_artimli_kayit_ve_devam():
+    """22 Eylül 2026 (Sercan kararı, Chat'in beş kısıtı): tur her BELLEK_ADIM fonda önce arşive, sonra kuyruğa, sonra koşu durumuna yazar.
+    Süreç ikinci fonda ölünce (KeyboardInterrupt) diskte: birinci fon arşivde ve kuyrukta 'yayimlandi', koşu durumu 'kismi' (yazılan 1, sonFon, kalan).
+    Aynı gün ikinci koşu kalınan yerden sürer: birinci fon yeniden çekilmez, ikinci yazılır, durum 'tamamlandi', devam=True, iki fon da listede; arşivde çift satır yok."""
+    if F is None:
+        return
+    d = tempfile.mkdtemp(); veri = os.path.join(d, "veri"); arsiv = os.path.join(d, "arsiv"); os.makedirs(veri)
+    json.dump({"K": dict(gecti=True, sinavSurumu=F.SINAV_SURUM, sonuc="gecti", duzen="standart")}, open(os.path.join(veri, "kurucu_duzen.json"), "w", encoding="utf-8"))
+    kunye = {"F1": dict(fonKodu="F1", kurucu="K", fundOid="o1", fonTipi="YF", durum="faal", fonAdi="F1 FONU"),
+             "F3": dict(fonKodu="F3", kurucu="K", fundOid="o3", fonTipi="YF", durum="faal", fonAdi="F3 FONU")}
+    hedef = F.hedef_ay(date.today())
+    yy, aa = int(hedef[:4]), int(hedef[5:7]); aa2, yy2 = (aa + 1, yy) if aa < 12 else (1, yy + 1)
+    x = dict(disclosureIndex=123, publishDate=f"05.{aa2:02d}.{yy2} 10:00:00", subject="Portföy Dağılım Raporu")
+    def satir(f):
+        return [[f, hedef, "AAA A.Ş.", "AAA A.Ş.", "AAA", "AAA A.Ş.", "TRAAAA00001", "Hisse Türk", "100", "1000", "100.0", "standart", "kap", "true", "pozisyon", hedef + "-04", hedef]]
+    bilgi = dict(ray=hedef, duzen="standart", gun=hedef + "-07", gunEsleme="oy", portfoyGunu=hedef + "-04", gunOy="3/3", raporBasligi=hedef, sapma=0.0, sapmaSebebi="",
+                 toplamTablosu={}, tefasToplam=100.0, raporIci=0.0, listeTam=True, eksikKalem="", satir=1, toplam=100.0, sicSinanan=1, sicHata=0, hisse=1, yabanci=0, bistBos=0, adTemiz=1)
+    cagri = []
+    def olen_rapor_isle(f, x_, *a, **k):
+        cagri.append(f)
+        if f == "F3":
+            raise KeyboardInterrupt("surec olduruldu")     # bellek sinirindaki olumun benzeri: except Exception yakalamaz
+        return ("yayimlandi", "", satir(f), bilgi)
+    eski = {k: getattr(F, k) for k in ("kurucu_sinavi", "son_raporlar", "raporlar", "rapor_isle", "BELLEK_ADIM")}
+    try:
+        F.kurucu_sinavi = lambda *a, **k: ([], {}); F.raporlar = lambda *a, **k: [x]; F.BELLEK_ADIM = 1
+        F.son_raporlar = lambda oids, bas, bit: {"F1": x, "F3": dict(x, disclosureIndex=125)}
+        F.rapor_isle = olen_rapor_isle; F.ISTEK.sayi = 7
+        try:
+            F.kuyruk_turu(kunye, veri, arsiv); assert False, "olum beklenirdi"
+        except KeyboardInterrupt:
+            pass
+        ky = json.load(open(os.path.join(veri, "icerik_kuyruk.json"), encoding="utf-8"))
+        kd = json.load(open(os.path.join(veri, "kosu_durumu.json"), encoding="utf-8"))["icerik"]
+        assert ky["F1"]["durum"] == "yayimlandi" and "F3" not in ky or ky.get("F3", {}).get("durum") != "yayimlandi"
+        assert kd["durum"] == "kismi" and kd["yayimlandiBuTur"] == 1 and kd["yazilanFonlar"] == ["F1"] and kd["sonFon"] == "F1" and kd["kalan"] == 1 and kd["listeToplam"] == 2, kd
+        arsiv_yol = os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")
+        assert [s[0] for s in F.gz_oku(arsiv_yol)] == ["F1"]
+        assert not os.path.exists(os.path.join(veri, "icerik_kuyruk.json.tmp")) and not os.path.exists(arsiv_yol + ".tmp")
+        # ikinci kosu, ayni gun: devam noktasindan
+        cagri.clear(); F.rapor_isle = lambda f, x_, *a, **k: (cagri.append(f), ("yayimlandi", "", satir(f), bilgi))[1]; F.ISTEK.sayi = 0
+        durum, ozet = F.kuyruk_turu(kunye, veri, arsiv)
+        assert cagri == ["F3"], cagri                       # F1 yeniden cekilmedi (kuyrukta yayimlandi, ayni bildirim)
+        assert durum["devam"] is True and durum["durum"] == "tamamlandi" and durum["yayimlandiBuTur"] == 2 and durum["yazilanFonlar"] == ["F1", "F3"], durum
+        assert durum["istek"] >= 7                          # gunun istegi onceki kosudan tasindi (gunluk butce)
+        assert sorted(s[0] for s in F.gz_oku(arsiv_yol)) == ["F1", "F3"]   # cift satir yok (etkisiz tekrar)
+        son = list(csv.reader(open(os.path.join(veri, "fon_icerik_son.csv"), encoding="utf-8")))
+        assert [s[0] for s in son[1:]] == ["F1", "F3"]
+    finally:
+        for k, v in eski.items():
+            setattr(F, k, v)
+        F.ISTEK.sayi = 0
 
 
 def test_gerileme_denetimi_tarih_basina():

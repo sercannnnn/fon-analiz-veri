@@ -172,8 +172,11 @@ def json_oku(yol, varsayilan):
 
 
 def json_yaz(yol, veri):
-    with open(yol, "w", encoding="utf-8") as f:
+    """Atomik: gecici dosyaya yazilip yerine konur. Artimli kayitta (22 Eylul 2026) surec yazma ortasinda olurse kuyruk dosyasi yarim kalmaz."""
+    gecici = yol + ".tmp"
+    with open(gecici, "w", encoding="utf-8") as f:
         json.dump(veri, f, ensure_ascii=False, indent=1, sort_keys=True)
+    os.replace(gecici, yol)
 
 
 # ================================================================ KAP erisimi ve istek sayaci
@@ -1412,9 +1415,11 @@ def hedef_ay(bugun):
 
 def gz_yaz(yol, satirlar):
     buf = io.StringIO(); w = csv.writer(buf, lineterminator="\n"); w.writerow(ICERIK_ALAN); w.writerows(satirlar)
-    with open(yol, "wb") as f:
+    gecici = yol + ".tmp"                      # atomik: yarim gz arsiv kalmasin (artimli kayit, 22 Eylul 2026)
+    with open(gecici, "wb") as f:
         with gzip.GzipFile(fileobj=f, mode="wb", mtime=0, compresslevel=9) as g:
             g.write(buf.getvalue().encode("utf-8"))
+    os.replace(gecici, yol)
 
 
 def gz_oku(yol):
@@ -1675,7 +1680,10 @@ YENIDEN_CEKIM_TAVAN = 50   # 22 Eylul 2026 (Chat, onayli): kuyruk-arsiv sapmasi 
 KURTARMA_BUTCE = 120       # kurtarma asamasinin KENDI istek butcesi (varsayim): normal turun 400'unden ALMAZ, ona da vermez; eski veriyi kurtarmak icin yeni veri kacirilmaz
 
 
-BELLEK_ADIM = 20   # tur icinde her N fonda tepe bellek gunluge yazilir (22 Eylul 2026: iki tur 700 MB sinirinda olduruldu, egri olculmemisti)
+BELLEK_ADIM = 20   # ARTIMLI KAYIT ARALIGI (22 Eylul 2026, Sercan karari): her N fonda once arsiv, sonra kuyruk, sonra kosu durumu yazilir;
+                   # bellek egrisi de ayni adimda gunluge duser. Deger egri okununca ayarlanir (kisit 5).
+TUR_BITTI_DURUMLARI = ("tamamlandi", "denklesmedi")          # kotanin olcusu "bugun kosuldu" degil "kuyruk bugun bitti" (kisit 4)
+BUGUN_ISLENDI_DURUMLARI = ("hata", "duzen_taninmadi", "sinif_farki", "kapsam_disi", "rapor_yok_bu_ay")   # ayni gun ikinci turda yeniden cekilmez (ertelendi cekilir)
 
 
 def bellek_mb():
@@ -1748,9 +1756,19 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
               + ", ".join(f"{f} {ay}" for f, ay in alinan[:20]) + (" ..." if len(alinan) > 20 else ""), file=sys.stderr)
     kuyruksuz = arsivde_kuyruksuz(ky, arsiv)
     kd_yol2 = os.path.join(veri, "kosu_durumu.json")
-    kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bugun.isoformat(), hedefAy=hedef, durum="basladi", kuyrukArsivSapmasi=len(kuyruk_sapma),
-                                                         kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz); json_yaz(kd_yol2, kdur)
     bas = ay_geri(hedef, KAPSAM_AY - 1) + "-01"; bit = bugun.isoformat()
+    # ---- Devam noktasi (22 Eylul 2026, Sercan karari): bugunku tur bitmeden olduyse (kismi / basarisiz / basladi) ayni gun kalinan yerden
+    # surer; gunluk butce gunun toplamidir, onceki kosunun istegi sayaca yazilir. Yazilan fonlar kuyruk kaydinda (yayimlandi, ayni bildirim)
+    # oldugu icin yeniden cekilmez; bugun hata kovasina dusen fon da ayni gun yeniden cekilmez (BUGUN_ISLENDI_DURUMLARI).
+    onceki = json_oku(kd_yol2, {}).get("icerik", {}) or {}
+    devam = bool(not fon_filtre and onceki.get("tarih") == bit and onceki.get("durum") not in TUR_BITTI_DURUMLARI and onceki.get("islenen"))
+    if devam:
+        ISTEK.sayi = max(ISTEK.sayi, int(onceki.get("istek") or 0)); ISTEK.h429 = max(ISTEK.h429, int(onceki.get("h429") or 0))
+        print(f"devam: bugunku tur {onceki.get('durum')} kalmisti ({onceki.get('islenen')} fon islenmis, {onceki.get('yayimlandiBuTur', 0)} fon yazilmis, "
+              f"son fon {onceki.get('sonFon')}); kalinan yerden suruyor, gunun istegi {ISTEK.sayi}/{ISTEK.butce}", file=sys.stderr)
+    kdur = json_oku(kd_yol2, {}); kdur["icerik"] = dict(tarih=bit, hedefAy=hedef, durum="basladi", kuyrukArsivSapmasi=len(kuyruk_sapma), devam=devam,
+                                                         kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz,
+                                                         yazilanFonlar=list(onceki.get("yazilanFonlar", [])) if devam else [], istek=ISTEK.sayi); json_yaz(kd_yol2, kdur)
 
     # ---- Asama B: kurucu sinavi (butcenin SINAV_PAYI'na kadar), oncelikli
     for kur, v in kd.items():                # kural degisikligi: kayitli sinav sonuclari yeniden yorumlanir, istek harcanmaz
@@ -1763,9 +1781,38 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     sinif_farki_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("sinavSurumu", 0) >= SINAV_SURUM and v.get("sonuc") == "sinif_farki"}
     rapor_yok_kurucu = {k for k, v in kd.items() if not k.startswith("_") and v.get("raporYok")}
 
-    yazilan, ozet, hata = [], [], []
+    yazilan, ozet, hata = [], [], []          # yazilan: son ara kayittan beri biriken satirlar (bellekte tutulan tek tampon)
     kova = defaultdict(list)
     islenen = 0; yeni_fon, yeniden_islenen, park_oncelik = [0], [0], [0]
+    yazilan_fon = set(onceki.get("yazilanFonlar", [])) if devam else set(); yazilan_satir = int(onceki.get("satirBuTur") or 0) if devam else 0
+    son_fon = [onceki.get("sonFon") if devam else None]; toplam_liste = [0]
+    son_yol = os.path.join(veri, "fon_icerik_son.csv")
+    if not (devam and os.path.exists(son_yol)):
+        with open(son_yol, "w", newline="", encoding="utf-8") as fh:
+            csv.writer(fh, lineterminator="\n").writerow(ICERIK_ALAN)
+
+    def ara_kayit(son=False):
+        """Artimli kayit (22 Eylul 2026, Sercan karari; kisitlar 1-3): (1) once arsiv, ayni fon-ay anahtarinda ustune yazar (arsive_isle),
+        (2) sonra kuyruk kaydi: devam noktasi yalnizca arsive gercekten yazilmis fonlar icin ilerler, (3) sonra kosu durumu 'kismi' etiketiyle
+        (kac fon yazildi, nerede kalindi, kalan). Olum aninda diskteki uc dosya birbirini tutar; tampon bosaltilir, bellek egrisi gunluge duser."""
+        nonlocal yazilan, yazilan_satir
+        if yazilan:
+            os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
+            with open(son_yol, "a", newline="", encoding="utf-8") as fh:
+                csv.writer(fh, lineterminator="\n").writerows(yazilan)
+            yazilan_satir += len(yazilan); yazilan_fon.update(s_[0] for s_ in yazilan); yazilan = []
+        json_yaz(ky_yol, ky)
+        if not son:
+            kd_ = json_oku(kd_yol2, {})
+            kd_["icerik"] = dict(tarih=bit, hedefAy=hedef, durum="kismi", islenen=islenen, yayimlandiBuTur=len(yazilan_fon), satirBuTur=yazilan_satir,
+                                 yazilanFonlar=sorted(yazilan_fon), sonFon=son_fon[0], listeToplam=toplam_liste[0], kalan=max(toplam_liste[0] - islenen, 0),
+                                 istek=ISTEK.sayi, h429=ISTEK.h429, devam=devam, zamanUtc=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                 kuyrukArsivSapmasi=len(kuyruk_sapma), kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz,
+                                 **{"not": "tur suruyor; olurse ayni gun buradan devam eder (kismi tur kismi diye etiketlenir)"})
+            json_yaz(kd_yol2, kd_)
+        gc.collect()
+        print(f"  ara kayit: {islenen} fon islendi, {len(yazilan_fon)} fon yazildi, kalan {max(toplam_liste[0] - islenen, 0)}, "
+              f"{bellek_mb():.0f} MB tepe, istek {ISTEK.sayi}", file=sys.stderr)
     fonlar = [f for f, s_ in sorted(kunye.items()) if (not kurucu_filtre or s_["kurucu"] == kurucu_filtre) and (not fon_filtre or f in fon_filtre)]
     # ---- kurucu durumuna gore dagit
     sorgulanacak = []
@@ -1795,6 +1842,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             if not x:
                 ky[f] = dict(**{k: v for k, v in d.items() if k == "son"}, durum="kapsam_disi", sebep=f"son {KAPSAM_AY} ayda portföy dağılım raporu yok (tek tek sorgulandı)", ay=hedef, tarih=bit)
                 kova["kapsam_disi"].append(f); continue
+            if not fon_filtre and d.get("tarih") == bit and d.get("durum") in BUGUN_ISLENDI_DURUMLARI:
+                kova[d["durum"]].append(f); continue          # bugun islendi (ayni gun devam eden tur): ayni PDF yeniden cekilmez
             rap_ay = rapor_ayi("", x["publishDate"])          # yayim tarihinin onceki ayi; PDF'ten kesinlesir
             if not yeniden_islenmeli(d, x, rap_ay):
                 # elde olan liste en yeni raporun kendisi (ayni bildirim); ayni ay icin yeniden yayimlanan rapor yeniden islenir (M59)
@@ -1808,12 +1857,11 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
         onc = park_aday_kumesi(veri)                          # M60/M64: park aday kumesi once (60 numarali not)
         yeni_l.sort(key=lambda q: q[0] not in onc); yeniden_l.sort(key=lambda q: q[0] not in onc)
         park_oncelik[0] = sum(1 for q in yeni_l + yeniden_l if q[0] in onc)
+        toplam_liste[0] = len(yeni_l) + len(yeniden_l) + len(kurtarma_l)
         def _fon_isle(f, x, d, rap_ay):
             nonlocal islenen, yazilan
             kur = kunye[f]["kurucu"]; yeniden = bool(d.get("son") and d["son"] >= rap_ay)   # yeni fonlar listede once; butce onlara gider
-            islenen += 1
-            if islenen % BELLEK_ADIM == 0:
-                print(f"  bellek: {islenen} fon, {bellek_mb():.0f} MB tepe, istek {ISTEK.sayi}", file=sys.stderr)   # 22 Eylul 2026: 700 MB olumlerinin egrisi
+            islenen += 1; son_fon[0] = f
             if yeniden:
                 yeniden_islenen[0] += 1
             try:
@@ -1849,6 +1897,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                 if durum == "hata":
                     hata.append((f, ray, sebep))
                 ozet.append([f, ray, kur, bilgi.get("duzen", "-"), bilgi.get("satir", 0), bilgi.get("toplam", ""), bilgi.get("gun") or "", bilgi.get("sapma") if bilgi.get("sapma") is not None else "", "", bilgi.get("tefasToplam", ""), bilgi.get("raporIci", ""), "", bilgi.get("eksikKalem", ""), bilgi.get("sicSinanan", ""), bilgi.get("sicHata", ""), "", "", "", "", durum, sebep, OZET_NOT])
+            if islenen % BELLEK_ADIM == 0:
+                ara_kayit()
         for f, x, d, rap_ay in yeni_l + yeniden_l:
             _fon_isle(f, x, d, rap_ay)
     except ButceBitti:
@@ -1869,9 +1919,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             print(f"kurtarma ertelendi: {e}", file=sys.stderr)
         print(f"kurtarma: {kurtarma_islenen}/{len(kurtarma_l)} fon islendi (ayri butce {KURTARMA_BUTCE})", file=sys.stderr)
 
-    # ---- ciktilar
-    with open(os.path.join(veri, "fon_icerik_son.csv"), "w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh, lineterminator="\n"); w.writerow(ICERIK_ALAN); w.writerows(yazilan)
+    # ---- ciktilar (arsiv ve son.csv artimli yazildi; son tampon burada bosalir)
+    ara_kayit(son=True)
     with open(os.path.join(veri, "fon_icerik_ozet.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, lineterminator="\n"); w.writerow(OZET_ALAN); w.writerows(ozet)
     with open(os.path.join(veri, "fon_icerik_hata.txt"), "w", encoding="utf-8") as fh:
@@ -1881,8 +1930,6 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
         for f in sorted(ky):
             if ky[f].get("durum") and ky[f]["durum"] != "yayimlandi":
                 fh.write(f"{f}\t{ky[f]['durum']}\t{ky[f].get('sebep', '')}\n")
-    if yazilan:
-        os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
     try:
         hisse_evreni_yaz(veri, arsiv)     # 68 numarali not
     except Exception as e:
@@ -1912,7 +1959,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     durum = dict(tarih=bit, hedefAy=hedef, durum="tamamlandi" if kova_toplami == toplam_fon else "denklesmedi",
                  sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
                  islenen=islenen, kuyrukArsivSapmasi=len(kuyruk_sapma), kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz,
-                 kurtarmaIslenen=kurtarma_islenen, kurtarmaButce=KURTARMA_BUTCE, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len({s_[0] for s_ in yazilan}), satirBuTur=len(yazilan),
+                 kurtarmaIslenen=kurtarma_islenen, kurtarmaButce=KURTARMA_BUTCE, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len(yazilan_fon), satirBuTur=yazilan_satir,
+                 yazilanFonlar=sorted(yazilan_fon), sonFon=son_fon[0], listeToplam=toplam_liste[0], kalan=max(toplam_liste[0] - islenen, 0), devam=devam, zamanUtc=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
                  kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
                  kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
                  kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",

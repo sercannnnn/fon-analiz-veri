@@ -192,10 +192,24 @@ python3 betik/kurucu_grup_uret.py --veri veri --arsiv arsiv || echo "uyari: kuru
 gonder "KAP dizini ve kunye"
 # Fon yonetim ucreti (giris kapisi 4): KAP genel bilgiler sayfasindan gunde 150 fon, 30 gunde bir yenilenir; veri/fon_ucret.csv
 # KAP GUNLUK KOTA (22 Eylul 2026): icerik kuyrugunun butcesi GUNLUK 400 istektir, tur basina degil. 09.15 kosusu eklenince ayni gun iki tur
-# kostu ve KAP 429 yagdi (21 Eylul 20, 22 Eylul 211 + 99 satir). Bugun bir tur kaydi varsa (kosu_durumu.icerik.tarih) ucret cekimi ve kuyruk atlanir.
-kap_turu_bugun=$(python3 -c "import json,datetime;d=json.load(open('veri/kosu_durumu.json'));print('evet' if d.get('icerik',{}).get('tarih')==datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d') else 'hayir')" 2>/dev/null || echo hayir)
-if [ "$kap_turu_bugun" = "evet" ]; then echo "KAP turu bugun yapildi, ucret cekimi ve icerik kuyrugu atlandi (gunluk kota, 429 korumasi)"; fi
-[ "$kap_turu_bugun" = "evet" ] || python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
+# kostu ve KAP 429 yagdi (21 Eylul 20, 22 Eylul 211 + 99 satir). Kotanin olcusu "bugun kosuldu" degil "kuyruk bugun bitti" (Chat kisit 4):
+#   bitti  = bugunku tur tamamlandi/denklesmedi -> ucret cekimi ve kuyruk atlanir
+#   kismi  = bugunku tur oldu ya da yarim kaldi -> kuyruk kalinan yerden surer (artimli kayit, devam noktasi), ucret cekimi atlanir
+#   yok    = bugun tur yok -> normal
+kap_turu_bugun=$(python3 - <<'PY' 2>/dev/null || echo yok
+import json, datetime
+i = json.load(open("veri/kosu_durumu.json")).get("icerik", {}) or {}
+bugun = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+if i.get("tarih") != bugun: print("yok")
+elif i.get("durum") in ("tamamlandi", "denklesmedi"): print("bitti")
+else: print(f"kismi {i.get('durum')} islenen={i.get('islenen')} yazilan={i.get('yayimlandiBuTur', 0)} sonFon={i.get('sonFon')} kalan={i.get('kalan')}")
+PY
+)
+case "$kap_turu_bugun" in
+  bitti) echo "KAP turu bugun bitti, ucret cekimi ve icerik kuyrugu atlandi (gunluk kota, 429 korumasi)";;
+  kismi*) echo "KAP turu bugun yarim kaldi ($kap_turu_bugun); kuyruk kalinan yerden suruyor, ucret cekimi atlandi";;
+esac
+[ "$kap_turu_bugun" != "yok" ] || python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
 # fon yasi, artimli (pazartesi): taramadan sonra acilan fonlar veri/fon_yas.csv'ye girer; kural G2 yalnizca bu dosyayla olculur
 if [ "$(date +%u)" = "1" ]; then python3 betik/tefas_yas.py || echo "uyari: yas taramasi basarisiz"; fi
 
@@ -208,7 +222,7 @@ fi
 # 8 ve 10 Eylul 2026), dusuk oncelik (nice 15, ionice bosta). Sinir asilirsa yalnizca bu surec olur (cikis 137) ve
 # kosu_durumu.json'a basarisiz yazilir; akis durmaz.
 ic_kod=0
-if [ "$kap_turu_bugun" = "evet" ]; then :; elif [ -x "$DEPO/.venv/bin/python" ]; then
+if [ "$kap_turu_bugun" = "bitti" ]; then :; elif [ -x "$DEPO/.venv/bin/python" ]; then
   export XDG_RUNTIME_DIR="/run/user/$(id -u)" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
   if systemd-run --user --scope -q -p MemoryMax=700M -p MemorySwapMax=0 true 2>/dev/null; then
     if ! systemd-run --user --scope -q -p MemoryMax=700M -p MemorySwapMax=0 \
