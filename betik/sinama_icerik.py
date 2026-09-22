@@ -399,6 +399,36 @@ def test_kuyruk_turu_duman():
     assert os.path.exists(os.path.join(arsiv, f"fon_icerik_{hedef}.csv.gz")) and os.path.exists(os.path.join(veri, "fon_icerik_ozet.csv"))
 
 
+def test_gerileme_denetimi_tarih_basina():
+    """22 Eylül 2026 (Chat): toplam değil tarih başına; pencere daralması uyarı üretmez, aynı tarihin satırı düşerse uyarı (anlık) ya da hata (arşiv)."""
+    import subprocess, gerileme_denetimi as G
+    d = tempfile.mkdtemp(); os.makedirs(os.path.join(d, "veri")); os.makedirs(os.path.join(d, "arsiv"))
+    def yaz(yol, satirlar, gz=False):
+        b = ("tarih,x\n" + "".join(f"{t},{i}\n" for t, n in satirlar for i in range(n))).encode()
+        p = os.path.join(d, yol)
+        with (gzip.open(p, "wb") if gz else open(p, "wb")) as h:
+            h.write(b)
+    subprocess.run(["git", "-C", d, "init", "-q"], check=True)
+    yaz("veri/hisse_son_gunluk.csv", [("2026-09-11", 510), ("2026-09-14", 510), ("2026-09-15", 510)])
+    yaz("veri/tefas_gunluk_20260921.csv", [("2026-09-18", 2000), ("2026-09-21", 2000)])
+    yaz("arsiv/tefas_2026-09.csv.gz", [("2026-09-18", 2000), ("2026-09-21", 2000)], gz=True)
+    subprocess.run(["git", "-C", d, "add", "-A"], check=True)
+    subprocess.run(["git", "-C", d, "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "ilk"], check=True)
+    # pencere daraldı (11 Eylül düştü) ama tarih başına düşüş yok: uyarı YOK
+    yaz("veri/hisse_son_gunluk.csv", [("2026-09-14", 510), ("2026-09-15", 510), ("2026-09-16", 510)])
+    h, u = G.denetle(d); assert h == [] and u == []
+    # aynı tarihin satırı düştü: anlık dosyada uyarı; yeni gün dosyası ailenin önceki dosyasıyla kıyaslanır
+    yaz("veri/hisse_son_gunluk.csv", [("2026-09-14", 510), ("2026-09-15", 400), ("2026-09-16", 510)])
+    yaz("veri/tefas_gunluk_20260922.csv", [("2026-09-18", 2000), ("2026-09-21", 1990), ("2026-09-22", 2000)])
+    h, u = G.denetle(d); assert h == [] and any("hisse_son_gunluk.csv 2026-09-15 510->400" in x for x in u) and any("tefas_gunluk_20260922.csv 2026-09-21 2000->1990" in x for x in u)
+    # kümülatif arşivde aynı tarih düşerse hata; son tarih geriye giderse de
+    yaz("arsiv/tefas_2026-09.csv.gz", [("2026-09-18", 1500)], gz=True)
+    h, u = G.denetle(d); assert any("tefas_2026-09.csv.gz son tarih 2026-09-21->2026-09-18" in x for x in h) and any("2026-09-18 2000->1500" in x for x in h)
+    # boşluk: ardışık tarihler 4 günden uzaksa uyarı
+    yaz("veri/hisse_son_gunluk.csv", [("2026-09-14", 510), ("2026-09-22", 510)])
+    h, u = G.denetle(d); assert any("bosluk 2026-09-14..2026-09-22" in x for x in u)
+
+
 if __name__ == "__main__":
     for ad, f in list(globals().items()):
         if ad.startswith("test_") and callable(f):

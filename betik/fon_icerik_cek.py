@@ -1675,6 +1675,19 @@ YENIDEN_CEKIM_TAVAN = 50   # 22 Eylul 2026 (Chat, onayli): kuyruk-arsiv sapmasi 
 KURTARMA_BUTCE = 120       # kurtarma asamasinin KENDI istek butcesi (varsayim): normal turun 400'unden ALMAZ, ona da vermez; eski veriyi kurtarmak icin yeni veri kacirilmaz
 
 
+BELLEK_ADIM = 20   # tur icinde her N fonda tepe bellek gunluge yazilir (22 Eylul 2026: iki tur 700 MB sinirinda olduruldu, egri olculmemisti)
+
+
+def bellek_mb():
+    """Surecin tepe bellek kullanimi (MB). Linux ru_maxrss KB, macOS bayt verir."""
+    try:
+        import resource
+        r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        return r / 1e6 if sys.platform == "darwin" else r / 1e3
+    except Exception:
+        return float("nan")
+
+
 def kuyruk_arsiv_denetimi(ky, arsiv):
     """22 Eylul 2026 (Chat): kuyruk ile arsiv birbirini tutmuyor ve bunu hicbir sey denetlemiyordu. Kuyruk metin (otomatik birlesir), arsiv
     ikili (birlesmez); yarim kalan her islem ayni izi birakir: kayit 'yayimlandi' der, satir yoktur, fon bir daha cekilmez (15 Eylul: 29 fon).
@@ -1799,6 +1812,8 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             nonlocal islenen, yazilan
             kur = kunye[f]["kurucu"]; yeniden = bool(d.get("son") and d["son"] >= rap_ay)   # yeni fonlar listede once; butce onlara gider
             islenen += 1
+            if islenen % BELLEK_ADIM == 0:
+                print(f"  bellek: {islenen} fon, {bellek_mb():.0f} MB tepe, istek {ISTEK.sayi}", file=sys.stderr)   # 22 Eylul 2026: 700 MB olumlerinin egrisi
             if yeniden:
                 yeniden_islenen[0] += 1
             try:

@@ -126,29 +126,17 @@ for p in glob.glob("arsiv/*.gz"):
     try:
         with gzip.open(p, "rb") as g: g.read(64)
     except Exception as e: hata.append(f"{p}: gzip acilamadi ({e})")
-# SATIR GERILEMESI (22 Eylul 2026, Chat): kumulatif arsiv (arsiv/*.gz) bir onceki islemeye gore satir kaybettiyse GONDERILMEZ (hata);
-# anlik pencere dosyalari (veri/*.csv) kuculdugunde uyari yazilir ve son_cekim.txt 'gerileme=' satiri tasir, gonderim surer.
-import subprocess
-def satir(b):
-    if b[:2] == b"\x1f\x8b": b = gzip.decompress(b)
-    return b.count(b"\n")
-uyari = []
-for p in glob.glob("arsiv/*.gz") + glob.glob("veri/*.csv"):
-    r = subprocess.run(["git", "show", "HEAD:" + p], capture_output=True)
-    if r.returncode != 0: continue
-    try: eski, yeni = satir(r.stdout), satir(open(p, "rb").read())
-    except Exception: continue
-    if yeni < eski:
-        (hata if p.startswith("arsiv/") else uyari).append(f"{p}: satir {eski} -> {yeni}")
-if uyari:
-    print("uyari gerileme (anlik dosya, pencere daralmasi olabilir): " + "; ".join(uyari), file=sys.stderr)
-    open("son_cekim.txt", "a", encoding="utf-8").write("gerileme=" + "; ".join(uyari) + "\n")
 if hata:
     print("BICIM DENETIMI GECMEDI: " + "; ".join(hata[:8]), file=sys.stderr); sys.exit(1)
-print("bicim denetimi gecti" + (f" ({len(uyari)} anlik dosyada gerileme uyarisi)" if uyari else ""))
+print("bicim denetimi gecti")
 PY
   then
     gonderim_kod=3; echo "HATA: bicim denetimi gecmedi, isleme yapilmadi (M92)"; return 0
+  fi
+  # SATIR GERILEMESI, TARIH BASINA (22 Eylul 2026, Chat): son tarih geriye gitmez, pencerede bosluk yok, ayni tarihin satiri bir onceki
+  # kosunun altina dusmez. Anlik dosyada uyari (son_cekim.txt 'gerileme=' satiri), kumulatif arsivde hata: isleme ve gonderim yapilmaz.
+  if ! python3 betik/gerileme_denetimi.py --kok . --son-cekim son_cekim.txt; then
+    gonderim_kod=3; echo "HATA: kumulatif arsivde tarih basina satir gerilemesi, isleme yapilmadi"; return 0
   fi
   git add -A veri arsiv son_cekim.txt   # veri/hisse_son_gunluk.csv, veri/hisse_hata.txt, arsiv/hisse_*.csv.gz dahil
   if git diff --cached --quiet; then
@@ -203,7 +191,11 @@ python3 betik/kunye_tam_uret.py --veri veri || echo "uyari: kunye_tam uretilemed
 python3 betik/kurucu_grup_uret.py --veri veri --arsiv arsiv || echo "uyari: kurucu_grup uretilemedi"   # ek dosya veri/kurucu_grup_ek.json (veri olarak depoda)
 gonder "KAP dizini ve kunye"
 # Fon yonetim ucreti (giris kapisi 4): KAP genel bilgiler sayfasindan gunde 150 fon, 30 gunde bir yenilenir; veri/fon_ucret.csv
-python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
+# KAP GUNLUK KOTA (22 Eylul 2026): icerik kuyrugunun butcesi GUNLUK 400 istektir, tur basina degil. 09.15 kosusu eklenince ayni gun iki tur
+# kostu ve KAP 429 yagdi (21 Eylul 20, 22 Eylul 211 + 99 satir). Bugun bir tur kaydi varsa (kosu_durumu.icerik.tarih) ucret cekimi ve kuyruk atlanir.
+kap_turu_bugun=$(python3 -c "import json,datetime;d=json.load(open('veri/kosu_durumu.json'));print('evet' if d.get('icerik',{}).get('tarih')==datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d') else 'hayir')" 2>/dev/null || echo hayir)
+if [ "$kap_turu_bugun" = "evet" ]; then echo "KAP turu bugun yapildi, ucret cekimi ve icerik kuyrugu atlandi (gunluk kota, 429 korumasi)"; fi
+[ "$kap_turu_bugun" = "evet" ] || python3 betik/kap_ucret.py --butce 150 || echo "uyari: ucret cekimi basarisiz"
 # fon yasi, artimli (pazartesi): taramadan sonra acilan fonlar veri/fon_yas.csv'ye girer; kural G2 yalnizca bu dosyayla olculur
 if [ "$(date +%u)" = "1" ]; then python3 betik/tefas_yas.py || echo "uyari: yas taramasi basarisiz"; fi
 
@@ -216,7 +208,7 @@ fi
 # 8 ve 10 Eylul 2026), dusuk oncelik (nice 15, ionice bosta). Sinir asilirsa yalnizca bu surec olur (cikis 137) ve
 # kosu_durumu.json'a basarisiz yazilir; akis durmaz.
 ic_kod=0
-if [ -x "$DEPO/.venv/bin/python" ]; then
+if [ "$kap_turu_bugun" = "evet" ]; then :; elif [ -x "$DEPO/.venv/bin/python" ]; then
   export XDG_RUNTIME_DIR="/run/user/$(id -u)" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
   if systemd-run --user --scope -q -p MemoryMax=700M -p MemorySwapMax=0 true 2>/dev/null; then
     if ! systemd-run --user --scope -q -p MemoryMax=700M -p MemorySwapMax=0 \
@@ -233,7 +225,7 @@ yol = "veri/kosu_durumu.json"
 try: d = json.load(open(yol, encoding="utf-8"))
 except Exception: d = {}
 kod = int(sys.argv[1]); d.setdefault("icerik", {})
-d["icerik"].update(durum="basarisiz", cikisKodu=kod, sebep="bellek siniri (400 MB) asildi, surec olduruldu" if kod == 137 else "betik hatayla bitti",
+d["icerik"].update(durum="basarisiz", cikisKodu=kod, sebep="bellek siniri (700 MB) asildi, surec olduruldu" if kod == 137 else "betik hatayla bitti",
                    tarih=datetime.date.today().isoformat())
 json.dump(d, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1, sort_keys=True)
 PY
