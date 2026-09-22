@@ -3,36 +3,15 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-22T05:15:12Z",
+ "cekimZamaniUtc": "2026-09-22T09:15:10Z",
  "sonGun": "2026-09-22",
- "toplamKayit": 14271,
- "sonGunKayit": 2037,
- "sonGunFiyatsiz": 494,
- "sonGunDagilimSatir": 1035,
+ "toplamKayit": 14273,
+ "sonGunKayit": 2039,
+ "sonGunFiyatsiz": 55,
+ "sonGunDagilimSatir": 1983,
  "tamKapsamliSonGun": "2026-09-21",
- "kimlikSapmaSayisi": 11,
+ "kimlikSapmaSayisi": 8,
  "kimlikSapanlar": [
-  {
-   "tarih": "2026-09-22",
-   "fonKodu": "BTP",
-   "payXfiyat": 885465643.28,
-   "buyukluk": 269041618.29,
-   "tolerans": 718.24
-  },
-  {
-   "tarih": "2026-09-22",
-   "fonKodu": "FS1",
-   "payXfiyat": 119874057.93,
-   "buyukluk": 119866918.79,
-   "tolerans": 42.38
-  },
-  {
-   "tarih": "2026-09-22",
-   "fonKodu": "FS6",
-   "payXfiyat": 268259290.18,
-   "buyukluk": 273851481.88,
-   "tolerans": 68.61
-  },
   {
    "tarih": "2026-09-22",
    "fonKodu": "RBP",
@@ -134,12 +113,19 @@
    "tam": true
   },
   "2026-09-22": {
-   "kayit": 2037,
-   "gecerli": 1543,
-   "dagilim": 1035,
-   "fiyatsiz": 494,
+   "kayit": 2039,
+   "gecerli": 1984,
+   "dagilim": 1983,
+   "fiyatsiz": 55,
    "tam": false
   }
  },
- "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir"
+ "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
+ "fiyatsiz": {
+  "sonGun": "2026-09-22",
+  "sonGunFiyatsizOran": 0.027,
+  "sonGunDurumu": "tam",
+  "oncekiGunDurumu": "tam",
+  "supheli": []
+ }
 }
