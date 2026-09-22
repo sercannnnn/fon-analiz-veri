@@ -424,9 +424,13 @@ def test_gerileme_denetimi_tarih_basina():
     # kümülatif arşivde aynı tarih düşerse hata; son tarih geriye giderse de
     yaz("arsiv/tefas_2026-09.csv.gz", [("2026-09-18", 1500)], gz=True)
     h, u = G.denetle(d); assert any("tefas_2026-09.csv.gz son tarih 2026-09-21->2026-09-18" in x for x in h) and any("2026-09-18 2000->1500" in x for x in h)
-    # boşluk: ardışık tarihler 4 günden uzaksa uyarı
+    # boşluk iş günüyle: 14 → 22 Eylül arası 5 iş günü atlanmış; hafta sonu boşluk değil; değişmeyen dosya denetlenmez
     yaz("veri/hisse_son_gunluk.csv", [("2026-09-14", 510), ("2026-09-22", 510)])
-    h, u = G.denetle(d); assert any("bosluk 2026-09-14..2026-09-22" in x for x in u)
+    h, u = G.denetle(d); assert any("hisse_son_gunluk.csv bosluk 2026-09-14..2026-09-22 (5 is gunu)" in x for x in u)
+    yaz("veri/hisse_son_gunluk.csv", [("2026-09-18", 510), ("2026-09-21", 510)])
+    subprocess.run(["git", "-C", d, "add", "-A"], check=True)
+    subprocess.run(["git", "-C", d, "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "iki"], check=True)
+    h, u = G.denetle(d); assert h == [] and u == [], (h, u)   # hiçbir dosya değişmedi: alarm yok
 
 
 if __name__ == "__main__":

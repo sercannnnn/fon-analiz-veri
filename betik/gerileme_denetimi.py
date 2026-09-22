@@ -4,8 +4,11 @@ tasir (yanlis alarm) ve bir gunun icinden dusen satirlari pencere daralmasi gizl
 
 Uc sart, her dosya icin bir onceki kosunun (git HEAD) ayni dosyasiyla, ayni tarih icin:
   a) son tarih geriye gitmemeli
-  b) pencere icinde bosluk olmamali (ardisik tarihler arasi BOSLUK_GUN takvim gununden uzun degil; bayramlar takvimde)
+  b) pencere icinde is gunu boslugu olmamali (ardisik tarihler arasinda takvim.is_gunu_sayisi ile sayilan is gunu; hafta sonu ve
+     RESMI_KAPANIS bayramlari bosluk degildir; takvim yoksa BOSLUK_GUN takvim gunu yedegi)
   c) bir tarihin satir sayisi, ayni tarih icin bir onceki kosuda olculenin altina dusmemeli
+Yalnizca BU KOSUDA DEGISEN dosyalar denetlenir (HEAD ile ayni icerikli dosya atlanir): 45 gunluk pencerenin eski gunluk dosyalari ve
+eski aylarin arsivleri her koşuda yeniden alarm uretmez (22 Eylul 2026 kuru kosusu: 2024 ve 2025 bayram bosluklari, eski dagilim dosyalari).
 Sonuc: anlik dosyada (veri/*.csv) gerileme UYARI, gonderim surer; kumulatif arsivde (arsiv/*.gz) gerileme HATA, cikis 1, gonderim yapilmaz.
 Gunluk pencere dosyalari (tefas_gunluk_<tarih>.csv, tefas_dagilim_<tarih>.csv) ayni ailenin HEAD'deki en yeni dosyasiyla karsilastirilir.
 Bulgular 'gerileme=<dosya> <tarih> <eski>-><yeni>' biciminde son_cekim.txt'ye eklenir; brifing bunu aynen aktarir.
@@ -15,6 +18,11 @@ import argparse, csv, glob, gzip, io, os, re, subprocess, sys
 from datetime import date
 
 BOSLUK_GUN = 4
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import takvim as _takvim
+except Exception:
+    _takvim = None
 AILE = [(re.compile(r"^veri/tefas_gunluk_\d{8}\.csv$"), "veri/tefas_gunluk_*.csv"), (re.compile(r"^veri/tefas_dagilim_\d{8}\.csv$"), "veri/tefas_dagilim_*.csv")]
 
 
@@ -50,16 +58,30 @@ def onceki_surum(kok, yol):
 
 
 def bosluklar(tarihler):
+    """Ardisik tarihler arasinda atlanan is gunu (takvim varsa) ya da BOSLUK_GUN'u asan takvim gunu. Donus: (a, b, atlanan)."""
     t = sorted(x for x in tarihler if len(x) == 10 and x[4] == "-")
     out = []
     for a, b in zip(t, t[1:]):
         try:
-            fark = (date.fromisoformat(b) - date.fromisoformat(a)).days
+            da, db = date.fromisoformat(a), date.fromisoformat(b)
         except ValueError:
             continue
-        if fark > BOSLUK_GUN:
-            out.append((a, b, fark))
+        if _takvim is not None:
+            atlanan = _takvim.is_gunu_sayisi(da, db) - 1
+            if atlanan > 0:
+                out.append((a, b, atlanan))
+        elif (db - da).days > BOSLUK_GUN:
+            out.append((a, b, (db - da).days))
     return out
+
+
+def degisti(kok, yol):
+    """Dosya bu kosuda degisti mi: HEAD'de yoksa (yeni) ya da icerigi HEAD'dekinden farkliysa True."""
+    kod, _ = _git(kok, "cat-file", "-e", f"HEAD:{yol}")
+    if kod != 0:
+        return True
+    kod, _ = _git(kok, "diff", "--quiet", "HEAD", "--", yol)
+    return kod != 0
 
 
 def denetle(kok, dosyalar=None):
@@ -69,6 +91,8 @@ def denetle(kok, dosyalar=None):
         dosyalar = sorted(glob.glob(os.path.join(kok, "arsiv", "*.gz")) + glob.glob(os.path.join(kok, "veri", "*.csv")))
         dosyalar = [os.path.relpath(p, kok) for p in dosyalar]
     for yol in dosyalar:
+        if not degisti(kok, yol):
+            continue
         try:
             yeni = tarih_sayimi(open(os.path.join(kok, yol), "rb").read())
         except Exception:
@@ -77,7 +101,7 @@ def denetle(kok, dosyalar=None):
         kova = hata if yol.startswith("arsiv/") else uyari
         if "_toplam" not in yeni:
             for a, b, f in bosluklar(yeni):
-                uyari.append(f"{yol} bosluk {a}..{b} ({f} gun)")
+                uyari.append(f"{yol} bosluk {a}..{b} ({f} is gunu)")
         if not onceki_yol:
             continue
         kod, b = _git(kok, "show", f"HEAD:{onceki_yol}")
