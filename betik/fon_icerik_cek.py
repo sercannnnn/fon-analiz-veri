@@ -171,12 +171,22 @@ def json_oku(yol, varsayilan):
         return varsayilan
 
 
-def json_yaz(yol, veri):
-    """Atomik: gecici dosyaya yazilip yerine konur. Artimli kayitta (22 Eylul 2026) surec yazma ortasinda olurse kuyruk dosyasi yarim kalmaz."""
+def atomik_yaz(yol, bayt):
+    """Gecici dosyaya yaz, flush + fsync ile diske indir, os.replace ile yerine koy, klasoru fsync'le. Artimli kayit (22 Eylul 2026, Chat
+    itiraz 1): OOM olumu SIGKILL'dir; finally, atexit ve tampon bosaltma kosmaz. Kalicilik bu islevin donusunde tamamdir, sonraya birakilmaz."""
     gecici = yol + ".tmp"
-    with open(gecici, "w", encoding="utf-8") as f:
-        json.dump(veri, f, ensure_ascii=False, indent=1, sort_keys=True)
+    with open(gecici, "wb") as f:
+        f.write(bayt); f.flush(); os.fsync(f.fileno())
     os.replace(gecici, yol)
+    try:
+        dfd = os.open(os.path.dirname(os.path.abspath(yol)) or ".", os.O_RDONLY); os.fsync(dfd); os.close(dfd)
+    except OSError:
+        pass
+
+
+def json_yaz(yol, veri):
+    """Atomik ve fsync'li (atomik_yaz)."""
+    atomik_yaz(yol, json.dumps(veri, ensure_ascii=False, indent=1, sort_keys=True).encode("utf-8"))
 
 
 # ================================================================ KAP erisimi ve istek sayaci
@@ -185,12 +195,29 @@ class Istek:
     """Istek sayaci ve 429 takibi. butce asilinca Butce istisnasi firlatir."""
     def __init__(self, butce):
         self.butce, self.sayi, self.h429 = butce, 0, 0
+        self.dosya = None      # gunun istek sayaci dosyasi (veri/istek_sayaci.json); her istekte yazilir, ara kayittan bagimsiz (Chat itiraz 2)
 
     def kullan(self):
         if self.sayi >= self.butce:
             raise ButceBitti()
         self.sayi += 1
+        self.kaydet()
         time.sleep(ARA)
+
+    def kaydet(self):
+        """Gunun istek ve 429 sayisini kucuk dosyaya atomik yazar. Olum ani ne olursa olsun gunluk butce dogru bilinir; tur baslarken
+        ayni gunun dosyasi sayaca yuklenir (yukle)."""
+        if self.dosya:
+            json_yaz(self.dosya, dict(tarih=date.today().isoformat(), istek=self.sayi, h429=self.h429, zamanUtc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")))
+
+    def yukle(self, dosya):
+        """Ayni gunun sayacini yukler (en buyuk deger alinir); baska gunun dosyasi sifirdan baslatir. Donus: yuklenen istek sayisi."""
+        self.dosya = dosya
+        d = json_oku(dosya, {}) or {}
+        if d.get("tarih") == date.today().isoformat():
+            self.sayi = max(self.sayi, int(d.get("istek") or 0)); self.h429 = max(self.h429, int(d.get("h429") or 0))
+            return self.sayi
+        return 0
 
 
 class ButceBitti(Exception):
@@ -210,7 +237,7 @@ def _istek(metot, url, deneme=3, **kw):
         try:
             r = requests.request(metot, url, headers=BASLIK, timeout=120, **kw)
             if r.status_code == 429:
-                ISTEK.h429 += 1
+                ISTEK.h429 += 1; ISTEK.kaydet()
                 raise RuntimeError("HTTP 429")
             if r.status_code >= 500:
                 raise RuntimeError(f"HTTP {r.status_code}")
@@ -1415,11 +1442,10 @@ def hedef_ay(bugun):
 
 def gz_yaz(yol, satirlar):
     buf = io.StringIO(); w = csv.writer(buf, lineterminator="\n"); w.writerow(ICERIK_ALAN); w.writerows(satirlar)
-    gecici = yol + ".tmp"                      # atomik: yarim gz arsiv kalmasin (artimli kayit, 22 Eylul 2026)
-    with open(gecici, "wb") as f:
-        with gzip.GzipFile(fileobj=f, mode="wb", mtime=0, compresslevel=9) as g:
-            g.write(buf.getvalue().encode("utf-8"))
-    os.replace(gecici, yol)
+    gz = io.BytesIO()
+    with gzip.GzipFile(fileobj=gz, mode="wb", mtime=0, compresslevel=9) as g:
+        g.write(buf.getvalue().encode("utf-8"))
+    atomik_yaz(yol, gz.getvalue())             # atomik ve fsync'li: yarim gz arsiv kalmasin (artimli kayit, 22 Eylul 2026)
 
 
 def gz_oku(yol):
@@ -1762,6 +1788,10 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
     # oldugu icin yeniden cekilmez; bugun hata kovasina dusen fon da ayni gun yeniden cekilmez (BUGUN_ISLENDI_DURUMLARI).
     onceki = json_oku(kd_yol2, {}).get("icerik", {}) or {}
     devam = bool(not fon_filtre and onceki.get("tarih") == bit and onceki.get("durum") not in TUR_BITTI_DURUMLARI and onceki.get("islenen"))
+    if not fon_filtre:
+        sayac_yuklenen = ISTEK.yukle(os.path.join(veri, "istek_sayaci.json"))     # gunun sayaci ara kayittan bagimsiz; ilk ara kayittan onceki olum de sayilir
+        if sayac_yuklenen:
+            print(f"gunun istek sayaci yuklendi: {sayac_yuklenen}/{ISTEK.butce} (429: {ISTEK.h429})", file=sys.stderr)
     if devam:
         ISTEK.sayi = max(ISTEK.sayi, int(onceki.get("istek") or 0)); ISTEK.h429 = max(ISTEK.h429, int(onceki.get("h429") or 0))
         print(f"devam: bugunku tur {onceki.get('durum')} kalmisti ({onceki.get('islenen')} fon islenmis, {onceki.get('yayimlandiBuTur', 0)} fon yazilmis, "
@@ -1796,10 +1826,11 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
         (2) sonra kuyruk kaydi: devam noktasi yalnizca arsive gercekten yazilmis fonlar icin ilerler, (3) sonra kosu durumu 'kismi' etiketiyle
         (kac fon yazildi, nerede kalindi, kalan). Olum aninda diskteki uc dosya birbirini tutar; tampon bosaltilir, bellek egrisi gunluge duser."""
         nonlocal yazilan, yazilan_satir
+        t0 = time.time()
         if yazilan:
             os.makedirs(arsiv, exist_ok=True); arsive_isle(arsiv, yazilan)
             with open(son_yol, "a", newline="", encoding="utf-8") as fh:
-                csv.writer(fh, lineterminator="\n").writerows(yazilan)
+                csv.writer(fh, lineterminator="\n").writerows(yazilan); fh.flush(); os.fsync(fh.fileno())
             yazilan_satir += len(yazilan); yazilan_fon.update(s_[0] for s_ in yazilan); yazilan = []
         json_yaz(ky_yol, ky)
         if not son:
@@ -1812,7 +1843,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             json_yaz(kd_yol2, kd_)
         gc.collect()
         print(f"  ara kayit: {islenen} fon islendi, {len(yazilan_fon)} fon yazildi, kalan {max(toplam_liste[0] - islenen, 0)}, "
-              f"{bellek_mb():.0f} MB tepe, istek {ISTEK.sayi}", file=sys.stderr)
+              f"{bellek_mb():.0f} MB tepe, istek {ISTEK.sayi}, sure {time.time() - t0:.2f} s", file=sys.stderr)
     fonlar = [f for f, s_ in sorted(kunye.items()) if (not kurucu_filtre or s_["kurucu"] == kurucu_filtre) and (not fon_filtre or f in fon_filtre)]
     # ---- kurucu durumuna gore dagit
     sorgulanacak = []
