@@ -24,7 +24,7 @@ Kullanim:
 """
 import argparse, csv, gc, glob, gzip, io, json, os, re, sys, time, unicodedata
 from collections import defaultdict
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 import requests
 import pdfplumber
 
@@ -1806,7 +1806,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
             kd_ = json_oku(kd_yol2, {})
             kd_["icerik"] = dict(tarih=bit, hedefAy=hedef, durum="kismi", islenen=islenen, yayimlandiBuTur=len(yazilan_fon), satirBuTur=yazilan_satir,
                                  yazilanFonlar=sorted(yazilan_fon), sonFon=son_fon[0], listeToplam=toplam_liste[0], kalan=max(toplam_liste[0] - islenen, 0),
-                                 istek=ISTEK.sayi, h429=ISTEK.h429, devam=devam, zamanUtc=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                 istek=ISTEK.sayi, h429=ISTEK.h429, devam=devam, zamanUtc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                                  kuyrukArsivSapmasi=len(kuyruk_sapma), kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz,
                                  **{"not": "tur suruyor; olurse ayni gun buradan devam eder (kismi tur kismi diye etiketlenir)"})
             json_yaz(kd_yol2, kd_)
@@ -1960,7 +1960,7 @@ def kuyruk_turu(kunye, veri, arsiv, kurucu_filtre=None, fon_filtre=None):
                  sinananKurucu=sinanan, gecenKurucu=len(gecen_kurucu), taninmayanKurucu=len(taninmayan_kurucu), raporYokKurucu=len(rapor_yok_kurucu),
                  islenen=islenen, kuyrukArsivSapmasi=len(kuyruk_sapma), kuyrukArsivBekleyen=len(bekleyen), arsivdeKuyruksuz=kuyruksuz,
                  kurtarmaIslenen=kurtarma_islenen, kurtarmaButce=KURTARMA_BUTCE, yeniFon=yeni_fon[0], parkOncelik=park_oncelik[0], yenidenIslenen=yeniden_islenen[0], listeEksikBuTur=sum(1 for o in ozet if len(o) > 11 and o[11] == "false"), yayimlandiBuTur=len(yazilan_fon), satirBuTur=yazilan_satir,
-                 yazilanFonlar=sorted(yazilan_fon), sonFon=son_fon[0], listeToplam=toplam_liste[0], kalan=max(toplam_liste[0] - islenen, 0), devam=devam, zamanUtc=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                 yazilanFonlar=sorted(yazilan_fon), sonFon=son_fon[0], listeToplam=toplam_liste[0], kalan=max(toplam_liste[0] - islenen, 0), devam=devam, zamanUtc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                  kovalar=dict(sayim), kovaToplami=kova_toplami, toplamFon=toplam_fon,
                  kapsamPay=kapsam_pay, kapsamPayda=kapsam_payda, kapsamOrani=kapsam_orani,
                  kapsamTanimi="pay: hedef ay icin arsivde gecerli kiymet listesi olan fon; payda: KAP'ta en yeni portfoy dagilim raporu hedef ayda olan fon",
