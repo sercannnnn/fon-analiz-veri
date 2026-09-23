@@ -5,10 +5,27 @@
    "2026-08": 148,
    "2026-09": 0
   },
-  "durum": "basladi",
+  "devam": false,
+  "durum": "kismi",
+  "h429": 0,
   "hedefAy": "2026-08",
+  "islenen": 120,
+  "istek": 348,
+  "kalan": 1028,
   "kuyrukArsivBekleyen": 0,
   "kuyrukArsivSapmasi": 0,
-  "tarih": "2026-09-22"
+  "listeToplam": 1148,
+  "not": "tur suruyor; olurse ayni gun buradan devam eder (kismi tur kismi diye etiketlenir)",
+  "satirBuTur": 62,
+  "sonFon": "PPM",
+  "tarih": "2026-09-23",
+  "yayimlandiBuTur": 4,
+  "yazilanFonlar": [
+   "FFP",
+   "MJH",
+   "PFS",
+   "PIL"
+  ],
+  "zamanUtc": "2026-09-23T06:52:28Z"
  }
 }
