@@ -3,15 +3,22 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-22T09:15:10Z",
- "sonGun": "2026-09-22",
- "toplamKayit": 14273,
- "sonGunKayit": 2039,
- "sonGunFiyatsiz": 55,
- "sonGunDagilimSatir": 1983,
- "tamKapsamliSonGun": "2026-09-21",
- "kimlikSapmaSayisi": 8,
+ "cekimZamaniUtc": "2026-09-23T05:15:11Z",
+ "sonGun": "2026-09-23",
+ "toplamKayit": 16310,
+ "sonGunKayit": 2037,
+ "sonGunFiyatsiz": 912,
+ "sonGunDagilimSatir": 931,
+ "tamKapsamliSonGun": "2026-09-22",
+ "kimlikSapmaSayisi": 9,
  "kimlikSapanlar": [
+  {
+   "tarih": "2026-09-23",
+   "fonKodu": "ZBD",
+   "payXfiyat": 936872956.07,
+   "buyukluk": 936872963.56,
+   "tolerans": 0.7
+  },
   {
    "tarih": "2026-09-22",
    "fonKodu": "RBP",
@@ -114,18 +121,26 @@
   },
   "2026-09-22": {
    "kayit": 2039,
-   "gecerli": 1984,
-   "dagilim": 1983,
-   "fiyatsiz": 55,
+   "gecerli": 2022,
+   "dagilim": 2022,
+   "fiyatsiz": 17,
+   "tam": true
+  },
+  "2026-09-23": {
+   "kayit": 2037,
+   "gecerli": 1125,
+   "dagilim": 931,
+   "fiyatsiz": 912,
    "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
-  "sonGun": "2026-09-22",
-  "sonGunFiyatsizOran": 0.027,
-  "sonGunDurumu": "tam",
+  "sonGun": "2026-09-23",
+  "sonGunFiyatsizOran": 0.4477,
+  "sonGunDurumu": "kismi",
   "oncekiGunDurumu": "tam",
-  "supheli": []
+  "supheli": [],
+  "fiyatTamSonGun": "2026-09-22"
  }
 }
