@@ -87,7 +87,7 @@ BRH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSC	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BSD	hata	satır içi: 1/19 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BSD	hata	satır içi: 1/23 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BSE	hata	ek PDF yok
 BSF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -183,7 +183,7 @@ DMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DNA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DNF	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 DNL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DNM	hata	satır içi: 1/16 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+DNM	hata	satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 DNU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DOC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DOD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -260,7 +260,7 @@ EPO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 EPP	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EPT	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 ESN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-ESP	hata	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+ESP	hata	satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 ETN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EVL	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 EZM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -278,7 +278,6 @@ FFD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FFF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FFH	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: ISDW iShares MSCI EM IE00B27YC)
 FFO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FFP	hata	sapma sebebi atanmamış: TEFAS sapması 0.12 puan, 0,05 üstü
 FHI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FHP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FHZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -308,7 +307,6 @@ FSF	sinif_farki	şart 3: para_piyasasi satırlarda 38.97, TEFAS 22.70
 FSG	sinif_farki	şart 3: para_piyasasi satırlarda 3.50, TEFAS 1.70
 FSH	sinif_farki	şart 3: para_piyasasi satırlarda 0.63, TEFAS 2.17
 FSM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-FSR	sinif_farki	şart 3: borclanma satırlarda 82.29, TEFAS 85.17
 FSV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTM	duzen_taninmadi	düzen tanınmadı
@@ -356,11 +354,10 @@ GJA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GJH	duzen_taninmadi	kıymet satırı yok
+GJH	hata	şart 1: ağırlık toplamı 273.50
 GJM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GKE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GKH	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 GKK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GKL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GKM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -403,7 +400,7 @@ GTN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTZ	hata	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
 GUA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GUC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GUK	duzen_taninmadi	kıymet satırı yok
+GUK	hata	şart 1: ağırlık toplamı 496.50
 GVB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -739,7 +736,6 @@ MGD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MGE	hata	ek PDF yok
 MIK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MJE	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-MJH	hata	sapma sebebi atanmamış: TEFAS sapması 0.87 puan, 0,05 üstü
 MJK	hata	ek PDF yok
 MKL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MLK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -868,7 +864,7 @@ OPB	hata	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: APLIB AK PORTF
 OPI	sinif_farki	şart 3: maden_byf satırlarda 2.64, TEFAS 1.54
 OPU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OPZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-ORC	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
+ORC	sinif_farki	şart 3: borclanma satırlarda 5.48, TEFAS 11.69
 ORI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ORS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OSF	hata	ek PDF yok
@@ -897,7 +893,7 @@ PAU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PBE	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PBF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PBH	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-PBN	duzen_taninmadi	düzen tanınmadı
+PBN	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 PBR	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PBS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PBY	hata	ek PDF yok
@@ -910,19 +906,16 @@ PDG	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PDH	hata	ek PDF yok
 PDR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PDS	hata	ek PDF yok
-PFS	hata	sapma sebebi atanmamış: TEFAS sapması 0.08 puan, 0,05 üstü
 PGD	sinif_farki	şart 3: borclanma satırlarda 12.35, TEFAS 27.53
 PGE	hata	ek PDF yok
 PGH	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHB	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHE	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-PHF	duzen_taninmadi	düzen tanınmadı
+PHF	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 PHN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PHY	hata	ek PDF yok
 PIA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-PIL	hata	sapma sebebi atanmamış: TEFAS sapması 0.34 puan, 0,05 üstü
-PIP	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 PKD	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PKF	hata	şart 2: 1 satırda ISIN okunamadı (A) HİSSE: TC HAZİNE VE MALİYE)
 PKH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -944,7 +937,7 @@ POI	hata	ek PDF yok
 POU	hata	ek PDF yok
 PPF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PPG	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-PPM	duzen_taninmadi	düzen tanınmadı
+PPM	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 PPN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 PPO	hata	ek PDF yok
 PPU	hata	ek PDF yok
@@ -1138,14 +1131,12 @@ TGR	kuyrukta	sırası gelmedi
 TGV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TGZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
-THF	hata	sapma sebebi atanmamış: TEFAS sapması 0.14 puan, 0,05 üstü
 THG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TI1	kuyrukta	sırası gelmedi
 TI2	kuyrukta	sırası gelmedi
 TI3	kuyrukta	sırası gelmedi
 TI4	kuyrukta	sırası gelmedi
@@ -1154,7 +1145,6 @@ TI7	kuyrukta	sırası gelmedi
 TIE	kuyrukta	sırası gelmedi
 TIL	kuyrukta	sırası gelmedi
 TIP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TIV	kuyrukta	sırası gelmedi
 TJB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TJF	kuyrukta	sırası gelmedi
 TJI	kuyrukta	sırası gelmedi
@@ -1170,13 +1160,11 @@ TLH	kuyrukta	sırası gelmedi
 TLK	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 TLT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TLU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TLV	kuyrukta	sırası gelmedi
 TLZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 TMA	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
 TMC	kuyrukta	sırası gelmedi
 TMG	kuyrukta	sırası gelmedi
 TMH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TMM	kuyrukta	sırası gelmedi
 TMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TMU	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
@@ -1194,7 +1182,6 @@ TO8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOT	kuyrukta	sırası gelmedi
 TP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TP2	kuyrukta	sırası gelmedi
 TPC	kuyrukta	sırası gelmedi
 TPE	kuyrukta	sırası gelmedi
 TPF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
@@ -1209,7 +1196,6 @@ TRJ	kuyrukta	sırası gelmedi
 TRN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TRO	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TRR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TRU	kuyrukta	sırası gelmedi
 TRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TSI	kuyrukta	sırası gelmedi
 TSP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1294,7 +1280,7 @@ YBE	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YBJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YBP	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
-YBR	kuyrukta	sırası gelmedi
+YBR	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 YBS	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YCG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YCH	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
