@@ -1,5 +1,5 @@
 son_cekim_utc=2026-09-24T05:15:12Z
-son_deneme_utc=2026-09-24T05:56:38Z
+son_deneme_utc=2026-09-24T07:00:24Z
 tefas_cekim_cikis=0
 son_gun_fiyatsiz_oran=0.1976
 son_gun_durumu=kismi
