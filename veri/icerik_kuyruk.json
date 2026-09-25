@@ -37,6 +37,7 @@
   "bildirim": 1657627,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 19:06:46"
  },
@@ -85,6 +86,7 @@
   "bildirim": 1658558,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -93,6 +95,7 @@
   "bildirim": 1658559,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -134,6 +137,7 @@
   "bildirim": 1658560,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -142,6 +146,7 @@
   "bildirim": 1658561,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -194,6 +199,7 @@
   "bildirim": 1657628,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 19:06:46"
  },
@@ -627,6 +633,7 @@
   "bildirim": 1658570,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -769,6 +776,7 @@
   "bildirim": 1657629,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 19:06:46"
  },
@@ -996,6 +1004,7 @@
   "bildirim": 1666503,
   "durum": "hata",
   "sebep": "satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "22.09.2026 13:05:50"
  },
@@ -1010,6 +1019,7 @@
   "bildirim": 1658563,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -1139,6 +1149,7 @@
   "bildirim": 1658564,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -1501,6 +1512,7 @@
   "bildirim": 1667296,
   "durum": "hata",
   "sebep": "satır içi: 1/23 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 18:00:55"
  },
@@ -1509,6 +1521,7 @@
   "bildirim": 1658556,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -1678,6 +1691,7 @@
   "bildirim": 1657484,
   "durum": "hata",
   "sebep": "satır içi: 1/31 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 18:03:25"
  },
@@ -1870,6 +1884,7 @@
   "bildirim": 1658360,
   "durum": "sinif_farki",
   "sebep": "şart 3: ybyf satırlarda 0.00, TEFAS 15.89",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 16:57:15"
  },
@@ -1934,6 +1949,7 @@
   "bildirim": 1658557,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -2180,6 +2196,7 @@
   "bildirim": 1658113,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: Z30EA ZİRAAT PORTFÖY YÖNETİMİ )",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 14:52:58"
  },
@@ -2372,6 +2389,7 @@
   "bildirim": 1658569,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -2593,6 +2611,7 @@
   "bildirim": 1601604,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "06.05.2026 11:44:58"
  },
@@ -2702,6 +2721,7 @@
   "bildirim": 1667445,
   "durum": "hata",
   "sebep": "satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 23:28:25"
  },
@@ -2932,6 +2952,7 @@
   "bildirim": 1658128,
   "durum": "hata",
   "sebep": "şart 2: 1 satıra birden çok ISIN atandı (AEFES AGHOL AKBNK AKSA ALGYO A)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 14:55:36"
  },
@@ -2946,6 +2967,7 @@
   "bildirim": 1667420,
   "durum": "hata",
   "sebep": "satır içi: 1/11 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:18:47"
  },
@@ -2960,6 +2982,7 @@
   "bildirim": 1658566,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -3289,6 +3312,7 @@
   "bildirim": 1660171,
   "durum": "hata",
   "sebep": "şart 2: 3 satırda ISIN okunamadı (Hisse Türk: SE (AIXGN) GTT FP EQUITY GAZTR)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "08.09.2026 16:14:55"
  },
@@ -3354,6 +3378,7 @@
   "bildirim": 1660536,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: GOOGL GOOGLE INC)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "09.09.2026 08:36:51"
  },
@@ -3426,6 +3451,7 @@
   "bildirim": 1658443,
   "durum": "sinif_farki",
   "sebep": "şart 3: borclanma satırlarda 11.76, TEFAS 16.44",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 17:42:14"
  },
@@ -3434,6 +3460,7 @@
   "bildirim": 1658444,
   "durum": "sinif_farki",
   "sebep": "şart 3: borclanma satırlarda 0.00, TEFAS 2.53",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 17:42:14"
  },
@@ -3481,6 +3508,7 @@
   "bildirim": 1658447,
   "durum": "sinif_farki",
   "sebep": "şart 3: maden_byf satırlarda 3.49, TEFAS 0.00",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 17:42:14"
  },
@@ -3505,6 +3533,7 @@
   "bildirim": 1660537,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: GOOGL GOOGLE INC)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "09.09.2026 08:36:51"
  },
@@ -3524,6 +3553,7 @@
   "bildirim": 1588584,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-03",
   "tarih": "2026-09-25",
   "yayim": "08.04.2026 16:33:35"
  },
@@ -3543,6 +3573,7 @@
   "bildirim": 1660539,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: GOOGL GOOGLE INC)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "09.09.2026 08:36:51"
  },
@@ -3607,6 +3638,7 @@
   "bildirim": 1666504,
   "durum": "hata",
   "sebep": "satır içi: 1/5 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "22.09.2026 13:05:50"
  },
@@ -3730,6 +3762,7 @@
   "bildirim": 1666396,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Türk: TPYGI.F2 TERA PORTFÖY TRYTRP00)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "22.09.2026 09:56:05"
  },
@@ -3833,6 +3866,7 @@
   "bildirim": 1660540,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: ISDW iShares MSCI EM IE00B27YC)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "09.09.2026 08:36:51"
  },
@@ -4019,6 +4053,7 @@
   "bildirim": 1667203,
   "durum": "duzen_taninmadi",
   "sebep": "düzen tanınmadı",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 16:52:34"
  },
@@ -4087,6 +4122,7 @@
   "bildirim": 1660544,
   "durum": "hata",
   "sebep": "satır içi: 1/42 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "09.09.2026 08:36:51"
  },
@@ -4409,6 +4445,7 @@
   "bildirim": 1662371,
   "durum": "duzen_taninmadi",
   "sebep": "düzen tanınmadı",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "14.09.2026 15:09:43"
  },
@@ -5025,6 +5062,7 @@
   "bildirim": 1667287,
   "durum": "hata",
   "sebep": "şart 1: ağırlık toplamı 273.50",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 17:56:11"
  },
@@ -5220,6 +5258,7 @@
   "bildirim": 1660178,
   "durum": "hata",
   "sebep": "şart 1: ağırlık toplamı 78.64",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "08.09.2026 16:16:24"
  },
@@ -5494,6 +5533,7 @@
   "bildirim": 1659685,
   "durum": "sinif_farki",
   "sebep": "şart 3: ybyf satırlarda 13.06, TEFAS 10.10",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 18:16:59"
  },
@@ -5553,6 +5593,7 @@
   "bildirim": 1659799,
   "durum": "sinif_farki",
   "sebep": "şart 3: borclanma satırlarda 6.30, TEFAS 70.14",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 19:01:20"
  },
@@ -5603,6 +5644,7 @@
   "bildirim": 1667449,
   "durum": "hata",
   "sebep": "satır içi: 1/4 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 23:28:25"
  },
@@ -5765,6 +5807,7 @@
   "bildirim": 1659689,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 18:16:59"
  },
@@ -5818,6 +5861,7 @@
   "bildirim": 1667256,
   "durum": "hata",
   "sebep": "şart 1: ağırlık toplamı 496.50",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 17:14:07"
  },
@@ -5877,6 +5921,7 @@
   "bildirim": 1659775,
   "durum": "sinif_farki",
   "sebep": "şart 3: maden_byf satırlarda 0.00, TEFAS 1.95",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 18:50:05"
  },
@@ -6089,6 +6134,7 @@
   "bildirim": 1659772,
   "durum": "sinif_farki",
   "sebep": "şart 3: borclanma satırlarda 10.31, TEFAS 0.00",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 18:50:05"
  },
@@ -6213,6 +6259,7 @@
   "bildirim": 1657385,
   "durum": "duzen_taninmadi",
   "sebep": "kıymet satırı yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 17:30:44"
  },
@@ -6649,6 +6696,7 @@
   "bildirim": 1667442,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -6760,6 +6808,7 @@
   "bildirim": 1657348,
   "durum": "hata",
   "sebep": "satır içi: 1/48 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 17:20:59"
  },
@@ -6990,6 +7039,7 @@
   "bildirim": 1657432,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: AIRBUS AIRBUS NL0000235190Y GR)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "02.09.2026 17:51:35"
  },
@@ -7021,6 +7071,7 @@
   "bildirim": 1666962,
   "durum": "hata",
   "sebep": "satır içi: 1/2 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 11:13:20"
  },
@@ -7552,6 +7603,7 @@
   "bildirim": 1604515,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "11.05.2026 14:38:08"
  },
@@ -8034,6 +8086,7 @@
   "bildirim": 1604520,
   "durum": "hata",
   "sebep": "şart 2: 3 satırda ISIN okunamadı (Bono: TRFGKYH92616_Rep. INVEO Tem. Y)",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "11.05.2026 14:38:08"
  },
@@ -8110,6 +8163,7 @@
   "bildirim": 1653993,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-25",
   "yayim": "21.08.2026 15:23:54"
  },
@@ -8377,6 +8431,7 @@
   "bildirim": 1604524,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "11.05.2026 14:38:08"
  },
@@ -8435,6 +8490,7 @@
   "bildirim": 1604526,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "11.05.2026 14:38:08"
  },
@@ -8443,6 +8499,7 @@
   "bildirim": 1604527,
   "durum": "beklemede",
   "sebep": "şart 3: TEFAS izleyen gün dağılımı yok",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "11.05.2026 14:38:08"
  },
@@ -8616,6 +8673,7 @@
   "bildirim": 1646507,
   "durum": "hata",
   "sebep": "satır içi: 3/36 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-25",
   "yayim": "10.08.2026 16:24:59"
  },
@@ -8692,6 +8750,7 @@
   "bildirim": 1657918,
   "durum": "hata",
   "sebep": "satır içi: 1/15 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 12:42:18"
  },
@@ -9082,6 +9141,7 @@
   "bildirim": 1658362,
   "durum": "sinif_farki",
   "sebep": "şart 3: ybyf satırlarda 0.00, TEFAS 1.82",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 16:57:15"
  },
@@ -9171,6 +9231,7 @@
   "bildirim": 1658371,
   "durum": "sinif_farki",
   "sebep": "şart 3: ybyf satırlarda 0.00, TEFAS 3.77",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 16:57:56"
  },
@@ -9341,6 +9402,7 @@
   "bildirim": 1658590,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -9561,6 +9623,7 @@
   "bildirim": 1659367,
   "durum": "hata",
   "sebep": "satır içi: 1/18 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 10:54:49"
  },
@@ -9817,6 +9880,7 @@
   "bildirim": 1660159,
   "durum": "duzen_taninmadi",
   "sebep": "kıymet satırı yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "08.09.2026 16:06:19"
  },
@@ -9949,6 +10013,7 @@
   "bildirim": 1658565,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -10049,6 +10114,7 @@
   "bildirim": 1667111,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 15:32:14"
  },
@@ -10274,6 +10340,7 @@
   "bildirim": 1667112,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 15:32:27"
  },
@@ -10483,6 +10550,7 @@
   "bildirim": 1667441,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10507,6 +10575,7 @@
   "bildirim": 1667438,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10562,6 +10631,7 @@
   "bildirim": 1667439,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10587,6 +10657,7 @@
   "bildirim": 1667437,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10600,6 +10671,7 @@
   "bildirim": 1604529,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: ZPLIB ZİRAAT PORTFÖY YÖNETİMİ )",
+  "sonRaporAy": "2026-04",
   "tarih": "2026-09-25",
   "yayim": "11.05.2026 14:38:08"
  },
@@ -10619,6 +10691,7 @@
   "bildirim": 1667433,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10677,6 +10750,7 @@
   "bildirim": 1667435,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10727,6 +10801,7 @@
   "bildirim": 1667440,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10832,6 +10907,7 @@
   "bildirim": 1667432,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10868,6 +10944,7 @@
   "bildirim": 1667434,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10896,6 +10973,7 @@
   "bildirim": 1667431,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10915,6 +10993,7 @@
   "bildirim": 1667436,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:16"
  },
@@ -10945,6 +11024,7 @@
   "bildirim": 1667429,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:15"
  },
@@ -11042,6 +11122,7 @@
   "bildirim": 1667430,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:15"
  },
@@ -11168,6 +11249,7 @@
   "bildirim": 1660372,
   "durum": "hata",
   "sebep": "satır içi: 1/26 satırda yüzde sütunu rayiç / toplam ile tutmuyor",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "08.09.2026 18:08:04"
  },
@@ -11407,6 +11489,7 @@
   "bildirim": 1658567,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -11572,6 +11655,7 @@
   "bildirim": 1660551,
   "durum": "sinif_farki",
   "sebep": "şart 3: maden_byf satırlarda 8.68, TEFAS 0.00",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "09.09.2026 08:38:32"
  },
@@ -11591,6 +11675,7 @@
   "bildirim": 1638146,
   "durum": "duzen_taninmadi",
   "sebep": "düzen tanınmadı",
+  "sonRaporAy": "2026-06",
   "tarih": "2026-09-25",
   "yayim": "29.07.2026 10:43:04"
  },
@@ -11605,6 +11690,7 @@
   "bildirim": 1658562,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:58"
  },
@@ -11707,6 +11793,7 @@
   "bildirim": 1658970,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: APLIB AK PORTFÖY YÖNETİMİ A.Ş.)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "04.09.2026 16:44:09"
  },
@@ -11751,6 +11838,7 @@
   "bildirim": 1658991,
   "durum": "sinif_farki",
   "sebep": "şart 3: maden_byf satırlarda 2.64, TEFAS 1.54",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "04.09.2026 16:55:53"
  },
@@ -11796,6 +11884,7 @@
   "bildirim": 1666966,
   "durum": "sinif_farki",
   "sebep": "şart 3: borclanma satırlarda 5.48, TEFAS 11.69",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 11:20:22"
  },
@@ -11827,6 +11916,7 @@
   "bildirim": 1667428,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 22:20:15"
  },
@@ -11835,6 +11925,7 @@
   "bildirim": 1646738,
   "durum": "duzen_taninmadi",
   "sebep": "kıymet satırı yok",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-25",
   "yayim": "10.08.2026 17:40:15"
  },
@@ -11925,6 +12016,7 @@
   "bildirim": 1646748,
   "durum": "duzen_taninmadi",
   "sebep": "kıymet satırı yok",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-25",
   "yayim": "10.08.2026 17:47:52"
  },
@@ -11953,6 +12045,7 @@
   "bildirim": 1646750,
   "durum": "duzen_taninmadi",
   "sebep": "kıymet satırı yok",
+  "sonRaporAy": "2026-07",
   "tarih": "2026-09-25",
   "yayim": "10.08.2026 17:47:53"
  },
@@ -12147,6 +12240,7 @@
   "bildirim": 1667017,
   "durum": "kapsam_disi",
   "sebep": "düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 14:13:18"
  },
@@ -12166,6 +12260,7 @@
   "bildirim": 1658576,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12188,6 +12283,7 @@
   "bildirim": 1658586,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -12250,6 +12346,7 @@
   "bildirim": 1658582,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12264,6 +12361,7 @@
   "bildirim": 1658591,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -12321,6 +12419,7 @@
   "bildirim": 1658451,
   "durum": "sinif_farki",
   "sebep": "şart 3: borclanma satırlarda 12.35, TEFAS 27.53",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 17:42:15"
  },
@@ -12329,6 +12428,7 @@
   "bildirim": 1658583,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -12366,6 +12466,7 @@
   "bildirim": 1667134,
   "durum": "kapsam_disi",
   "sebep": "düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 16:01:51"
  },
@@ -12413,6 +12514,7 @@
   "bildirim": 1658581,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12558,6 +12660,7 @@
   "bildirim": 1659604,
   "durum": "hata",
   "sebep": "şart 2: 1 satırda ISIN okunamadı (A) HİSSE: TC HAZİNE VE MALİYE)",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "07.09.2026 17:09:47"
  },
@@ -12630,6 +12733,7 @@
   "bildirim": 1658584,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -12708,6 +12812,7 @@
   "bildirim": 1658587,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -12735,6 +12840,7 @@
   "bildirim": 1658578,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12743,6 +12849,7 @@
   "bildirim": 1658579,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12765,6 +12872,7 @@
   "bildirim": 1658572,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12779,6 +12887,7 @@
   "bildirim": 1658577,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12793,6 +12902,7 @@
   "bildirim": 1658571,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12815,6 +12925,7 @@
   "bildirim": 1658573,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -12943,6 +13054,7 @@
   "bildirim": 1667022,
   "durum": "kapsam_disi",
   "sebep": "düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 14:21:50"
  },
@@ -12956,6 +13068,7 @@
   "bildirim": 1658574,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -13006,6 +13119,7 @@
   "bildirim": 1658575,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -13182,6 +13296,7 @@
   "bildirim": 1658580,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:16:59"
  },
@@ -13196,6 +13311,7 @@
   "bildirim": 1658585,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -13375,6 +13491,7 @@
   "bildirim": 1658588,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -13395,6 +13512,7 @@
   "bildirim": 1658589,
   "durum": "hata",
   "sebep": "ek PDF yok",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "03.09.2026 18:17:00"
  },
@@ -17249,6 +17367,7 @@
   "bildirim": 1667086,
   "durum": "duzen_taninmadi",
   "sebep": "düzen tanınmadı",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 15:24:46"
  },
@@ -17331,6 +17450,7 @@
   "bildirim": 1667089,
   "durum": "duzen_taninmadi",
   "sebep": "düzen tanınmadı",
+  "sonRaporAy": "2026-08",
   "tarih": "2026-09-25",
   "yayim": "23.09.2026 15:24:46"
  },
