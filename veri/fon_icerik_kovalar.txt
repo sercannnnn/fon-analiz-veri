@@ -1,4 +1,4 @@
-AB5	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
+AB5	ertelendi	ağ: https://www.kap.org.tr/tr/Bildirim/1657627
 ABG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
