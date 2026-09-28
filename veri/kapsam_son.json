@@ -3,12 +3,12 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-28T05:15:10Z",
+ "cekimZamaniUtc": "2026-09-28T09:15:11Z",
  "sonGun": "2026-09-28",
- "toplamKayit": 14273,
- "sonGunKayit": 2038,
- "sonGunFiyatsiz": 836,
- "sonGunDagilimSatir": 876,
+ "toplamKayit": 14275,
+ "sonGunKayit": 2040,
+ "sonGunFiyatsiz": 26,
+ "sonGunDagilimSatir": 1786,
  "tamKapsamliSonGun": "2026-09-25",
  "kimlikSapmaSayisi": 11,
  "kimlikSapanlar": [
@@ -134,20 +134,20 @@
    "tam": true
   },
   "2026-09-28": {
-   "kayit": 2038,
-   "gecerli": 1202,
-   "dagilim": 876,
-   "fiyatsiz": 836,
+   "kayit": 2040,
+   "gecerli": 2014,
+   "dagilim": 1786,
+   "fiyatsiz": 26,
    "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
   "sonGun": "2026-09-28",
-  "sonGunFiyatsizOran": 0.4102,
-  "sonGunDurumu": "kismi",
+  "sonGunFiyatsizOran": 0.0127,
+  "sonGunDurumu": "tam",
   "oncekiGunDurumu": "tam",
   "supheli": [],
-  "fiyatTamSonGun": "2026-09-25"
+  "fiyatTamSonGun": "2026-09-28"
  }
 }
