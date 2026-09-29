@@ -3,15 +3,43 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-09-28T09:15:11Z",
- "sonGun": "2026-09-28",
- "toplamKayit": 14275,
- "sonGunKayit": 2040,
- "sonGunFiyatsiz": 26,
- "sonGunDagilimSatir": 1786,
- "tamKapsamliSonGun": "2026-09-25",
- "kimlikSapmaSayisi": 11,
+ "cekimZamaniUtc": "2026-09-29T05:15:11Z",
+ "sonGun": "2026-09-29",
+ "toplamKayit": 14273,
+ "sonGunKayit": 2037,
+ "sonGunFiyatsiz": 396,
+ "sonGunDagilimSatir": 991,
+ "tamKapsamliSonGun": "2026-09-28",
+ "kimlikSapmaSayisi": 14,
  "kimlikSapanlar": [
+  {
+   "tarih": "2026-09-29",
+   "fonKodu": "FS1",
+   "payXfiyat": 109103796.99,
+   "buyukluk": 108823196.44,
+   "tolerans": 41.95
+  },
+  {
+   "tarih": "2026-09-29",
+   "fonKodu": "FS5",
+   "payXfiyat": 41088294.84,
+   "buyukluk": 41090200.56,
+   "tolerans": 10.44
+  },
+  {
+   "tarih": "2026-09-29",
+   "fonKodu": "RTP",
+   "payXfiyat": 276308656.83,
+   "buyukluk": 275960266.77,
+   "tolerans": 13.13
+  },
+  {
+   "tarih": "2026-09-29",
+   "fonKodu": "ZBD",
+   "payXfiyat": 922753834.83,
+   "buyukluk": 922753842.83,
+   "tolerans": 0.7
+  },
   {
    "tarih": "2026-09-28",
    "fonKodu": "ZBD",
@@ -81,23 +109,9 @@
    "payXfiyat": 930592538.11,
    "buyukluk": 930592545.25,
    "tolerans": 0.7
-  },
-  {
-   "tarih": "2026-09-18",
-   "fonKodu": "ZBD",
-   "payXfiyat": 933616036.57,
-   "buyukluk": 933616043.88,
-   "tolerans": 0.7
   }
  ],
  "gunler": {
-  "2026-09-18": {
-   "kayit": 2039,
-   "gecerli": 2026,
-   "dagilim": 2025,
-   "fiyatsiz": 13,
-   "tam": true
-  },
   "2026-09-21": {
    "kayit": 2039,
    "gecerli": 2024,
@@ -135,17 +149,24 @@
   },
   "2026-09-28": {
    "kayit": 2040,
-   "gecerli": 2014,
-   "dagilim": 1786,
-   "fiyatsiz": 26,
+   "gecerli": 2016,
+   "dagilim": 2016,
+   "fiyatsiz": 24,
+   "tam": true
+  },
+  "2026-09-29": {
+   "kayit": 2037,
+   "gecerli": 1641,
+   "dagilim": 991,
+   "fiyatsiz": 396,
    "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
-  "sonGun": "2026-09-28",
-  "sonGunFiyatsizOran": 0.0127,
-  "sonGunDurumu": "tam",
+  "sonGun": "2026-09-29",
+  "sonGunFiyatsizOran": 0.1944,
+  "sonGunDurumu": "kismi",
   "oncekiGunDurumu": "tam",
   "supheli": [],
   "fiyatTamSonGun": "2026-09-28"
