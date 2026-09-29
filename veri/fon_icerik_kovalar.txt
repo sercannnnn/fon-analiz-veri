@@ -1,4 +1,4 @@
-AB5	ertelendi	ağ: https://www.kap.org.tr/tr/Bildirim/1657627
+AB5	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 ABG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ABS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -31,8 +31,9 @@ APP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ARF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ARP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AS3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+AT2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AU1	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-AU3	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
+AU3	ertelendi	ağ: https://www.kap.org.tr/tr/Bildirim/1657629
 AVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AVZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AY6	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -176,7 +177,7 @@ DKP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DLG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DLN	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
+DLN	ertelendi	ağ: https://www.kap.org.tr/tr/Bildirim/1601604
 DMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DMV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -1267,6 +1268,7 @@ VPS	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 VRK	kuyrukta	sırası gelmedi
 VTF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 VTL	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+WXQ	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
 XWQ	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
 YA1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YAC	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
