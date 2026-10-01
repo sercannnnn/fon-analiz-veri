@@ -8,19 +8,23 @@
   "devam": false,
   "durum": "kismi",
   "h429": 0,
-  "hedefAy": "2026-08",
+  "hedefAy": "2026-09",
   "islenen": 120,
-  "istek": 348,
-  "kalan": 1022,
+  "istek": 347,
+  "kalan": 1026,
   "kuyrukArsivBekleyen": 0,
   "kuyrukArsivSapmasi": 0,
-  "listeToplam": 1142,
+  "listeToplam": 1146,
   "not": "tur suruyor; olurse ayni gun buradan devam eder (kismi tur kismi diye etiketlenir)",
-  "satirBuTur": 0,
-  "sonFon": "PYI",
-  "tarih": "2026-09-30",
-  "yayimlandiBuTur": 0,
-  "yazilanFonlar": [],
-  "zamanUtc": "2026-09-30T06:45:52Z"
+  "satirBuTur": 105,
+  "sonFon": "PYD",
+  "tarih": "2026-10-01",
+  "yayimlandiBuTur": 3,
+  "yazilanFonlar": [
+   "PBN",
+   "PHF",
+   "PPM"
+  ],
+  "zamanUtc": "2026-10-01T07:08:19Z"
  }
 }
