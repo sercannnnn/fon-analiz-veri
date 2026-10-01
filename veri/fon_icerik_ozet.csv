@@ -1,5 +1,5 @@
 fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,sapmaSebebi,tefasSinifToplami,raporIciTutarsizlik,listeTam,eksikKalem,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
+VKV,2026-09,VAKIF KATILIM PORTFÖY YÖNETİMİ A.Ş.,standart,57,100.0,2026-10-01,0.0,,100.0,,true,,55,0,0,0,0,57,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+VPA,2026-09,VAKIF KATILIM PORTFÖY YÖNETİMİ A.Ş.,standart,43,100.0,2026-10-01,0.0,,100.0,,true,,24,0,0,0,0,43,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
 AB5,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
 AD4,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AU3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,,,,ertelendi,ağ: https://www.kap.org.tr/tr/Bildirim/1657629,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DLN,2026-04,AURA PORTFÖY YÖNETİMİ A.Ş.,-,0,,,,,,,,,,,,,,,ertelendi,ağ: https://www.kap.org.tr/tr/Bildirim/1601604,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz

@@ -33,7 +33,7 @@ ARP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AS3	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AT2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AU1	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-AU3	ertelendi	ağ: https://www.kap.org.tr/tr/Bildirim/1657629
+AU3	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 AVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AVZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 AY6	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -88,7 +88,7 @@ BRH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSC	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-BSD	hata	satır içi: 1/23 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+BSD	hata	satır içi: 1/13 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 BSE	hata	ek PDF yok
 BSF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 BSN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
@@ -177,7 +177,7 @@ DKP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DKY	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DLG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-DLN	ertelendi	ağ: https://www.kap.org.tr/tr/Bildirim/1601604
+DLN	beklemede	şart 3: TEFAS izleyen gün dağılımı yok
 DMR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DMV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 DMZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -279,6 +279,7 @@ FFD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FFF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FFH	hata	şart 2: 1 satırda ISIN okunamadı (Hisse Yabancı: ISDW iShares MSCI EM IE00B27YC)
 FFO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FFP	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 FHI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FHP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FHZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -308,6 +309,7 @@ FSF	sinif_farki	şart 3: para_piyasasi satırlarda 38.97, TEFAS 22.70
 FSG	sinif_farki	şart 3: para_piyasasi satırlarda 3.50, TEFAS 1.70
 FSH	sinif_farki	şart 3: para_piyasasi satırlarda 0.63, TEFAS 2.17
 FSM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+FSU	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 FSV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 FTM	duzen_taninmadi	düzen tanınmadı
@@ -351,11 +353,12 @@ GGM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GGN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GGP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GGR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+GHS	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 GJA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GJH	hata	şart 1: ağırlık toplamı 273.50
+GJH	hata	şart 1: ağırlık toplamı 272.45
 GJM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GJO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GKE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -389,7 +392,7 @@ GPJ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GPM	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GPN	sinif_farki	şart 3: borclanma satırlarda 6.30, TEFAS 70.14
 GPV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GRL	hata	satır içi: 1/4 satırda yüzde sütunu rayiç / toplam ile tutmuyor
+GRL	hata	satır içi: 1/6 satırda yüzde sütunu rayiç / toplam ile tutmuyor
 GSE	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSL	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -397,11 +400,12 @@ GSO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GSU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+GTL	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 GTN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GTZ	hata	şart 2: 1 satırda ISIN okunamadı (G.DİĞER VARLIKLAR YATIRIM FONU: İŞ PORTFÖY YÖNETİMİ A.Ş.)
 GUA	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GUC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-GUK	hata	şart 1: ağırlık toplamı 496.50
+GUK	hata	şart 1: ağırlık toplamı 496.17
 GVB	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVC	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 GVD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
@@ -865,7 +869,7 @@ OPB	hata	şart 2: 1 satırda ISIN okunamadı (Borsa Y.Fonu Türk: APLIB AK PORTF
 OPI	sinif_farki	şart 3: maden_byf satırlarda 2.64, TEFAS 1.54
 OPU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OPZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-ORC	sinif_farki	şart 3: borclanma satırlarda 5.48, TEFAS 11.69
+ORC	sinif_farki	şart 3: teminat satırlarda 5.68, TEFAS 0.00
 ORI	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 ORS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 OSF	hata	ek PDF yok
@@ -894,7 +898,6 @@ PAU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PBE	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PBF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PBH	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-PBN	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 PBR	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PBS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PBY	hata	ek PDF yok
@@ -912,7 +915,6 @@ PGE	hata	ek PDF yok
 PGH	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHB	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHE	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
-PHF	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 PHN	duzen_taninmadi	kurucu düzeni (pdf-degil) ayrıştırılamıyor
 PHS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PHY	hata	ek PDF yok
@@ -938,7 +940,6 @@ POI	hata	ek PDF yok
 POU	hata	ek PDF yok
 PPF	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 PPG	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
-PPM	kapsam_disi	düzen görüntü (taranmış PDF, metin yok), OCR gerekir, ölçülemedi
 PPN	duzen_taninmadi	kurucu düzeni (goruntu) ayrıştırılamıyor
 PPO	hata	ek PDF yok
 PPU	hata	ek PDF yok
@@ -1132,12 +1133,14 @@ TGR	kuyrukta	sırası gelmedi
 TGV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TGZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THD	duzen_bekliyor	kurucu düzeni henüz sınanmadı
+THF	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 THG	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THH	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TI1	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 TI2	kuyrukta	sırası gelmedi
 TI3	kuyrukta	sırası gelmedi
 TI4	kuyrukta	sırası gelmedi
@@ -1161,6 +1164,7 @@ TLH	kuyrukta	sırası gelmedi
 TLK	duzen_taninmadi	kurucu düzeni (bilinmiyor) ayrıştırılamıyor
 TLT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TLU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TLV	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 TLZ	duzen_taninmadi	kurucu düzeni (fonbul) ayrıştırılamıyor
 TMA	kapsam_disi	kurucunun hicbir fonu 6 ayda rapor yayimlamadi
 TMC	kuyrukta	sırası gelmedi
@@ -1183,6 +1187,7 @@ TO8	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TOT	kuyrukta	sırası gelmedi
 TP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+TP2	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 TPC	kuyrukta	sırası gelmedi
 TPE	kuyrukta	sırası gelmedi
 TPF	duzen_bekliyor	kurucu düzeni henüz sınanmadı
@@ -1347,7 +1352,7 @@ YPL	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YPN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YPP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YPR	duzen_taninmadi	kurucu düzeni (karisik) ayrıştırılamıyor
-YPT	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
+YPT	duzen_taninmadi	düzen tanınmadı
 YPU	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 YPV	duzen_taninmadi	kurucu düzeni (yapikredi) ayrıştırılamıyor
 YPZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
