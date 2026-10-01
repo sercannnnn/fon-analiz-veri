@@ -3,14 +3,14 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-10-01T05:15:12Z",
+ "cekimZamaniUtc": "2026-10-01T09:15:11Z",
  "sonGun": "2026-10-01",
- "toplamKayit": 18338,
- "sonGunKayit": 2031,
- "sonGunFiyatsiz": 476,
- "sonGunDagilimSatir": 984,
+ "toplamKayit": 18340,
+ "sonGunKayit": 2033,
+ "sonGunFiyatsiz": 28,
+ "sonGunDagilimSatir": 1893,
  "tamKapsamliSonGun": "2026-09-30",
- "kimlikSapmaSayisi": 19,
+ "kimlikSapmaSayisi": 15,
  "kimlikSapanlar": [
   {
    "tarih": "2026-10-01",
@@ -18,34 +18,6 @@
    "payXfiyat": 2055375.71,
    "buyukluk": 881268.45,
    "tolerans": 8.76
-  },
-  {
-   "tarih": "2026-10-01",
-   "fonKodu": "BPV",
-   "payXfiyat": 84551547.3,
-   "buyukluk": 84634501.03,
-   "tolerans": 41.63
-  },
-  {
-   "tarih": "2026-10-01",
-   "fonKodu": "FS1",
-   "payXfiyat": 102176621.3,
-   "buyukluk": 101879738.37,
-   "tolerans": 41.69
-  },
-  {
-   "tarih": "2026-10-01",
-   "fonKodu": "FS6",
-   "payXfiyat": 207175736.39,
-   "buyukluk": 207116912.09,
-   "tolerans": 52.83
-  },
-  {
-   "tarih": "2026-10-01",
-   "fonKodu": "KIE",
-   "payXfiyat": 201697424.53,
-   "buyukluk": 221716745.35,
-   "tolerans": 20.76
   },
   {
    "tarih": "2026-10-01",
@@ -204,20 +176,20 @@
    "tam": true
   },
   "2026-10-01": {
-   "kayit": 2031,
-   "gecerli": 1555,
-   "dagilim": 984,
-   "fiyatsiz": 476,
+   "kayit": 2033,
+   "gecerli": 2005,
+   "dagilim": 1893,
+   "fiyatsiz": 28,
    "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
   "sonGun": "2026-10-01",
-  "sonGunFiyatsizOran": 0.2344,
-  "sonGunDurumu": "kismi",
+  "sonGunFiyatsizOran": 0.0138,
+  "sonGunDurumu": "tam",
   "oncekiGunDurumu": "tam",
   "supheli": [],
-  "fiyatTamSonGun": "2026-09-30"
+  "fiyatTamSonGun": "2026-10-01"
  }
 }
