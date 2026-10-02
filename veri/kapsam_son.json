@@ -3,43 +3,15 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-10-02T05:15:15Z",
+ "cekimZamaniUtc": "2026-10-02T09:15:11Z",
  "sonGun": "2026-10-02",
- "toplamKayit": 18332,
- "sonGunKayit": 2031,
- "sonGunFiyatsiz": 1016,
- "sonGunDagilimSatir": 809,
+ "toplamKayit": 18334,
+ "sonGunKayit": 2033,
+ "sonGunFiyatsiz": 35,
+ "sonGunDagilimSatir": 1820,
  "tamKapsamliSonGun": "2026-10-01",
- "kimlikSapmaSayisi": 19,
+ "kimlikSapmaSayisi": 15,
  "kimlikSapanlar": [
-  {
-   "tarih": "2026-10-02",
-   "fonKodu": "BPV",
-   "payXfiyat": 86928847.31,
-   "buyukluk": 87196432.48,
-   "tolerans": 42.76
-  },
-  {
-   "tarih": "2026-10-02",
-   "fonKodu": "FR1",
-   "payXfiyat": 89765375.19,
-   "buyukluk": 88369410.13,
-   "tolerans": 129.53
-  },
-  {
-   "tarih": "2026-10-02",
-   "fonKodu": "FS1",
-   "payXfiyat": 100090120.44,
-   "buyukluk": 96626431.43,
-   "tolerans": 41.57
-  },
-  {
-   "tarih": "2026-10-02",
-   "fonKodu": "RRP",
-   "payXfiyat": 261201162.95,
-   "buyukluk": 261354394.52,
-   "tolerans": 76.23
-  },
   {
    "tarih": "2026-10-02",
    "fonKodu": "ZBD",
@@ -204,20 +176,20 @@
    "tam": true
   },
   "2026-10-02": {
-   "kayit": 2031,
-   "gecerli": 1015,
-   "dagilim": 809,
-   "fiyatsiz": 1016,
+   "kayit": 2033,
+   "gecerli": 1998,
+   "dagilim": 1820,
+   "fiyatsiz": 35,
    "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
   "sonGun": "2026-10-02",
-  "sonGunFiyatsizOran": 0.5002,
-  "sonGunDurumu": "kismi",
+  "sonGunFiyatsizOran": 0.0172,
+  "sonGunDurumu": "tam",
   "oncekiGunDurumu": "tam",
   "supheli": [],
-  "fiyatTamSonGun": "2026-10-01"
+  "fiyatTamSonGun": "2026-10-02"
  }
 }
