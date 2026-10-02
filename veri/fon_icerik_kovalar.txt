@@ -752,7 +752,7 @@ MP1	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MP2	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MP4	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MPD	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-MRI	kuyrukta	sırası gelmedi
+MRI	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08 kullanıldı
 MSK	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MSO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 MSR	hata	ek PDF yok
