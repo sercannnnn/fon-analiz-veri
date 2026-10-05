@@ -1,5 +1,5 @@
 son_cekim_utc=2026-10-05T09:15:10Z
-son_deneme_utc=2026-10-05T10:01:58Z
+son_deneme_utc=2026-10-05T10:05:25Z
 tefas_cekim_cikis=0
 son_gun_fiyatsiz_oran=0.0147
 son_gun_durumu=tam
@@ -9,3 +9,4 @@ tam_kapsamli_son_gun=2026-10-02
 tefas_gunluk_20261005.csv=14251 satir, son tarih 2026-10-05
 tefas_dagilim_20261005.csv=14011 satir, son tarih 2026-10-05
 hisse_son_gunluk.csv=3096 satir, son tarih 2026-10-02
+gerileme=veri/fon_icerik_ozet.csv toplam 7->4

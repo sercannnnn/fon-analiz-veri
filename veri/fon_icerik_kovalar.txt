@@ -1140,7 +1140,6 @@ THO	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THS	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 THT	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 THV	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TI1	rapor_yok_bu_ay	bu ayın raporu yok; son rapor 2026-08
 TI2	kuyrukta	sırası gelmedi
 TI3	kuyrukta	sırası gelmedi
 TI4	kuyrukta	sırası gelmedi
@@ -1203,7 +1202,6 @@ TRN	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TRO	duzen_bekliyor	kurucu düzeni henüz sınanmadı
 TRR	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TRZ	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
-TSI	kuyrukta	sırası gelmedi
 TSP	kapsam_disi	son 6 ayda portföy dağılım raporu yok (tek tek sorgulandı)
 TTE	kuyrukta	sırası gelmedi
 TTL	duzen_bekliyor	kurucu düzeni henüz sınanmadı

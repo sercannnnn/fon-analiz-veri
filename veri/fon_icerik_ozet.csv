@@ -1,7 +1,4 @@
 fonKodu,raporTarihi,kurucu,kurucuDuzeni,satir,agirlikToplam,tefasGun,tefasSapma,sapmaSebebi,tefasSinifToplami,raporIciTutarsizlik,listeTam,eksikKalem,satirIciSinanan,satirIciHata,hisseSatir,yabanciHisseSatir,bistKoduBos,adTemiz,durum,sebep,not
-AB5,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AD4,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-AU3,2026-08,AK PORTFÖY YÖNETİMİ A.Ş.,standart,4,100.0,,,,,,,,1,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-DLN,2026-04,AURA PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,,,,,,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-ENO,2026-03,QNB PORTFÖY YÖNETİMİ A.Ş.,standart,3,100.0,,,,,,,,0,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
-IEZ,2026-04,INVEO PORTFÖY YÖNETİMİ A.Ş.,standart,2,100.0,,,,,,,,2,0,,,,,beklemede,şart 3: TEFAS izleyen gün dağılımı yok,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TI1,2026-09,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,408,100.0,2026-10-01,0.0,,100.0,,true,,43,0,0,0,0,396,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TIV,2026-09,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,170,100.0,2026-10-01,0.0,,100.0,,true,,146,0,0,0,0,167,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
+TSI,2026-09,İŞ PORTFÖY YÖNETİMİ A.Ş.,standart,160,100.0,2026-10-01,0.0,,100.0,,true,,146,0,0,0,0,159,yayimlandi,,gunluk tur; birikimli hal arsiv/fon_icerik_YYYY-MM.csv.gz
