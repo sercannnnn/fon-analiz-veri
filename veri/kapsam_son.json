@@ -3,14 +3,14 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-10-05T09:15:10Z",
+ "cekimZamaniUtc": "2026-10-06T05:15:10Z",
  "sonGun": "2026-10-05",
- "toplamKayit": 14251,
+ "toplamKayit": 12211,
  "sonGunKayit": 2034,
- "sonGunFiyatsiz": 30,
- "sonGunDagilimSatir": 1918,
- "tamKapsamliSonGun": "2026-10-02",
- "kimlikSapmaSayisi": 10,
+ "sonGunFiyatsiz": 29,
+ "sonGunDagilimSatir": 2011,
+ "tamKapsamliSonGun": "2026-10-05",
+ "kimlikSapmaSayisi": 9,
  "kimlikSapanlar": [
   {
    "tarih": "2026-10-05",
@@ -74,23 +74,9 @@
    "payXfiyat": 929268913.59,
    "buyukluk": 929268921.56,
    "tolerans": 0.7
-  },
-  {
-   "tarih": "2026-09-25",
-   "fonKodu": "ZBD",
-   "payXfiyat": 928044216.84,
-   "buyukluk": 928044224.14,
-   "tolerans": 0.7
   }
  ],
  "gunler": {
-  "2026-09-25": {
-   "kayit": 2040,
-   "gecerli": 2018,
-   "dagilim": 2018,
-   "fiyatsiz": 22,
-   "tam": true
-  },
   "2026-09-28": {
    "kayit": 2040,
    "gecerli": 2016,
@@ -128,16 +114,16 @@
   },
   "2026-10-05": {
    "kayit": 2034,
-   "gecerli": 2004,
-   "dagilim": 1918,
-   "fiyatsiz": 30,
-   "tam": false
+   "gecerli": 2005,
+   "dagilim": 2011,
+   "fiyatsiz": 29,
+   "tam": true
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
   "sonGun": "2026-10-05",
-  "sonGunFiyatsizOran": 0.0147,
+  "sonGunFiyatsizOran": 0.0143,
   "sonGunDurumu": "tam",
   "oncekiGunDurumu": "tam",
   "supheli": [],
