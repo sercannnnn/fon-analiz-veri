@@ -1,11 +1,11 @@
-son_cekim_utc=2026-10-09T05:15:19Z
-son_deneme_utc=2026-10-09T05:57:07Z
+son_cekim_utc=2026-10-09T09:15:12Z
+son_deneme_utc=2026-10-09T09:45:06Z
 tefas_cekim_cikis=0
-son_gun_fiyatsiz_oran=0.3836
-son_gun_durumu=kismi
+son_gun_fiyatsiz_oran=0.0197
+son_gun_durumu=tam
 onceki_gun_durumu=tam
-fiyat_tam_son_gun=2026-10-08
+fiyat_tam_son_gun=2026-10-09
 tam_kapsamli_son_gun=2026-10-08
 tefas_gunluk_20261009.csv=18285 satir, son tarih 2026-10-09
-tefas_dagilim_20261009.csv=17162 satir, son tarih 2026-10-09
+tefas_dagilim_20261009.csv=18054 satir, son tarih 2026-10-09
 hisse_son_gunluk.csv=4128 satir, son tarih 2026-10-08
