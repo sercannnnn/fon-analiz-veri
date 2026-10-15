@@ -3,15 +3,29 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-10-14T09:15:12Z",
- "sonGun": "2026-10-14",
- "toplamKayit": 16227,
- "sonGunKayit": 2025,
- "sonGunFiyatsiz": 33,
- "sonGunDagilimSatir": 1992,
+ "cekimZamaniUtc": "2026-10-15T05:15:13Z",
+ "sonGun": "2026-10-15",
+ "toplamKayit": 18247,
+ "sonGunKayit": 2020,
+ "sonGunFiyatsiz": 442,
+ "sonGunDagilimSatir": 1026,
  "tamKapsamliSonGun": "2026-10-14",
- "kimlikSapmaSayisi": 11,
+ "kimlikSapmaSayisi": 13,
  "kimlikSapanlar": [
+  {
+   "tarih": "2026-10-15",
+   "fonKodu": "FDG",
+   "payXfiyat": 46658631.22,
+   "buyukluk": 30864590.98,
+   "tolerans": 8.77
+  },
+  {
+   "tarih": "2026-10-15",
+   "fonKodu": "ZBD",
+   "payXfiyat": 921991101.85,
+   "buyukluk": 921991109.51,
+   "tolerans": 0.7
+  },
   {
    "tarih": "2026-10-14",
    "fonKodu": "BTP",
@@ -143,16 +157,23 @@
   "2026-10-14": {
    "kayit": 2025,
    "gecerli": 1992,
-   "dagilim": 1992,
+   "dagilim": 2003,
    "fiyatsiz": 33,
    "tam": true
+  },
+  "2026-10-15": {
+   "kayit": 2020,
+   "gecerli": 1578,
+   "dagilim": 1026,
+   "fiyatsiz": 442,
+   "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
-  "sonGun": "2026-10-14",
-  "sonGunFiyatsizOran": 0.0163,
-  "sonGunDurumu": "tam",
+  "sonGun": "2026-10-15",
+  "sonGunFiyatsizOran": 0.2188,
+  "sonGunDurumu": "kismi",
   "oncekiGunDurumu": "tam",
   "supheli": [],
   "fiyatTamSonGun": "2026-10-14"
