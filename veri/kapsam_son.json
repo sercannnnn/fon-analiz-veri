@@ -3,15 +3,36 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-10-21T09:15:11Z",
- "sonGun": "2026-10-21",
- "toplamKayit": 16174,
- "sonGunKayit": 2018,
- "sonGunFiyatsiz": 32,
- "sonGunDagilimSatir": 1992,
+ "cekimZamaniUtc": "2026-10-22T05:15:14Z",
+ "sonGun": "2026-10-22",
+ "toplamKayit": 18190,
+ "sonGunKayit": 2016,
+ "sonGunFiyatsiz": 328,
+ "sonGunDagilimSatir": 1232,
  "tamKapsamliSonGun": "2026-10-21",
- "kimlikSapmaSayisi": 10,
+ "kimlikSapmaSayisi": 13,
  "kimlikSapanlar": [
+  {
+   "tarih": "2026-10-22",
+   "fonKodu": "BPV",
+   "payXfiyat": 86504636.75,
+   "buyukluk": 86513219.85,
+   "tolerans": 41.73
+  },
+  {
+   "tarih": "2026-10-22",
+   "fonKodu": "FS6",
+   "payXfiyat": 194086492.49,
+   "buyukluk": 194229275.23,
+   "tolerans": 48.76
+  },
+  {
+   "tarih": "2026-10-22",
+   "fonKodu": "ZBD",
+   "payXfiyat": 897614392.09,
+   "buyukluk": 897614399.64,
+   "tolerans": 0.69
+  },
   {
    "tarih": "2026-10-21",
    "fonKodu": "ZBD",
@@ -136,16 +157,23 @@
   "2026-10-21": {
    "kayit": 2018,
    "gecerli": 1986,
-   "dagilim": 1992,
+   "dagilim": 1993,
    "fiyatsiz": 32,
    "tam": true
+  },
+  "2026-10-22": {
+   "kayit": 2016,
+   "gecerli": 1688,
+   "dagilim": 1232,
+   "fiyatsiz": 328,
+   "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
-  "sonGun": "2026-10-21",
-  "sonGunFiyatsizOran": 0.0159,
-  "sonGunDurumu": "tam",
+  "sonGun": "2026-10-22",
+  "sonGunFiyatsizOran": 0.1627,
+  "sonGunDurumu": "kismi",
   "oncekiGunDurumu": "tam",
   "supheli": [],
   "fiyatTamSonGun": "2026-10-21"
