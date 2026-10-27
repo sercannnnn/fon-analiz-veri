@@ -3,15 +3,22 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-10-26T09:15:10Z",
- "sonGun": "2026-10-26",
- "toplamKayit": 14127,
- "sonGunKayit": 2017,
- "sonGunFiyatsiz": 35,
- "sonGunDagilimSatir": 1992,
+ "cekimZamaniUtc": "2026-10-27T05:15:10Z",
+ "sonGun": "2026-10-27",
+ "toplamKayit": 14128,
+ "sonGunKayit": 2020,
+ "sonGunFiyatsiz": 630,
+ "sonGunDagilimSatir": 817,
  "tamKapsamliSonGun": "2026-10-26",
  "kimlikSapmaSayisi": 7,
  "kimlikSapanlar": [
+  {
+   "tarih": "2026-10-27",
+   "fonKodu": "ZBD",
+   "payXfiyat": 880075216.09,
+   "buyukluk": 880075222.68,
+   "tolerans": 0.69
+  },
   {
    "tarih": "2026-10-26",
    "fonKodu": "ZBD",
@@ -53,23 +60,9 @@
    "payXfiyat": 908671511.67,
    "buyukluk": 908671519.18,
    "tolerans": 0.7
-  },
-  {
-   "tarih": "2026-10-16",
-   "fonKodu": "ZBD",
-   "payXfiyat": 920802327.73,
-   "buyukluk": 920802334.71,
-   "tolerans": 0.7
   }
  ],
  "gunler": {
-  "2026-10-16": {
-   "kayit": 2019,
-   "gecerli": 1989,
-   "dagilim": 1996,
-   "fiyatsiz": 30,
-   "tam": true
-  },
   "2026-10-19": {
    "kayit": 2020,
    "gecerli": 1990,
@@ -107,17 +100,24 @@
   },
   "2026-10-26": {
    "kayit": 2017,
-   "gecerli": 1982,
-   "dagilim": 1992,
-   "fiyatsiz": 35,
+   "gecerli": 1983,
+   "dagilim": 1995,
+   "fiyatsiz": 34,
    "tam": true
+  },
+  "2026-10-27": {
+   "kayit": 2020,
+   "gecerli": 1390,
+   "dagilim": 817,
+   "fiyatsiz": 630,
+   "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
-  "sonGun": "2026-10-26",
-  "sonGunFiyatsizOran": 0.0174,
-  "sonGunDurumu": "tam",
+  "sonGun": "2026-10-27",
+  "sonGunFiyatsizOran": 0.3119,
+  "sonGunDurumu": "kismi",
   "oncekiGunDurumu": "tam",
   "supheli": [],
   "fiyatTamSonGun": "2026-10-26"
