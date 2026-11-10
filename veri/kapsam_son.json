@@ -3,15 +3,29 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-11-09T09:15:10Z",
- "sonGun": "2026-11-09",
- "toplamKayit": 14112,
- "sonGunKayit": 2013,
- "sonGunFiyatsiz": 33,
- "sonGunDagilimSatir": 1990,
+ "cekimZamaniUtc": "2026-11-10T05:15:11Z",
+ "sonGun": "2026-11-10",
+ "toplamKayit": 14103,
+ "sonGunKayit": 2009,
+ "sonGunFiyatsiz": 415,
+ "sonGunDagilimSatir": 1027,
  "tamKapsamliSonGun": "2026-11-09",
- "kimlikSapmaSayisi": 11,
+ "kimlikSapmaSayisi": 12,
  "kimlikSapanlar": [
+  {
+   "tarih": "2026-11-10",
+   "fonKodu": "BPV",
+   "payXfiyat": 91652668.98,
+   "buyukluk": 91177273.4,
+   "tolerans": 43.42
+  },
+  {
+   "tarih": "2026-11-10",
+   "fonKodu": "ZBD",
+   "payXfiyat": 901982887.49,
+   "buyukluk": 901982894.32,
+   "tolerans": 0.69
+  },
   {
    "tarih": "2026-11-09",
    "fonKodu": "ZBD",
@@ -81,23 +95,9 @@
    "payXfiyat": 862986971.04,
    "buyukluk": 862986978.51,
    "tolerans": 0.69
-  },
-  {
-   "tarih": "2026-10-30",
-   "fonKodu": "ZBD",
-   "payXfiyat": 877296703.83,
-   "buyukluk": 877296711.04,
-   "tolerans": 0.69
   }
  ],
  "gunler": {
-  "2026-10-30": {
-   "kayit": 2018,
-   "gecerli": 1985,
-   "dagilim": 1994,
-   "fiyatsiz": 33,
-   "tam": true
-  },
   "2026-11-02": {
    "kayit": 2017,
    "gecerli": 1984,
@@ -139,13 +139,20 @@
    "dagilim": 1990,
    "fiyatsiz": 33,
    "tam": true
+  },
+  "2026-11-10": {
+   "kayit": 2009,
+   "gecerli": 1594,
+   "dagilim": 1027,
+   "fiyatsiz": 415,
+   "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
-  "sonGun": "2026-11-09",
-  "sonGunFiyatsizOran": 0.0164,
-  "sonGunDurumu": "tam",
+  "sonGun": "2026-11-10",
+  "sonGunFiyatsizOran": 0.2066,
+  "sonGunDurumu": "kismi",
   "oncekiGunDurumu": "tam",
   "supheli": [],
   "fiyatTamSonGun": "2026-11-09"
