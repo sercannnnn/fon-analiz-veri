@@ -3,29 +3,15 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-11-11T05:15:11Z",
+ "cekimZamaniUtc": "2026-11-11T09:15:12Z",
  "sonGun": "2026-11-11",
- "toplamKayit": 16117,
- "sonGunKayit": 2010,
- "sonGunFiyatsiz": 476,
- "sonGunDagilimSatir": 1146,
- "tamKapsamliSonGun": "2026-11-10",
- "kimlikSapmaSayisi": 16,
+ "toplamKayit": 16121,
+ "sonGunKayit": 2014,
+ "sonGunFiyatsiz": 34,
+ "sonGunDagilimSatir": 1969,
+ "tamKapsamliSonGun": "2026-11-11",
+ "kimlikSapmaSayisi": 14,
  "kimlikSapanlar": [
-  {
-   "tarih": "2026-11-11",
-   "fonKodu": "BPV",
-   "payXfiyat": 91399934.63,
-   "buyukluk": 91560533.33,
-   "tolerans": 43.25
-  },
-  {
-   "tarih": "2026-11-11",
-   "fonKodu": "FS1",
-   "payXfiyat": 97284647.83,
-   "buyukluk": 97651070.06,
-   "tolerans": 37.47
-  },
   {
    "tarih": "2026-11-11",
    "fonKodu": "RKH",
@@ -176,20 +162,20 @@
    "tam": true
   },
   "2026-11-11": {
-   "kayit": 2010,
-   "gecerli": 1534,
-   "dagilim": 1146,
-   "fiyatsiz": 476,
-   "tam": false
+   "kayit": 2014,
+   "gecerli": 1980,
+   "dagilim": 1969,
+   "fiyatsiz": 34,
+   "tam": true
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
   "sonGun": "2026-11-11",
-  "sonGunFiyatsizOran": 0.2368,
-  "sonGunDurumu": "kismi",
+  "sonGunFiyatsizOran": 0.0169,
+  "sonGunDurumu": "tam",
   "oncekiGunDurumu": "tam",
   "supheli": [],
-  "fiyatTamSonGun": "2026-11-10"
+  "fiyatTamSonGun": "2026-11-11"
  }
 }
