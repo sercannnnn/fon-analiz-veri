@@ -3,22 +3,15 @@
  "aciklama": "TEFAS dagilim verisi bir is gunu gecikmelidir: T tarihli dagilim T-1 kapanisindaki portfoyu yansitir. Gunluk analizde dagilim bir gun geriden gelir; yapi degisimi kapisi (kapi 4) bu gecikmeyle okunmalidir.",
  "kanit": "07.09.2026: KAP 31.08.2026 kiymet tablolari (TLY, TI1, DCB, PAL, KLU, YBR, EDU, FBV, IED) TEFAS 01.09.2026 dagilimiyla aile duzeyinde sifir sapma; 31.08.2026 dagilimiyla 6 puana varan fark.",
  "tarih": "2026-09-07",
- "cekimZamaniUtc": "2026-11-13T05:15:11Z",
+ "cekimZamaniUtc": "2026-11-13T09:15:09Z",
  "sonGun": "2026-11-13",
- "toplamKayit": 18128,
- "sonGunKayit": 2010,
- "sonGunFiyatsiz": 404,
- "sonGunDagilimSatir": 983,
+ "toplamKayit": 18133,
+ "sonGunKayit": 2015,
+ "sonGunFiyatsiz": 33,
+ "sonGunDagilimSatir": 1840,
  "tamKapsamliSonGun": "2026-11-12",
- "kimlikSapmaSayisi": 16,
+ "kimlikSapmaSayisi": 15,
  "kimlikSapanlar": [
-  {
-   "tarih": "2026-11-13",
-   "fonKodu": "BPV",
-   "payXfiyat": 91508665.38,
-   "buyukluk": 91605161.53,
-   "tolerans": 43.22
-  },
   {
    "tarih": "2026-11-13",
    "fonKodu": "MT8",
@@ -183,20 +176,20 @@
    "tam": true
   },
   "2026-11-13": {
-   "kayit": 2010,
-   "gecerli": 1606,
-   "dagilim": 983,
-   "fiyatsiz": 404,
+   "kayit": 2015,
+   "gecerli": 1982,
+   "dagilim": 1840,
+   "fiyatsiz": 33,
    "tam": false
   }
  },
  "tanim": "tam gun: gecerli fiyatli fon sayisi penceredeki en yuksek gunun en az 0.98 kati ve dagilim satiri da oyle; kimlik: tedPaySayisi x fiyat = portfoyBuyukluk, tolerans pay x 0,5e-6 + 0,01 TL (fiyat alti ondalikla basilir); brifing kapsam satiri yalnizca bu dosyadan beslenir",
  "fiyatsiz": {
   "sonGun": "2026-11-13",
-  "sonGunFiyatsizOran": 0.201,
-  "sonGunDurumu": "kismi",
+  "sonGunFiyatsizOran": 0.0164,
+  "sonGunDurumu": "tam",
   "oncekiGunDurumu": "tam",
   "supheli": [],
-  "fiyatTamSonGun": "2026-11-12"
+  "fiyatTamSonGun": "2026-11-13"
  }
 }
